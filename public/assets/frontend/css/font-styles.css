@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'against';
+    font-style: regular;
+    src: url(assets/frontend/fonts/against-regular.ttf) format('ttf');
+}
+
+@font-face {
+    font-family: 'against';
+    font-style: regular;
+    src: url(assets/frontend/fonts/against-regular.otf) format('otf');
+}

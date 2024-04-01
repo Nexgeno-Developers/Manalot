@@ -1,0 +1,901 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Quicksand", sans-serif !important;
+    overflow-x: hidden;
+}
+
+.heading_font {
+    font-family: "Yeseva One", serif;
+}
+
+.main {
+    padding: 0px 0 0px 0px;
+    background-image: url(/assets/frontend/images/body_bg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.black_color {
+    color: #404040;
+}
+
+.nav_right_menu {
+    background: #ffffffa8;
+    padding: 10px 36px;
+    border-radius: 10px;
+}
+
+.nav_right_menu li {
+    padding-left: 5px !important;
+    padding-right: 5px;
+}
+
+.nav_right_menu li a {
+    color: #404040;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.nav_right_menu li a:hover {
+    color: #bb8042;
+}
+
+.nav_right_menu li i {
+    color: #bb8042;
+    font-size: 26px;
+    position: relative;
+    top: 4px;
+}
+
+.z-index-1 {
+    z-index: 11;
+}
+
+/*-- banner css open-*/
+
+section.banner_section h3 {
+    font-size: 55px;
+    font-weight: 400;
+    line-height: 65px;
+    padding-bottom: 22px;
+}
+
+section.banner_section p {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 25px;
+}
+
+section.banner_section img {
+    object-fit: cover;
+    object-position: top;
+}
+
+.banner_section .carousel-caption {
+    position: absolute;
+    right: 15%;
+    bottom: 0;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    color: #fff;
+    width: 450px;
+    left: auto;
+    margin-right: 48% !important;
+    margin-bottom: 4%;
+}
+
+.buttonclass a {
+    padding: 11px 30px 12px 27px;
+    color: #000 !important;
+    text-decoration: none;
+    font-weight: 600;
+    border: 1px solid;
+    position: relative;
+    top: -6px;
+    left: 8px;
+    transition: 0.3s all;
+}
+
+.buttonclass1 button {
+    padding: 8px 30px 9px 27px;
+    color: #000 !important;
+    text-decoration: none;
+    font-weight: 600;
+    border: 1px solid;
+    position: relative;
+    top: -6px;
+    left: 8px;
+    transition: 0.3s all;
+    background: transparent;
+}
+
+.buttonclass {
+    background: #E3C2AB;
+    padding: 6px 0px 10px 0px;
+    display: inline-block;
+}
+
+.buttonclass1 {
+    background: #E3C2AB;
+    padding: 0px 0px 0px 0px;
+    display: inline-block;
+}
+
+.buttonclass a:hover {
+    position: relative;
+    top: 1px;
+    left: 0;
+    transition: 0.3s all;
+    border: 1px solid #e3c2ab;
+}
+
+.buttonclass1 button:hover {
+    position: relative;
+    top: 1px;
+    left: 0;
+    transition: 0.3s all;
+    border: 1px solid #e3c2ab;
+}
+
+.buttonclass i {
+    font-size: 24px;
+    position: relative;
+    top: 4px;
+}
+
+
+.buttonclass1 i {
+    font-size: 24px;
+    position: relative;
+    top: 4px;
+}
+
+/*-- why choose section css open--*/
+section.why_choose_section {
+    padding-top: 70px;
+}
+
+.choose_img {
+    width: 60px;
+    height: 60px;
+}
+
+.choose_content p {
+    font-size: 14px;
+    padding-right: 90px;
+}
+
+.choose_content h5 {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+
+.benefits_calculator p {
+    color: #404040;
+}
+
+.amount_price_view {
+    padding-top: 10px;
+    display: block;
+}
+
+.sip-calculator {
+    padding: 3em 3em 2em 3em;
+    background-color: #ffffff5c;
+    box-shadow: 8px 8px 35px 0px #0000000D;
+    border-radius: 50px;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sip-calculator-amount,
+.sip-calculator-year,
+.sip-calculator-roi {
+    margin-bottom: 2.2em;
+    width: 100%;
+}
+
+.amount-slider,
+.year-slider,
+.roi-slider {
+    width: 100%;
+    height: 1px;
+    border-radius: 10px;
+    background: var(--slider-color);
+    outline: none;
+
+}
+
+input[type=range] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 2.5px solid var(--vigo-color);
+    height: 20px;
+    width: 20px;
+    border-radius: 40px;
+    background: white;
+    cursor: pointer;
+    margin-top: 0px;
+
+}
+
+input[type=range]::-moz-range-thumb {
+    border: 2.5px solid var(--vigo-color);
+    height: 20px;
+    width: 20px;
+    border-radius: 40px;
+    background: white;
+    cursor: pointer;
+}
+
+input[type=range]::-ms-thumb {
+    border: 2.5px solid var(--vigo-color);
+    height: 20px;
+    width: 20px;
+    border-radius: 40px;
+    background: white;
+    cursor: pointer;
+}
+
+input[type=number] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    background: var(--input-number-color);
+    border-style: none;
+    height: 30px;
+    margin-left: 20px;
+    margin-right: 10px;
+    text-align: right;
+    padding-right: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+    border-radius: 4px;
+    /* float: right; */
+}
+
+input[type=number]:focus {
+    outline: none;
+    border: 1px solid #3197EE;
+
+}
+
+/* For radio */
+.radio {
+    margin: 0.5rem;
+    text-align: center;
+}
+
+.radio input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.radio input[type="radio"]+.radio-label:before {
+    content: '';
+    background: #f4f4f4;
+    border-radius: 100%;
+    border: 1px solid #b4b4b4;
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
+    position: relative;
+    top: -0.2em;
+    margin-right: 1em;
+    vertical-align: top;
+    cursor: pointer;
+    text-align: center;
+    transition: all 250ms ease;
+}
+
+.radio input[type="radio"]:checked+.radio-label:before {
+    background-color: #5367FF;
+    box-shadow: inset 0 0 0 4px #f4f4f4;
+}
+
+.radio input[type="radio"]:focus+.radio-label:before {
+    outline: none;
+    border-color: #3197EE;
+}
+
+.radio input[type="radio"]:disabled+.radio-label:before {
+    box-shadow: inset 0 0 0 4px #f4f4f4;
+    border-color: #b4b4b4;
+    background: #b4b4b4;
+}
+
+.radio input[type="radio"]+.radio-label:empty:before {
+    margin-right: 0;
+}
+
+
+/*--step css open--*/
+
+.step_box_icon {
+    background: #E3C2AB;
+    width: 124px;
+    border-radius: 100px;
+    margin-top: 34px;
+    transition: 0.3s all;
+    height: 124px;
+}
+
+.step_box_icon img {
+    transition: 0.3s all;
+    text-align: center;
+    width: 46px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 33px;
+}
+
+.step_box_icon:hover .step_box_img {
+    top: 0;
+    left: 0;
+    border: 2px solid #e3c2ab;
+}
+
+.step_box_img {
+    width: 124px;
+    height: 124px;
+    border: 2px solid #404040;
+    border-radius: 100px;
+    line-height: 120px;
+    text-align: center;
+    position: relative;
+    top: -10px;
+    left: 10px;
+    transition: 0.3s all;
+}
+
+.step_border_img {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 655px;
+    position: relative;
+}
+
+.step_border_img img {
+    position: absolute;
+}
+
+section.steps_section {
+    padding: 65px 0px 65px 0px;
+}
+
+.step_box.steps1 {
+    position: relative;
+    top: 126px;
+    left: 247px;
+}
+
+.step_box.steps2 {
+    position: relative;
+    top: -158px;
+    left: 80px;
+}
+
+.step_box.steps3 {
+    position: relative;
+    top: -134px;
+    left: 70px;
+}
+
+.step_box.steps4 {
+    position: relative;
+    top: 126px;
+    left: -70px;
+}
+
+.step_content1 {
+    position: relative;
+    left: -189px;
+    width: 220px;
+    top: 20px;
+}
+
+.step_content2 {
+    position: relative;
+    left: -171px;
+    width: 328px;
+    top: 10px;
+}
+
+.step_content4 {
+    position: relative;
+    left: 105px;
+    width: 240px;
+    top: 10px;
+}
+
+.top_step_content {
+    margin-bottom: 191px;
+}
+
+.step_bottom_text {
+    padding-top: 160px;
+    text-align: center;
+}
+
+.top_step_content p {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.top_step_content p span {
+    display: block;
+}
+
+.title_heading {
+    font-size: 38px !important;
+    font-weight: 500;
+}
+
+.step_bottom_text p {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.step_bottom_text p span {
+    display: block;
+}
+
+.line-height35 {
+    line-height: 35px;
+}
+
+.font-size20 {
+    font-size: 20px;
+}
+
+/*--footer css open--*/
+
+footer {
+    padding: 60px 0 0px 0px;
+    background-image: url(/assets/frontend/images/footer_bg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+}
+
+.footer-app-image {
+    position: absolute;
+    margin-top: -246px;
+}
+
+.footer-widget .widget-title {
+    font-size: 16px;
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+}
+
+
+.footer-widget .widget-menu li:not(:last-child) {
+    margin-bottom: 14px;
+}
+
+.footer-widget .widget-menu a {
+    font-weight: 400;
+    line-height: 1;
+    display: block;
+}
+
+.footer-widget .widget-menu a:hover {
+    padding-left: 7px;
+}
+
+.footer-widget .widget-product .product-box {
+    margin-top: 0;
+}
+
+.footer-widget .widget-product .product-box:not(:last-child) {
+    border-bottom: 1px solid #2d2d2d;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.footer-menu {
+    border-top: 1px solid #2d2d2d;
+    border-bottom: 1px solid #2d2d2d;
+    text-align: center;
+}
+
+.footer-menu li {
+    display: inline-block;
+    padding: 1.5rem 0;
+}
+
+.footer-menu li:not(:last-child) {
+    margin-right: 4.5rem;
+}
+
+.footer-menu a {
+    display: block;
+}
+
+.copyright-text {
+    line-height: 1;
+}
+
+.copyright-text a:hover {
+    text-decoration: underline;
+}
+
+
+footer ul.widget-menu {
+    margin: 0;
+    padding: 0;
+}
+
+footer ul.widget-menu li {
+    list-style: none;
+}
+
+footer ul.widget-menu li a {
+    color: #fff;
+    text-decoration: none;
+    transition: 0.5s all;
+    font-size: 14px;
+}
+
+.form-control:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: none !important;
+}
+
+.form-subscribe input {
+    background: #575757 !important;
+    border: 0;
+    border-radius: 20px 0px 0px 20px;
+    padding: 18px 20px;
+    color: #fff !important;
+}
+
+form.form-subscribe button {
+    border: 0;
+    border-radius: 20px 20px 20px 20px;
+    background: #c19374 !important;
+    font-size: 16px;
+    color: #404040 !important;
+    padding: 18px 25px 18px 25px;
+    margin-left: -15px;
+    z-index: 99 !important;
+}
+
+.form-subscribe input::placeholder {
+    color: #ffffffb5;
+}
+
+.btn-check:active+.btn-success:focus,
+.btn-check:checked+.btn-success:focus,
+.btn-success.active:focus,
+.btn-success:active:focus,
+.show>.btn-success.dropdown-toggle:focus {
+    box-shadow: none !important;
+}
+
+.float_right {
+    float: right;
+}
+
+.copyright_section {
+    border-top: 1px solid #343434;
+    padding-top: 15px;
+    margin-top: 45px;
+    padding-bottom: 2px;
+}
+
+.copyright_section ul {
+    padding: 0;
+    margin: 0;
+}
+
+.copyright_section ul li {
+    float: left;
+    list-style: none;
+    margin-right: 10px;
+}
+
+.copyright_section ul li a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.copyright_section p {
+    font-size: 14px;
+}
+
+.copyright_section ul li i {
+    font-size: 20px;
+}
+
+
+/*-- accordion section open--*/
+
+section.faq_section {
+    padding: 70px 0px 160px 0px;
+}
+
+.faq_section .accordion-item {
+    background-color: #ffffff5c !important;
+    border: 0;
+    margin-bottom: 17px;
+    border-radius: 15px !important;
+}
+
+.faq_section .accordion-button.collapsed {
+    background-color: #ffffff5c;
+    border: 0;
+    box-shadow: none !important;
+    border-radius: 15px !important;
+    padding: 20px 20px;
+}
+
+.faq_section .accordion-button {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 4%) !important;
+    padding: 20px 20px;
+    color: #404040 !important;
+    font-weight: 500;
+}
+
+.faq_section .accordion-body {
+    padding: 20px 20px;
+}
+
+
+.amount_monthly1 {
+    border: 2px solid #404040;
+    padding: 4px 15px;
+    float: left;
+    width: 70%;
+}
+
+.amount_monthly2 {
+    border: 2px solid #404040;
+    padding: 4px 15px;
+}
+
+.amount_check {
+    float: left;
+    width: 30%;
+}
+
+.amount_check button {
+    background: #e3c2ab !important;
+    border: 2px solid #404040 !important;
+    border-radius: 0;
+    border-left: 0 !important;
+    width: 100%;
+    color: #404040 !important;
+    padding: 17.5px 20px;
+}
+
+#amountLabel span {
+    display: block;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+label#amountLabel {
+    font-size: 14px;
+}
+
+.total_payment_text {
+    width: 70%;
+    float: left;
+}
+
+.total_number {
+    width: 30%;
+    float: right;
+    text-align: right;
+}
+
+.total_payment_text span {
+    display: block;
+}
+
+.total_number_main {
+    text-align: right;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+
+/*-- open accounts page css--*/
+
+.adhar_field input::placeholder {
+    font-size: 16px;
+    padding-left: 0 !important;
+    margin-left: 0;
+}
+
+.adhar_field input {
+    border: 0px;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    width: 340px;
+    margin-right: 22px;
+    background: transparent !important;
+    padding: 4px 16px 10px 0px;
+}
+
+.mt60 {
+    margin-top: 60px;
+}
+
+.openaccount {
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+
+.openaccount label {
+    font-size: 18px;
+}
+
+.openaccount p {
+    font-size: 18px;
+}
+
+/*-- open Instant page css--*/
+
+.instant_pay {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.instant_pay .adhar_field input {
+    width: 100%;
+}
+
+.instant_section label {
+    font-size: 18px;
+}
+
+.instant_section p {
+    font-size: 18px;
+}
+
+/*--login popup modal css open--*/
+
+.modal_popup_cls .modal-header {
+    border: 0;
+}
+
+
+.modal_popup_cls .modal-dialog {
+    max-width: 600px;
+}
+
+.modal_popup_cls .modal-content {
+    padding: 30px 50px;
+    border-radius: 30px;
+    background: #ffffffed !important;
+}
+
+
+.modal_popup_cls .modal-content input.form-control {
+    border: 0;
+    border-bottom: 1px solid #838383;
+    border-radius: 0;
+    padding: 0px 0px 15px 4px;
+    background: transparent;
+}
+
+.modal_popup_cls .modal-content input::placeholder {
+    font-size: 18px;
+    color: #555;
+    font-weight: 500;
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+
+.forget_buttons {
+    background: transparent;
+    border: 0;
+    float: right;
+    padding-top: 6px;
+}
+
+.btn-close:focus {
+    outline: 0;
+    box-shadow: none !important;
+    opacity: 1;
+}
+
+/*--- information page css--*/
+
+.information_box .step_box_icon {
+    background: #E3C2AB;
+    width: 55px;
+    border-radius: 100px;
+    margin-top: 8px;
+    transition: 0.3s all;
+    height: 55px;
+}
+
+.information_box .step_box_icon:hover .step_box_img {
+    top: 0;
+    left: 0;
+    border: 2px solid #e3c2ab;
+}
+
+.information_box .step_box_icon img {
+    transition: 0.3s all;
+    text-align: center;
+    width: 23px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 13px;
+}
+
+.information_box .step_box_img {
+    width: 55px;
+    height: 55px;
+    border: 1px solid #404040;
+    border-radius: 100px;
+    line-height: 55px;
+    text-align: center;
+    position: relative;
+    top: -5px;
+    left: 5px;
+    transition: 0.3s all;
+}
+
+.information_section p {
+    font-size: 16px;
+    padding-right: 0;
+}
+
+.information_tb tr {
+    border: 1px solid #333 !important;
+}
+
+.information_tb th,
+td {
+    font-size: 14px;
+    border: 0 !important;
+}
+
+.information_section {
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-bottom: 160px;
+}
+
+.terms_section {
+    padding-bottom: 160px;
+}

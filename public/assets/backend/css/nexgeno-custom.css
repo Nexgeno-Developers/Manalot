@@ -1,0 +1,20 @@
+.select2-container {
+    z-index: 9990 !important;
+}
+
+/*.trumbowyg-box {
+    z-index: 9990 !important;
+}
+
+.trumbowyg-box {
+    overflow: visible !important;
+}
+
+.trumbowyg-modal {
+    z-index: 99999 !important;
+}*/
+
+.logo-topbar .logo-light .logo-lg img {
+    width: 60px;
+    height: auto;
+}
