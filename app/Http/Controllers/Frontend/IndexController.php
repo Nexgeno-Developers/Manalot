@@ -4,16 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\PracticeArea;
-use App\Models\Blog;
-use App\Models\BlogCategory;
 use App\Models\User;
-use App\Models\Team;
-use App\Models\Faq;
 use App\Models\Contact;
-use App\Models\BlogComment;
-use App\Models\MediaCoverage;
-use App\Models\Publication;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -22,59 +14,6 @@ class IndexController extends Controller
     public function index(){
         return view('frontend.pages.home.index');
     }
-
-//--------------=============================== Blog  ================================------------------------------
-
-    public function blog(){
-        $blog = Blog::where('status', 1)->whereJsonContains('blog_category_ids', '3')->orderBy('updated_at', 'desc')->paginate(6);
-
-        return view('frontend.pages.blog.index', compact('blog'));
-    }
-
-    public function blog_data(Request $request)
-    {
-        $page = $request->input('page', 1);
-        $perPage = 6;
-    
-        $blog = Blog::where('status', 1)
-            ->whereJsonContains('blog_category_ids', '3')
-            ->orderBy('updated_at', 'desc')
-            ->paginate($perPage, ['*'], 'page', $page);
-    
-        if ($request->ajax()) {
-            $view = view('frontend.component.blog_list_card', compact('blog'))->render();
-    
-            return response()->json(['html' => $view]);
-        }
-    
-        return view('frontend.pages.blog.index', compact('blog'));
-    }
-
-    public function blog_detail($category, $slug){
-
-        $category_id = BlogCategory::where('slug',$category)->first();
-
-        $detail = Blog::where('slug', $slug)->where('status', 1)->first();
-
-        //$author = json_decode($detail->user_id, true);
-        $author = $detail->user_id;
-
-        $blog = Blog::where('status', 1)->whereJsonContains('blog_category_ids', json_decode($detail->blog_category_ids)['0'])->where('id', '!=', $detail->id)->limit(3)->orderBy('id', 'desc')->get();
-
-        $current_id = $detail->id;
-
-        $previous = Blog::where('status', 1)->whereJsonContains('blog_category_ids', ''.$category_id->id.'')->where('id', '<', $current_id)->orderBy('id', 'desc')->first();
-        $next = Blog::where('status', 1)->whereJsonContains('blog_category_ids', ''.$category_id->id.'')->where('id', '>', $current_id)->orderBy('id', 'asc')->first();
-
-        $previous_slug = $previous ? $previous->slug : null;
-        $next_slug = $next ? $next->slug : null;
-
-        return view('frontend.pages.blog.detail', compact('detail','author','blog','previous_slug','next_slug'));
-    }
-
-//--------------=============================== Blog end ================================------------------------------
-
-
 
 //--------------=============================== other ================================------------------------------
 
@@ -108,22 +47,6 @@ class IndexController extends Controller
 
     public function contact_us(){
         return view('frontend.pages.contact.index');
-    }
-    public function information(){
-        return view('frontend.pages.information.index');
-    }
-
-    public function opennew_account(){
-        return view('frontend.pages.opennewaccount.index');
-    }
-
-    public function faq(){
-        $faq = Faq::where('status', 1)->get();
-        return view('frontend.pages.faq.index', compact('faq'));
-    }
-
-    public function instantpay(){
-        return view('frontend.pages.instantpay.index');
     }
 
     public function privacy_policy(){

@@ -18,27 +18,8 @@ use Illuminate\Support\Facades\Mail;
 
 // Home START
 Route::get('/', [IndexController::class, 'index'])->name('index');
-Route::get('/area-of-practices', [IndexController::class, 'practice_area'])->name('practicearea');
-
-$service = DB::table('practice_areas')->pluck('slug')->toArray();
-Route::get('/{slug}', [IndexController::class, 'practice_area_detail'])
-->where('slug', implode('|', $service))
-->name('practicearea-detail');
-
-Route::get('/blog', [IndexController::class, 'blog'])->name('blog');
-Route::get('/blogs-data', [IndexController::class, 'blog_data'])->name('blog-data');
-
-$postCategories = DB::table('blog_categories')->pluck('slug')->toArray();
-Route::get('/{category}/{slug}', [IndexController::class, 'blog_detail'])
-    ->where('category', implode('|', $postCategories))
-    ->name('blog.detail');
-
 
 Route::get('/contact-us', [IndexController::class, 'contact_us'])->name('contact');
-Route::get('/information', [IndexController::class, 'information'])->name('information');
-Route::any('/instant-pay', [IndexController::class, 'instantpay'])->name('instantpay');
-Route::get('/faq', [IndexController::class, 'faq'])->name('faq');
-Route::get('/opennew-account', [IndexController::class, 'opennew_account'])->name('opennewaccount');
 Route::get('/privacy-policy', [IndexController::class, 'privacy_policy'])->name('privacy-policy');
 
 Route::get('/terms', [IndexController::class, 'terms_page'])->name('terms');
@@ -49,7 +30,7 @@ Route::get('/refund-policy', [IndexController::class, 'refund_policy'])->name('r
 
 Route::get('/404', [IndexController::class, 'not_found'])->name('error_page');
 Route::get('/thank-you', [IndexController::class, 'thank_you'])->name('thank_you');
-Route::get('/cookie-policy', [IndexController::class, 'cookie_policy'])->name('cookie-policy');
+
 Route::post('/contact-save', [IndexController::class, 'contact_save'])->name('contact.create');
 Route::post('/comment-save', [IndexController::class, 'comment_save'])->name('comment.create');
 

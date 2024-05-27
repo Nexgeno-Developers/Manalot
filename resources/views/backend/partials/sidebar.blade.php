@@ -61,12 +61,12 @@
                             </a>
                         </li>
 
-                        <li class="side-nav-item">
+                        {{-- <li class="side-nav-item">
                             <a href="{{ route('practicearea.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                                 <i class="ri-suitcase-line"></i> 
                                 <span> Practice Area </span>
                             </a>
-                        </li>
+                        </li> --}}
 
                         {{--
                         <li class="side-nav-item">
@@ -114,7 +114,7 @@
                             </a>
                         </li> --}}
 
-                        <li class="side-nav-item">
+                        {{-- <li class="side-nav-item">
                             <a data-bs-toggle="collapse" href="{{ url('#sidebarEcommerce') }}" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
                                 <i class="ri-article-line"></i>
                                 <span> Posts </span>
@@ -136,7 +136,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> --}}
 
                         <li class="side-nav-item">
                             <a data-bs-toggle="collapse" href="{{ url('#sidebarEmail') }}" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
@@ -146,9 +146,6 @@
                             </a>
                             <div class="collapse" id="sidebarEmail">
                                 <ul class="side-nav-second-level">
-                                    <li>
-                                        <a href="{{ route('contactpage.index') }}">Contact Page</a>
-                                    </li>
                                     <li>
                                         <a href="{{ route('setting.privacy') }}">Privacy Policy Page</a>
                                     </li>
