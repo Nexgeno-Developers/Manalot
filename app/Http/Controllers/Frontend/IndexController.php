@@ -208,9 +208,7 @@ class IndexController extends Controller
 
 // =====================--------------- dummy controller -------------====================
 
-    public function registration1(){
-        return view('frontend.pages.registration.index1');
-    }
+
 
     public function registration2(){
         return view('frontend.pages.registration.index2');

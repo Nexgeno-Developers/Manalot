@@ -29,13 +29,13 @@
                             <div class="position-relative">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control input_text" id="email"
-                                    placeholder="jhonedeo@gmail.com" />
+                                    placeholder="xyz@gmail.com" required/>
                                 <img src="/assets/images/email.png" alt="" class="input_icon" />
                             </div>
                             <div class="position-relative">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control input_text" id="password"
-                                    placeholder="***********" />
+                                    placeholder="***********" required/>
                                 <img src="/assets/images/key.png" alt="" class="input_icon" />
                             </div>
                             <div class="d-flex align-items-center justify-content-between mb-4">
@@ -54,7 +54,7 @@
                             </div>
                             <div>
                                 <div class="purple_btn">
-                                    <a href="register1.php" class="text-decoration-none text-white">Login</a>
+                                    <button type="submit" class="text-decoration-none text-white" >Login</button>
                                 </div>
                             </div>
                         </form>
@@ -67,7 +67,7 @@
                             Continue with
                             <img src="/assets/images/google.svg" alt="google icon" class="google_icon" />
                         </button>
-                        <button class="blue_btn">New to MLN? Join Now</button>
+                        <a href="{{ url(route('registration')) }}"><button class="google_btn">New to MLN? Join Now</button></a>
                     </div>
                 </div>
 
@@ -75,6 +75,9 @@
         </div>
     </div>
 </section>
+
+
+
 <section>
     <div class="container">
         <div class="row align-items-center">
