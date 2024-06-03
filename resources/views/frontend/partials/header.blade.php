@@ -1,5 +1,5 @@
 
-@if(!auth()->user())
+@if(auth()->user())
 
   <div style="background-color: white" class="header">
       <div class="container">

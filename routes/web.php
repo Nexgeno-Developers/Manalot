@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\IndexController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\Frontend\AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,16 +18,26 @@ use Illuminate\Support\Facades\Mail;
 */
 
 // Home START
-Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::middleware('auth.frontend')->group(function () {
+    Route::get('/', [IndexController::class, 'index'])->name('index');
+});
 
-Route::get('/contact-us', [IndexController::class, 'contact_us'])->name('contact');
-Route::get('/privacy-policy', [IndexController::class, 'privacy_policy'])->name('privacy-policy');
 
-Route::get('/terms', [IndexController::class, 'terms_page'])->name('terms');
+
+
+
+
 
 Route::get('/about-us', [IndexController::class, 'about_us'])->name('about-us');
 Route::get('/help-center', [IndexController::class, 'help_center'])->name('help-center');
+
+// not allocated route
+Route::get('/contact-us', [IndexController::class, 'contact_us'])->name('contact');
+Route::get('/privacy-policy', [IndexController::class, 'privacy_policy'])->name('privacy-policy');
+Route::get('/terms', [IndexController::class, 'terms_page'])->name('terms');
 Route::get('/refund-policy', [IndexController::class, 'refund_policy'])->name('refund-policy');
+// not allocated route
+
 
 Route::get('/404', [IndexController::class, 'not_found'])->name('error_page');
 Route::get('/thank-you', [IndexController::class, 'thank_you'])->name('thank_you');
@@ -39,7 +50,20 @@ Route::get('/search', [IndexController::class, 'search'])->name('search');
 
 //------------------------------ dummy controller ----------------------
 
-Route::get('/registration1', [IndexController::class, 'registration1'])->name('registration1');
+Route::get('/registration', [AccountController::class, 'registration_page'])->name('registration');
+
+Route::any('/create-account/{param}', [AccountController::class, 'create_account'])->name('account.create');
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/registration2', [IndexController::class, 'registration2'])->name('registration2');
 Route::get('/registration3', [IndexController::class, 'registration3'])->name('registration3');
 Route::get('/registration4', [IndexController::class, 'registration4'])->name('registration4');
@@ -87,4 +111,18 @@ Route::get('/send-test-email', function () {
     });
 
     return 'Test email sent!';
+});
+
+
+Route::get('/test-otp', function () {
+    $sessionData = Session()->all();
+
+    // Print session data
+    dd($sessionData);
+});
+
+Route::get('/clear-session', function () {
+    Session()->flush();
+
+    echo"clear";
 });
