@@ -5,7 +5,7 @@
         <input type="hidden" name="id" value="{{ $author->id }}">
             <div class="form-group mb-3">
                 <label>Username <span class="red">*</span></label>
-                <input type="text" class="form-control" name="name" value="{{ $author->name }}" required>
+                <input type="text" class="form-control" name="username" value="{{ $author->username  }}" required>
             </div>
         </div>        
         <div class="col-sm-12">
@@ -16,10 +16,14 @@
         </div>
         <div class="col-sm-12">
             <div class="form-group mb-3">
-                <label>Designation <span class="red">*</span></label>
-                <input type="text" class="form-control" name="designation" value="{{ $author->designation }}">
+                <label>Status <span class="red">*</span></label>
+                <select name="status" class="form-control">
+                    <option value="1" {{ $author->status == 1 ? 'selected' : '' }}>Active</option>
+                    <option value="0" {{ $author->status == 0 ? 'selected' : '' }}>Inactive</option>
+                </select>
             </div>
-        </div>  
+        </div>
+ 
         <div class="col-sm-12">
             <div class="form-group mb-3 text-end">
                 <button type="submit" class="btn btn-block btn-primary">Update</button>

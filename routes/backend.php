@@ -81,6 +81,15 @@ Route::get('/clear-cache', function () {
 
 //User
 Route::group(['prefix' => 'profile'], function () {
+    Route::get('/userslist', [UserController::class, 'userslist'])->name('users.list');
+    Route::get('/usersdata', [UserController::class, 'usersData'])->name('users.data');
+    Route::get('/add', [UserController::class, 'add'])->name('user.add');
+    Route::post('/create', [UserController::class, 'create'])->name('user.create');
+    Route::post('/update', [UserController::class, 'update'])->name('user.update');
+    Route::post('/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
+    Route::get('/status/{id}/{status}', [UserController::class, 'status'])->name('user.status');
+    Route::get('/approvestatusedit/{id}', [UserController::class, 'approvestatus'])->name('user.approvestatus');
+
     Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::get('/reset/{id}', [UserController::class, 'password'])->name('user.password');
     Route::post('/update', [UserController::class, 'update'])->name('user.update');
