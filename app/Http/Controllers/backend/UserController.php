@@ -30,6 +30,7 @@ class UserController extends Controller
         }
     
         $user->approval = $request->input('approval');
+        $user->status = 1;
         $user->save();
     
         return response()->json(['status' => true, 'notification' => 'Approval status updated successfully']);
@@ -66,11 +67,11 @@ class UserController extends Controller
 
         // Update the user record using DB facade
         $affected = User::where('id', $id)
-                        ->update([
-                            'username' => $request->input('username'),
-                            'email' => $request->input('email'),
-                            'status' => $request->input('status'),
-                        ]);
+        ->update([
+            'username' => $request->input('username'),
+            'email' => $request->input('email'),
+            'status' => $request->input('status'),
+        ]);
 
         if ($affected) {
             $response = [

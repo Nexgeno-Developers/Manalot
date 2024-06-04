@@ -32,6 +32,75 @@ class AccountController extends Controller
         return view('frontend.pages.registration.login');
     }
 
+    public function customer_login(Request $request){
+
+        // Validating the request data
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        // Checking if validation fails
+        if ($validator->fails()) {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = $validator->errors()->all();
+
+            return response()->json(array('response_message' => $rsp_msg));
+        }
+
+        Session()->flush();
+
+        $user = DB::table('users')->where('email', $request->input('email'))->get()->first();
+
+        if($user){
+            // $details = DB::table('userdetails')->where('user_id', $user->id)->get(['availability'])->first();
+
+            // if ($details->availability == null || $details->availability == ''){
+            //     var_
+            //     $rsp_msg['response'] = 'error';
+            //     $rsp_msg['message']  = 'Please Fill ALL Forms';
+    
+            //     return response()->json(array('response_message' => $rsp_msg));
+            // }
+
+            if ($user->approval != 1 && $user->status != 1){
+
+                $rsp_msg['response'] = 'error';
+                $rsp_msg['message']  = 'Application Status Under Review';
+    
+                return response()->json(array('response_message' => $rsp_msg));
+            }
+        } else {
+
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = 'User Not Exiest!, Please Register';
+
+            return response()->json(array('response_message' => $rsp_msg));
+        }
+
+
+        $authenticated = Auth::guard('web')->attempt($request->only(['email', 'password']));
+        if($authenticated)
+        {
+
+            Session::put('user_id', auth()->user()->id);
+
+            $rsp_msg['response'] = 'success';
+            $rsp_msg['message']  = "Successfully logged in";
+
+
+            return redirect()->route('index');
+
+        }
+        else
+        {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = "Somthing Went Wrong!, Please Try Again";
+        }
+
+        return response()->json(array('response_message' => $rsp_msg));
+    }
+
     public function create_account($param, Request $request){
 
         if($param == "user-info"){
@@ -69,26 +138,6 @@ class AccountController extends Controller
         }elseif($param == "social-media-info"){
 
             $rsp_msg = $this->create_social_media_info($request);
-
-        }elseif($param == "esign-aadhar-verify-request-otp"){
-
-            $rsp_msg = $this->esign_aadhar_verify_request_otp($request);
-
-        }elseif($param == "esign-verify"){
-            
-            $rsp_msg = $this->esign_verify();
-
-            if($rsp_msg = "true"){
-                Session::put('step', 12);
-            } else {
-                Session::put('step', 10);
-            }
-
-            return redirect()->route('account.new.enrollment.page');
-
-        }elseif($param == "payment-gateway"){
-
-            $rsp_msg = $this->payment_gateway($request);
 
         } else {
             $rsp_msg['response'] = 'error';
@@ -142,7 +191,7 @@ class AccountController extends Controller
                 'email' => strtolower($request->input('email')),
                 'password' => bcrypt($request->input('password')),
                 'approval' => '0',
-                'approval' => '0',
+                'status' => '0',
                 'role_id'  => '2',
                 'created_at' => now(),
                 'updated_at' => now(),

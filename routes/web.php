@@ -56,6 +56,8 @@ Route::any('/create-account/{param}', [AccountController::class, 'create_account
 
 Route::get('/login', [AccountController::class, 'login'])->name('login');
 
+Route::post('/login', [AccountController::class, 'customer_login'])->name('customer.login');
+
 Route::any('/get-privious-page', function () {
     $step = Session()->get('step');
     $step = $step - 1;

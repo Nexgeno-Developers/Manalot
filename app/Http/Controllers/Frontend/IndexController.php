@@ -208,43 +208,6 @@ class IndexController extends Controller
 
 // =====================--------------- dummy controller -------------====================
 
-
-
-    public function registration2(){
-        return view('frontend.pages.registration.index2');
-    }
-
-    public function registration3(){
-        return view('frontend.pages.registration.index3');
-    }
-
-    public function registration4(){
-        return view('frontend.pages.registration.index4');
-    }
-    public function registration5(){
-        return view('frontend.pages.registration.index5');
-    }
-    public function registration6(){
-        return view('frontend.pages.registration.index6');
-    }
-
-    public function registration7(){
-        return view('frontend.pages.registration.index7');
-    }
-    public function registration8(){
-        return view('frontend.pages.registration.index8');
-    }
-    public function registration9(){
-        return view('frontend.pages.registration.index9');
-    }
-    public function registration10(){
-        return view('frontend.pages.registration.index10');
-    }
-
-    public function registration11(){
-        return view('frontend.pages.registration.index11');
-    }
-
     public function edit_profile(){
         return view('frontend.pages.registration.edit_profile');
     }

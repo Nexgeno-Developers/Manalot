@@ -1,6 +1,8 @@
 
 @extends('frontend.layouts.app')
 
+
+@section('page.content')
 <!----------========================== login ============----------->
 
 <div class="login_logo">
@@ -29,16 +31,17 @@
                         </p>
                     </div>
                     <div class="">
-                        <form action="" class="d-flex gap-4 flex-column">
+                        <form id="login-form" action="{{ url(route('customer.login')) }}"  method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
+                            @csrf
                             <div class="position-relative">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control input_text" id="email"
-                                    placeholder="xyz@gmail.com" required/>
+                                <input type="email" class="form-control input_text" id="email" name="email"
+                                    placeholder="Enter Your Email ID" required/>
                                 <img src="/assets/images/email.png" alt="" class="input_icon" />
                             </div>
                             <div class="position-relative">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control input_text" id="password"
+                                <input type="password" class="form-control input_text" id="password" name="password"
                                     placeholder="***********" required/>
                                 <img src="/assets/images/key.png" alt="" class="input_icon" />
                             </div>
@@ -122,3 +125,29 @@
 <footer class="text-center pt-4 pb-4"><b>© Maple Consulting and Services</b></footer>
 
 <!----------========================== login ============----------->
+@endsection
+
+
+@section('component.scripts')
+<script>
+
+/*--------------------- login form ------------------*/
+
+initValidate('#login-form');
+
+$('#login-form').on('submit', function(e){
+    var form = $(this);
+    ajax_form_submit(e, form, responseHandler);
+});
+
+var responseHandler = function (response) {
+    $("input, textarea").val("");
+    $("select option:first").prop("selected", !0);
+    setTimeout(function () {
+        location.reload();
+    }, 1500);
+};
+
+/*--------------------- Login Form ------------------*/ 
+</script>
+@endsection
