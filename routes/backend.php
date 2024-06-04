@@ -89,6 +89,7 @@ Route::group(['prefix' => 'profile'], function () {
     Route::post('/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
     Route::get('/status/{id}/{status}', [UserController::class, 'status'])->name('user.status');
     Route::get('/approvestatusedit/{id}', [UserController::class, 'approvestatus'])->name('user.approvestatus');
+    Route::get('/view/{id}', [UserController::class, 'view'])->name('user.view');
 
     Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::get('/reset/{id}', [UserController::class, 'password'])->name('user.password');

@@ -82,12 +82,13 @@
                                 <i title="UnApprove" class="ri-eye-fill"></i>
                             @endif
                         </a>
-                        <a href="javascript:void(0);" class="btn btn-info text-white action-icon" onclick="smallModal('{{ url(route('user.edit',['id' => $row->id])) }}', 'Edit user')">
+                        <a href="javascript:void(0);" class="btn btn-info text-white action-icon" onclick="largeModal('{{ url(route('user.edit',['id' => $row->id])) }}', 'Edit user')">
                             <i class="mdi mdi-square-edit-outline" title="Edit"></i>
                         </a>
                         <a href="javascript:void(0);" class="btn btn-danger text-white action-icon" onclick="confirmModal('{{ url(route('user.delete', $row->id)) }}', responseHandler)">
                             <i class="mdi mdi-delete" title="Delete"></i>
                         </a>
+                        <a href="javascript:void(0);" class="btn btn-info text-white action-icon" onclick="largeModal('{{ url(route('user.view',['id' => $row->id])) }}', 'View user')">View</a>
                     </td>
                 
                     <!-- <td>

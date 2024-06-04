@@ -12,9 +12,10 @@ class UserController extends Controller
 {
 
     public function userslist() {
-        $users = User::all();
+        $users = User::where('role_id', '<>', 1)->get();        
         return view('backend.pages.user.index', compact('users'));
-    }  
+    }
+    
 
     public function usersData() {
         $users = User::select('id', 'username', 'email', 'approval', 'status', 'created_at')->get();
@@ -34,6 +35,12 @@ class UserController extends Controller
         return response()->json(['status' => true, 'notification' => 'Approval status updated successfully']);
     }
        
+
+    public function view($id) {
+        $viewuser = User::find($id);
+        $usersdetails = DB::table('userdetails')->where('user_id', $id)->first();
+        return view('backend.pages.user.view', compact('viewuser', 'usersdetails'));
+    }
 
     public function edit($id) {
         $author = User::find($id);
