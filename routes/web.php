@@ -54,14 +54,18 @@ Route::get('/registration', [AccountController::class, 'registration_page'])->na
 
 Route::any('/create-account/{param}', [AccountController::class, 'create_account'])->name('account.create');
 
+Route::get('/login', [AccountController::class, 'login'])->name('login');
+
+Route::any('/get-privious-page', function () {
+    $step = Session()->get('step');
+    $step = $step - 1;
+    Session()->put('step', $step);
+})->name('get-privious-page');
 
 
-
-
-
-
-
-
+Route::get('/update-session', function () {
+    Session()->put('temp_user_id', 2);
+})->name('update-session');
 
 
 Route::get('/registration2', [IndexController::class, 'registration2'])->name('registration2');
@@ -74,7 +78,7 @@ Route::get('/registration8', [IndexController::class, 'registration8'])->name('r
 Route::get('/registration9', [IndexController::class, 'registration9'])->name('registration9');
 Route::get('/registration10', [IndexController::class, 'registration10'])->name('registration10');
 Route::get('/registration11', [IndexController::class, 'registration11'])->name('registration11');
-Route::get('/login', [IndexController::class, 'login'])->name('login');
+
 
 Route::get('/admin', [IndexController::class, 'admin'])->name('admin');
 Route::get('/edit-profile', [IndexController::class, 'edit_profile'])->name('edit-profile');

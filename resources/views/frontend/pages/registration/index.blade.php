@@ -1,5 +1,11 @@
 @extends('frontend.layouts.app')
 
+
+@section('page.content')
+
+<div class="login_logo">
+    <a href="/"><img src="/assets/images/namalot_logo.png" /></a>
+</div>
 <!----------========================== Registration ============----------->
 
 <section class="auth_form">
@@ -21,6 +27,7 @@
     </div>
 </section>
 
+@endsection
 
 <!----------========================== Registration ============----------->
 
@@ -28,71 +35,198 @@
 @section('component.scripts')
     <script>
 
-        /*------------------- form submit ajax --------------------*/
+    // $(document).ready(function() {
+    //     initSelect2('.select2');
+    //     initTrumbowyg('.trumbowyg');
+    // });
 
-        function ajax_form_submit(event, form){
+    function back_to_privious(){
+        // Create an XMLHttpRequest object
+        var xhr = new XMLHttpRequest();
 
-            if (form.valid()) {
-                event.preventDefault();
+        // Specify the URL to hit using the route name
+        var url = '{{ route("get-privious-page") }}';
 
-                var button = $(form).find('button[type="submit"]').html();
-                $(form).find('button[type="submit"]').html('please wait... <i class="las la-spinner la-spin"></i>');
-                $(form).find('button[type="submit"]').css('pointer-events', 'none');
-                
-                $.ajax({
-                    url: $(form).attr('action'),
-                    type: "POST",
-                    data: $(form).serialize(),
-                    success: function (response) {
-                        if(response.response_message.response == 'success') {
-                            
-                            toastr.success(response.response_message.message, response.response_message.response);
+        // Send a GET request to the URL asynchronously
+        xhr.open('GET', url, true);
+        xhr.send();
 
-                            setTimeout(function() {
-                                location.reload();
-                            }, 1500);
+        setTimeout(function () {
+            location.reload();
+        }, 1000);
 
-                        }else{
-                            $(form).find('button[type="submit"]').html(button);
-                            $(form).find('button[type="submit"]').css('pointer-events', 'inherit');
-
-                            toastr.error(response.response_message.message, response.response_message.response);
-
-
-                        }
-                        
-                    }
-                });
-            } else {
-                // Get all validation errors and display them in Toastr
-
-                var errors = form.validate().errorMap;
-                var errorMessage = '';
-                // $.each(errors, function(key, value) {
-                //     errorMessage += value + '<br>';
-                // });
-
-                toastr.error('Please fill the Mandatory fields ' + errorMessage, 'Error');
-                form.find('button[type="submit"]').html(button);
-                form.find('button[type="submit"]').css('pointer-events', 'inherit');
-            }
-
-        }
-
-
-    /*------------------- form submit ajax --------------------*/
+    }
 
     /*--------------------- user info ------------------*/
 
         initValidate('#user-info');
 
-        $('#user-add-details form').on('submit', function(event){
+        $('#user-info').on('submit', function(e){
             var form = $(this);
-            ajax_form_submit(event, form);
-        
+            ajax_form_submit(e, form, responseHandler);
         });
 
+        var responseHandler = function (response) {
+            $("input, textarea").val("");
+            $("select option:first").prop("selected", !0);
+            setTimeout(function () {
+                location.reload();
+            }, 1500);
+        };
+
     /*--------------------- user info ------------------*/ 
+
+    /*--------------------- personal info ------------------*/
+
+        initValidate('#personal-info');
+
+        $('#personal-info').on('submit', function(e){
+            var form = $(this);
+            ajax_form_submit(e, form, responseHandler);
+        });
+
+        var responseHandler = function (response) {
+            $("input, textarea").val("");
+            $("select option:first").prop("selected", !0);
+            setTimeout(function () {
+                location.reload();
+            }, 1500);
+        };
+
+    /*---------------------  personal info ------------------*/ 
+
+    /*--------------------- personal work info ------------------*/
+
+        initValidate('#personal-work-info');
+
+        $('#personal-work-info').on('submit', function(e){
+            var form = $(this);
+            ajax_form_submit(e, form, responseHandler);
+        });
+
+        var responseHandler = function (response) {
+            $("input, textarea").val("");
+            $("select option:first").prop("selected", !0);
+            setTimeout(function () {
+                location.reload();
+            }, 1500);
+        };
+
+    /*---------------------  personal work info ------------------*/ 
+
+    /*--------------------- education-info ------------------*/
+
+        initValidate('#education-info');
+
+        $('#education-info').on('submit', function(e){
+            var form = $(this);
+            ajax_form_submit(e, form, responseHandler);
+        });
+
+        var responseHandler = function (response) {
+            $("input, textarea").val("");
+            $("select option:first").prop("selected", !0);
+            setTimeout(function () {
+                location.reload();
+            }, 1500);
+        };
+
+    /*---------------------  education-info ------------------*/ 
+
+    /*--------------------- skills-info ------------------*/
+
+        initValidate('#skills-info');
+
+        $('#skills-info').on('submit', function(e){
+            var form = $(this);
+            ajax_form_submit(e, form, responseHandler);
+        });
+
+        var responseHandler = function (response) {
+            $("input, textarea").val("");
+            $("select option:first").prop("selected", !0);
+            setTimeout(function () {
+                location.reload();
+            }, 1500);
+        };
+
+    /*---------------------  skills-info ------------------*/ 
+
+    /*--------------------- certifications-info ------------------*/
+
+        initValidate('#certifications-info');
+
+        $('#certifications-info').on('submit', function(e){
+            var form = $(this);
+            ajax_form_submit(e, form, responseHandler);
+        });
+
+        var responseHandler = function (response) {
+            $("input, textarea").val("");
+            $("select option:first").prop("selected", !0);
+            setTimeout(function () {
+                location.reload();
+            }, 1500);
+        };
+
+    /*---------------------  certifications-info ------------------*/ 
+
+    /*--------------------- Preferences-info ------------------*/
+
+        initValidate('#preferences-info');
+
+        $('#preferences-info').on('submit', function(e){
+            var form = $(this);
+            ajax_form_submit(e, form, responseHandler);
+        });
+
+        var responseHandler = function (response) {
+            $("input, textarea").val("");
+            $("select option:first").prop("selected", !0);
+            setTimeout(function () {
+                location.reload();
+            }, 1500);
+        };
+
+    /*---------------------  preferences-info ------------------*/ 
+
+    /*--------------------- work-authorization-info ------------------*/
+
+        initValidate('#work-authorization-info');
+
+        $('#work-authorization-info').on('submit', function(e){
+            var form = $(this);
+            ajax_form_submit(e, form, responseHandler);
+        });
+
+        var responseHandler = function (response) {
+            $("input, textarea").val("");
+            $("select option:first").prop("selected", !0);
+            setTimeout(function () {
+                location.reload();
+            }, 1500);
+        };
+
+    /*---------------------  work-authorization-info ------------------*/ 
+
+    /*--------------------- social-media-info ------------------*/
+
+        initValidate('#social-media-info');
+
+        $('#social-media-info').on('submit', function(e){
+            var form = $(this);
+            ajax_form_submit(e, form, responseHandler);
+        });
+
+        var responseHandler = function (response) {
+            $("input, textarea").val("");
+            $("select option:first").prop("selected", !0);
+            setTimeout(function () {
+                location.reload();
+            }, 1500);
+        };
+
+    /*---------------------  social-media-info ------------------*/ 
     
 
 

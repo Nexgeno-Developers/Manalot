@@ -49,12 +49,6 @@
       </div>
   </div>
 
-@else 
-
-  <div class="login_logo">
-    <a href="login.php"><img src="/assets/images/namalot_logo.png" /></a>
-  </div>
-
 @endif
 
 

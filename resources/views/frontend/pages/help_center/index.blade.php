@@ -1,5 +1,6 @@
 @extends('frontend.layouts.app')
 
+@section('page.content')
 <!----------========================== help center ============----------->
 
 <section class="pb-5 mt80" style="background-color: #f6f6f6; min-height: 100vh">
@@ -25,3 +26,4 @@
 
 
 <!----------========================== help center ============----------->
+@endsection

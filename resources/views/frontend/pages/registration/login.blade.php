@@ -3,6 +3,10 @@
 
 <!----------========================== login ============----------->
 
+<div class="login_logo">
+    <a href="/"><img src="/assets/images/namalot_logo.png" /></a>
+</div>
+
 <section class="auth_form">
     <div class="fluid-container">
         <div class="row align-items-center">

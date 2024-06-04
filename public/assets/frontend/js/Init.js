@@ -76,6 +76,61 @@ function initSelect2(selector)
     $(selector).select2();
 }
 
+/*------------------- form submit ajax new --------------------*/
+
+    function ajax_form_submit(e, form, callBackFunction) {
+        if (form.valid()) {
+            e.preventDefault();
+            var btn = $(form).find('button[type="submit"]');
+            var btn_text = $(btn).html();
+            $(btn).html('please wait... <i class="las la-spinner la-spin"></i>');
+            $(btn).css("opacity", "0.7");
+            $(btn).css("pointer-events", "none");
+            var action = form.attr("action");
+            var data = new FormData(form[0]); // Corrected to form[0] to get the raw DOM element
+            $.ajax({
+                type: "POST",
+                url: action,
+                processData: false,
+                contentType: false,
+                dataType: "json",
+                data: data,
+                success: function (response) {
+                    resetButton(btn, btn_text);
+                    if (response.response_message.response === "success") {
+                        Command: toastr.success(response.response_message.message, "Success");
+                        callBackFunction(response);
+                    } else {
+                        if (Array.isArray(response.response_message.message)) {
+                            var errors = "";
+                            $.each(response.response_message.message, function (key, msg) {
+                                errors += "<div>" + (key + 1) + ". " + msg + "</div>";
+                            });
+                            Command: toastr.error(errors, "Alert");
+                        } else {
+                            Command: toastr.error(response.response_message.message, "Alert");
+                        }
+                    }
+                },
+                error: function (xhr, status, error) {
+                    resetButton(btn, btn_text);
+                    Command: toastr.error("An error occurred: " + error, "Error");
+                }
+            });
+        } else {
+            toastr.error("Please make sure to fill all the necessary fields");
+            resetButton($(form).find('button[type="submit"]'), btn_text);
+        }
+    }
+
+    function resetButton(btn, btn_text) {
+        $(btn).html(btn_text);
+        $(btn).css('opacity', '1');
+        $(btn).css('pointer-events', 'inherit');
+    }
+
+/*------------------- form submit ajax new --------------------*/
+
 //Form Submition
 function ajaxSubmit(e, form, callBackFunction) {
     if(form.valid()) {
@@ -170,104 +225,104 @@ function destroyTrumbowyg(target) {
     $(target).trumbowyg('destroy');
 }
 
-//footer script
-$(document).ready(function() {
-    initValidate('#add_footer_form');
-    $("#add_footer_form").submit(function(e) {
-        var form = $(this);
-        ajaxSubmit(e, form, responseHandler);
-    });
+// //footer script
+// $(document).ready(function() {
+//     initValidate('#add_footer_form');
+//     $("#add_footer_form").submit(function(e) {
+//         var form = $(this);
+//         ajaxSubmit(e, form, responseHandler);
+//     });
 
-    var responseHandler = function(response) {
-        $('input, textarea').val('');
-        $("select option:first").prop('selected', true);
-        setTimeout(function() {
-            window.location.href = $('#baseUrl').attr('href') + '/thank-you';
-        }, 2000);
-    }
-});
+//     var responseHandler = function(response) {
+//         $('input, textarea').val('');
+//         $("select option:first").prop('selected', true);
+//         setTimeout(function() {
+//             window.location.href = $('#baseUrl').attr('href') + '/thank-you';
+//         }, 2000);
+//     }
+// });
 
-//popup script
-$(document).ready(function() {
-    initValidate('#add_popup_form');
-    $("#add_popup_form").submit(function(e) {
-        var form = $(this);
-        ajaxSubmit(e, form, responseHandler);
-    });
+// //popup script
+// $(document).ready(function() {
+//     initValidate('#add_popup_form');
+//     $("#add_popup_form").submit(function(e) {
+//         var form = $(this);
+//         ajaxSubmit(e, form, responseHandler);
+//     });
 
-    var responseHandler = function(response) {
-        $('input, textarea').val('');
-        $("select option:first").prop('selected', true);
-        setTimeout(function() {
-            window.location.href = $('#baseUrl').attr('href') + '/thank-you';
-        }, 2000);
-    }
-});
+//     var responseHandler = function(response) {
+//         $('input, textarea').val('');
+//         $("select option:first").prop('selected', true);
+//         setTimeout(function() {
+//             window.location.href = $('#baseUrl').attr('href') + '/thank-you';
+//         }, 2000);
+//     }
+// });
 
-//comment script
-$(document).ready(function() {
-    initValidate('#add_comment_form');
-    $("#add_comment_form").submit(function(e) {
-        var form = $(this);
-        ajaxSubmit(e, form, responseHandler);
-    });
+// //comment script
+// $(document).ready(function() {
+//     initValidate('#add_comment_form');
+//     $("#add_comment_form").submit(function(e) {
+//         var form = $(this);
+//         ajaxSubmit(e, form, responseHandler);
+//     });
 
-    var responseHandler = function(response) {
-        $('input, textarea').val('');
-        $("select option:first").prop('selected', true);
-        setTimeout(function() {
-            location.reload();
-        }, 2000);
-    }
-});
+//     var responseHandler = function(response) {
+//         $('input, textarea').val('');
+//         $("select option:first").prop('selected', true);
+//         setTimeout(function() {
+//             location.reload();
+//         }, 2000);
+//     }
+// });
 
-//have_Any_question_form
-$(document).ready(function() {
-    initValidate('#have_any_question_form');
-    $("#have_any_question_form").submit(function(e) {
-        var form = $(this);
-        ajaxSubmit(e, form, responseHandler);
-    });
+// //have_Any_question_form
+// $(document).ready(function() {
+//     initValidate('#have_any_question_form');
+//     $("#have_any_question_form").submit(function(e) {
+//         var form = $(this);
+//         ajaxSubmit(e, form, responseHandler);
+//     });
 
-    var responseHandler = function(response) {
-        $('input, textarea').val('');
-        $("select option:first").prop('selected', true);
-        setTimeout(function() {
-            window.location.href = $('#baseUrl').attr('href') + '/thank-you';
-        }, 2000);
-    }
-});
+//     var responseHandler = function(response) {
+//         $('input, textarea').val('');
+//         $("select option:first").prop('selected', true);
+//         setTimeout(function() {
+//             window.location.href = $('#baseUrl').attr('href') + '/thank-you';
+//         }, 2000);
+//     }
+// });
 
-//Ask popup form
-$(document).ready(function() {
-    initValidate('#ask_popup_form');
-    $("#ask_popup_form").submit(function(e) {
-        var form = $(this);
-        ajaxSubmit(e, form, responseHandler);
-    });
+// //Ask popup form
+// $(document).ready(function() {
+//     initValidate('#ask_popup_form');
+//     $("#ask_popup_form").submit(function(e) {
+//         var form = $(this);
+//         ajaxSubmit(e, form, responseHandler);
+//     });
 
-    var responseHandler = function(response) {
-        $('input, textarea').val('');
-        $("select option:first").prop('selected', true);
-        setTimeout(function() {
-            window.location.href = $('#baseUrl').attr('href') + '/thank-you';
-        }, 2000);
-    }
-});
+//     var responseHandler = function(response) {
+//         $('input, textarea').val('');
+//         $("select option:first").prop('selected', true);
+//         setTimeout(function() {
+//             window.location.href = $('#baseUrl').attr('href') + '/thank-you';
+//         }, 2000);
+//     }
+// });
 
-//Area practice form
-$(document).ready(function() {
-    initValidate('#area_practice_form');
-    $("#area_practice_form").submit(function(e) {
-        var form = $(this);
-        ajaxSubmit(e, form, responseHandler);
-    });
+// //Area practice form
+// $(document).ready(function() {
+//     initValidate('#area_practice_form');
+//     $("#area_practice_form").submit(function(e) {
+//         var form = $(this);
+//         ajaxSubmit(e, form, responseHandler);
+//     });
 
-    var responseHandler = function(response) {
-        $('input, textarea').val('');
-        $("select option:first").prop('selected', true);
-        setTimeout(function() {
-            window.location.href = $('#baseUrl').attr('href') + '/thank-you';
-        }, 2000);
-    }
-});
+//     var responseHandler = function(response) {
+//         $('input, textarea').val('');
+//         $("select option:first").prop('selected', true);
+//         setTimeout(function() {
+//             window.location.href = $('#baseUrl').attr('href') + '/thank-you';
+//         }, 2000);
+//     }
+// });

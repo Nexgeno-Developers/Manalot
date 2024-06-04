@@ -245,10 +245,6 @@ class IndexController extends Controller
         return view('frontend.pages.registration.index11');
     }
 
-    public function login(){
-        return view('frontend.pages.registration.login');
-    }
-
     public function edit_profile(){
         return view('frontend.pages.registration.edit_profile');
     }

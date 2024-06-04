@@ -1,5 +1,7 @@
 @extends('frontend.layouts.app')
 
+
+@section('page.content')
 <!----------========================== admin ============----------->
 
 <section class="pb-5 mt80" style="background-color: #f6f6f6">
@@ -246,3 +248,4 @@
 </section>
 
 <!----------========================== admin ============----------->
+@endsection
