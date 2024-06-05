@@ -153,7 +153,7 @@ class AccountController extends Controller
     public function create_user_detail($request){
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            'name' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:50'],
             'email' => 'required|email',
             'password' => 'required',
             'experience_Status' => 'required',
@@ -174,6 +174,15 @@ class AccountController extends Controller
         if(count($users_email) != 0){
             $rsp_msg['response'] = 'error';
             $rsp_msg['message']  = 'Email Already Exists';
+
+            return $rsp_msg;
+        }
+
+        $users_username = DB::table('users')->where('username', $request->input('name'))->where('status', 1)->get();
+
+        if(count($users_username) != 0){
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = 'Username Already Exists';
 
             return $rsp_msg;
         }
@@ -325,10 +334,11 @@ class AccountController extends Controller
 
         $validator = Validator::make($request->all(), [
             'wrk_exp_company_name' => 'required|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
-            'wrk_exp__title' => 'required|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            'wrk_exp__title' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:100'],
             'industry' => 'required',
             'job_title' => 'required',
             'wrk_exp_years' => 'required',
+            'wrk_exp_responsibilities' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:250'],
             'resume_cv' => 'nullable|mimes:pdf|max:5120',
         ]);
 
@@ -360,6 +370,7 @@ class AccountController extends Controller
             'industry' => $request->input('industry'),
             'wrk_exp__title' => $request->input('wrk_exp__title'),
             'resume_cv' => $path,
+            'wrk_exp_responsibilities' => $request->input('wrk_exp_responsibilities'),
             'wrk_exp_company_name' => $request->input('wrk_exp_company_name'),
         ]);
 

@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
-                        <label for="name" class="form-label">Name *</label>
+                        <label for="name" class="form-label">Username *</label>
                         <input type="text" class="form-control input_text" id="name" name="name"
                             placeholder="Enter Your Name" pattern="[A-Za-z]+" minlength="3"
                             maxlength="20" required/>
@@ -251,7 +251,7 @@
     @php
         $user_detail = DB::table('userdetails')
             ->where('user_id', Session::get('temp_user_id'))
-            ->get(['resume_cv', 'job_title', 'industry', 'wrk_exp__title', 'wrk_exp_company_name', 'wrk_exp_years', ])
+            ->get(['resume_cv', 'job_title', 'industry', 'wrk_exp__title', 'wrk_exp_company_name', 'wrk_exp_years', 'wrk_exp_responsibilities'])
             ->first();
         $years_of_exp = DB::table('years_of_exp')->where('status','1')->get();
         $job_title = DB::table('job_title')->where('status','1')->get();
@@ -316,7 +316,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="job_title" class="form-label">Job Title*</label>
-                        <input type="text" class="form-control input_text" id="job_title" name="wrk_exp__title" placeholder="Enter your Job Title" pattern="[A-Za-z]+" minlength="3" maxlength="100" value="{{ $user_detail->job_title }}" required/>
+                        <input type="text" class="form-control input_text" id="job_title" name="wrk_exp__title" placeholder="Enter your Job Title" pattern="[A-Za-z]+" minlength="3" maxlength="100" value="{{ $user_detail->wrk_exp__title }}" required/>
                     </div>
                 </div>
 
@@ -344,15 +344,7 @@
 
                 <div class="col-md-12">
                     <p>Responsibilities/Achievements</p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                    </p>
+                    <textarea rows="4" cols="45" name="wrk_exp_responsibilities" required>{{ $user_detail->wrk_exp_responsibilities }}</textarea>
                 </div>
             </div>
             <div class="d-flex align-items-center gap-4">
@@ -784,7 +776,7 @@
             </p>
             <div>
                 <div class="purple_btn text-start">
-                    <button type="submit" class="text-decoration-none text-white">Back to Login</button>
+                    <button type="submit" class="text-decoration-none text-white">Proceed To Review</button>
                 </div>
             </div>
         </form>
