@@ -11,6 +11,8 @@
         @php
             session()->forget('step');
             Session()->put('step', 1);
+
+            $experience_status = DB::table('experience_status')->where('status', 1)->get();
         @endphp
 
         <form id="user-info" action="{{ route('account.create', ['param' => 'user-info']) }}" method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
@@ -51,10 +53,11 @@
                         <label for="Employee" class="form-label">Employee Status</label>
                         <select class="form-select input_select" aria-label="Default select example" name="experience_Status" id="Employee" required> 
                             <option value="">Select Employee Status</option>
-                            <option value="self-employed">Self-Employed</option>
-                            <option value="one">One</option>
-                            <option value="two">Two</option>
-                            <option value="three">Three</option>
+                            @foreach ($experience_status as $row)
+                                <option value="{{ $row->id }}">
+                                    {{ ucfirst($row->name) }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
