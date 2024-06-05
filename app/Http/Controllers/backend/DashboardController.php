@@ -11,8 +11,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $notApprovedCount = User::Where('approval', 0)->where('role_id', 2)->count();
-        $approvedCount = User::Where('approval', 1)->where('role_id', 2)->where('status', 1)->count();
+        $notApprovedCount = User::Where('approval', 0)->where('role_id', 2)->where('completed_status', 1)->count();
+        $approvedCount = User::Where('approval', 1)->where('role_id', 2)->where('status', 1)->where('completed_status', 1)->count();
         $contactCount = Contact::count();
         
         return view('backend.pages.dashboard.index', compact('notApprovedCount', 'approvedCount', 'contactCount'));

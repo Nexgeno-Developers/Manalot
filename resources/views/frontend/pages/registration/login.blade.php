@@ -143,9 +143,19 @@ $('#login-form').on('submit', function(e){
 var responseHandler = function (response) {
     $("input, textarea").val("");
     $("select option:first").prop("selected", !0);
-    setTimeout(function () {
-        location.reload();
-    }, 1500);
+
+    if (response.response_message.response === "success") {
+
+        setTimeout(function () {
+            window.location.href = "{{ url(route('index')) }}";
+        }, 1000);
+
+    } else {
+        setTimeout(function () {
+            location.reload();
+        }, 1000);
+    }
+
 };
 
 /*--------------------- Login Form ------------------*/ 

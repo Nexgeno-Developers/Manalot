@@ -775,16 +775,19 @@
         <div class="heading mb-4">
             <h2>Proceeding</h2>
         </div>
-        <img class="prroceed_icons" src="/assets/images/file-check.png" alt="file check" />
-        <p>
-            Manalot will validate/ review the documents and <br />
-            grant permisssion to proceed through Admin
-        </p>
-        <div>
-            <div class="purple_btn text-start">
-                <a href="{{ url(route('login')) }}"><button class="text-decoration-none text-white">Back to Login</button></a>
+        <form id="proceeding-info" action="{{ url(route('account.create', ['param' => 'proceeding-info'])) }}"  method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
+        @csrf
+            <img class="prroceed_icons" src="/assets/images/file-check.png" alt="file check" />
+            <p>
+                Manalot will validate/ review the documents and <br />
+                grant permisssion to proceed through Admin
+            </p>
+            <div>
+                <div class="purple_btn text-start">
+                    <button type="submit" class="text-decoration-none text-white">Back to Login</button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 @endif
 

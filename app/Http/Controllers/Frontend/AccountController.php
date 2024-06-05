@@ -53,15 +53,14 @@ class AccountController extends Controller
         $user = DB::table('users')->where('email', $request->input('email'))->get()->first();
 
         if($user){
-            // $details = DB::table('userdetails')->where('user_id', $user->id)->get(['availability'])->first();
 
-            // if ($details->availability == null || $details->availability == ''){
-            //     var_
-            //     $rsp_msg['response'] = 'error';
-            //     $rsp_msg['message']  = 'Please Fill ALL Forms';
+            if ($user->completed_status == '0'){
+
+                $rsp_msg['response'] = 'error';
+                $rsp_msg['message']  = 'Please Fill ALL Forms';
     
-            //     return response()->json(array('response_message' => $rsp_msg));
-            // }
+                return response()->json(array('response_message' => $rsp_msg));
+            }
 
             if ($user->approval != 1 && $user->status != 1){
 
@@ -70,6 +69,7 @@ class AccountController extends Controller
     
                 return response()->json(array('response_message' => $rsp_msg));
             }
+
         } else {
 
             $rsp_msg['response'] = 'error';
@@ -77,6 +77,7 @@ class AccountController extends Controller
 
             return response()->json(array('response_message' => $rsp_msg));
         }
+
 
 
         $authenticated = Auth::guard('web')->attempt($request->only(['email', 'password']));
@@ -88,14 +89,11 @@ class AccountController extends Controller
             $rsp_msg['response'] = 'success';
             $rsp_msg['message']  = "Successfully logged in";
 
-
-            return redirect()->route('index');
-
         }
         else
         {
             $rsp_msg['response'] = 'error';
-            $rsp_msg['message']  = "Somthing Went Wrong!, Please Try Again";
+            $rsp_msg['message']  = "invalid credentials!, Please Try Again";
         }
 
         return response()->json(array('response_message' => $rsp_msg));
@@ -138,6 +136,10 @@ class AccountController extends Controller
         }elseif($param == "social-media-info"){
 
             $rsp_msg = $this->create_social_media_info($request);
+
+        }elseif($param == "proceeding-info"){
+
+            $rsp_msg = $this->create_proceeding_info($request);
 
         } else {
             $rsp_msg['response'] = 'error';
@@ -192,6 +194,7 @@ class AccountController extends Controller
                 'password' => bcrypt($request->input('password')),
                 'approval' => '0',
                 'status' => '0',
+                'completed_status' => '0',
                 'role_id'  => '2',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -561,6 +564,19 @@ class AccountController extends Controller
 
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "User Social Media Detail Added successfully. Please Proceed";
+
+        return $rsp_msg;
+
+    }
+
+    public function create_proceeding_info($request){
+
+        DB::table('users')->where('id', Session::get('temp_user_id'))->update([
+            'completed_status' => 1,
+        ]);
+
+        $rsp_msg['response'] = 'success';
+        $rsp_msg['message']  = "Your Application is Now Under Review. Please wait";
 
         return $rsp_msg;
 
