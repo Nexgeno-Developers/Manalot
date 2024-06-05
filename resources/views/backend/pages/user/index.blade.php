@@ -77,9 +77,9 @@
                     <td>
                         <a data-id="{{ $row->id }}" data-approval="{{ $row->approval }}" class="action-icon text-white btn @if($row->approval == 0) btn-success @else btn-warning @endif approveBtn">
                             @if($row->approval == 1)
-                                <i title="Approve" class="ri-eye-off-fill"></i>
+                                <i title="UnApprove" class="ri-eye-off-fill"></i>
                             @else
-                                <i title="UnApprove" class="ri-eye-fill"></i>
+                                <i title="Approve" class="ri-eye-fill"></i>
                             @endif
                         </a>
                         <a href="javascript:void(0);" class="btn btn-info text-white action-icon" onclick="largeModal('{{ url(route('user.edit',['id' => $row->id])) }}', 'Edit user')">

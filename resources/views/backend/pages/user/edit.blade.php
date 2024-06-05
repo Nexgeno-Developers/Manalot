@@ -1,3 +1,40 @@
+<form method="POST" action="{{url(route('password.update'))}}">
+@csrf
+<input type="hidden" name="id" value="{{ $author->id }}">
+<h3>Rest Password</h3>
+<div class="row mb-3">
+    <label for="password" class="col-md-4 col-form-label text-md-end">New Password <span class="red">*</span></label>
+
+    <div class="col-md-6">
+        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+        @error('password')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+</div>
+
+<div class="row mb-3">
+    <label for="password-confirm" class="col-md-4 col-form-label text-md-end">Confirm Password <span class="red">*</span></label>
+
+    <div class="col-md-6">
+        <input id="confirm_password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+    </div>
+</div>
+
+<div class="row mb-0">
+    <div class="col-md-6 offset-md-4">
+        <button type="submit" class="btn btn-primary">
+            Reset Password
+        </button>
+    </div>
+</div>
+</form>
+
+<hr class="mb-4">
+
 <form id="edit_author_form" action="{{url(route('user.update'))}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row">
@@ -16,10 +53,10 @@
         </div>
         <div class="col-sm-12">
             <div class="form-group mb-3">
-                <label>Status <span class="red">*</span></label>
+                <label>User Status <span class="red">*</span></label>
                 <select name="status" class="form-control">
-                    <option value="1" {{ $author->status == 1 ? 'selected' : '' }}>Active</option>
-                    <option value="0" {{ $author->status == 0 ? 'selected' : '' }}>Inactive</option>
+                    <option value="1" {{ $author->status == 1 ? 'selected' : '' }}>Activate</option>
+                    <option value="0" {{ $author->status == 0 ? 'selected' : '' }}>Deactivate</option>
                 </select>
             </div>
         </div>
@@ -33,6 +70,18 @@
 </form>
 
 <script>
+    var password = document.getElementById("password")  , confirm_password = document.getElementById("confirm_password");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
 $(document).ready(function() {
     initValidate('#edit_author_form');
 });
