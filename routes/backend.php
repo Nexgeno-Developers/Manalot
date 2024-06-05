@@ -90,7 +90,7 @@ Route::group(['prefix' => 'profile'], function () {
     Route::get('/status/{id}/{status}', [UserController::class, 'status'])->name('user.status');
     Route::get('/approvestatusedit/{id}', [UserController::class, 'approvestatus'])->name('user.approvestatus');
     Route::get('/view/{id}', [UserController::class, 'view'])->name('user.view');
-    Route::get('/password/reset/', [UserController::class, 'resetPassword'])->name('password.update');
+    Route::post('/password/reset/', [UserController::class, 'resetPassword'])->name('password.update');
 
     Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::get('/reset/{id}', [UserController::class, 'password'])->name('user.password');

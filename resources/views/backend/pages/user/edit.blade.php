@@ -1,36 +1,31 @@
-<form method="POST" action="{{url(route('password.update'))}}">
-@csrf
-<input type="hidden" name="id" value="{{ $author->id }}">
-<h3>Rest Password</h3>
-<div class="row mb-3">
-    <label for="password" class="col-md-4 col-form-label text-md-end">New Password <span class="red">*</span></label>
+<form id="resetpassword" method="POST" action="{{url(route('password.update'))}}">
+    @csrf
+    <input type="hidden" name="id" value="{{ $author->id }}">
+    <h3>Rest Password</h3>
+    <div class="row mb-3">
+        <label for="password" class="col-md-4 col-form-label text-md-end">New Password <span class="red">*</span></label>
 
-    <div class="col-md-6">
-        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-        @error('password')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
+        <div class="col-md-6">
+            <input id="password" type="text" class="form-control" name="password" minlength="6" required autocomplete="new-password">
+        </div>
     </div>
-</div>
 
-<div class="row mb-3">
-    <label for="password-confirm" class="col-md-4 col-form-label text-md-end">Confirm Password <span class="red">*</span></label>
+    <div class="row mb-3">
+        <label for="password-confirm" class="col-md-4 col-form-label text-md-end">Confirm Password <span class="red">*</span></label>
 
-    <div class="col-md-6">
-        <input id="confirm_password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+        <div class="col-md-6">
+            <input id="confirm_password" type="text" class="form-control" name="password_confirmation" required autocomplete="new-password">
+            <span id='message'></span>
+        </div>
     </div>
-</div>
 
-<div class="row mb-0">
-    <div class="col-md-6 offset-md-4">
-        <button type="submit" class="btn btn-primary">
-            Reset Password
-        </button>
+    <div class="row mb-0">
+        <div class="col-md-6 offset-md-4">
+            <button type="submit" class="btn btn-primary">
+                Reset Password
+            </button>
+        </div>
     </div>
-</div>
 </form>
 
 <hr class="mb-4">
@@ -70,28 +65,51 @@
 </form>
 
 <script>
-    var password = document.getElementById("password")  , confirm_password = document.getElementById("confirm_password");
+    $(document).ready(function() {
+        $('#password, #confirm_password').on('keyup', function () {
+            if ($('#password').val().length > 0) {
+                if ($('#password').val() == $('#confirm_password').val()) {
+                    $('#message').html('Matching').css('color', 'green');
+                } else {
+                    $('#message').html('Not Matching').css('color', 'red');
+                }
+            } else {
+                $('#message').html('');
+            }
+        });
+    });
+    $('form#resetpassword').on('submit', function(event) {
+                event.preventDefault();
+                
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: $(this).attr('method'),
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        if (response.status) {
+                            toastr.success(response.notification);
+                            $('form')[0].reset();
+                            $('#message').html('');
+                        } else {
+                            toastr.error(response.notification);
+                        }
+                    },
+                    error: function(response) {
+                        toastr.error('An error occurred. Please try again.');
+                    }
+                });
+            });
 
-function validatePassword(){
-  if(password.value != confirm_password.value) {
-    confirm_password.setCustomValidity("Passwords Don't Match");
-  } else {
-    confirm_password.setCustomValidity('');
-  }
-}
+    $(document).ready(function() {
+        initValidate('#edit_author_form');
+    });
 
-password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
-$(document).ready(function() {
-    initValidate('#edit_author_form');
-});
+    $("#edit_author_form").submit(function(e) {
+        var form = $(this);
+        ajaxSubmit(e, form, responseHandler);
+    });
 
-$("#edit_author_form").submit(function(e) {
-    var form = $(this);
-    ajaxSubmit(e, form, responseHandler);
-});
-
-var responseHandler = function(response) {
-    location.reload();
-}
+    var responseHandler = function(response) {
+        location.reload();
+    }
 </script>

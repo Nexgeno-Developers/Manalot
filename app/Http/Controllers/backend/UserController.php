@@ -14,19 +14,30 @@ class UserController extends Controller
 
     public function resetPassword(Request $request)
     {
+        // Validate the request
         $validator = Validator::make($request->all(), [
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:6|confirmed',
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+            return response()->json(['status' => false, 'notification' => 'Password reset Failed!']);
         }
 
-        $user = $request->user();
-        $user->password = Hash::make($request->password);
-        $user->save();
+        // Update the user's password
+        $id = $request->id;
+        $password = Hash::make($request->password);
+        $user = User::where('role_id', '<>', 1)
+                    ->where('id', '<>', 1)
+                    ->where('id', $id)
+                    ->first();
 
-        return redirect()->route('home')->with('status', 'Password reset successfully!');
+        if ($user) {
+            $user->password = $password;
+            $user->save();
+            return response()->json(['status' => true, 'notification' => 'Password reset successfully!']);
+        } else {
+            return response()->json(['status' => false, 'notification' => 'Password reset Failed!']);
+        }
     }
 
     public function userslist() {
