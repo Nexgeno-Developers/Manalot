@@ -234,7 +234,6 @@ class AccountController extends Controller
                 'email' => strtolower($request->input('email')),
                 'password' => bcrypt($request->input('password')),
                 'approval' => '0',
-                'approval' => '0',
                 'role_id'  => '2',
                 'created_at' => now(),
                 'updated_at' => now(),
