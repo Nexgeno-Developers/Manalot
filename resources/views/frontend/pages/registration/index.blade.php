@@ -228,7 +228,24 @@
 
     /*---------------------  social-media-info ------------------*/ 
     
+    /*--------------------- proceeding_info ------------------*/
 
+        initValidate('#proceeding-info');
+
+        $('#proceeding-info').on('submit', function(e){
+            var form = $(this);
+            ajax_form_submit(e, form, responseHandler1);
+        });
+
+        var responseHandler1 = function (response) {
+            $("input, textarea").val("");
+            $("select option:first").prop("selected", !0);
+            setTimeout(function () {
+                window.location.href = "{{ url(route('index')) }}";
+            }, 1500);
+        };
+
+    /*---------------------  proceeding_info ------------------*/ 
 
     /*--------------------- Resend-otp------------------*/    
 

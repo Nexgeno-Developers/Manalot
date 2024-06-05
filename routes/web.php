@@ -67,6 +67,7 @@ Route::any('/get-privious-page', function () {
 
 Route::get('/update-session', function () {
     Session()->put('temp_user_id', 2);
+    Session()->put('step', 9);
 })->name('update-session');
 
 

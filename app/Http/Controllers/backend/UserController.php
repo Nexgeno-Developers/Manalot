@@ -12,7 +12,7 @@ class UserController extends Controller
 {
 
     public function userslist() {
-        $users = User::where('role_id', '<>', 1)->get();        
+        $users = User::where('role_id','<>', 1)->where('completed_status', 1)->get();        
         return view('backend.pages.user.index', compact('users'));
     }
     
