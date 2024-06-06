@@ -203,7 +203,7 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
-        $users_username = DB::table('users')->where('username', $request->input('name'))->where('status', 1)->get();
+        $users_username = DB::table('users')->where('username', $request->input('name'))->get();
 
         if(count($users_username) != 0){
             $rsp_msg['response'] = 'error';
@@ -272,8 +272,8 @@ class AccountController extends Controller
                 'user_id' => $userId,
                 'phone_number' => $request->input('phone_number'),
                 'experience_Status' => $request->input('experience_Status'),
-                'skill' => [],
-                'references' => [],
+                'skill' => '[]',
+                'references' => '[]',
                 'resume_cv' => $path,
                 'created_at' => now(),
                 'updated_at' => now(),
