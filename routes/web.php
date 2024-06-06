@@ -71,18 +71,6 @@ Route::get('/update-session', function () {
 })->name('update-session');
 
 
-Route::get('/registration2', [IndexController::class, 'registration2'])->name('registration2');
-Route::get('/registration3', [IndexController::class, 'registration3'])->name('registration3');
-Route::get('/registration4', [IndexController::class, 'registration4'])->name('registration4');
-Route::get('/registration5', [IndexController::class, 'registration5'])->name('registration5');
-Route::get('/registration6', [IndexController::class, 'registration6'])->name('registration6');
-Route::get('/registration7', [IndexController::class, 'registration7'])->name('registration7');
-Route::get('/registration8', [IndexController::class, 'registration8'])->name('registration8');
-Route::get('/registration9', [IndexController::class, 'registration9'])->name('registration9');
-Route::get('/registration10', [IndexController::class, 'registration10'])->name('registration10');
-Route::get('/registration11', [IndexController::class, 'registration11'])->name('registration11');
-
-
 Route::get('/admin', [IndexController::class, 'admin'])->name('admin');
 Route::get('/edit-profile', [IndexController::class, 'edit_profile'])->name('edit-profile');
 //------------------------------ dummy controller ----------------------

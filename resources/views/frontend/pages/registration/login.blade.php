@@ -25,7 +25,7 @@
                 <div class="login_width">
                     <div class="heading mb-4">
                         <h2>Login Account</h2>
-                        <p>
+                        <p class="fs-16">
                             To stay in touch with us, please log in to your manalot
                             account.
                         </p>
@@ -35,15 +35,17 @@
                             @csrf
                             <div class="position-relative">
                                 <label for="email" class="form-label">Email</label>
+                                <img src="/assets/images/email.png" alt="" class="input_icon" />
                                 <input type="email" class="form-control input_text" id="email" name="email"
                                     placeholder="Enter Your Email ID" required/>
-                                <img src="/assets/images/email.png" alt="" class="input_icon" />
+                                
                             </div>
                             <div class="position-relative">
                                 <label for="password" class="form-label">Password</label>
+                                <img src="/assets/images/key.png" alt="" class="input_icon" />
                                 <input type="password" class="form-control input_text" id="password" name="password"
                                     placeholder="***********" required/>
-                                <img src="/assets/images/key.png" alt="" class="input_icon" />
+                                
                             </div>
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <div class="form-check">
@@ -74,7 +76,7 @@
                             Continue with
                             <img src="/assets/images/google.svg" alt="google icon" class="google_icon" />
                         </button>
-                        <a href="{{ url(route('registration')) }}"><button class="google_btn">New to MLN? Join Now</button></a>
+                        <a href="{{ url(route('registration')) }}"><button class="google_btn bluegradian_bg">New to MLN? <b>Join Now</b></button></a>
                     </div>
                 </div>
 
@@ -133,11 +135,73 @@
 
 /*--------------------- login form ------------------*/
 
+function ajax_form_submit_login(e, form, callBackFunction) {
+    if (form.valid()) {
+        e.preventDefault();
+        var btn = $(form).find('button[type="submit"]');
+        var btn_text = $(btn).html();
+        $(btn).html('please wait... <i class="las la-spinner la-spin"></i>');
+        $(btn).css("opacity", "0.7");
+        $(btn).css("pointer-events", "none");
+        var action = form.attr("action");
+        var data = new FormData(form[0]); // Corrected to form[0] to get the raw DOM element
+        $.ajax({
+            type: "POST",
+            url: action,
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            data: data,
+            success: function (response) {
+                resetButton(btn, btn_text);
+                if (response.response_message.response === "success") {
+                    Command: toastr.success(response.response_message.message, "Success");
+                    callBackFunction(response);
+                } else {
+                    if (Array.isArray(response.response_message.message)) {
+                        var errors = "";
+                        $.each(response.response_message.message, function (key, msg) {
+                            errors += "<div>" + (key + 1) + ". " + msg + "</div>";
+                        });
+                        Command: toastr.error(errors, "Alert");
+                    } else {
+                        Command: toastr.error(response.response_message.message, "Alert");
+
+                        if(response.response_message.status === "incomplete"){
+
+                            setTimeout(function () {
+                                window.location.href = "{{ url(route('registration')) }}";
+                            }, 1000);
+
+                        } else {
+
+                            setTimeout(function () {
+                                location.reload();
+                            }, 1000);
+
+                        }
+
+                    }
+                }
+            },
+            error: function (xhr, status, error) {
+                resetButton(btn, btn_text);
+                Command: toastr.error("An error occurred: " + error, "Error");
+            }
+        });
+    } else {
+        toastr.error("Please make sure to fill all the necessary fields");
+        resetButton($(form).find('button[type="submit"]'), btn_text);
+    }
+}
+
+
+
 initValidate('#login-form');
 
 $('#login-form').on('submit', function(e){
     var form = $(this);
-    ajax_form_submit(e, form, responseHandler);
+    ajax_form_submit_login(e, form, responseHandler);
 });
 
 var responseHandler = function (response) {
@@ -151,9 +215,10 @@ var responseHandler = function (response) {
         }, 1000);
 
     } else {
-        setTimeout(function () {
-            location.reload();
-        }, 1000);
+
+            setTimeout(function () {
+                location.reload();
+            }, 1000);
     }
 
 };
