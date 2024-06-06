@@ -15,7 +15,7 @@
         @endphp
 
         <form id="user-info" action="{{ route('account.create', ['param' => 'user-info']) }}" method="post"
-            enctype="multipart/form-data" class="d-flex gap-4 flex-column">
+            enctype="multipart/form-data" class="d-flex gap-3 flex-column">
             @csrf
             <div class="row">
                 <div class="col-md-6 mb-4">
@@ -28,6 +28,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="email" class="form-label">Email *</label>
+                         <img src="/assets/images/email.png" alt="" class="input_icon" />
                         <input type="email" class="form-control input_text" id="email" name="email"
                             placeholder="Enter Your email" required />
                     </div>
@@ -35,7 +36,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="password" class="form-label">Password</label>
-                         <img src="/assets/images/email.png" alt="" class="input_icon" />
+                         <img src="/assets/images/key.png" alt="" class="input_icon" />
                         <input type="password" class="form-control input_text" id="password" name="password"
                             placeholder="Enter your Password" minlength="6" maxlength="16" required />
                         <img src="images/key.png" alt="" class="input_icon" />
@@ -65,6 +66,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="formFile" class="form-label">Upload Resume</label>
+                        <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
                         <input class="form-control" type="file" id="formFile" name="resume_cv" accept=".pdf"
                             required />
                         <img src="images/file.png" alt="" class="input_icon" />
@@ -160,22 +162,24 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="formFile" class="form-label">Profile Photo</label>
-                        <input class="form-control" type="file" id="formFile" name="profile_photo"
-                            accept=".jpg,.jpeg,.png,.webp" @if (empty($user_detail->profile_photo) || $user_detail->profile_photo == null) required @endif />
-                        <img src="/assets/images/file.png" alt="" class="input_icon" />
-                    </div>
-
-                    @if (!empty($user_detail->profile_photo) && $user_detail->profile_photo != null)
-                        <a target="_blank" href="{{ asset('storage/' . $user_detail->profile_photo) }}">
+                         @if (!empty($user_detail->profile_photo) && $user_detail->profile_photo != null)
+                        <a class="pdf_view" target="_blank" href="{{ asset('storage/' . $user_detail->profile_photo) }}">
                             View
                         </a>
                     @endif
+                        <img src="/assets/images/file.png" alt="" class="input_icon" />
+                        <input class="form-control" type="file" id="formFile" name="profile_photo"
+                            accept=".jpg,.jpeg,.png,.webp" @if (empty($user_detail->profile_photo) || $user_detail->profile_photo == null) required @endif />
+                        
+                    </div>
+
+                   
 
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Gender" class="form-label">Gender*</label>
-                        <select class="form-select input_select" aria-label="Default select example" id="Gender"
+                        <select class="form-select form-control  input_select" aria-label="Default select example" id="Gender"
                             name="gender" required>
                             <option value="">Select Gender</option>
                             <option value="1" @if ($user_detail->gender == 1) selected @endif>Male</option>
@@ -226,7 +230,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="State" class="form-label">State*</label>
-                        <select class="form-select input_select" aria-label="Default select example" id="State"
+                        <select class="form-select form-control  input_select" aria-label="Default select example" id="State"
                             name="state">
                             <option value="">Select State</option>
                             @foreach ($state as $row)
@@ -249,7 +253,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="country_name" class="form-label">Country*</label>
-                        <select class="form-select input_select" aria-label="Default select example"
+                        <select class="form-select form-control  input_select" aria-label="Default select example"
                             id="country_name" name="country">
                             <option value="">Select Country</option>
                             @foreach ($country as $row)
@@ -294,24 +298,27 @@
             @csrf
             <div class="position-relative">
                 <label for="email" class="form-label">Email*</label>
+                <img src="/assets/images/email.png" alt="" class="input_icon">
                 <input type="email" class="form-control input_text" id="email" name="email"
                     placeholder="Enter Your Email" value="{{ $user->email }}" required/>
                 <img src="images/email.png" alt="" class="input_icon" />
             </div>
             <div class="position-relative">
                 <label for="password" class="form-label">Password*</label>
+                <img src="/assets/images/key.png" alt="" class="input_icon">
                 <input type="password" class="form-control input_text" id="password" name="password" placeholder="Enter Your Password" value="{{ session('password', '') }}" minlength="6" maxlength="16" required/>
                 <img src="images/key.png" alt="" class="input_icon" />
             </div>
             <div class="position-relative">
                 <label for="password" class="form-label">Confirm Password*</label>
+                <img src="/assets/images/key.png" alt="" class="input_icon">
                 <input type="password" class="form-control input_text" id="confirm_password" name="confirm_password" placeholder="Enter Your Confirm Password" value="{{ session('password', '') }}" minlength="6" maxlength="16" required/>
                 <img src="images/key.png" alt="" class="input_icon" />
             </div>
 
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
@@ -359,22 +366,24 @@
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
+                         @if (!empty($user_detail->resume_cv) && $user_detail->resume_cv != null)
+                            <a  class="pdf_view" target="_blank" href="{{ asset('storage/' . $user_detail->resume_cv) }}">
+                                View
+                            </a>
+                        @endif
                         <label for="formFile" class="form-label">Resume/CV*</label>
+                        <img src="/assets/images/file.png" alt="" class="input_icon" />
                         <input class="form-control" type="file" id="formFile" name="resume_cv" accept=".pdf"
                             @if (empty($user_detail->resume_cv) || $user_detail->resume_cv == null) required @endif />
-                        <img src="/assets/images/file.png" alt="" class="input_icon" />
+                        
                     </div>
-                    @if (!empty($user_detail->resume_cv) && $user_detail->resume_cv != null)
-                        <a target="_blank" href="{{ asset('storage/' . $user_detail->resume_cv) }}">
-                            View
-                        </a>
-                    @endif
+                   
                 </div>
                 <div class="col-md-6"></div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="job" class="form-label">Job Title*</label>
-                        <select class="form-select input_select" aria-label="Default select example" id="job"
+                        <select class="form-select form-control input_select" aria-label="Default select example" id="job"
                             name="job_title" required>
                             <option value="">Select Job Tilt</option>
                             @foreach ($job_title as $row)
@@ -389,7 +398,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="industry" class="form-label">Industry*</label>
-                        <select class="form-select input_select" aria-label="Default select example" id="industry"
+                        <select class="form-select form-control input_select" aria-label="Default select example" id="industry"
                             name="industry" required>
                             <option value="">Select Industry</option>
                             @foreach ($industry as $row)
@@ -430,7 +439,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="State" class="form-label">Years of Experience</label>
-                        <select class="form-select input_select" aria-label="Default select example"
+                        <select class="form-select form-control input_select" aria-label="Default select example"
                             id="wrk_exp_years" name="wrk_exp_years" required>
                             <option value="">Select Experience</option>
                             @foreach ($years_of_exp as $row)
@@ -445,12 +454,12 @@
 
                 <div class="col-md-12">
                     <p>Responsibilities/Achievements</p>
-                    <textarea rows="4" cols="45" name="wrk_exp_responsibilities" required>{{ $user_detail->wrk_exp_responsibilities }}</textarea>
+                    <textarea class="form-control" rows="4" cols="45" name="wrk_exp_responsibilities" placeholder="Message" required>{{ $user_detail->wrk_exp_responsibilities }}</textarea>
                 </div>
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
@@ -525,7 +534,7 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
@@ -554,13 +563,13 @@
         <div class="heading mb-4">
             <h2>Skills and Competencies</h2>
         </div>
-        <form id="skills-info" action="{{ url(route('account.create', ['param' => 'skills-info'])) }}"
+        <form id="skills-info" class="skills-info-first" action="{{ url(route('account.create', ['param' => 'skills-info'])) }}"
             method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
             @csrf
-            <div class="col-md-6 mb-4">
+            <div class="col-md-12 mb-4">
                 <div class="position-relative">
                     <label for="skills" class="form-label">Skills*</label>
-                    <select class="select2 form-select input_select" aria-label="Default select example" id="skills"
+                    <select class="select2 form-select form-control input_select" aria-label="Default select example" id="skills"
                         name="skill[]" multiple required>
                         <option value="">select skills</option>
                         @foreach ($skills as $row)
@@ -575,7 +584,7 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
@@ -635,7 +644,7 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
@@ -728,7 +737,7 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
@@ -763,7 +772,7 @@
                     <div class="position-relative">
                         <label for="Legal Authorization to work status*" class="form-label">Legal
                             Authorization to work status*</label>
-                        <select class="form-select input_select" aria-label="Default select example"
+                        <select class="form-select form-control input_select" aria-label="Default select example"
                             id="Legal Authorization to work status*" name="work_authorization_status" required>
                             <option value="">Select work status</option>
                             <option value="1" @if ($user_detail->work_authorization_status == 1) selected @endif>Yes</option>
@@ -775,7 +784,7 @@
                     <div class="position-relative">
                         <label for="Availability" class="form-label">Availability
                         </label>
-                        <select class="form-select input_select" aria-label="Default select example"
+                        <select class="form-select form-control input_select" aria-label="Default select example"
                             id="Availability" name="availability" required>
                             <option value="">Select Availability</option>
                             <option value="1" @if ($user_detail->availability == 1) selected @endif>Yes</option>
@@ -787,7 +796,7 @@
                     <div class="position-relative">
                         <label for="Notice Period" class="form-label">Notice Period
                         </label>
-                        <select class="form-select input_select" aria-label="Default select example"
+                        <select class="form-select form-control input_select" aria-label="Default select example"
                             id="Notice Period" name="notice_period" required>
                             <option value="">Select Notice Period</option>
                             <option value="1" @if ($user_detail->notice_period == 1) selected @endif>Yes</option>
@@ -798,7 +807,7 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
@@ -831,6 +840,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Linkdin" class="form-label">Linkdin</label>
+                        <img src="/assets/images/linkedin-in1.png" alt="" class="input_icon">
                         <input type="url" class="form-control input_text" id="Linkdin" name="linkdin"
                             placeholder="Enter Your Linkdn URL" value="{{ $user_detail->linkdin }}" name="linkdin"
                             required />
@@ -840,6 +850,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Twitter" class="form-label">Twitter</label>
+                        <img src="/assets/images/x-twitter1.png" alt="" class="input_icon">
                         <input type="url" class="form-control input_text" id="Twitter" name="twitter"
                             placeholder="Enter Your Twitter URL" value="{{ $user_detail->twitter }}" name="twitter"
                             required />
@@ -849,6 +860,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Instagram" class="form-label">Instagram</label>
+                        <img src="/assets/images/instagram1.png" alt="" class="input_icon">
                         <input type="url" class="form-control input_text" id="Instagram"
                             placeholder="Enter Your Instagram URL" value="{{ $user_detail->instagram }}"
                             name="instagram" required>
@@ -858,6 +870,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Facebook" class="form-label">Facebook</label>
+                        <img src="/assets/images/facebook-f1.png" alt="" class="input_icon">
                         <input type="url" class="form-control input_text" id="Facebook"
                             placeholder="Enter Your Facebook URL" value="{{ $user_detail->facebook }}"
                             name="facebook" required />
@@ -875,7 +888,7 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
