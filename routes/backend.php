@@ -9,6 +9,7 @@ use App\Http\Controllers\backend\ContactController;
 use App\Http\Controllers\backend\BusinessSettingController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\ReportController;
+use App\Http\Controllers\backend\ManageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,4 +101,49 @@ Route::group(['prefix' => 'profile'], function () {
 
 Route::group(['prefix' => 'report'], function () {
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+});
+
+Route::group(['prefix' => 'manage'], function () {
+    Route::get('/experience_status/view', [ManageController::class, 'index_experience_status'])->name('manage.index_experience_status');
+    Route::get('/experience_status/add', [ManageController::class, 'add_experience_status'])->name('manage.add_experience_status');
+    Route::get('/experience_status/edit{id}', [ManageController::class, 'edit_experience_status'])->name('manage.edit_experience_status');
+    Route::post('/experience_status/create', [ManageController::class, 'create_experience_status'])->name('manage.create_experience_status');
+    Route::post('/experience_status/update', [ManageController::class, 'update_experience_status'])->name('manage.update_experience_status');
+    Route::post('/experience_status/delete/{id}', [ManageController::class, 'delete_experience_status'])->name('manage.delete_experience_status');
+    
+    Route::get('/industry/view', [ManageController::class, 'index_industry'])->name('manage.index_industry');
+    Route::get('/industry/add', [ManageController::class, 'add_industry'])->name('manage.add_industry');
+    Route::get('/industry/edit{id}', [ManageController::class, 'edit_industry'])->name('manage.edit_industry');
+    Route::post('/industry/create', [ManageController::class, 'create_industry'])->name('manage.create_industry');
+    Route::post('/industry/update', [ManageController::class, 'update_industry'])->name('manage.update_industry');
+    Route::post('/industry/delete/{id}', [ManageController::class, 'delete_industry'])->name('manage.delete_industry');
+    
+    Route::get('/job_title/view', [ManageController::class, 'index_job_title'])->name('manage.index_job_title');
+    Route::get('/job_title/add', [ManageController::class, 'add_job_title'])->name('manage.add_job_title');
+    Route::get('/job_title/edit{id}', [ManageController::class, 'edit_job_title'])->name('manage.edit_job_title');
+    Route::post('/job_title/create', [ManageController::class, 'create_job_title'])->name('manage.create_job_title');
+    Route::post('/job_title/update', [ManageController::class, 'update_job_title'])->name('manage.update_job_title');
+    Route::post('/job_title/delete/{id}', [ManageController::class, 'delete_job_title'])->name('manage.delete_job_title');
+    
+    Route::get('/references_from/view', [ManageController::class, 'index_references_from'])->name('manage.index_references_from');
+    Route::get('/references_from/add', [ManageController::class, 'add_references_from'])->name('manage.add_references_from');
+    Route::get('/references_from/edit{id}', [ManageController::class, 'edit_references_from'])->name('manage.edit_references_from');
+    Route::post('/references_from/create', [ManageController::class, 'create_references_from'])->name('manage.create_references_from');
+    Route::post('/references_from/update', [ManageController::class, 'update_references_from'])->name('manage.update_references_from');
+    Route::post('/references_from/delete/{id}', [ManageController::class, 'delete_references_from'])->name('manage.delete_references_from');
+    
+    Route::get('/skills/view', [ManageController::class, 'index_skills'])->name('manage.index_skills');
+    Route::get('/skills/add', [ManageController::class, 'add_skills'])->name('manage.add_skills');
+    Route::get('/skills/edit{id}', [ManageController::class, 'edit_skills'])->name('manage.edit_skills');
+    Route::post('/skills/create', [ManageController::class, 'create_skills'])->name('manage.create_skills');
+    Route::post('/skills/update', [ManageController::class, 'update_skills'])->name('manage.update_skills');
+    Route::post('/skills/delete/{id}', [ManageController::class, 'delete_skills'])->name('manage.delete_skills');
+    
+    Route::get('/years_of_exp/view', [ManageController::class, 'index_years_of_exp'])->name('manage.index_years_of_exp');
+    Route::get('/years_of_exp/add', [ManageController::class, 'add_years_of_exp'])->name('manage.add_years_of_exp');
+    Route::get('/years_of_exp/edit{id}', [ManageController::class, 'edit_years_of_exp'])->name('manage.edit_years_of_exp');
+    Route::post('/years_of_exp/create', [ManageController::class, 'create_years_of_exp'])->name('manage.create_years_of_exp');
+    Route::post('/years_of_exp/update', [ManageController::class, 'update_years_of_exp'])->name('manage.update_years_of_exp');
+    Route::post('/years_of_exp/delete/{id}', [ManageController::class, 'delete_years_of_exp'])->name('manage.delete_years_of_exp');
+
 });
