@@ -83,6 +83,14 @@ class AccountController extends Controller
                 return response()->json(array('response_message' => $rsp_msg));
             }
 
+            if ($user->approval != 1){
+
+                $rsp_msg['response'] = 'error';
+                $rsp_msg['message']  = 'ID is Not Approve!';
+    
+                return response()->json(array('response_message' => $rsp_msg));
+            }
+
         } else {
 
             $rsp_msg['response'] = 'error';
@@ -491,7 +499,7 @@ class AccountController extends Controller
         }
 
         DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
-            'skill' => $request->input('skill'),
+            'skill' => json_encode($request->input('skill')),
         ]);
 
         DB::table('users')->where('id', Session::get('temp_user_id'))->update([
@@ -565,7 +573,7 @@ class AccountController extends Controller
             'pref_industry' => $request->input('pref_industry'),
             'pref_location' => $request->input('pref_location'),
             'pref_salary' => $request->input('pref_salary'),
-            'references' => $request->input('references'),
+            'references' => json_encode($request->input('references')),
         ]);
 
 

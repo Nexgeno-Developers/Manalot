@@ -12,6 +12,12 @@
 <!--jQuery Validate-->
 <script src="/assets/frontend/js/jquery.validate.min.js"></script>
 
+<!--select2-->
+<script src="/assets/frontend/js/select2.full.min.js"></script>
+
+<!--select2--->
+<script defer src="/assets/frontend/js/select2.min.js"></script>
+
 <!--Toast Js-->
 <script defer src="/assets/frontend/js/toastr.min.js"></script>
 
