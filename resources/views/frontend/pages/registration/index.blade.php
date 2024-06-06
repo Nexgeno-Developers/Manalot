@@ -95,6 +95,25 @@
 
     /*---------------------  personal info ------------------*/ 
 
+    /*--------------------- login info ------------------*/
+
+        initValidate('#login-info');
+
+        $('#login-info').on('submit', function(e){
+            var form = $(this);
+            ajax_form_submit(e, form, responseHandler);
+        });
+
+        var responseHandler = function (response) {
+            $("input, textarea").val("");
+            $("select option:first").prop("selected", !0);
+            setTimeout(function () {
+                location.reload();
+            }, 1500);
+        };
+
+    /*---------------------  Login info ------------------*/ 
+
     /*--------------------- personal work info ------------------*/
 
         initValidate('#personal-work-info');

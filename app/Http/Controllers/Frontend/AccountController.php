@@ -56,7 +56,11 @@ class AccountController extends Controller
 
             if ($user->completed_status == '0'){
 
+                Session::put('temp_user_id', $user->id);
+                Session::put('step', $user->step);
+
                 $rsp_msg['response'] = 'error';
+                $rsp_msg['status'] = 'incomplete';
                 $rsp_msg['message']  = 'Please Fill ALL Forms';
     
                 return response()->json(array('response_message' => $rsp_msg));
@@ -65,7 +69,16 @@ class AccountController extends Controller
             if ($user->approval != 1 && $user->status != 1){
 
                 $rsp_msg['response'] = 'error';
+                $rsp_msg['status'] = 'completed';
                 $rsp_msg['message']  = 'Application Status Under Review';
+    
+                return response()->json(array('response_message' => $rsp_msg));
+            }
+
+            if ($user->status != 1){
+
+                $rsp_msg['response'] = 'error';
+                $rsp_msg['message']  = 'Your ID is Not Active!';
     
                 return response()->json(array('response_message' => $rsp_msg));
             }
@@ -108,6 +121,10 @@ class AccountController extends Controller
         }elseif($param == "personal-info"){
 
             $rsp_msg = $this->create_personal_info($request);
+
+        }elseif($param == "login-info"){
+
+            $rsp_msg = $this->create_login_info($request);
         
         }elseif($param == "personal-work-info"){
 
@@ -235,6 +252,7 @@ class AccountController extends Controller
                 'password' => bcrypt($request->input('password')),
                 'approval' => '0',
                 'role_id'  => '2',
+                'step' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
@@ -251,6 +269,7 @@ class AccountController extends Controller
             Session::put('temp_user_id', $userId);
         }
 
+        Session::put('password', $request->input('password'));
         Session::put('step', 2);
 
 
@@ -304,6 +323,7 @@ class AccountController extends Controller
 
         DB::table('users')->where('id', Session::get('temp_user_id'))->update([
             'email' => strtolower($request->input('email')),
+            'step' => 2,
         ]);
 
         DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
@@ -324,6 +344,38 @@ class AccountController extends Controller
 
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "User Personal Detail Added successfully. Please Proceed";
+
+        return $rsp_msg;
+
+    }
+
+
+    public function create_login_info($request){
+
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required',
+            'confirm_password' => 'required|same:password',
+        ]);
+
+        if ($validator->fails()) {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = $validator->errors()->all();
+
+            return $rsp_msg;
+        }
+
+        DB::table('users')->where('id', Session::get('temp_user_id'))->update([
+            'email' => strtolower($request->input('email')),
+            'password' => bcrypt($request->input('password')),
+            'step' =>  3,
+        ]);
+
+
+        Session::put('step', 4);
+
+        $rsp_msg['response'] = 'success';
+        $rsp_msg['message']  = "User Login Detail Added successfully. Please Proceed";
 
         return $rsp_msg;
 
@@ -373,7 +425,11 @@ class AccountController extends Controller
             'wrk_exp_company_name' => $request->input('wrk_exp_company_name'),
         ]);
 
-        Session::put('step', 4);
+        DB::table('users')->where('id', Session::get('temp_user_id'))->update([
+            'step' =>  4,
+        ]);
+
+        Session::put('step', 5);
 
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "User Personal and Work Detail Added successfully. Please Proceed";
@@ -408,7 +464,11 @@ class AccountController extends Controller
             'wrk_exp_company_name' => $request->input('wrk_exp_company_name'),
         ]);
 
-        Session::put('step', 5);
+        DB::table('users')->where('id', Session::get('temp_user_id'))->update([
+            'step' =>  5,
+        ]);
+
+        Session::put('step', 6);
 
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "User Education Detail Added successfully. Please Proceed";
@@ -434,7 +494,11 @@ class AccountController extends Controller
             'skill' => $request->input('skill'),
         ]);
 
-        Session::put('step', 6);
+        DB::table('users')->where('id', Session::get('temp_user_id'))->update([
+            'step' =>  6,
+        ]);
+
+        Session::put('step', 7);
 
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "User Skills Detail Added successfully. Please Proceed";
@@ -464,8 +528,11 @@ class AccountController extends Controller
             'certificate_obtn_date' => $request->input('certificate_obtn_date'),
         ]);
 
+        DB::table('users')->where('id', Session::get('temp_user_id'))->update([
+            'step' =>  7,
+        ]);
 
-        Session::put('step', 7);
+        Session::put('step', 8);
 
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "User Skills Detail Added successfully. Please Proceed";
@@ -502,9 +569,11 @@ class AccountController extends Controller
         ]);
 
 
+        DB::table('users')->where('id', Session::get('temp_user_id'))->update([
+            'step' =>  8,
+        ]);
 
-
-        Session::put('step', 8);
+        Session::put('step', 9);
 
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "User Preferences Detail Added successfully. Please Proceed";
@@ -536,7 +605,11 @@ class AccountController extends Controller
             'notice_period' => $request->input('notice_period'),
         ]);
 
-        Session::put('step', 9);
+        DB::table('users')->where('id', Session::get('temp_user_id'))->update([
+            'step' =>  9,
+        ]);
+
+        Session::put('step', 10);
 
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "User Work Authorization Detail Added successfully. Please Proceed";
@@ -570,7 +643,11 @@ class AccountController extends Controller
             'other' => $request->input('other'),
         ]);
 
-        Session::put('step', 10);
+        DB::table('users')->where('id', Session::get('temp_user_id'))->update([
+            'step' =>  10,
+        ]);
+
+        Session::put('step', 11);
 
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "User Social Media Detail Added successfully. Please Proceed";
