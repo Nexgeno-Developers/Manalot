@@ -94,7 +94,7 @@
 
         <p class="mt-5">
             Already have an account?
-            <a href="login.php" class="text-decoration-none purple">Login</a>
+            <a href="{{ url(route('login')) }}" class="text-decoration-none purple">Login</a>
         </p>
     </div>
 
@@ -564,13 +564,15 @@
             <div class="col-md-12 mb-4">
                 <div class="position-relative">
                     <label for="skills" class="form-label">Skills*</label>
-                    <select class="form-select form-control input_select" aria-label="Default select example" id="skills"
-                        name="skill" required>
+                    <select class="select2 form-select input_select" aria-label="Default select example" id="skills"
+                        name="skill[]" multiple required>
                         <option value="">select skills</option>
                         @foreach ($skills as $row)
-                            <option value="{{ $row->id }}" @if ($user_detail->skill == $row->id) selected @endif>
+                            <option value="{{ $row->id }}" @if(in_array($row->id, json_decode($user_detail->skill, true))) selected @endif>
                                 {{ ucfirst($row->name) }}
                             </option>
+
+                            
                         @endforeach
                     </select>
                 </div>
@@ -715,12 +717,12 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="References*" class="form-label">References*</label>
-                        <select class="form-select form-control input_select" aria-label="Default select example" id="References*"
-                            name="references" required>
+                        <select class="select2 form-select input_select" aria-label="Default select example" id="References*"
+                            name="references[]" multiple required>
                             <option value="">Select References</option>
                             @foreach ($references_from as $row)
                                 <option value="{{ $row->id }}"
-                                    @if ($user_detail->references == $row->id) selected @endif>
+                                    @if(in_array($row->id, json_decode($user_detail->references, true))) selected @endif>
                                     {{ ucfirst($row->name) }}
                                 </option>
                             @endforeach

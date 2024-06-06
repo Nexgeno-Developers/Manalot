@@ -151,28 +151,22 @@
                             </div>
                         </li> --}}
 
-                       {{-- <li class="side-nav-item">
+                       <li class="side-nav-item">
                             <a data-bs-toggle="collapse" href="{{ url('#sidebarEmail') }}" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
                                 <i class="ri-article-line"></i>
-                                <span> Page </span>
+                                <span> Manges </span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <div class="collapse" id="sidebarEmail">
                                 <ul class="side-nav-second-level">
                                     <li>
-                                        <a href="{{ route('setting.privacy') }}">Privacy Policy Page</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('setting.terms') }}">Terms & Conditions Page</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('setting.refund_policy') }}">Refund Policy</a>
+                                        <a href="{{ route('manage.index_experience_status') }}">Experience Manage</a>
                                     </li>
                                 </ul>
                             </div>
                         </li> 
 
-                        <li class="side-nav-item">
+                       {{-- <li class="side-nav-item">
                             <a href="{{ route('setting.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                                 <i class="ri-settings-2-line"></i>                                
                                 <span> Setting </span>

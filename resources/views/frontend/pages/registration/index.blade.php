@@ -40,6 +40,11 @@
     //     initTrumbowyg('.trumbowyg');
     // });
 
+
+    $(document).ready(function() {
+        initSelect2('.select2');
+    });
+
     function back_to_privious(){
         // Create an XMLHttpRequest object
         var xhr = new XMLHttpRequest();
