@@ -28,14 +28,16 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="email" class="form-label">Email *</label>
-                        <input type="email" class="form-control input_text email_icon" id="email" name="email"
+                         <img src="/assets/images/email.png" alt="" class="input_icon" />
+                        <input type="email" class="form-control input_text" id="email" name="email"
                             placeholder="Enter Your email" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control input_text password_icon" id="password" name="password"
+                         <img src="/assets/images/key.png" alt="" class="input_icon" />
+                        <input type="password" class="form-control input_text" id="password" name="password"
                             placeholder="Enter your Password" minlength="6" maxlength="16" required />
                         <img src="images/key.png" alt="" class="input_icon" />
                     </div>
@@ -160,9 +162,10 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="formFile" class="form-label">Profile Photo</label>
+                        <img src="/assets/images/file.png" alt="" class="input_icon" />
                         <input class="form-control" type="file" id="formFile" name="profile_photo"
                             accept=".jpg,.jpeg,.png,.webp" @if (empty($user_detail->profile_photo) || $user_detail->profile_photo == null) required @endif />
-                        <img src="/assets/images/file.png" alt="" class="input_icon" />
+                        
                     </div>
 
                     @if (!empty($user_detail->profile_photo) && $user_detail->profile_photo != null)
