@@ -97,7 +97,7 @@ class ManageController extends Controller
         } else {
             $response = [
                 'status' => false,
-                'notification' => 'Failed to update profile.',
+                'notification' => 'Nothing to update in profile.',
             ];
         }
 

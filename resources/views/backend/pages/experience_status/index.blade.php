@@ -28,11 +28,18 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php $i = 1; @endphp  
                     @foreach ($experience_statuses as $status)
                     <tr>
-                        <td>{{ $status->id }}</td>
+                        <td>{{$i++}}</td>
                         <td>{{ $status->name }}</td>
-                        <td>{{ $status->status }}</td>
+                        <td>
+                            @if( $status->status == 1)
+                                <span class="badge bg-success" title="Active">Active</span>
+                            @else
+                                <span class="badge bg-danger" title="Inactive">Inactive</span>
+                            @endif
+                        </td>
                         <td>
                             <a href="javascript:void(0);" class="btn btn-info text-white action-icon"
                                 onclick="smallModal('{{ url(route('manage.edit_experience_status',['id' => $status->id])) }}', 'Edit user')">

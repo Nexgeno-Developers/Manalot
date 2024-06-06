@@ -30,8 +30,8 @@
                         <div class="form-group mb-3">
                             <select name="status" class="form-control">
                                 <option value="">Select Employee Status</option>
-                                <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Activate</option>
-                                <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Deactivate</option>
+                                <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Active</option>
+                                <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Inactive</option>
                             </select>
                         </div>
                     </div>

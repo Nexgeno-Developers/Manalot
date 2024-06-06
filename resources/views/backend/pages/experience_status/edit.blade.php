@@ -11,8 +11,8 @@
         <div class="form-group mb-3">
             <label>Status <span class="red">*</span></label>
             <select name="status" class="form-control" required>
-                <option value="1" {{ $experience_status->status == 1 ? 'selected' : '' }}>Activate</option>
-                <option value="0" {{ $experience_status->status == 0 ? 'selected' : '' }}>Deactivate</option>
+                <option value="1" {{ $experience_status->status == 1 ? 'selected' : '' }}>Active</option>
+                <option value="0" {{ $experience_status->status == 0 ? 'selected' : '' }}>Inactive</option>
             </select>
         </div>
     </div>
