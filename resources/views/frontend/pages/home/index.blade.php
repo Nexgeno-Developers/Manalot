@@ -10,7 +10,7 @@
 
     <!-------------=================  home start ==================---------------------->
 
-    <section class="pb-5 mt80" style="background-color: #f6f6f6">
+    <section class="pb-5 mt80 login_user" style="background-color: #f6f6f6">
         <div class="container">
             <div class="row">
                 <div class="col-md-3"></div>
@@ -27,8 +27,10 @@
                                         </p>
                                     </div>
                                 </div>
-                                <button class="blue_btn py-1 px-3 text-xs">Apply Now</button>
-                            </div>
+                                <div class="blue_btn after_login">
+                                    <button class="text-decoration-none text-white">Apply Now</button>
+                                </div>
+                                            </div>
                             <div>
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -73,7 +75,9 @@
                                         </p>
                                     </div>
                                 </div>
-                                <button class="blue_btn py-1 px-3 text-xs">Apply Now</button>
+                                 <div class="blue_btn after_login">
+                                    <button class="text-decoration-none text-white">Apply Now</button>
+                                </div>
                             </div>
                             <div>
                                 <p>
