@@ -51,14 +51,14 @@ body {
 }
 
 .aquamarine {
-    color: aquamarine;
+    color: #2FACAB;
 }
 
 .heading h2 {
     font-size: 24px;
     height: 28px;
-    font-weight: 600;
-    color: #ae446a;
+    font-weight: 400;
+    color: #912371;
 }
 
 .heading p {
@@ -90,8 +90,8 @@ body {
     font-size: 15px;
     background: linear-gradient(34.89deg, #4B2779 8%, #BE2475 83.76%);
     font-weight: 400;
-    padding: 3px 33px 5.5px 33px;
-    line-height: 32px;
+    padding: 2px 33px 5px 33px;
+    line-height: 24px;
     text-align: center;
 }
 
@@ -154,8 +154,8 @@ p.divider {
     font-size: 15px;
     background: linear-gradient(2.17deg, #327192 30.94%, #0C3873 69.79%);
     font-weight: 400;
-    padding: 3px 33px 5.5px 33px;
-    line-height: 32px;
+    padding: 2px 33px 5px 33px;
+    line-height: 24px;
     text-align: center;
     border: 0px;
 }
@@ -165,8 +165,8 @@ p.divider {
     font-size: 18px;
     background: linear-gradient(2.17deg, #327192 30.94%, #0C3873 69.79%);
     font-weight: 400;
-    padding: 3px 33px 5.5px 33px;
-    line-height: 32px;
+    padding: 2px 33px 5px 33px;
+    line-height: 24px;
     text-align: center;
 }
 
@@ -688,14 +688,14 @@ a.pdf_view {
 }
 
 input#formFile::file-selector-button {
-    color: #fff;
+    color: #656565 !important;
     border: none;
-    padding: 4px 10px 5px 10px;
-    background: linear-gradient(34.89deg, #4B2779 8%, #BE2475 83.76%);
+    padding: 0px 0px 0px 0px;
+    background: #fff;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 15px;
     margin-left: 0px;
     border-radius: 50px;
     position: relative;
-    top: -3px;
+    top: 0px;
 }

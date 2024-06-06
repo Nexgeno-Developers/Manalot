@@ -266,7 +266,7 @@
             </div>
             <div>
                 <div class="purple_btn">
-                    <button type="submit" class="text-decoration-none text-white">Next</button>
+                    <button type="submit" class="text-decoration-none text-white">NEXT</button>
                 </div>
             </div>
         </form>
@@ -318,10 +318,10 @@
 
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">BACK</button>
                 </div>
                 <div class="purple_btn">
-                    <button type="submit" class="text-decoration-none text-white">Next</button>
+                    <button type="submit" class="text-decoration-none text-white">NEXT</button>
                 </div>
             </div>
 
@@ -385,7 +385,7 @@
                         <label for="job" class="form-label">Job Title*</label>
                         <select class="form-select form-control input_select" aria-label="Default select example" id="job"
                             name="job_title" required>
-                            <option value="">Select Job Tilt</option>
+                            <option value="">Select Job Title</option>
                             @foreach ($job_title as $row)
                                 <option value="{{ $row->id }}"
                                     @if ($user_detail->job_title == $row->id) selected @endif>
@@ -459,10 +459,10 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">BACK</button>
                 </div>
                 <div class="purple_btn">
-                    <button type="submit" class="text-decoration-none text-white">Next</button>
+                    <button type="submit" class="text-decoration-none text-white">NEXT</button>
                 </div>
             </div>
         </form>
@@ -534,10 +534,10 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">BACK</button>
                 </div>
                 <div class="purple_btn">
-                    <button type="submit" class="text-decoration-none text-white">Next</button>
+                    <button type="submit" class="text-decoration-none text-white">NEXT</button>
                 </div>
             </div>
         </form>
@@ -584,10 +584,10 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">BACK</button>
                 </div>
                 <div class="purple_btn">
-                    <button type="submit" class="text-decoration-none text-white">Next</button>
+                    <button type="submit" class="text-decoration-none text-white">NEXT</button>
                 </div>
             </div>
         </form>
@@ -644,10 +644,10 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">BACK</button>
                 </div>
                 <div class="purple_btn">
-                    <button type="submit" class="text-decoration-none text-white">Next</button>
+                    <button type="submit" class="text-decoration-none text-white">NEXT</button>
                 </div>
             </div>
         </form>
@@ -737,10 +737,10 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">BACK</button>
                 </div>
                 <div class="purple_btn">
-                    <button type="submit" class="text-decoration-none text-white">Next</button>
+                    <button type="submit" class="text-decoration-none text-white">NEXT</button>
                 </div>
             </div>
         </form>
@@ -807,10 +807,10 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">BACK</button>
                 </div>
                 <div class="purple_btn">
-                    <button type="submit" class="text-decoration-none text-white">Next</button>
+                    <button type="submit" class="text-decoration-none text-white">NEXT</button>
                 </div>
             </div>
         </form>
@@ -888,10 +888,10 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">BACK</button>
                 </div>
                 <div class="purple_btn">
-                    <button type="submit" class="text-decoration-none text-white">Next</button>
+                    <button type="submit" class="text-decoration-none text-white">NEXT</button>
                 </div>
             </div>
         </form>
