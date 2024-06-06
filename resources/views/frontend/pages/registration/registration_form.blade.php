@@ -51,8 +51,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Employee" class="form-label">Employee Status</label>
-                        <select class="form-select input_select" aria-label="Default select example"
-                            name="experience_Status" id="Employee" required>
+                        <select class="form-select form-control input_select" aria-label="Default select example" name="experience_Status" id="Employee" required> 
                             <option value="">Select Employee Status</option>
                             @foreach ($experience_status as $row)
                                 <option value="{{ $row->id }}">
