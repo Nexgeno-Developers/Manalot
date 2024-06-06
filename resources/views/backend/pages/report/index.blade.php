@@ -28,7 +28,7 @@
 
                   <div class="col">
                         <div class="form-group mb-3">
-                            <select name="status" class="form-control">
+                            <select name="status" class="text-muted form-control">
                                 <option value="">Select Employee Status</option>
                                 <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Active</option>
                                 <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Inactive</option>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="col">
                         <div class="form-group mb-3">
-                            <select name="approval_status" class="form-control">
+                            <select name="approval_status" class="text-muted form-control">
                                 <option value="">Select Approval Status</option>
                                 <option value="1" {{ request('approval_status') == '1' ? 'selected' : '' }}>Activate</option>
                                 <option value="0" {{ request('approval_status') == '0' ? 'selected' : '' }}>Deactivate</option>
@@ -83,8 +83,8 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="aiz-pagination">
-            {{ $logs->appends(request()->input())->links() }}
+        <div class="mt-3">
+            {{ $logs->links('pagination::newbootstrap-6') }}
         </div>
     </div>
 </div>
