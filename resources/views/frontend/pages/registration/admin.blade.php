@@ -67,7 +67,7 @@
                                     </button>
                                 </div>
                                 <div>
-                                    <button class="purple_btn py-1 px-3">Add Post</button>
+                                    <button class="google_btn bluegradian_bg">Add Post</button>
                                 </div>
                             </div>
                         </div>

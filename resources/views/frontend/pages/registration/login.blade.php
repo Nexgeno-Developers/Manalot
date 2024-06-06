@@ -35,15 +35,13 @@
                             @csrf
                             <div class="position-relative">
                                 <label for="email" class="form-label">Email</label>
-                                <img src="/assets/images/email.png" alt="" class="input_icon" />
-                                <input type="email" class="form-control input_text" id="email" name="email"
+                                <input type="email" class="form-control input_text email_icon" id="email" name="email"
                                     placeholder="Enter Your Email ID" required/>
                                 
                             </div>
                             <div class="position-relative">
                                 <label for="password" class="form-label">Password</label>
-                                <img src="/assets/images/key.png" alt="" class="input_icon" />
-                                <input type="password" class="form-control input_text" id="password" name="password"
+                                <input type="password" class="form-control input_text password_icon" id="password" name="password"
                                     placeholder="***********" required/>
                                 
                             </div>
