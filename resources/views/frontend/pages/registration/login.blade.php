@@ -25,7 +25,7 @@
                 <div class="login_width">
                     <div class="heading mb-4">
                         <h2>Login Account</h2>
-                        <p>
+                        <p class="fs-16">
                             To stay in touch with us, please log in to your manalot
                             account.
                         </p>
@@ -35,15 +35,17 @@
                             @csrf
                             <div class="position-relative">
                                 <label for="email" class="form-label">Email</label>
+                                <img src="/assets/images/email.png" alt="" class="input_icon" />
                                 <input type="email" class="form-control input_text" id="email" name="email"
                                     placeholder="Enter Your Email ID" required/>
-                                <img src="/assets/images/email.png" alt="" class="input_icon" />
+                                
                             </div>
                             <div class="position-relative">
                                 <label for="password" class="form-label">Password</label>
+                                <img src="/assets/images/key.png" alt="" class="input_icon" />
                                 <input type="password" class="form-control input_text" id="password" name="password"
                                     placeholder="***********" required/>
-                                <img src="/assets/images/key.png" alt="" class="input_icon" />
+                                
                             </div>
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <div class="form-check">
@@ -74,7 +76,7 @@
                             Continue with
                             <img src="/assets/images/google.svg" alt="google icon" class="google_icon" />
                         </button>
-                        <a href="{{ url(route('registration')) }}"><button class="google_btn">New to MLN? Join Now</button></a>
+                        <a href="{{ url(route('registration')) }}"><button class="google_btn bluegradian_bg">New to MLN? <b>Join Now</b></button></a>
                     </div>
                 </div>
 
