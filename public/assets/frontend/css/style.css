@@ -555,6 +555,7 @@ button.btn-close {
     padding-top: 6px !important;
     padding-bottom: 6px !important;
     color: #656565 !important;
+    padding-left: 6px !important;
 }
 
 label.form-label {
@@ -657,4 +658,44 @@ a.pdf_view {
     background-size: 4% !important;
     background-repeat: no-repeat;
     background-position: right .75rem center;
+}
+
+.select2-container--default .select2-selection--multiple {
+    background-color: white;
+    border: 0px solid #aaa !important;
+    border-radius: 4px;
+    cursor: text;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    position: relative;
+}
+
+.select2-container--default .select2-selection--multiple {
+    background-color: white;
+    border: 0px solid #aaa;
+    border-radius: 0px;
+    cursor: text;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    position: relative;
+    border-bottom: 1px solid #ccc !important;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border: 0 !important;
+    outline: 0;
+    border-bottom: 1px solid #ccc !important;
+}
+
+input#formFile::file-selector-button {
+    color: #fff;
+    border: none;
+    padding: 4px 10px 5px 10px;
+    background: linear-gradient(34.89deg, #4B2779 8%, #BE2475 83.76%);
+    font-weight: 400;
+    font-size: 12px;
+    margin-left: 0px;
+    border-radius: 50px;
+    position: relative;
+    top: -3px;
 }

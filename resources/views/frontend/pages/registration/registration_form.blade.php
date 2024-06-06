@@ -162,17 +162,18 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="formFile" class="form-label">Profile Photo</label>
+                         @if (!empty($user_detail->profile_photo) && $user_detail->profile_photo != null)
+                        <a class="pdf_view" target="_blank" href="{{ asset('storage/' . $user_detail->profile_photo) }}">
+                            View
+                        </a>
+                    @endif
                         <img src="/assets/images/file.png" alt="" class="input_icon" />
                         <input class="form-control" type="file" id="formFile" name="profile_photo"
                             accept=".jpg,.jpeg,.png,.webp" @if (empty($user_detail->profile_photo) || $user_detail->profile_photo == null) required @endif />
                         
                     </div>
 
-                    @if (!empty($user_detail->profile_photo) && $user_detail->profile_photo != null)
-                        <a target="_blank" href="{{ asset('storage/' . $user_detail->profile_photo) }}">
-                            View
-                        </a>
-                    @endif
+                   
 
                 </div>
                 <div class="col-md-6 mb-4">
@@ -366,14 +367,15 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                          @if (!empty($user_detail->resume_cv) && $user_detail->resume_cv != null)
-                        <a  class="pdf_view" target="_blank" href="{{ asset('storage/' . $user_detail->resume_cv) }}">
-                            View
-                        </a>
-                    @endif
+                            <a  class="pdf_view" target="_blank" href="{{ asset('storage/' . $user_detail->resume_cv) }}">
+                                View
+                            </a>
+                        @endif
                         <label for="formFile" class="form-label">Resume/CV*</label>
+                        <img src="/assets/images/file.png" alt="" class="input_icon" />
                         <input class="form-control" type="file" id="formFile" name="resume_cv" accept=".pdf"
                             @if (empty($user_detail->resume_cv) || $user_detail->resume_cv == null) required @endif />
-                        <img src="/assets/images/file.png" alt="" class="input_icon" />
+                        
                     </div>
                    
                 </div>
@@ -567,7 +569,7 @@
             <div class="col-md-12 mb-4">
                 <div class="position-relative">
                     <label for="skills" class="form-label">Skills*</label>
-                    <select class="select2 form-select input_select" aria-label="Default select example" id="skills"
+                    <select class="select2 form-select form-control input_select" aria-label="Default select example" id="skills"
                         name="skill[]" multiple required>
                         <option value="">select skills</option>
                         @foreach ($skills as $row)
