@@ -8,6 +8,7 @@ use App\Http\Controllers\backend\TrumbowygController;
 use App\Http\Controllers\backend\ContactController;
 use App\Http\Controllers\backend\BusinessSettingController;
 use App\Http\Controllers\backend\UserController;
+use App\Http\Controllers\backend\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,7 +83,6 @@ Route::get('/clear-cache', function () {
 //User
 Route::group(['prefix' => 'profile'], function () {
     Route::get('/userslist', [UserController::class, 'userslist'])->name('users.list');
-    Route::get('/usersdata', [UserController::class, 'usersData'])->name('users.data');
     Route::get('/add', [UserController::class, 'add'])->name('user.add');
     Route::post('/create', [UserController::class, 'create'])->name('user.create');
     Route::post('/update', [UserController::class, 'update'])->name('user.update');
@@ -96,4 +96,8 @@ Route::group(['prefix' => 'profile'], function () {
     Route::get('/reset/{id}', [UserController::class, 'password'])->name('user.password');
     Route::post('/update', [UserController::class, 'update'])->name('user.update');
     Route::post('/reset', [UserController::class, 'reset'])->name('user.reset');    
+});
+
+Route::group(['prefix' => 'report'], function () {
+    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 });

@@ -43,13 +43,7 @@ class UserController extends Controller
     public function userslist() {
         $users = User::where('role_id','<>', 1)->where('completed_status', 1)->get();        
         return view('backend.pages.user.index', compact('users'));
-    }
-    
-
-    public function usersData() {
-        $users = User::select('id', 'username', 'email', 'approval', 'status', 'created_at')->get();
-        return response()->json($users);
-    }    
+    } 
 
     public function approvestatus(Request $request, $id) {
         $user = User::find($id);

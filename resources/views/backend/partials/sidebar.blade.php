@@ -60,6 +60,12 @@
                                 <span> Users </span>
                             </a>
                         </li>
+                        <li class="side-nav-item">
+                            <a href="{{ route('reports.index') }}" aria-expanded="false" aria-controls="sidebarusers" class="side-nav-link">
+                            <i class="ri-clapperboard-line"></i>  
+                                <span>Report </span>
+                            </a>
+                        </li>
 
                       {{-- <li class="side-nav-item">
                             <a href="{{ route('contact.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
