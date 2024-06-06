@@ -35,6 +35,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="password" class="form-label">Password</label>
+                         <img src="/assets/images/email.png" alt="" class="input_icon" />
                         <input type="password" class="form-control input_text" id="password" name="password"
                             placeholder="Enter your Password" minlength="6" maxlength="16" required />
                         <img src="images/key.png" alt="" class="input_icon" />
