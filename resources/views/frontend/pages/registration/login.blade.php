@@ -15,7 +15,7 @@
             <div class="col-md-6">
                 <img src="/assets/images/login_bg.png" style="width:100%">
             </div>
-            <div class="col-md-6 ps-4">
+            <div class="col-md-6 pddleft50">
                 <h1 class="main_heading mb-5">
                     <span class="purple">M</span>analot
                     <span class="orange">L</span>eadership
@@ -90,11 +90,11 @@
 <section>
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-6">
+            <div class="col-md-6 width55">
                 <div class="d-flex flex-column gap-3">
-                    <h3 class="font-size40 purple">
+                    <h3 class="font-size40 purple expt_button">
                         Experience + Unemployed
-                        <span class="fs-6" style="color: black">= Unstoppable</span>
+                        <span class="fonts24" style="color: black">= Unstoppable</span>
                     </h3>
 
                     <p class="font-size18 mb-0">
@@ -118,7 +118,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 width45">
                 <img src="/assets/images/team.jpg" alt="" />
             </div>
         </div>
