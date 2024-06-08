@@ -2,6 +2,7 @@
 .about_headers {
     background-image: url(/assets/images/about-bg.jpg) !important;
 }
+
 </style>
 @extends('frontend.layouts.app')
 

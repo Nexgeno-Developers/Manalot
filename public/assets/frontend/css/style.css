@@ -227,13 +227,13 @@ p.divider {
 }
 
 .search_input button {
-    background: linear-gradient(90deg,
-            rgb(148 75 160) 6%,
-            rgba(207, 20, 146, 1) 100%);
-    padding: 10px 20px;
-    border-radius: 0 15px 15px 0;
-    color: white;
+    padding: 0;
     border: none;
+    background: transparent;
+}
+
+.search_input button img {
+    width: 49px;
 }
 
 .profile {
@@ -437,9 +437,12 @@ p.divider {
 }
 
 .notification_modal {
-    padding: 40px;
-    background: #F2F2F2;
+    padding: 20px;
     border-radius: 20px;
+    backdrop-filter: blur(10px);
+    background-color: #f8f8f8;
+    width: 360px;
+    box-shadow: 0px 8px 40px 0px #0000001A;
 }
 
 .profile_font {
@@ -818,4 +821,34 @@ span.select2-selection.select2-selection--multiple {
 input.h_input::placeholder {
     font-size: 16px !important;
     color: #B5B5B5 !important;
+}
+
+.notification_box {
+    position: absolute;
+    top: 80px;
+    margin-left: -150px;
+}
+
+.notifty_hed {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.notification_modal img {
+    width: 40px;
+    margin-right: 8px;
+}
+
+.notification_modal .username {
+    color: #3F3F3F;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.mark_read {
+    font-size: 12px;
+}
+
+.notification_modal span.text-xs {
+    color: #7A7878;
 }
