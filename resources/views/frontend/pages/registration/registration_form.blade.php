@@ -191,6 +191,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Date" class="form-label">Date of Birth*</label>
+                        <img src="/assets/images/calender_icon.png" alt="" class="input_icon">
                         <input type="date" class="form-control input_text" id="Date" name="dob"
                             placeholder="Date" value="{{ $user_detail->dob }}" required />
                     </div>
@@ -266,7 +267,7 @@
             </div>
             <div>
                 <div class="purple_btn">
-                    <button type="submit" class="text-decoration-none text-white">NEXT</button>
+                    <button type="submit" class="text-decoration-none text-white">Next</button>
                 </div>
             </div>
         </form>
@@ -318,10 +319,10 @@
 
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">BACK</button>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
                 </div>
                 <div class="purple_btn">
-                    <button type="submit" class="text-decoration-none text-white">NEXT</button>
+                    <button type="submit" class="text-decoration-none text-white">Next</button>
                 </div>
             </div>
 
@@ -459,10 +460,10 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">BACK</button>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
                 </div>
                 <div class="purple_btn">
-                    <button type="submit" class="text-decoration-none text-white">NEXT</button>
+                    <button type="submit" class="text-decoration-none text-white">Next</button>
                 </div>
             </div>
         </form>
@@ -534,10 +535,10 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">BACK</button>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
                 </div>
                 <div class="purple_btn">
-                    <button type="submit" class="text-decoration-none text-white">NEXT</button>
+                    <button type="submit" class="text-decoration-none text-white">Next</button>
                 </div>
             </div>
         </form>
@@ -584,10 +585,10 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">BACK</button>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
                 </div>
                 <div class="purple_btn">
-                    <button type="submit" class="text-decoration-none text-white">NEXT</button>
+                    <button type="submit" class="text-decoration-none text-white">Next</button>
                 </div>
             </div>
         </form>
@@ -636,6 +637,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Date Obtained*" class="form-label">Date Obtained*</label>
+                        <img src="/assets/images/calender_icon.png" alt="" class="input_icon">
                         <input type="date" class="form-control input_text" id="Date Obtained*"
                             name="certificate_obtn_date" placeholder="Date"
                             value="{{ $user_detail->certificate_obtn_date }}" required />
@@ -644,10 +646,10 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">BACK</button>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
                 </div>
                 <div class="purple_btn">
-                    <button type="submit" class="text-decoration-none text-white">NEXT</button>
+                    <button type="submit" class="text-decoration-none text-white">Next</button>
                 </div>
             </div>
         </form>
@@ -737,10 +739,10 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">BACK</button>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
                 </div>
                 <div class="purple_btn">
-                    <button type="submit" class="text-decoration-none text-white">NEXT</button>
+                    <button type="submit" class="text-decoration-none text-white">Next</button>
                 </div>
             </div>
         </form>
@@ -807,10 +809,10 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">BACK</button>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
                 </div>
                 <div class="purple_btn">
-                    <button type="submit" class="text-decoration-none text-white">NEXT</button>
+                    <button type="submit" class="text-decoration-none text-white">Next</button>
                 </div>
             </div>
         </form>
@@ -840,7 +842,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Linkdin" class="form-label">Linkdin</label>
-                        <img src="/assets/images/linkedin-in1.png" alt="" class="input_icon">
+                        <img src="/assets/images/linkedin-in1.png" alt="" class="input_icon linkedin_icon">
                         <input type="url" class="form-control input_text" id="Linkdin" name="linkdin"
                             placeholder="Enter Your Linkdn URL" value="{{ $user_detail->linkdin }}" name="linkdin"
                             required />
@@ -850,7 +852,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Twitter" class="form-label">Twitter</label>
-                        <img src="/assets/images/x-twitter1.png" alt="" class="input_icon">
+                        <img src="/assets/images/x-twitter1.png" alt="" class="input_icon twitter_icon">
                         <input type="url" class="form-control input_text" id="Twitter" name="twitter"
                             placeholder="Enter Your Twitter URL" value="{{ $user_detail->twitter }}" name="twitter"
                             required />
@@ -860,7 +862,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Instagram" class="form-label">Instagram</label>
-                        <img src="/assets/images/instagram1.png" alt="" class="input_icon">
+                        <img src="/assets/images/instagram1.png" alt="" class="input_icon insta_icon">
                         <input type="url" class="form-control input_text" id="Instagram"
                             placeholder="Enter Your Instagram URL" value="{{ $user_detail->instagram }}"
                             name="instagram" required>
@@ -870,7 +872,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Facebook" class="form-label">Facebook</label>
-                        <img src="/assets/images/facebook-f1.png" alt="" class="input_icon">
+                        <img src="/assets/images/facebook-f1.png" alt="" class="input_icon facebook_icon">
                         <input type="url" class="form-control input_text" id="Facebook"
                             placeholder="Enter Your Facebook URL" value="{{ $user_detail->facebook }}"
                             name="facebook" required />
@@ -879,7 +881,7 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
-                        <label for="others" class="form-label">others</label>
+                        <label for="others" class="form-label">Others</label>
                         <input type="url" class="form-control input_text" id="others"
                             placeholder="Enter Your Others URL" value="{{ $user_detail->other }}" name="other"
                             required />
@@ -888,10 +890,10 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">BACK</button>
+                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
                 </div>
                 <div class="purple_btn">
-                    <button type="submit" class="text-decoration-none text-white">NEXT</button>
+                    <button type="submit" class="text-decoration-none text-white">Next</button>
                 </div>
             </div>
         </form>
@@ -910,14 +912,14 @@
         <form id="proceeding-info" action="{{ url(route('account.create', ['param' => 'proceeding-info'])) }}"
             method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
             @csrf
-            <img class="prroceed_icons" src="/assets/images/file-check.png" alt="file check" />
+            <img class="prroceed_icons" src="/assets/images/procced_image.png" alt="file check" />
             <p>
                 Manalot will validate/ review the documents and <br />
                 grant permisssion to proceed through Admin
             </p>
             <div>
                 <div class="purple_btn text-start">
-                    <button type="submit" class="text-decoration-none text-white">Proceed To Review</button>
+                    <button type="submit" class="text-decoration-none text-white">Continue to Home</button>
                 </div>
             </div>
         </form>

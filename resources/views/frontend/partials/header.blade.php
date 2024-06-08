@@ -1,20 +1,20 @@
 
 @if(auth()->user())
 
-  <div style="background-color: white" class="header">
+  <div class="header">
       <div class="container">
 
           <header class="d-flex align-items-center py-1 justify-content-between">
               <a href="/">
                   <img src="/assets/images/logo.png" alt="" />
               </a>
-              <form class="search_input d-flex align-items-center">
+              <form class="search_input d-flex align-items-center mb-0">
                   <input type="text" placeholder="What Are You Looking For?" />
                   <button>
                       <i class="fa-solid fa-magnifying-glass"></i>
                   </button>
               </form>
-              <div class="d-flex align-items-center gap-4">
+              <div class="d-flex align-items-center gap-4 menu_rightsidebaar">
                   <a href="#" data-toggle="modal" data-target="#exampleModal"
                       class="d-flex flex-column gap-1 align-items-center text-decoration-none inherit text-dark text-xs">
                       <div>

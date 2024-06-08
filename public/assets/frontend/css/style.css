@@ -211,9 +211,19 @@ p.divider {
 .search_input input {
     width: 300px;
     background: #eeeeee;
-    padding: 10px 20px;
+    padding: 11px 20px 12px 20px;
     border-radius: 15px 0 0 15px;
     border: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.pt80 {
+    padding-top: 80px;
+}
+
+.pt100 {
+    padding-top: 100px;
 }
 
 .search_input button {
@@ -362,6 +372,10 @@ p.divider {
     top: 0;
     z-index: 99;
     width: 100%;
+    border-radius: 0px 0px 25px 25px !important;
+    height: 80px;
+    backdrop-filter: blur(10px);
+    background-color: rgb(255 255 255 / 80%);
 }
 
 .profile_tabs li {
@@ -378,11 +392,13 @@ p.divider {
 }
 
 .about_headers {
-    background-image: url("/images/about-bg.jpg");
+    background-image: url(/assets/images/about-bg.jpg) !important;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     color: white;
+    padding-top: 150px !important;
+    padding-bottom: 30px;
 }
 
 .a_m_h {
@@ -398,6 +414,10 @@ p.divider {
     color: #ae446a;
 }
 
+.pddleft40 {
+    padding-left: 35px !important;
+}
+
 .p_color {
     color: #656565;
 }
@@ -406,6 +426,7 @@ p.divider {
     font-size: 48px;
     font-weight: 400;
     line-height: 57px;
+    color: #656565;
 }
 
 .h_input {
@@ -419,6 +440,11 @@ p.divider {
     padding: 40px;
     background: #F2F2F2;
     border-radius: 20px;
+}
+
+.profile_font {
+    color: #3C3C3C;
+    font-weight: 500;
 }
 
 .notification_modal .count_label {
@@ -576,6 +602,7 @@ input::placeholder {
 
 label.error {
     color: #f00;
+    font-size: 12px;
 }
 
 form#login-form label.form-check-label {
@@ -727,4 +754,68 @@ input#formFile::file-selector-button {
 footer b {
     font-size: 15px;
     font-weight: 600;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+span.select2.select2-container.select2-container--default.select2-container--below.select2-container--focus li.select2-search.select2-search--inline {
+    display: none;
+}
+
+li.select2-search.select2-search--inline {
+    display: none;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    border-right: 0px solid #aaa !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: transparent !important;
+    border: 1px solid #aaaaaa52 !important;
+    padding-right: 10px !important;
+}
+
+span.select2-selection.select2-selection--multiple {
+    border-radius: 0;
+    margin-top: 4px !important;
+}
+
+.linkedin_icon {
+    width: 16px;
+    margin-top: 40px;
+}
+
+.twitter_icon {
+    width: 16px;
+    margin-top: 42px;
+}
+
+.insta_icon {
+    width: 16px;
+    margin-top: 42px;
+}
+
+.facebook_icon {
+    width: 13px;
+    margin-top: 42px;
+}
+
+.menu_rightsidebaar img {
+    width: 26px;
+}
+
+.menu_rightsidebaar span {
+    color: #545454;
+    font-weight: 600;
+    font-size: 12px;
+    padding-top: 3px;
+}
+
+input.h_input::placeholder {
+    font-size: 16px !important;
+    color: #B5B5B5 !important;
 }
