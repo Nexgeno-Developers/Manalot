@@ -132,9 +132,6 @@
 			<div class="row">
 				<div class="col-12 col-md-6 col-lg-3">
 					 <div class="ms-footer-col-1">
-						<div class="ms-footer-logo-imgbox">
-							<img loading="lazy" src="https://manalot.com/public/gfx/logo-manalot-footer.png" alt="manalot-logo">
-						</div>
 						<div class="ms-footer-address">
 							<div class="ms-footer-heading">
 								<h2>CONTACT INFO</h2>
@@ -158,7 +155,7 @@
 							</div>
 						</div>
 					</div>				</div>
-				<div class="col-12 col-md-6 col-lg-3">
+				<div class="col-12 col-md-6 col-lg-4">
 					<div class="ms-footer-heading">
 						<h2>SERVICES</h2>
 					</div>
@@ -184,7 +181,7 @@
 
 <li><a href="https://manalot.com/privacy-policy" class="ms-footer-services-link">Privacy Policy</a></li>
 					</ul>				</div>
-				<div class="col-12 col-md-6 col-lg-3">
+				<div class="col-12 col-md-6 col-lg-2">
 					<div class="ms-footer-heading">
 						<h2>FOLLOW US</h2>
 					</div>

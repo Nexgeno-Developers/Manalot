@@ -900,7 +900,7 @@ input.h_input::placeholder {
 }
 
 .ms-footer-copyright {
-    padding: 0rem 1rem 1.5rem;
+    padding: 1.5rem 1rem 1.5rem;
     font-size: 14px;
     color: #fff;
     text-align: center;
@@ -997,7 +997,7 @@ input.h_input::placeholder {
 
 .ms-footer-services-link {
     color: #fff;
-    padding: 0.6rem 0;
+    padding: 0.4rem 0;
     display: block;
     letter-spacing: .6px;
     font-size: 14px;
