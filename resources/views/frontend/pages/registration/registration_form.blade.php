@@ -78,7 +78,7 @@
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="1" name="term_check"
                         id="flexCheckDefault" required />
-                    <label class="form-check-label" for="flexCheckDefault">
+                    <label class="form-check-label terms_font" for="flexCheckDefault">
                         I agree to the
                         <a href="#" class="inherit"> Terms </a>
                         and

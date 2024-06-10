@@ -17,20 +17,22 @@
             </div>
             <div class="col-md-6 pddleft50">
                 <h1 class="main_heading mb-5">
-                    <span class="purple">M</span>analot
-                    <span class="orange">L</span>eadership
-                    <span class="aquamarine">N</span>etwork
+                    <span class="purple font-size70">M</span>analot
+                    <span class="orange font-size70">L</span>eadership
+                    <span class="aquamarine font-size70">N</span>etwork
                 </h1>
 
-                <div class="login_width">
-                    <div class="heading mb-4">
+
+                <div class="heading mb-4">
                         <h2>Login Account</h2>
                         <p class="fs-16">
                             To stay in touch with us, please log in to your manalot
                             account.
                         </p>
                     </div>
-                    <div class="">
+
+
+                <div class="login_width">
                         <form id="login-form" action="{{ url(route('customer.login')) }}"  method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
                             @csrf
                             <div class="position-relative">
@@ -47,7 +49,7 @@
                                     placeholder="***********" required/>
                                 
                             </div>
-                            <div class="d-flex align-items-center justify-content-between mb-4">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value=""
                                         id="flexCheckDefault" />
@@ -67,8 +69,9 @@
                                 </div>
                             </div>
                         </form>
-                    </div>
-                    <div class="text-center my-5">
+                </div>
+
+                <div class="text-center my-4">
                         <p class="divider">Or</p>
                     </div>
                     <div class="d-flex align-items-center gap-4">
@@ -78,7 +81,6 @@
                         </button>
                         <a href="{{ url(route('registration')) }}"><button class="google_btn bluegradian_bg">New to MLN? <b>Join Now</b></button></a>
                     </div>
-                </div>
 
             </div>
         </div>
@@ -110,11 +112,11 @@
 
                     <div>
                         <p class="font-size18">Welcome to</p>
-                        <p class="font-size40">
-                            <span class="purple">M</span>analot
-                            <span class="orange">L</span>eadership
-                            <span class="aquamarine">N</span>etwork
-                        </p>
+                       <p class="main_heading mb-5 mt-5">
+                    <span class="purple font-size70">M</span>analot
+                    <span class="orange font-size70">L</span>eadership
+                    <span class="aquamarine font-size70">N</span>etwork
+                </p>
                     </div>
                 </div>
             </div>

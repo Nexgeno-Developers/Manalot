@@ -37,10 +37,10 @@ body {
 }
 
 .main_heading {
-    font-size: 45px;
-    line-height: 30px;
-    font-weight: 400;
-    color: #282828;
+    font-size: 40px;
+    line-height: 50px;
+    font-weight: 600;
+    color: #000c;
 }
 
 .purple {
@@ -57,7 +57,7 @@ body {
 
 .heading h2 {
     font-size: 24px;
-    font-weight: 400;
+    font-weight: 600;
     color: #901D56;
 }
 
@@ -483,13 +483,15 @@ p.divider {
 }
 
 .login_width {
-    width: 440px;
+    width: 300px;
 }
 
-.login_logo {
+.login_logo img {
     position: absolute;
-    width: 100%;
-    margin-left: 50px;
+    margin-left: 0px;
+    right: 50px;
+    width: 120px;
+    top: 9px;
 }
 
 body {
@@ -552,7 +554,7 @@ body {
 /*    object-position: left;*/
 /*}*/
 .register_width {
-    width: 670px;
+    width: 650px;
 }
 
 .fonts24 {
@@ -567,6 +569,11 @@ button.btn-close {
     position: absolute;
     right: 3px;
     top: 3px;
+}
+
+.terms_font {
+    font-size: 14px;
+    color: #656565;
 }
 
 .mt80 {
@@ -584,7 +591,7 @@ button.btn-close {
     border-bottom: 1px solid #ccc !important;
     border-radius: 0 !important;
     padding: 0 !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
     padding-top: 6px !important;
     padding-bottom: 6px !important;
     color: #656565 !important;
@@ -594,18 +601,26 @@ button.btn-close {
 label.form-label {
     font-size: 15px;
     font-weight: 400;
-    color: #6F6F6F;
+    color: #6f6f6f91;
 }
 
 input::placeholder {
     font-size: 16px !important;
-    font-weight: 500;
+    font-weight: 600;
     color: #656565 !important;
 }
 
 label.error {
     color: #f00;
     font-size: 12px;
+}
+
+section.auth_form a {
+    text-decoration: none;
+}
+
+p.divider {
+    width: 425px;
 }
 
 form#login-form label.form-check-label {
@@ -738,7 +753,13 @@ input#formFile::file-selector-button {
 }
 
 .pddleft50 {
-    padding-left: 50px !important;
+    padding-left: 70px !important;
+    padding-top: 60px;
+}
+
+.font-size70 {
+    font-size: 66px;
+    text-shadow: -1px 0px 1px;
 }
 
 .width45 {
@@ -851,4 +872,12 @@ input.h_input::placeholder {
 
 .notification_modal span.text-xs {
     color: #7A7878;
+}
+
+.register_width .col-md-6.mb-4:nth-child(odd) {
+    padding-right: 40px;
+}
+
+.register_width .col-md-6.mb-4:nth-child(even) {
+    padding-left: 40px;
 }
