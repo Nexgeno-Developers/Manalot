@@ -37,7 +37,7 @@ body {
 }
 
 .main_heading {
-    font-size: 40px;
+    font-size: 36px;
     line-height: 50px;
     font-weight: 600;
     color: #000c;
@@ -489,8 +489,8 @@ p.divider {
 .login_logo img {
     position: absolute;
     margin-left: 0px;
-    right: 50px;
-    width: 120px;
+    right: 10px;
+    width: 170px;
     top: 9px;
 }
 
@@ -753,8 +753,18 @@ input#formFile::file-selector-button {
 }
 
 .pddleft50 {
-    padding-left: 70px !important;
+    padding-left: 50px !important;
     padding-top: 60px;
+}
+
+.width45 img {
+    width: 90%;
+    float: right;
+}
+
+.mt50 {
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .font-size70 {
@@ -771,7 +781,6 @@ input#formFile::file-selector-button {
 }
 
 .expt_button {
-    margin-top: -90px;
     padding-bottom: 40px;
 }
 
@@ -880,4 +889,171 @@ input.h_input::placeholder {
 
 .register_width .col-md-6.mb-4:nth-child(even) {
     padding-left: 40px;
+}
+
+/** footer open **/
+
+.ms-footer-wrap {
+    padding: 3rem 0 0px;
+    /*background-color: #434242;*/
+    /*#312c2f*/
+}
+
+.ms-footer-copyright {
+    padding: 0rem 1rem 1.5rem;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+}
+
+.ms-footer-copyright p {
+    margin: 0;
+    line-height: 1;
+}
+
+.ms-footer-logo-imgbox {
+    margin: 0 0 2rem 0;
+    width: 100%;
+    max-width: 15.5rem;
+    position: relative;
+    display: block;
+    flex-shrink: 0;
+}
+
+.ms-footer-logo-imgbox::before {
+    /* padding-top: 51.61290322580645%; */
+    /* width: 100%; */
+    /* content: ''; */
+    display: block;
+}
+
+.ms-footer-logo-imgbox img {
+    display: block;
+    width: 244px;
+    height: 100%;
+    position: relative;
+    object-fit: cover;
+}
+
+.ms-footer-heading>* {
+    display: block;
+    line-height: 1;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #fff;
+    border-width: 0 0 0 3px;
+    border-style: solid;
+    border-color: #FFF;
+    letter-spacing: 1px;
+    padding-left: 1.5rem;
+    margin: 0 0 2rem;
+    text-transform: uppercase;
+}
+
+.ms-address-row {
+    display: flex;
+    align-items: flex-start;
+    color: #fff;
+}
+
+.ms-address-ui {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.2rem;
+    border: 1px solid #FFF;
+    color: #e79b3f;
+    flex-shrink: 0;
+}
+
+.ms-ad-heading {
+    font-weight: 400;
+    line-height: 1.4;
+    font-size: 16px;
+    display: block;
+}
+
+.ms-address-content {
+    font-size: 16px;
+    line-height: 1.286;
+    margin-bottom: 2rem;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+}
+
+.ms-footer-services {
+    padding: 0;
+    margin: 0;
+}
+
+.ms-footer-services>li::before {
+    display: none;
+    padding: 0;
+}
+
+.ms-footer-services-link {
+    color: #fff;
+    padding: 0.6rem 0;
+    display: block;
+    letter-spacing: .6px;
+    font-size: 14px;
+    line-height: 1.538;
+    border-bottom: 1px solid #fff;
+    text-decoration: none;
+    list-style: none !important;
+}
+
+.ms-footer-services-link:hover {
+    color: #ccc;
+}
+
+.ms-footer-social {
+    display: flex;
+    flex-wrap: wrap;
+    color: #fff !important;
+}
+
+.ms-social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.8rem;
+    height: 2.8rem;
+    margin: 0.3rem;
+    font-size: 1.4rem;
+    transition: transform 0.3s;
+    color: #fff !important;
+    text-decoration: none;
+}
+
+.ms-social-link:focus,
+.ms-social-link:hover {
+    transform: translateY(-3px);
+    opacity: 0.8;
+}
+
+.ms-social-link.facebook {
+    background-color: #3b5998;
+}
+
+.ms-social-link.linkdin {
+    background-color: #0077b5;
+}
+
+.ms-footer-wrap .col-12 {
+    margin-bottom: 0;
+}
+
+.ms-footer {
+    background-image: url(https://manalot.com/public/gfx/footer-bg.png);
+    background-size: cover;
+    margin-top: 60px;
+}
+
+ul.ms-footer-services li {
+    list-style: none;
 }
