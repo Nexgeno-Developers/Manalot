@@ -894,13 +894,13 @@ input.h_input::placeholder {
 /** footer open **/
 
 .ms-footer-wrap {
-    padding: 3rem 0 0px;
+    padding: 2rem 0 0px;
     /*background-color: #434242;*/
     /*#312c2f*/
 }
 
 .ms-footer-copyright {
-    padding: 1.5rem 1rem 1.5rem;
+    padding: 2.5rem 1rem .7rem;
     font-size: 14px;
     color: #fff;
     text-align: center;
@@ -909,6 +909,7 @@ input.h_input::placeholder {
 .ms-footer-copyright p {
     margin: 0;
     line-height: 1;
+    font-size: 11px;
 }
 
 .ms-footer-logo-imgbox {
@@ -946,7 +947,7 @@ input.h_input::placeholder {
     border-color: #FFF;
     letter-spacing: 1px;
     padding-left: 1.5rem;
-    margin: 0 0 2rem;
+    margin: 0 0 24px;
     text-transform: uppercase;
 }
 
@@ -977,7 +978,7 @@ input.h_input::placeholder {
 }
 
 .ms-address-content {
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.286;
     margin-bottom: 2rem;
     display: block;
@@ -1000,11 +1001,12 @@ input.h_input::placeholder {
     padding: 0.4rem 0;
     display: block;
     letter-spacing: .6px;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.538;
     border-bottom: 1px solid #fff;
     text-decoration: none;
     list-style: none !important;
+    font-weight: 400;
 }
 
 .ms-footer-services-link:hover {
@@ -1024,7 +1026,7 @@ input.h_input::placeholder {
     width: 2.8rem;
     height: 2.8rem;
     margin: 0.3rem;
-    font-size: 1.4rem;
+    font-size: 14px;
     transition: transform 0.3s;
     color: #fff !important;
     text-decoration: none;

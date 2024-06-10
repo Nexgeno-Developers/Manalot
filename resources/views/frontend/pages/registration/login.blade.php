@@ -155,7 +155,7 @@
 							</div>
 						</div>
 					</div>				</div>
-				<div class="col-12 col-md-6 col-lg-4">
+				<div class="col-12 col-md-6 col-lg-3">
 					<div class="ms-footer-heading">
 						<h2>SERVICES</h2>
 					</div>
@@ -181,7 +181,7 @@
 
 <li><a href="https://manalot.com/privacy-policy" class="ms-footer-services-link">Privacy Policy</a></li>
 					</ul>				</div>
-				<div class="col-12 col-md-6 col-lg-2">
+				<div class="col-12 col-md-6 col-lg-3">
 					<div class="ms-footer-heading">
 						<h2>FOLLOW US</h2>
 					</div>
