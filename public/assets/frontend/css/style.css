@@ -938,7 +938,7 @@ input.h_input::placeholder {
 .ms-footer-heading>* {
     display: block;
     line-height: 1;
-    font-size: 1rem;
+    font-size: 14px;
     font-weight: 400;
     color: #fff;
     border-width: 0 0 0 3px;
@@ -977,7 +977,7 @@ input.h_input::placeholder {
 }
 
 .ms-address-content {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.286;
     margin-bottom: 2rem;
     display: block;
