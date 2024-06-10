@@ -26,7 +26,7 @@
                 <div class="heading mb-4">
                         <h2>Login Account</h2>
                         <p class="fs-16">
-                            To stay in touch with us, please log in to your manalot
+                            To stay in touch with us, please log in to your Manalot
                             account.
                         </p>
                     </div>

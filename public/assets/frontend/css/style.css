@@ -760,6 +760,7 @@ input#formFile::file-selector-button {
 .width45 img {
     width: 90%;
     float: right;
+    margin-right: 40px;
 }
 
 .mt50 {
@@ -768,7 +769,7 @@ input#formFile::file-selector-button {
 }
 
 .font-size70 {
-    font-size: 66px;
+    font-size: 60px;
     text-shadow: -1px 0px 1px;
 }
 
