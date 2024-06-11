@@ -181,12 +181,12 @@
                             </div>
                         </li> 
 
-                       {{-- <li class="side-nav-item">
-                            <a href="{{ route('setting.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                        <li class="side-nav-item">
+                            <a href="{{ route('post.index_post') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                                 <i class="ri-settings-2-line"></i>                                
-                                <span> Setting </span>
+                                <span> Post </span>
                             </a>
-                        </li> --}}
+                        </li> 
                     </ul>
                     <!--- End Sidemenu -->
 
