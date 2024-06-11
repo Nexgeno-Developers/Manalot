@@ -162,6 +162,21 @@
                                     <li>
                                         <a href="{{ route('manage.index_experience_status') }}">Experience Manage</a>
                                     </li>
+                                    <li>
+                                        <a href="{{ route('manage.index_industry') }}">Industry Manage</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('manage.index_job_title') }}">Job Title Manage</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('manage.index_references_from') }}">References Manage</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('manage.index_skills') }}">Skills Manage</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('manage.index_years_of_exp') }}">Years Of Experience Manage</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li> 
