@@ -25,10 +25,7 @@
 
                 <div class="heading mb-4">
                         <h2>Login Account</h2>
-                        <p class="fs-16">
-                            To stay in touch with us, please log in to your Manalot
-                            account.
-                        </p>
+                        
                     </div>
 
 
@@ -95,27 +92,24 @@
             <div class="col-md-6 width55">
                 <div class="d-flex flex-column gap-3">
                     <h3 class="font-size40 purple expt_button">
-                        Experience + Unemployed
-                        <span class="fonts24" style="color: black">= Unstoppable</span>
+                        <strong>Unemployed</strong> and <strong> over 45?</strong> 
                     </h3>
 
-                    <p class="font-size18 mb-0"><strong>Unemployed</strong> and <strong> over 45?</strong> This could be your last chance.</p>
-                    <p class="font-size18 mb-0">Are you a seasoned professional with valuable skills and experience, seeking your next challenge? Perhaps you're over 45 and ready to leverage your wisdom in a new role.
+                    <p class="font-size18 mb-0 last_chance">This could be your last chance.</p>
+                    <p class="font-size18 mb-0">Are you a seasoned professional with valuable skills and experience, <strong>seeking your next challenge?</strong> Perhaps you're over 45 and ready to leverage your wisdom in a new role.
 </p>
 
 <p class="font-size18 mb-0">The Manalot Leadership Network empowers experienced individuals to redefine their career journeys and unlock exciting possibilities.
 </p>
-<p class="font-size18 mb-0">Don’t settle for the sidelines. The Manalot Leadership Network reboots careers. Get back into the game.
+<p class="font-size18 mb-0 font24">Don’t settle for the sidelines.
 </p>
 
-                    <div>
-                        <p class="font-size18">Welcome to</p>
-                       <p class="main_heading mb-5 mt-5">
-                    <span class="purple font-size70">M</span>analot
-                    <span class="orange font-size70">L</span>eadership
-                    <span class="aquamarine font-size70">N</span>etwork
-                </p>
-                    </div>
+<p class="font-size18 mb-0 font26">The Manalot Leadership Network reboots careers.
+</p>
+
+<p class="font-size18 mb-0 font28">Get back into the game. <span class="cls_now"><strong>Now</strong></sapn>
+</p>
+
                 </div>
             </div>
             <div class="col-md-6 width45">
