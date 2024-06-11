@@ -302,8 +302,8 @@ class AccountController extends Controller
             'last_name' => 'required|regex:/^[A-Za-z\s,.\'\/&]+$/|min:2',
             'gender' => 'required',
             'dob' => 'required',
-            'email' => 'required|email',
-            'phone_number' => 'required|regex:/^[\d\s-]+$/|min:10',
+            //'email' => 'required|email',
+            //'phone_number' => 'required|regex:/^[\d\s-]+$/|min:10',
             'address' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:250'],
             'city' => 'required',
             'state' => 'required',
@@ -335,12 +335,12 @@ class AccountController extends Controller
         }
 
         DB::table('users')->where('id', Session::get('temp_user_id'))->update([
-            'email' => strtolower($request->input('email')),
+            //'email' => strtolower($request->input('email')),
             'step' => 2,
         ]);
 
         DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
-            'phone_number' => $request->input('phone_number'),
+            //'phone_number' => $request->input('phone_number'),
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
             'gender' => $request->input('gender'),

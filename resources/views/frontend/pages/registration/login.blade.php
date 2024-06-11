@@ -99,16 +99,14 @@
                         <span class="fonts24" style="color: black">= Unstoppable</span>
                     </h3>
 
-                    <p class="font-size18 mb-0">
-                        Are you an <strong>Unemployed</strong> professional with over
-                        7 years of experience or <strong>above 45 years old</strong> ,
-                        seeking your next opportunity?
-                    </p>
+                    <p class="font-size18 mb-0"><strong>Unemployed</strong> and <strong> over 45?</strong> This could be your last chance.</p>
+                    <p class="font-size18 mb-0">Are you a seasoned professional with valuable skills and experience, seeking your next challenge? Perhaps you're over 45 and ready to leverage your wisdom in a new role.
+</p>
 
-                    <p class="font-size18">
-                        Join us as we empower you to redefine your journey and unlock
-                        new possibilities.
-                    </p>
+<p class="font-size18 mb-0">The Manalot Leadership Network empowers experienced individuals to redefine their career journeys and unlock exciting possibilities.
+</p>
+<p class="font-size18 mb-0">Don’t settle for the sidelines. The Manalot Leadership Network reboots careers. Get back into the game.
+</p>
 
                     <div>
                         <p class="font-size18">Welcome to</p>

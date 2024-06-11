@@ -90,7 +90,7 @@ body {
     font-size: 15px;
     background: linear-gradient(34.89deg, #4B2779 8%, #BE2475 83.76%);
     font-weight: 400;
-    padding: 2px 33px 5px 33px;
+    padding: 4px 33px 5px 33px;
     line-height: 24px;
     text-align: center;
 }
@@ -154,7 +154,7 @@ p.divider {
     font-size: 15px;
     background: linear-gradient(2.17deg, #327192 30.94%, #0C3873 69.79%);
     font-weight: 400;
-    padding: 2px 33px 5px 33px;
+    padding: 4px 33px 5px 33px;
     line-height: 24px;
     text-align: center;
     border: 0px;
@@ -554,7 +554,7 @@ body {
 /*    object-position: left;*/
 /*}*/
 .register_width {
-    width: 650px;
+    width: 680px;
 }
 
 .fonts24 {
@@ -665,7 +665,7 @@ form#login-form p {
 }
 
 form#login-info {
-    width: 440px;
+    width: 300px;
 }
 
 a.pdf_view {
@@ -678,7 +678,7 @@ a.pdf_view {
 }
 
 .skills-info-first {
-    width: 440px;
+    width: 600px;
 }
 
 .after_login button {
@@ -1059,4 +1059,37 @@ input.h_input::placeholder {
 
 ul.ms-footer-services li {
     list-style: none;
+}
+
+div#user-add-details {
+    margin-top: -80px;
+}
+
+div#personal-details {
+    margin-top: -80px;
+
+}
+
+#logininfo_one {
+    margin-top: -100px;
+}
+
+#education_info_one {
+    margin-top: -100px;
+}
+
+#skill_info_one {
+    margin-top: -150px;
+}
+
+#cirtificate_one {
+    margin-top: -100px;
+}
+
+#availibility_one {
+    margin-top: -100px;
+}
+
+#work_autho {
+    margin-top: -100px;
 }
