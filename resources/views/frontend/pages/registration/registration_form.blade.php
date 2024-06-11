@@ -196,22 +196,23 @@
                             placeholder="Date" value="{{ $user_detail->dob }}" required />
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
+                <!-- <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="email" class="form-label">Email Address*</label>
                         <input type="email" class="form-control input_text" id="email" name="email"
                             placeholder="Enter Your Email" value="{{ $user->email }}" required />
                     </div>
-                </div>
+                </div> -->
 
-                <div class="col-md-6 mb-4">
+                <!-- <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Phone" class="form-label">Phone*</label>
                         <input type="number" class="form-control input_text" id="Phone" name="phone_number"
                             placeholder="Enter Your Phone No" pattern="[0-9]+" minlength="10" maxlength="10"
                             value="{{ $user_detail->phone_number }}" required />
                     </div>
-                </div>
+                </div> -->
+
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="address" class="form-label">Address*</label>
@@ -290,7 +291,7 @@
 
     @endphp
 
-    <div class="register_width">
+    <div id="logininfo_one" class="register_width">
         <div class="heading mb-4">
             <h2>Login Information</h2>
         </div>
@@ -380,7 +381,7 @@
                     </div>
                    
                 </div>
-                <div class="col-md-6"></div>
+                
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="job" class="form-label">Job Title*</label>
@@ -483,7 +484,7 @@
             ->first();
     @endphp
 
-    <div class="register_width">
+    <div id="education_info_one" class="register_width">
         <div class="heading mb-4">
             <h2>Education</h2>
         </div>
@@ -560,7 +561,7 @@
         $skills = DB::table('skills')->where('status', '1')->get();
     @endphp
 
-    <div class="register_width">
+    <div id="skill_info_one" class="register_width">
         <div class="heading mb-4">
             <h2>Skills and Competencies</h2>
         </div>
@@ -608,7 +609,7 @@
 
     @endphp
 
-    <div class="register_width">
+    <div id="cirtificate_one" class="register_width">
         <div class="heading mb-4">
             <h2>Certifications</h2>
         </div>
@@ -671,7 +672,7 @@
         $references_from = DB::table('references_from')->where('status', '1')->get();
     @endphp
 
-    <div class="register_width">
+    <div id="availibility_one" class="register_width">
         <div class="heading mb-4">
             <h2>Availability and Preferences</h2>
         </div>
@@ -761,7 +762,7 @@
             ->first();
     @endphp
 
-    <div class="register_width">
+    <div id="work_autho" class="register_width">
         <div class="heading mb-4">
             <h2>Work Authorization</h2>
         </div>
@@ -831,7 +832,7 @@
             ->first();
     @endphp
 
-    <div class="register_width">
+    <div id="work_autho" class="register_width">
         <div class="heading mb-4">
             <h2>Social Media Links</h2>
         </div>
@@ -905,7 +906,7 @@
 <!--------------------------------------------- Proceeding  --------------------------------->
 
 @if (!Session::has('step') || Session::get('step') == 11)
-    <div class="register_width">
+    <div id="work_autho"  class="register_width">
         <div class="heading mb-4">
             <h2>Proceeding</h2>
         </div>
