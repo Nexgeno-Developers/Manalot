@@ -36,3 +36,12 @@
 <script src="/assets/frontend/js/Init.js"></script>
 <script src="/assets/frontend/js/script.js"></script>
 
+
+
+<script>
+$(document).ready(function(){
+  $(".notification_button").click(function(){
+    $(".notification_box").toggle();
+  });
+});
+</script>

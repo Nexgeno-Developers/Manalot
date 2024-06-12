@@ -16,7 +16,7 @@
                 <img class="register_image" src="/assets/images/register_image1.png" style="width:100%">
             </div>
 
-            <div class="col-md-8 ps-4">
+            <div class="col-md-8 pddleft50">
 
                 @include('frontend.pages.registration.registration_form')
 

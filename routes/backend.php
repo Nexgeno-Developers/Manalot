@@ -10,6 +10,7 @@ use App\Http\Controllers\backend\BusinessSettingController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\ReportController;
 use App\Http\Controllers\backend\ManageController;
+use App\Http\Controllers\backend\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,6 +102,15 @@ Route::group(['prefix' => 'profile'], function () {
 
 Route::group(['prefix' => 'report'], function () {
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+});
+
+Route::group(['prefix' => 'post'], function () {
+    Route::get('/post/view', [PostController::class, 'index_posts'])->name('post.index_post');
+    Route::get('/post/add', [PostController::class, 'add_posts'])->name('post.add_post');
+    Route::get('/post/edit{id}', [PostController::class, 'edit_posts'])->name('post.edit_post');
+    Route::post('/post/create', [PostController::class, 'create_posts'])->name('post.create_post');
+    Route::post('/post/update', [PostController::class, 'update_posts'])->name('post.update_post');
+    Route::post('/post/delete/{id}', [PostController::class, 'delete_posts'])->name('post.delete_post');
 });
 
 Route::group(['prefix' => 'manage'], function () {

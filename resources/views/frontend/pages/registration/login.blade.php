@@ -15,22 +15,21 @@
             <div class="col-md-6">
                 <img src="/assets/images/login_bg.png" style="width:100%">
             </div>
-            <div class="col-md-6 ps-4">
-                <h1 class="main_heading mb-5">
-                    <span class="purple">M</span>analot
-                    <span class="orange">L</span>eadership
-                    <span class="aquamarine">N</span>etwork
+            <div class="col-md-6 pddleft50">
+                <h1 class="main_heading mt50">
+                    <span class="purple font-size70">M</span>analot
+                    <span class="orange font-size70">L</span>eadership
+                    <span class="aquamarine font-size70">N</span>etwork
                 </h1>
 
-                <div class="login_width">
-                    <div class="heading mb-4">
+
+                <div class="heading mb-4">
                         <h2>Login Account</h2>
-                        <p class="fs-16">
-                            To stay in touch with us, please log in to your manalot
-                            account.
-                        </p>
+                        
                     </div>
-                    <div class="">
+
+
+                <div class="login_width">
                         <form id="login-form" action="{{ url(route('customer.login')) }}"  method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
                             @csrf
                             <div class="position-relative">
@@ -47,7 +46,7 @@
                                     placeholder="***********" required/>
                                 
                             </div>
-                            <div class="d-flex align-items-center justify-content-between mb-4">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value=""
                                         id="flexCheckDefault" />
@@ -67,8 +66,9 @@
                                 </div>
                             </div>
                         </form>
-                    </div>
-                    <div class="text-center my-5">
+                </div>
+
+                <div class="text-center my-4">
                         <p class="divider">Or</p>
                     </div>
                     <div class="d-flex align-items-center gap-4">
@@ -78,7 +78,6 @@
                         </button>
                         <a href="{{ url(route('registration')) }}"><button class="google_btn bluegradian_bg">New to MLN? <b>Join Now</b></button></a>
                     </div>
-                </div>
 
             </div>
         </div>
@@ -87,44 +86,106 @@
 
 
 
-<section>
+<section class="pt-5">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-6">
+            <div class="col-md-6 width55">
                 <div class="d-flex flex-column gap-3">
-                    <h3 class="font-size40 purple">
-                        Experience + Unemployed
-                        <span class="fs-6" style="color: black">= Unstoppable</span>
+                    <h3 class="font-size40 purple expt_button">
+                        <strong>Unemployed OR over 45?</strong> 
                     </h3>
 
-                    <p class="font-size18 mb-0">
-                        Are you an <strong>Unemployed</strong> professional with over
-                        7 years of experience or <strong>above 45 years old</strong> ,
-                        seeking your next opportunity?
-                    </p>
+                    <p class="font-size18 mb-0 last_chance">This could be your last chance.</p>
+                    <p class="font-size18 mb-0">Are you a seasoned professional with valuable skills and more than 5 years of experience, <strong>seeking your next challenge?</strong> Perhaps you're over 45 and ready to leverage your wisdom in a new role.
 
-                    <p class="font-size18">
-                        Join us as we empower you to redefine your journey and unlock
-                        new possibilities.
-                    </p>
+</p>
 
-                    <div>
-                        <p class="font-size18">Welcome to</p>
-                        <p class="font-size40">
-                            <span class="purple">M</span>analot
-                            <span class="orange">L</span>eadership
-                            <span class="aquamarine">N</span>etwork
-                        </p>
-                    </div>
+<p class="font-size18 mb-0">The Manalot Leadership Network empowers experienced individuals to redefine their career journeys and unlock exciting possibilities.
+</p>
+<p class="font-size18 mb-0 font24">Don’t settle for the sidelines.
+</p>
+
+<p class="font-size18 mb-0 font26">The Manalot Leadership Network reboots careers.
+</p>
+
+<p class="font-size18 mb-0 font28">Get back into the game<span class="color_pink">.....</spam> <span class="cls_now"><strong>Now</strong></sapn>
+</p>
+
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 width45">
                 <img src="/assets/images/team.jpg" alt="" />
             </div>
         </div>
     </div>
 </section>
-<footer class="text-center pt-4 pb-4"><b>© Maple Consulting and Services</b></footer>
+<footer class="ms-footer">
+	<div class="ms-footer-wrap">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-md-6 col-lg-3">
+					 <div class="ms-footer-col-1">
+						<div class="ms-footer-address">
+							<div class="ms-footer-heading">
+								<h2>CONTACT INFO</h2>
+							</div>
+							<div class="ms-address-row">
+								<span class="ms-address-ui">
+									<i class="fa-solid fa-regular fa-location-dot" aria-hidden="true"></i>
+								</span>
+								<address class="ms-address-content">
+									<span class="ms-ad-heading">Address:</span>Malhotra Chambers, 401, 4th Floor, Off. Govandi Station Road, Behind USV Ltd., Deonar, Chembur, Mumbai - 400 088
+								</address>
+							</div>
+							<div class="ms-address-row">
+								<span class="ms-address-ui">
+									<i class="fa-regular fa-envelope" aria-hidden="true"></i>
+								</span>
+								<div class="ms-footer-email">
+								<span class="ms-ad-heading">Email:</span>
+								<a class="ms-address-content" href="mailto:communications@manalot.com">communications@manalot.com</a>
+								</div>
+							</div>
+						</div>
+					</div>				</div>
+				<div class="col-12 col-md-6 col-lg-3">
+					<div class="ms-footer-heading">
+						<h2>SERVICES</h2>
+					</div>
+					<ul class="ms-footer-services">
+						<li><a href="https://manalot.com/talent-selection" class="ms-footer-services-link">Talent Selection</a></li>
+						<li><a href="https://manalot.com/manalot" class="ms-footer-services-link">Manalot – AI Powered Executive Search</a></li>
+						<li><a href="https://manalot.com/talent-strategy-organizational-alignment" class="ms-footer-services-link">Talent Strategy &amp; Organizational Alignment</a></li>
+						<li><a href="https://manalot.com/hr-advanced-analytics" class="ms-footer-services-link">HR Advanced Analytics</a></li>
+						<li><a href="https://manalot.com/aspirational-modelling" class="ms-footer-services-link">Aspirational Modelling</a></li>
+						<li><a href="https://manalot.com/family-business-advisory" class="ms-footer-services-link">Family Business Advisory</a></li>
+						<li><a href="https://manalot.com/professional-mentoring-career-consulting" class="ms-footer-services-link">Professional Mentoring &amp; Career Consulting</a></li>
+					</ul>				</div>
+				<div class="col-12 col-md-6 col-lg-3">
+					<div class="ms-footer-heading">
+						<h2>USEFUL LINKS</h2>
+					</div>
+					<ul class="ms-footer-services">
+						<li><a href="https://manalot.com/" class="ms-footer-services-link">Home</a></li>
+						<li><a href="https://manalot.com/leadership-team" class="ms-footer-services-link">Who We Are</a></li>
+
+<li><a href="https://manalot.com/careers" class="ms-footer-services-link">Careers</a></li>
+						<li><a href="https://manalot.com/contact-us" class="ms-footer-services-link">Contact Us</a></li>
+
+<li><a href="https://manalot.com/privacy-policy" class="ms-footer-services-link">Privacy Policy</a></li>
+					</ul>				</div>
+				<div class="col-12 col-md-6 col-lg-3">
+					<div class="ms-footer-heading">
+						<h2>FOLLOW US</h2>
+					</div>
+					<div class="ms-footer-social">
+						<a href="https://www.linkedin.com/company/manalot/" target="_blank" class="ms-social-link linkdin" aria-label="Linkdin"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+					</div>				</div>
+			</div>
+		</div>
+	</div>
+	<div class="ms-footer-copyright"><p>© Copyright - Manalot.</p></div>
+</footer>
 
 <!----------========================== login ============----------->
 @endsection

@@ -78,7 +78,7 @@
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="1" name="term_check"
                         id="flexCheckDefault" required />
-                    <label class="form-check-label" for="flexCheckDefault">
+                    <label class="form-check-label terms_font" for="flexCheckDefault">
                         I agree to the
                         <a href="#" class="inherit"> Terms </a>
                         and
@@ -191,26 +191,28 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Date" class="form-label">Date of Birth*</label>
+                        <img src="/assets/images/calender_icon.png" alt="" class="input_icon">
                         <input type="date" class="form-control input_text" id="Date" name="dob"
                             placeholder="Date" value="{{ $user_detail->dob }}" required />
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
+                <!-- <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="email" class="form-label">Email Address*</label>
                         <input type="email" class="form-control input_text" id="email" name="email"
                             placeholder="Enter Your Email" value="{{ $user->email }}" required />
                     </div>
-                </div>
+                </div> -->
 
-                <div class="col-md-6 mb-4">
+                <!-- <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Phone" class="form-label">Phone*</label>
                         <input type="number" class="form-control input_text" id="Phone" name="phone_number"
                             placeholder="Enter Your Phone No" pattern="[0-9]+" minlength="10" maxlength="10"
                             value="{{ $user_detail->phone_number }}" required />
                     </div>
-                </div>
+                </div> -->
+
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="address" class="form-label">Address*</label>
@@ -289,7 +291,7 @@
 
     @endphp
 
-    <div class="register_width">
+    <div id="logininfo_one" class="register_width">
         <div class="heading mb-4">
             <h2>Login Information</h2>
         </div>
@@ -379,13 +381,13 @@
                     </div>
                    
                 </div>
-                <div class="col-md-6"></div>
+                
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="job" class="form-label">Job Title*</label>
                         <select class="form-select form-control input_select" aria-label="Default select example" id="job"
                             name="job_title" required>
-                            <option value="">Select Job Tilt</option>
+                            <option value="">Select Job Title</option>
                             @foreach ($job_title as $row)
                                 <option value="{{ $row->id }}"
                                     @if ($user_detail->job_title == $row->id) selected @endif>
@@ -482,7 +484,7 @@
             ->first();
     @endphp
 
-    <div class="register_width">
+    <div id="education_info_one" class="register_width">
         <div class="heading mb-4">
             <h2>Education</h2>
         </div>
@@ -559,7 +561,7 @@
         $skills = DB::table('skills')->where('status', '1')->get();
     @endphp
 
-    <div class="register_width">
+    <div id="skill_info_one" class="register_width">
         <div class="heading mb-4">
             <h2>Skills and Competencies</h2>
         </div>
@@ -607,7 +609,7 @@
 
     @endphp
 
-    <div class="register_width">
+    <div id="cirtificate_one" class="register_width">
         <div class="heading mb-4">
             <h2>Certifications</h2>
         </div>
@@ -636,6 +638,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Date Obtained*" class="form-label">Date Obtained*</label>
+                        <img src="/assets/images/calender_icon.png" alt="" class="input_icon">
                         <input type="date" class="form-control input_text" id="Date Obtained*"
                             name="certificate_obtn_date" placeholder="Date"
                             value="{{ $user_detail->certificate_obtn_date }}" required />
@@ -669,7 +672,7 @@
         $references_from = DB::table('references_from')->where('status', '1')->get();
     @endphp
 
-    <div class="register_width">
+    <div id="availibility_one" class="register_width">
         <div class="heading mb-4">
             <h2>Availability and Preferences</h2>
         </div>
@@ -759,7 +762,7 @@
             ->first();
     @endphp
 
-    <div class="register_width">
+    <div id="work_autho" class="register_width">
         <div class="heading mb-4">
             <h2>Work Authorization</h2>
         </div>
@@ -829,7 +832,7 @@
             ->first();
     @endphp
 
-    <div class="register_width">
+    <div id="work_autho" class="register_width">
         <div class="heading mb-4">
             <h2>Social Media Links</h2>
         </div>
@@ -840,7 +843,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Linkdin" class="form-label">Linkdin</label>
-                        <img src="/assets/images/linkedin-in1.png" alt="" class="input_icon">
+                        <img src="/assets/images/linkedin-in1.png" alt="" class="input_icon linkedin_icon">
                         <input type="url" class="form-control input_text" id="Linkdin" name="linkdin"
                             placeholder="Enter Your Linkdn URL" value="{{ $user_detail->linkdin }}" name="linkdin"
                             required />
@@ -850,7 +853,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Twitter" class="form-label">Twitter</label>
-                        <img src="/assets/images/x-twitter1.png" alt="" class="input_icon">
+                        <img src="/assets/images/x-twitter1.png" alt="" class="input_icon twitter_icon">
                         <input type="url" class="form-control input_text" id="Twitter" name="twitter"
                             placeholder="Enter Your Twitter URL" value="{{ $user_detail->twitter }}" name="twitter"
                             required />
@@ -860,7 +863,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Instagram" class="form-label">Instagram</label>
-                        <img src="/assets/images/instagram1.png" alt="" class="input_icon">
+                        <img src="/assets/images/instagram1.png" alt="" class="input_icon insta_icon">
                         <input type="url" class="form-control input_text" id="Instagram"
                             placeholder="Enter Your Instagram URL" value="{{ $user_detail->instagram }}"
                             name="instagram" required>
@@ -870,7 +873,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Facebook" class="form-label">Facebook</label>
-                        <img src="/assets/images/facebook-f1.png" alt="" class="input_icon">
+                        <img src="/assets/images/facebook-f1.png" alt="" class="input_icon facebook_icon">
                         <input type="url" class="form-control input_text" id="Facebook"
                             placeholder="Enter Your Facebook URL" value="{{ $user_detail->facebook }}"
                             name="facebook" required />
@@ -879,7 +882,7 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
-                        <label for="others" class="form-label">others</label>
+                        <label for="others" class="form-label">Others</label>
                         <input type="url" class="form-control input_text" id="others"
                             placeholder="Enter Your Others URL" value="{{ $user_detail->other }}" name="other"
                             required />
@@ -903,21 +906,21 @@
 <!--------------------------------------------- Proceeding  --------------------------------->
 
 @if (!Session::has('step') || Session::get('step') == 11)
-    <div class="register_width">
+    <div id="work_autho"  class="register_width">
         <div class="heading mb-4">
             <h2>Proceeding</h2>
         </div>
         <form id="proceeding-info" action="{{ url(route('account.create', ['param' => 'proceeding-info'])) }}"
             method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
             @csrf
-            <img class="prroceed_icons" src="/assets/images/file-check.png" alt="file check" />
+            <img class="prroceed_icons" src="/assets/images/procced_image.png" alt="file check" />
             <p>
                 Manalot will validate/ review the documents and <br />
                 grant permisssion to proceed through Admin
             </p>
             <div>
                 <div class="purple_btn text-start">
-                    <button type="submit" class="text-decoration-none text-white">Proceed To Review</button>
+                    <button type="submit" class="text-decoration-none text-white">Continue to Home</button>
                 </div>
             </div>
         </form>
