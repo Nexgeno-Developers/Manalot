@@ -92,11 +92,12 @@
             <div class="col-md-6 width55">
                 <div class="d-flex flex-column gap-3">
                     <h3 class="font-size40 purple expt_button">
-                        <strong>Unemployed</strong> and <strong> over 45?</strong> 
+                        <strong>Unemployed OR over 45?</strong> 
                     </h3>
 
                     <p class="font-size18 mb-0 last_chance">This could be your last chance.</p>
-                    <p class="font-size18 mb-0">Are you a seasoned professional with valuable skills and experience, <strong>seeking your next challenge?</strong> Perhaps you're over 45 and ready to leverage your wisdom in a new role.
+                    <p class="font-size18 mb-0">Are you a seasoned professional with valuable skills and more than 5 years of experience, <strong>seeking your next challenge?</strong> Perhaps you're over 45 and ready to leverage your wisdom in a new role.
+
 </p>
 
 <p class="font-size18 mb-0">The Manalot Leadership Network empowers experienced individuals to redefine their career journeys and unlock exciting possibilities.
