@@ -182,7 +182,7 @@ class AccountController extends Controller
             'email' => 'required|email',
             'password' => 'required',
             'experience_Status' => 'required',
-            'phone_number' => 'required|regex:/^[\d\s-]+$/|min:16',
+            'phone_number' => 'required|regex:/^[\d\s-]+$/|min:10',
             'resume_cv' => 'required|mimes:pdf|max:5120',
         ]);
 
