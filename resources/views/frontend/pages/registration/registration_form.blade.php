@@ -22,7 +22,7 @@
                     <div class="position-relative">
                         <label for="name" class="form-label">Username *</label>
                         <input type="text" class="form-control input_text" id="name" name="name"
-                            placeholder="Enter Your Name" pattern="[A-Za-z]+" minlength="3" maxlength="20" required />
+                            placeholder="Enter Your Name" pattern="[A-Za-z]+" minlength="1" maxlength="20" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
@@ -46,7 +46,7 @@
                     <div class="position-relative">
                         <label for="Phone" class="form-label">Phone</label>
                         <input type="text" class="form-control input_text" id="Phone" name="phone_number"
-                            placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10" maxlength="10"
+                            placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10" maxlength="16"
                             required />
                     </div>
                 </div>
@@ -147,7 +147,7 @@
                     <div class="position-relative">
                         <label for="first_name" class="form-label">First Name*</label>
                         <input type="text" class="form-control input_text" name="first_name" id="first_name"
-                            placeholder="Enter First Name" pattern="[A-Za-z]+" minlength="3" maxlength="20"
+                            placeholder="Enter First Name" pattern="[A-Za-z]+" minlength="1" maxlength="20"
                             value="{{ $user_detail->first_name }}" required />
                     </div>
                 </div>
@@ -155,7 +155,7 @@
                     <div class="position-relative">
                         <label for="last_name" class="form-label">Last Name*</label>
                         <input type="text" class="form-control input_text" name="last_name" id="last_name"
-                            placeholder="Enter Last Name" pattern="[A-Za-z]+" minlength="3" maxlength="20"
+                            placeholder="Enter Last Name" pattern="[A-Za-z]+" minlength="1" maxlength="20"
                             value="{{ $user_detail->last_name }}" required />
                     </div>
                 </div>
@@ -247,7 +247,7 @@
                     <div class="position-relative">
                         <label for="zip_code" class="form-label">Zip/Postal Code*</label>
                         <input type="text" class="form-control input_text" id="pincode" name="pincode"
-                            pattern="[0-9A-Za-z]+" minlength="3" maxlength="6"
+                            pattern="[0-9A-Za-z]+" minlength="1" maxlength="6"
                             placeholder="Enter Your zipcode / Pincode" value="{{ $user_detail->pincode }}"
                             required />
                     </div>
@@ -423,7 +423,7 @@
                     <div class="position-relative">
                         <label for="job_title" class="form-label">Job Title*</label>
                         <input type="text" class="form-control input_text" id="job_title" name="wrk_exp__title"
-                            placeholder="Enter your Job Title" pattern="[A-Za-z]+" minlength="3" maxlength="100"
+                            placeholder="Enter your Job Title" pattern="[A-Za-z]+" minlength="1" maxlength="100"
                             value="{{ $user_detail->wrk_exp__title }}" required />
                     </div>
                 </div>
@@ -433,7 +433,7 @@
                         <label for="company" class="form-label">Company Name*</label>
                         <input type="text" class="form-control input_text" id="company"
                             name="wrk_exp_company_name" placeholder="Enter your Company Name" pattern="[A-Za-z]+"
-                            minlength="3" maxlength="100" value="{{ $user_detail->wrk_exp_company_name }}"
+                            minlength="1" maxlength="100" value="{{ $user_detail->wrk_exp_company_name }}"
                             required />
                     </div>
                 </div>
@@ -496,7 +496,7 @@
                     <div class="position-relative">
                         <label for="degree" class="form-label">Degree*</label>
                         <input type="text" class="form-control input_text" id="degree" name="edu_degree"
-                            placeholder="Enter your Degree" pattern="[A-Za-z]+" minlength="3" maxlength="50"
+                            placeholder="Enter your Degree" pattern="[A-Za-z]+" minlength="1" maxlength="50"
                             value="{{ $user_detail->edu_degree }}" required />
                     </div>
                 </div>
@@ -504,7 +504,7 @@
                     <div class="position-relative">
                         <label for="School" class="form-label">School/University Name*</label>
                         <input type="text" class="form-control input_text" id="School" name="edu_clg_name"
-                            placeholder="Enter your School / College Nmae" pattern="[A-Za-z]+" minlength="3"
+                            placeholder="Enter your School / College Nmae" pattern="[A-Za-z]+" minlength="1"
                             maxlength="50" value="{{ $user_detail->edu_clg_name }}" required />
                     </div>
                 </div>
@@ -513,7 +513,7 @@
                         <label for="Graduation" class="form-label">Graduation Year*</label>
                         <input type="text" class="form-control input_text" id="Graduation"
                             name="edu_graduation_year" placeholder="Enter Your Graduation Year"
-                            pattern="[0-9A-Za-z]+" minlength="3" maxlength="50"
+                            pattern="[0-9A-Za-z]+" minlength="1" maxlength="50"
                             value="{{ $user_detail->edu_graduation_year }}" required />
                     </div>
                 </div>
@@ -521,7 +521,7 @@
                     <div class="position-relative">
                         <label for="major" class="form-label">Major/Field of Study*</label>
                         <input type="text" class="form-control input_text" id="major" name="edu_field"
-                            placeholder="Enter your Major Field of Study" pattern="[A-Za-z]+" minlength="3"
+                            placeholder="Enter your Major Field of Study" pattern="[A-Za-z]+" minlength="1"
                             maxlength="50" value="{{ $user_detail->edu_field }}" />
                     </div>
                 </div>
@@ -529,7 +529,7 @@
                     <div class="position-relative">
                         <label for="gpa" class="form-label">GPA*</label>
                         <input type="text" class="form-control input_text" id="gpa" name="edu_cgpa"
-                            placeholder="Enter Your GPA" pattern="[0-9A-Za-z]+" minlength="3" maxlength="50"
+                            placeholder="Enter Your GPA" pattern="[0-9A-Za-z]+" minlength="1" maxlength="50"
                             value="{{ $user_detail->edu_cgpa }}" />
                     </div>
                 </div>
@@ -622,7 +622,7 @@
                         <label for="Certificate" class="form-label">Certificate Name*</label>
                         <input type="text" class="form-control input_text" id="Certificate"
                             name="certificate_name" placeholder="Enter Your Certificatie Name" pattern="[0-9A-Za-z]+"
-                            minlength="3" maxlength="50" value="{{ $user_detail->certificate_name }}" required />
+                            minlength="1" maxlength="50" value="{{ $user_detail->certificate_name }}" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
@@ -630,7 +630,7 @@
                         <label for="Issuing Registration*" class="form-label">Issuing Registration*</label>
                         <input type="text" class="form-control input_text" id="Issuing Registration*"
                             name="certificate_issuing" placeholder="Enter your Issuing Registration"
-                            pattern="[0-9A-Za-z]+" minlength="3" maxlength="50"
+                            pattern="[0-9A-Za-z]+" minlength="1" maxlength="50"
                             value="{{ $user_detail->certificate_issuing }}" required />
                     </div>
                 </div>
@@ -685,7 +685,7 @@
                         <label for="Preferred Title/Role*" class="form-label">Preferred Title/Role*</label>
                         <input type="text" class="form-control input_text" id="Preferred Title/Role*"
                             name="pref_title" placeholder="Enter Your Preferred Title" pattern="[0-9A-Za-z]+"
-                            minlength="3" maxlength="50" value="{{ $user_detail->pref_title }}" required />
+                            minlength="1" maxlength="50" value="{{ $user_detail->pref_title }}" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
@@ -693,7 +693,7 @@
                         <label for="Employment Type*" class="form-label">Employment Type*</label>
                         <input type="text" class="form-control input_text" id="Employment Type*"
                             name="pref_emp_type" placeholder="Enter your Employment Type" pattern="[A-Za-z]+"
-                            minlength="3" maxlength="50" value="{{ $user_detail->pref_emp_type }}" required />
+                            minlength="1" maxlength="50" value="{{ $user_detail->pref_emp_type }}" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
@@ -701,14 +701,14 @@
                         <label for="Preferred Industry*" class="form-label">Preferred Industry*</label>
                         <input type="text" class="form-control input_text" id="Preferred Industry*"
                             name="pref_industry" placeholder="Enter Your Preferred Industry" pattern="[A-Za-z]+"
-                            minlength="3" maxlength="50" value="{{ $user_detail->pref_industry }}" required />
+                            minlength="1" maxlength="50" value="{{ $user_detail->pref_industry }}" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Desired Job Location*" class="form-label">Desired Job Location*</label>
                         <input type="text" class="form-control input_text" id="Desired Job Location*"
-                            name="pref_location" pattern="[A-Za-z]+" minlength="3" maxlength="50"
+                            name="pref_location" pattern="[A-Za-z]+" minlength="1" maxlength="50"
                             value="{{ $user_detail->pref_location }}" placeholder="Enter your Desired Job Location"
                             required />
                     </div>
@@ -718,7 +718,7 @@
                         <label for="Expected Salary*" class="form-label">Expected Salary*</label>
                         <input type="text" class="form-control input_text" id="Expected Salary*"
                             name="pref_salary" placeholder="Enter Your Expected Salary" pattern="[A-Za-z]+"
-                            minlength="3" maxlength="50" value="{{ $user_detail->pref_salary }}" required />
+                            minlength="1" maxlength="50" value="{{ $user_detail->pref_salary }}" required />
                     </div>
                 </div>
 
@@ -846,7 +846,7 @@
                         <img src="/assets/images/linkedin-in1.png" alt="" class="input_icon linkedin_icon">
                         <input type="url" class="form-control input_text" id="Linkdin" name="linkdin"
                             placeholder="Enter Your Linkdn URL" value="{{ $user_detail->linkdin }}" name="linkdin"
-                            required />
+                             />
                         <img src="images/linkedin.png" alt="" class="input_icon" />
                     </div>
                 </div>
@@ -856,7 +856,7 @@
                         <img src="/assets/images/x-twitter1.png" alt="" class="input_icon twitter_icon">
                         <input type="url" class="form-control input_text" id="Twitter" name="twitter"
                             placeholder="Enter Your Twitter URL" value="{{ $user_detail->twitter }}" name="twitter"
-                            required />
+                             />
                         <img src="images/x.png" alt="" class="input_icon" />
                     </div>
                 </div>
@@ -866,7 +866,7 @@
                         <img src="/assets/images/instagram1.png" alt="" class="input_icon insta_icon">
                         <input type="url" class="form-control input_text" id="Instagram"
                             placeholder="Enter Your Instagram URL" value="{{ $user_detail->instagram }}"
-                            name="instagram" required>
+                            name="instagram" >
                         <img src="images/instagram.png" alt="" class="input_icon" />
                     </div>
                 </div>
@@ -876,7 +876,7 @@
                         <img src="/assets/images/facebook-f1.png" alt="" class="input_icon facebook_icon">
                         <input type="url" class="form-control input_text" id="Facebook"
                             placeholder="Enter Your Facebook URL" value="{{ $user_detail->facebook }}"
-                            name="facebook" required />
+                            name="facebook"  />
                         <img src="images/facebook.png" alt="" class="input_icon" />
                     </div>
                 </div>
@@ -885,7 +885,7 @@
                         <label for="others" class="form-label">Others</label>
                         <input type="url" class="form-control input_text" id="others"
                             placeholder="Enter Your Others URL" value="{{ $user_detail->other }}" name="other"
-                            required />
+                             />
                     </div>
                 </div>
             </div>
