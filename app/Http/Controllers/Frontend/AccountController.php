@@ -178,11 +178,11 @@ class AccountController extends Controller
     public function create_user_detail($request){
 
         $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:50'],
+            'name' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:1', 'max:50'],
             'email' => 'required|email',
             'password' => 'required',
             'experience_Status' => 'required',
-            'phone_number' => 'required|regex:/^[\d\s-]+$/|min:10',
+            'phone_number' => 'required|regex:/^[\d\s-]+$/|min:16',
             'resume_cv' => 'required|mimes:pdf|max:5120',
         ]);
 
@@ -304,7 +304,8 @@ class AccountController extends Controller
             'dob' => 'required',
             'email' => 'required|email',
             'phone_number' => 'required|regex:/^[\d\s-]+$/|min:10',
-            'address' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:250'],
+            //'address' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:250'],
+            'address' => ['required','min:1', 'max:250'],
             'city' => 'required',
             'state' => 'required',
             'pincode' => 'required',
@@ -398,11 +399,13 @@ class AccountController extends Controller
 
         $validator = Validator::make($request->all(), [
             'wrk_exp_company_name' => 'required|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
-            'wrk_exp__title' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:100'],
+            //'wrk_exp__title' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:100'],
+            'wrk_exp__title' => ['required', 'min:1', 'max:100'],
             'industry' => 'required',
             'job_title' => 'required',
             'wrk_exp_years' => 'required',
-            'wrk_exp_responsibilities' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:250'],
+            //'wrk_exp_responsibilities' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:250'],
+            'wrk_exp_responsibilities' => ['required', 'min:1', 'max:250'],
             'resume_cv' => 'nullable|mimes:pdf|max:5120',
         ]);
 
@@ -523,8 +526,10 @@ class AccountController extends Controller
     public function create_certifications_info($request){
 
         $validator = Validator::make($request->all(), [
-            'certificate_name' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:50'],
-            'certificate_issuing' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:50'],
+            // 'certificate_name' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:50'],
+            'certificate_name' => ['required', 'min:1', 'max:100'],
+            // 'certificate_issuing' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:50'],
+            'certificate_issuing' => ['required', 'min:1', 'max:50'],
             'certificate_obtn_date' => 'required',
         ]);
 
@@ -557,11 +562,16 @@ class AccountController extends Controller
     public function create_preferences_info($request){
 
         $validator = Validator::make($request->all(), [
-            'pref_title' => ['required', 'string', 'regex:/^[A-Za-z\s,.\/\'&]+$/i', 'min:3', 'max:50'],
-            'pref_emp_type' => ['required', 'string', 'regex:/^[A-Za-z\s,.\/\'&]+$/i', 'min:3', 'max:50'],
-            'pref_industry' => ['required', 'string', 'regex:/^[A-Za-z\s,.\/\'&]+$/i', 'min:3', 'max:50'],
-            'pref_location' => ['required', 'string', 'regex:/^[A-Za-z\s,.\/\'&]+$/i', 'min:3', 'max:50'],
-            'pref_salary' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:50'],
+            // 'pref_title' => ['required', 'string', 'regex:/^[A-Za-z\s,.\/\'&]+$/i', 'min:1', 'max:50'],
+            // 'pref_emp_type' => ['required', 'string', 'regex:/^[A-Za-z\s,.\/\'&]+$/i', 'min:1', 'max:50'],
+            // 'pref_industry' => ['required', 'string', 'regex:/^[A-Za-z\s,.\/\'&]+$/i', 'min:1', 'max:50'],
+            // 'pref_location' => ['required', 'string', 'regex:/^[A-Za-z\s,.\/\'&]+$/i', 'min:1', 'max:50'],
+            // 'pref_salary' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:1', 'max:50'],
+            'pref_title' => ['required', 'min:1', 'max:50'],
+            'pref_emp_type' => ['required', 'min:1', 'max:50'],
+            'pref_industry' => ['required', 'min:1', 'max:50'],
+            'pref_location' => ['required', 'min:1', 'max:50'],
+            'pref_salary' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:1', 'max:100'],
             'references' => 'required',
         ]);
 
@@ -634,11 +644,16 @@ class AccountController extends Controller
     public function create_social_media_info($request){
 
         $validator = Validator::make($request->all(), [
-            'linkdin' => 'required',
-            'twitter' => 'required',
-            'instagram' => 'required',
-            'facebook' => 'required',
-            'other' => 'required',
+            // 'linkdin' => 'required',
+            // 'twitter' => 'required',
+            // 'instagram' => 'required',
+            // 'facebook' => 'required',
+            // 'other' => 'required',
+            'linkdin' => 'nullable',
+            'twitter' => 'nullable',
+            'instagram' => 'nullable',
+            'facebook' => 'nullable',
+            'other' => 'nullable',
         ]);
 
         if ($validator->fails()) {
