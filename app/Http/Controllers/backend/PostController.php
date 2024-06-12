@@ -128,28 +128,28 @@ class PostController extends Controller
         // Retrieve the authenticated admin user
         $author_id = auth()->user()->id; 
     
-        $checkMediaType = $post->MediaType;
+        // $checkMediaType = $post->MediaType;
         $imagePathPost = $post->image_url;
-        $videoPathPost = $post->video_url;
+        // $videoPathPost = $post->video_url;
         
-        if ($request->MediaType !== $post->MediaType) {
-            // Delete media and its associated path based on the previous media type
-            if ($checkMediaType === 'image' && $imagePathPost) {
-                \File::delete('storage/' .$imagePathPost);
-                $imagePathPost = null; // Reset image path
-            } elseif ($checkMediaType === 'video' && $videoPathPost) {
-                \File::delete('storage/' .$videoPathPost);
-                $videoPathPost = null; // Reset video path
-            }
-        }
+        // if ($request->MediaType !== $post->MediaType) {
+        //     // Delete media and its associated path based on the previous media type
+        //     if ($checkMediaType === 'image' && $imagePathPost) {
+        //         \File::delete('storage/' .$imagePathPost);
+        //         $imagePathPost = null; // Reset image path
+        //     } elseif ($checkMediaType === 'video' && $videoPathPost) {
+        //         \File::delete('storage/' .$videoPathPost);
+        //         $videoPathPost = null; // Reset video path
+        //     }
+        // }
     
         // Upload new media if provided
         if ($request->hasFile('image')) {
             $imagePathPost = $request->file('image')->store('assets/image/post', 'public');
         }
-        if ($request->hasFile('video')) {
-            $videoPathPost = $request->file('video')->store('assets/video/post', 'public');
-        }
+        // if ($request->hasFile('video')) {
+        //     $videoPathPost = $request->file('video')->store('assets/video/post', 'public');
+        // }
 
         // Update the Post record using DB facade
         $affected = DB::table('posts')
