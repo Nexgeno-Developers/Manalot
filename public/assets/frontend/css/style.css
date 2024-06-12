@@ -486,6 +486,10 @@ p.divider {
     width: 300px;
 }
 
+span.color_pink {
+    color: #b24020;
+}
+
 .login_logo img {
     position: absolute;
     margin-left: 0px;

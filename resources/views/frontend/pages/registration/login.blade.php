@@ -108,7 +108,7 @@
 <p class="font-size18 mb-0 font26">The Manalot Leadership Network reboots careers.
 </p>
 
-<p class="font-size18 mb-0 font28">Get back into the game. <span class="cls_now"><strong>Now</strong></sapn>
+<p class="font-size18 mb-0 font28">Get back into the game<span class="color_pink">.....</spam> <span class="cls_now"><strong>Now</strong></sapn>
 </p>
 
                 </div>
