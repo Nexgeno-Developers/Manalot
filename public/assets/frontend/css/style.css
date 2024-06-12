@@ -768,6 +768,7 @@ input#formFile::file-selector-button {
     width: 90%;
     float: right;
     margin-right: 40px;
+    margin-top: 30px;
 }
 
 .mt50 {
