@@ -57,7 +57,7 @@ class AccountController extends Controller
             if ($user->completed_status == '0'){
 
                 Session::put('temp_user_id', $user->id);
-                Session::put('step', $user->step);
+                Session::put('step', $user->step + 1);
 
                 $rsp_msg['response'] = 'error';
                 $rsp_msg['status'] = 'incomplete';
