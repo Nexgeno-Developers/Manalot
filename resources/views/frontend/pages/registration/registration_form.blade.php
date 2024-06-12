@@ -320,7 +320,7 @@
 
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
+                    <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
@@ -461,7 +461,7 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
+                    <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
@@ -536,7 +536,7 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
+                    <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
@@ -586,7 +586,7 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
+                    <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
@@ -647,7 +647,7 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
+                    <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
@@ -740,7 +740,7 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
+                    <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
@@ -810,7 +810,7 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
+                    <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
@@ -891,7 +891,7 @@
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
-                    <button class="text-decoration-none text-white" onclick="back_to_privious();">Back</button>
+                    <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
