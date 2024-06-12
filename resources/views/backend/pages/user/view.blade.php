@@ -214,16 +214,18 @@
 
             <hr class="mb-4">
 
-            <div class="row">
-            <h3>Skills and Competencies</h3>
-                <div class="col-sm-4">
-                    <div class="form-group mb-3">
-                        <b>Skill : </b> <p>{{ $skills->name }}</p>
+            @isset($skills->name)
+                <div class="row">
+                <h3>Skills and Competencies</h3>
+                    <div class="col-sm-4">
+                        <div class="form-group mb-3">
+                            <b>Skill : </b> <p>{{ $skills->name }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <hr class="mb-4">
+                <hr class="mb-4">
+            @endisset
 
             <div class="row">
             <h3>Certifications</h3>
@@ -273,11 +275,13 @@
                         <b>Expected Salary : </b> <p>{{ $usersdetails->pref_salary }}</p>
                     </div>
                 </div>
+                @isset($references_from->name)
                 <div class="col-sm-4">
                     <div class="form-group mb-3">
                         <b>References : </b> <p>{{ $references_from->name }}</p>
                     </div>
                 </div>
+                @endisset
             </div>
                 
             <hr class="mb-4">
