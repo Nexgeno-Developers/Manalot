@@ -6,11 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
     // View all post statuses
-    public function index_post()
+    public function index_posts()
     {
         $posts = DB::table('posts as QC')
         ->join('users as QP', 'QC.author_id', '=', 'QP.id')
@@ -25,24 +26,52 @@ class PostController extends Controller
         return view('backend.pages.posts.add');
     }
     public function create_posts(Request $request) {
+        
+        // Validate form data
+        $validator = Validator::make($request->all(), [
+            'content' => 'required|string',
+            'event' => 'required|string|max:100',
+            // 'MediaType' => 'required|string|in:image,video',
+            'image' => 'nullable|file|mimes:jpeg,webp,png,jpg,gif|max:2048',
+            // 'video' => 'nullable|file|mimes:mp4,mov,avi,wmv|max:10240'
+        ]);
 
-             // Validate form data
-             $validator = Validator::make($request->all(), [
-                'name' => 'required|string|max:255',
-                'status' => 'required|string|max:5'
-            ]);
-    
-            if ($validator->fails()) {
-                return response()->json([
-                    'status' => false,
-                    'notification' => $validator->errors()->all()
-                ], 200);
-            } 
-    
-            $post = DB::table('posts')->insert([
-                'name' => $request->input('name'),
-                'status' => $request->input('status')
-            ]);
+        // Initialize variables for media paths
+        $imagePathPost = null;
+        $videoPathPost = null;
+
+        // Handle file uploads
+        if ($request->hasFile('image')) {
+            $imagePathPost = $request->file('image')->store('assets/image/post', 'public');
+        }
+
+        if ($request->hasFile('video')) {
+            $videoPathPost = $request->file('video')->store('assets/video/post', 'public');
+        }
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'notification' => $validator->errors()->all()
+            ], 200);
+        } 
+
+        // Retrieve the authenticated admin user
+        $author_id = auth()->user()->id;
+
+        // Insert post data into the database
+        $post = DB::table('posts')->insert([
+            'author_id' => $author_id,
+            'content' => $request->input('content'),
+            'event' => $request->input('event'),
+            'status' => $request->input('status'),
+            'image_url' => $imagePathPost,
+            // 'video_url' => $videoPathPost,
+            // 'MediaType' => $request->input('MediaType') ?? null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
         if($post){
             $response = [
                 'status' => true,
@@ -65,14 +94,16 @@ class PostController extends Controller
         return view('backend.pages.posts.edit', compact('posts'));
     }
 
-    // Update an existing post status
     public function update_posts(Request $request)
     {
-
-           // Validate form data
+        // Validate form data
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'status' => 'required|in:0,1', // Assuming status can only be 0 or 1
+            'id' => 'required|exists:posts,id',
+            'content' => 'required|string',
+            'event' => 'required|string|max:255',
+            // 'MediaType' => 'required|string|in:image,video',
+            'image' => 'nullable|file|mimes:jpeg,webp,png,jpg,gif|max:2048',
+            // 'video' => 'nullable|file|mimes:mp4,mov,avi,wmv|max:10240'
         ]);
 
         if ($validator->fails()) {
@@ -83,29 +114,72 @@ class PostController extends Controller
         } 
 
         $id = $request->input('id');
+    
+        // Retrieve the post by ID
+        $post = DB::table('posts')->where('id', $id)->first();  
+    
+        if (!$post) {
+            return response()->json([
+                'status' => false,
+                'notification' => 'Post not found'
+            ], 404);
+        }
+    
+        // Retrieve the authenticated admin user
+        $author_id = auth()->user()->id; 
+    
+        $checkMediaType = $post->MediaType;
+        $imagePathPost = $post->image_url;
+        $videoPathPost = $post->video_url;
+        
+        if ($request->MediaType !== $post->MediaType) {
+            // Delete media and its associated path based on the previous media type
+            if ($checkMediaType === 'image' && $imagePathPost) {
+                \File::delete('storage/' .$imagePathPost);
+                $imagePathPost = null; // Reset image path
+            } elseif ($checkMediaType === 'video' && $videoPathPost) {
+                \File::delete('storage/' .$videoPathPost);
+                $videoPathPost = null; // Reset video path
+            }
+        }
+    
+        // Upload new media if provided
+        if ($request->hasFile('image')) {
+            $imagePathPost = $request->file('image')->store('assets/image/post', 'public');
+        }
+        if ($request->hasFile('video')) {
+            $videoPathPost = $request->file('video')->store('assets/video/post', 'public');
+        }
 
-        // Update the user record using DB facade
+        // Update the Post record using DB facade
         $affected = DB::table('posts')
-        ->where('id', $id)
-        ->update([
-            'name' => $request->input('name'),
-            'status' => $request->input('status')
-        ]);
+            ->where('id', $id)
+            ->update([
+                'author_id' => $author_id,
+                'content' => $request->input('content'),
+                'event' => $request->input('event'),
+                'status' => $request->input('status'),
+                'image_url' => $imagePathPost,
+                // 'video_url' => $videoPathPost,
+                // 'MediaType' => $request->input('MediaType') ?? null,
+                'updated_at' => now(),
+            ]);
 
         if ($affected) {
             $response = [
                 'status' => true,
-                'notification' => 'Profile updated successfully!',
+                'notification' => 'Post updated successfully!',
             ];
         } else {
             $response = [
                 'status' => false,
-                'notification' => 'Nothing to update in profile.',
+                'notification' => 'No changes made to the Post.',
             ];
         }
 
         return response()->json($response);
     }
+
 
     // Delete an existing post status
     public function delete_posts($id)

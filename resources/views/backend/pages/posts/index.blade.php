@@ -12,7 +12,7 @@
             <div class="col-sm-7">
                 <div class="text-sm-end">
                     <a href="javascript:void(0);" class="btn btn-danger mb-2"
-                        onclick="smallModal('{{ url(route('post.add_post')) }}', 'Add Posts')"><i
+                        onclick="largeModal('{{ url(route('post.add_post')) }}', 'Add Posts')"><i
                             class="mdi mdi-plus-circle me-2"></i> Add Posts</a>
                 </div>
             </div>
@@ -22,34 +22,52 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
+                        {{--<th>Name</th>--}}
                         <th>Content</th>
                         <th>Event</th>
-                        <th>Image</th>
-                        <th>Video</th>
-                        <th>MediaType</th>
-                        <th>Created_at</th>
+                        <th>Image</th> <!-- Combined column for Image and Video -->
+                        {{--<th>MediaType</th>--}}
+                        <th>Date</th>
+                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php $i = 1; @endphp  
-                    @foreach ($posts as $status)
+                    @foreach ($posts as $row)
                     <tr>
                         <td>{{$i++}}</td>
-                        <td>{{ $status->username }}</td>
-                        <td>{{ $status->content }}</td>
-                        <td>{{ $status->event }}</td>
-                        <td>{{ $status->image_url }}</td>
-                        <td>{{ $status->video_url }}</td>
-                        <td>{{ $status->MediaType }}</td>
-                        <td>{{ $status->created_at }}</td>
+                        {{--<td>{{ $row->username }}</td>--}}
+                        <td>
+                            {!! \Illuminate\Support\Str::words($row->content, $words = 1, $end = '...') !!}
+                        </td>
+                        <td>{{ $row->event }}</td>
+                        <td>
+                            @if ($row->image_url)
+                                <button class="btn btn-primary" onclick="viewMedia('{{ asset('storage/' . $row->image_url) }}', 'image', 'View Image')">View Image</button>
+                            @endif
+                            @if ($row->video_url)
+                                <button class="btn btn-primary" onclick="viewMedia('{{ asset('storage/' . $row->video_url) }}', 'video', 'View Video')">View Video</button>
+                            @endif
+                            @if (!$row->image_url && !$row->video_url)
+                                N/A
+                            @endif
+                        </td>
+                        {{--<td>{{ $row->MediaType }}</td>--}}
+                        <td>{{ $row->created_at }}</td>
+                        <td>
+                            @if($row->status)
+                            <span class="badge bg-success">Active</span>
+                            @else
+                            <span class="badge bg-danger">Inctive</span>
+                            @endif
+                        </td>
                         <td>
                             <a href="javascript:void(0);" class="btn btn-info text-white action-icon"
-                                onclick="smallModal('{{ url(route('post.edit_post',['id' => $status->id])) }}', 'Edit user')">
+                                onclick="largeModal('{{ url(route('post.edit_post',['id' => $row->id])) }}', 'Edit post')">
                                 <i class="mdi mdi-square-edit-outline" title="Edit"></i>
                             </a>
-                            <a href="javascript:void(0);" class="btn btn-danger text-white action-icon" onclick="confirmModal('{{ url(route('post.delete_post', $status->id)) }}',
+                            <a href="javascript:void(0);" class="btn btn-danger text-white action-icon" onclick="confirmModal('{{ url(route('post.delete_post', $row->id)) }}',
                             responseHandler)">
                                 <i class="mdi mdi-delete" title="Delete"></i>
                             </a>
@@ -65,12 +83,34 @@
 
 @section("page.scripts")
 <script>
+function viewMedia(url, type, heading) {
+    let modalBody = document.querySelector('#smallModal .modal-body');
+    let modalTitle = document.querySelector('#smallModal-label'); // Corrected ID
+    
+    modalBody.innerHTML = ''; // Clear any previous content
+    modalTitle.textContent = heading; // Set the heading
+
+    if (type === 'image') {
+        let img = document.createElement('img');
+        img.src = url;
+        img.className = 'img-fluid';
+        modalBody.appendChild(img);
+    } else if (type === 'video') {
+        let video = document.createElement('video');
+        video.src = url;
+        video.controls = true;
+        video.className = 'w-100';
+        modalBody.appendChild(video);
+    }
+
+    // Show the modal
+    $('#smallModal').modal('show');
+}
+
 $(document).ready(function() {
     var table = $('#basic-datatable5').DataTable();
 });
-</script>
 
-<script>
 var responseHandler = function(response) {
     location.reload();
 }

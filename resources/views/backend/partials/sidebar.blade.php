@@ -60,12 +60,21 @@
                                 <span> Users </span>
                             </a>
                         </li>
+
                         <li class="side-nav-item">
-                            <a href="{{ route('reports.index') }}" aria-expanded="false" aria-controls="sidebarusers" class="side-nav-link">
-                            <i class="ri-clapperboard-line"></i>  
-                                <span>Report </span>
+                            <a data-bs-toggle="collapse" href="{{ url('#sidebarEmail') }}" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
+                                <i class="ri-article-line"></i>
+                                <span> Report</span>
+                                <span class="menu-arrow"></span>
                             </a>
-                        </li>
+                            <div class="collapse" id="sidebarEmail">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{{ route('reports.index') }}">Log</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li> 
 
                       {{-- <li class="side-nav-item">
                             <a href="{{ route('contact.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
@@ -152,30 +161,30 @@
                         </li> --}}
 
                        <li class="side-nav-item">
-                            <a data-bs-toggle="collapse" href="{{ url('#sidebarEmail') }}" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
-                                <i class="ri-article-line"></i>
-                                <span> Manges </span>
+                            <a data-bs-toggle="collapse" href="{{ url('#sidebarEmail2') }}" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
+                                <i class="ri-settings-3-line"></i>
+                                <span> Master Manages</span>
                                 <span class="menu-arrow"></span>
                             </a>
-                            <div class="collapse" id="sidebarEmail">
+                            <div class="collapse" id="sidebarEmail2">
                                 <ul class="side-nav-second-level">
                                     <li>
-                                        <a href="{{ route('manage.index_experience_status') }}">Experience Manage</a>
+                                        <a href="{{ route('manage.index_experience_status') }}">Experience</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('manage.index_industry') }}">Industry Manage</a>
+                                        <a href="{{ route('manage.index_industry') }}">Industry</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('manage.index_job_title') }}">Job Title Manage</a>
+                                        <a href="{{ route('manage.index_job_title') }}">Job Title</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('manage.index_references_from') }}">References Manage</a>
+                                        <a href="{{ route('manage.index_references_from') }}">References</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('manage.index_skills') }}">Skills Manage</a>
+                                        <a href="{{ route('manage.index_skills') }}">Skills</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('manage.index_years_of_exp') }}">Years Of Experience Manage</a>
+                                        <a href="{{ route('manage.index_years_of_exp') }}">Years Of Experience</a>
                                     </li>
                                 </ul>
                             </div>
@@ -183,7 +192,7 @@
 
                         <li class="side-nav-item">
                             <a href="{{ route('post.index_post') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
-                                <i class="ri-settings-2-line"></i>                                
+                                <i class="ri-edit-line"></i>                             
                                 <span> Post </span>
                             </a>
                         </li> 
