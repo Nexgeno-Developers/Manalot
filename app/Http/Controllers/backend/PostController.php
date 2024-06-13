@@ -16,6 +16,10 @@ class PostController extends Controller
         ->join('users as QP', 'QC.author_id', '=', 'QP.id')
         ->select('QC.*', 'QP.username')->get();
 
+        if ($posts) {
+            $posts->created_at = Carbon::parse($posts->created_at);
+        }
+
         return view('backend.pages.posts.index', compact('posts'));
     }
 

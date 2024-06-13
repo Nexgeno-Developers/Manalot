@@ -63,7 +63,7 @@
                             <span class="badge bg-danger">Inctive</span>
                             @endif
                         </td>
-                        <td>{{ $row->created_at }}</td>
+                        <td>{{ $row->created_at->format('d M, Y h:iA') }}</td>
                         <td>
                             <a href="javascript:void(0);" class="btn btn-info text-white action-icon"
                                 onclick="largeModal('{{ url(route('post.edit_post',['id' => $row->id])) }}', 'Edit post')">
