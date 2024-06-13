@@ -23,17 +23,17 @@
                 <div class="d-flex align-items-center gap-1">
                     <h4>Likes:</h4>
                     <img src="/assets/images/heart.png" alt="Likes">
-                    <span>15k</span>
+                    <span>{{ $post->likes_count }}</span>
                 </div>
                 <div class="d-flex align-items-center gap-1">
                     <h4>Comments:</h4>
                     <img src="/assets/images/comment.png" alt="Comments">
-                    <span>120</span>
+                    <span>{{ $post->comments_count }}</span>
                 </div>
                 <div class="d-flex align-items-center gap-1">
                     <h4>Shares:</h4>
                     <img src="/assets/images/share.png" alt="Shares">
-                    <span>120</span>
+                    <span>{{ $post->shares_count }}</span>
                 </div>
             </div>
         </div>
