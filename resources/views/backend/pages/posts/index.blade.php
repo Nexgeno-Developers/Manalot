@@ -53,9 +53,11 @@
                             @endif
                         </td>
                         {{--<td>{{ $row->MediaType }}</td>--}}
-                        <td>12</td>
-                        <td>14</td>
-                        <td>16</td>
+                        <td onclick="smallModal('{{ url(route('post.likes_post',['id' => $row->id])) }}', 'Liked By')" style="cursor: pointer;">
+                            {{ $row->likes_count }}
+                        </td>
+                        <td onclick="smallModal('{{ url(route('post.comments_post',['id' => $row->id])) }}', 'Post ID :{{$row->id}} - {!! \Illuminate\Support\Str::words($row->content, $words = 3, $end = '...') !!}')" style="cursor: pointer;">{{ $row->comments_count }}</td>
+                        <td onclick="smallModal('{{ url(route('post.shared_post',['id' => $row->id])) }}', 'Shared By')" style="cursor: pointer;">{{ $row->shares_count }}</td>
                         <td>
                             @if($row->status)
                             <span class="badge bg-success">Active</span>
@@ -66,11 +68,11 @@
                         <td>{{ $row->created_at->format('d M, Y h:iA') }}</td>
                         <td>
                             <a href="javascript:void(0);" class="btn btn-info text-white action-icon"
-                                onclick="largeModal('{{ url(route('post.edit_post',['id' => $row->id])) }}', 'Edit post')">
+                                onclick="largeModal('{{ url(route('post.edit_post',['id' => $row->id])) }}', 'Edit Post ID :{{$row->id}} - {!! \Illuminate\Support\Str::words($row->content, $words = 3, $end = '...') !!}')">
                                 <i class="mdi mdi-square-edit-outline" title="Edit"></i>
                             </a>
                             <a href="javascript:void(0);" class="btn btn-warning text-white action-icon"
-                                onclick="largeModal('{{ url(route('post.view_post',['id' => $row->id])) }}', 'View post')">
+                                onclick="largeModal('{{ url(route('post.view_post',['id' => $row->id])) }}', 'View Post ID :{{$row->id}} - {!! \Illuminate\Support\Str::words($row->content, $words = 3, $end = '...') !!}')">
                                 <i class="mdi mdi-eye" title="View"></i>
                             </a>
                             <a href="javascript:void(0);" class="btn btn-danger text-white action-icon" onclick="confirmModal('{{ url(route('post.delete_post', $row->id)) }}',

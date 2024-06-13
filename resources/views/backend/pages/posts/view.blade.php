@@ -60,7 +60,7 @@
 
     <div class="col-6 mb-3">
         <h4>Updated At: </h4>
-        <span>{{ $post->updated_at }}</span>
+        <span>{{ $post->updated_at->format('d M, Y h:iA') }}</span>
     </div>
 
 </div>

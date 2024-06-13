@@ -82,13 +82,13 @@
                                 <i title="Approve" class="ri-eye-fill"></i>
                             @endif
                         </a>
-                        <a href="javascript:void(0);" class="btn btn-info text-white action-icon" onclick="largeModal('{{ url(route('user.edit',['id' => $row->id])) }}', 'Edit user')">
+                        <a href="javascript:void(0);" class="btn btn-info text-white action-icon" onclick="largeModal('{{ url(route('user.edit',['id' => $row->id])) }}', 'Edit User ID : {{$row->id}} - {!! \Illuminate\Support\Str::words($row->username, $words = 3, $end = '...') !!}')">
                             <i class="mdi mdi-square-edit-outline" title="Edit"></i>
                         </a>
                         <a href="javascript:void(0);" class="btn btn-danger text-white action-icon" onclick="confirmModal('{{ url(route('user.delete', $row->id)) }}', responseHandler)">
                             <i class="mdi mdi-delete" title="Delete"></i>
                         </a>
-                        <a href="javascript:void(0);" class="btn btn-info text-white action-icon" onclick="largeModal('{{ url(route('user.view',['id' => $row->id])) }}', 'View user')">View</a>
+                        <a href="javascript:void(0);" title="View" class="btn btn-info text-white action-icon" onclick="largeModal('{{ url(route('user.view',['id' => $row->id])) }}', 'View User ID : {{$row->id}} - {!! \Illuminate\Support\Str::words($row->username, $words = 3, $end = '...') !!}')">View</a>
                     </td>
                 
                     <!-- <td>

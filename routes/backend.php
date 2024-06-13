@@ -109,6 +109,11 @@ Route::group(['prefix' => 'post'], function () {
     Route::get('/add', [PostController::class, 'add_posts'])->name('post.add_post');
     Route::get('/edit{id}', [PostController::class, 'edit_posts'])->name('post.edit_post');
     Route::get('/view{id}', [PostController::class, 'view_posts'])->name('post.view_post');
+
+    Route::get('/likes_post{id}', [PostController::class, 'likes_post'])->name('post.likes_post');
+    Route::get('/comments_post{id}', [PostController::class, 'comments_post'])->name('post.comments_post');
+    Route::get('/shared_post{id}', [PostController::class, 'shared_post'])->name('post.shared_post');    
+
     Route::post('/create', [PostController::class, 'create_posts'])->name('post.create_post');
     Route::post('/update', [PostController::class, 'update_posts'])->name('post.update_post');
     Route::post('/delete/{id}', [PostController::class, 'delete_posts'])->name('post.delete_post');
