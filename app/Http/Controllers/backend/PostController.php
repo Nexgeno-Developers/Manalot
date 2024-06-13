@@ -16,10 +16,12 @@ class PostController extends Controller
         ->join('users as QP', 'QC.author_id', '=', 'QP.id')
         ->select('QC.*', 'QP.username')->get();
 
-        if ($posts) {
-            $posts->created_at = Carbon::parse($posts->created_at);
-        }
-
+        // Convert created_at fields to Carbon instances
+        $posts->transform(function ($post) {
+            $post->created_at = Carbon::parse($post->created_at);
+            return $post;
+        });
+        
         return view('backend.pages.posts.index', compact('posts'));
     }
 
