@@ -105,12 +105,13 @@ Route::group(['prefix' => 'report'], function () {
 });
 
 Route::group(['prefix' => 'post'], function () {
-    Route::get('/post/view', [PostController::class, 'index_posts'])->name('post.index_post');
-    Route::get('/post/add', [PostController::class, 'add_posts'])->name('post.add_post');
-    Route::get('/post/edit{id}', [PostController::class, 'edit_posts'])->name('post.edit_post');
-    Route::post('/post/create', [PostController::class, 'create_posts'])->name('post.create_post');
-    Route::post('/post/update', [PostController::class, 'update_posts'])->name('post.update_post');
-    Route::post('/post/delete/{id}', [PostController::class, 'delete_posts'])->name('post.delete_post');
+    Route::get('/listing', [PostController::class, 'index_posts'])->name('post.index_post');
+    Route::get('/add', [PostController::class, 'add_posts'])->name('post.add_post');
+    Route::get('/edit{id}', [PostController::class, 'edit_posts'])->name('post.edit_post');
+    Route::get('/view{id}', [PostController::class, 'view_posts'])->name('post.view_post');
+    Route::post('/create', [PostController::class, 'create_posts'])->name('post.create_post');
+    Route::post('/update', [PostController::class, 'update_posts'])->name('post.update_post');
+    Route::post('/delete/{id}', [PostController::class, 'delete_posts'])->name('post.delete_post');
 });
 
 Route::group(['prefix' => 'manage'], function () {

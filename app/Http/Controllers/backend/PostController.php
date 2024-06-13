@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Storage;
-
+use Carbon\Carbon;
 class PostController extends Controller
 {
     // View all post statuses
@@ -92,6 +91,17 @@ class PostController extends Controller
     {
         $posts = DB::table('posts')->where('id', $id)->first();
         return view('backend.pages.posts.edit', compact('posts'));
+    }    
+    public function view_posts($id)
+    {
+        // Fetch the post with author information
+        $post = DB::table('posts as QC')
+                    ->join('users as QP', 'QC.author_id', '=', 'QP.id')
+                    ->select('QC.*', 'QP.username')
+                    ->where('QC.id', $id)
+                    ->first();
+
+        return view('backend.pages.posts.view', compact('post'));
     }
 
     public function update_posts(Request $request)

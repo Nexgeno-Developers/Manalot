@@ -21,14 +21,13 @@
             <table id="basic-datatable5" class="table dt-responsive nowrap w-100">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        {{--<th>Name</th>--}}
-                        <th>Content</th>
-                        <th>Event</th>
-                        <th>Image</th> <!-- Combined column for Image and Video -->
-                        {{--<th>MediaType</th>--}}
-                        <th>Date</th>
+                        <th>Sr No</th>
+                        <th>Image</th>
+                        <th>Likes</th>
+                        <th>Comments</th>
+                        <th>Shares</th>
                         <th>Status</th>
+                        <th>Date</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -37,14 +36,14 @@
                     @foreach ($posts as $row)
                     <tr>
                         <td>{{$i++}}</td>
-                        {{--<td>{{ $row->username }}</td>--}}
+                        {{--<td>{{ $row->username }}</td>
                         <td>
                             {!! \Illuminate\Support\Str::words($row->content, $words = 1, $end = '...') !!}
                         </td>
-                        <td>{{ $row->event }}</td>
+                        <td>{{ $row->event }}</td>--}}
                         <td>
                             @if ($row->image_url)
-                                <button class="btn btn-primary" onclick="viewMedia('{{ asset('storage/' . $row->image_url) }}', 'image', 'View Image')">View Image</button>
+                                <img src="{{ asset('storage/' . $row->image_url) }}" alt="Thumbnail" class="thumbnail" onclick="viewMedia('{{ asset('storage/' . $row->image_url) }}', 'image', 'View Image')" style="width: 70px; cursor: pointer;">
                             @endif
                            {{-- @if ($row->video_url)
                                 <button class="btn btn-primary" onclick="viewMedia('{{ asset('storage/' . $row->video_url) }}', 'video', 'View Video')">View Video</button>
@@ -54,7 +53,9 @@
                             @endif
                         </td>
                         {{--<td>{{ $row->MediaType }}</td>--}}
-                        <td>{{ $row->created_at }}</td>
+                        <td>12</td>
+                        <td>14</td>
+                        <td>16</td>
                         <td>
                             @if($row->status)
                             <span class="badge bg-success">Active</span>
@@ -62,10 +63,15 @@
                             <span class="badge bg-danger">Inctive</span>
                             @endif
                         </td>
+                        <td>{{ $row->created_at }}</td>
                         <td>
                             <a href="javascript:void(0);" class="btn btn-info text-white action-icon"
                                 onclick="largeModal('{{ url(route('post.edit_post',['id' => $row->id])) }}', 'Edit post')">
                                 <i class="mdi mdi-square-edit-outline" title="Edit"></i>
+                            </a>
+                            <a href="javascript:void(0);" class="btn btn-warning text-white action-icon"
+                                onclick="largeModal('{{ url(route('post.view_post',['id' => $row->id])) }}', 'View post')">
+                                <i class="mdi mdi-eye" title="View"></i>
                             </a>
                             <a href="javascript:void(0);" class="btn btn-danger text-white action-icon" onclick="confirmModal('{{ url(route('post.delete_post', $row->id)) }}',
                             responseHandler)">

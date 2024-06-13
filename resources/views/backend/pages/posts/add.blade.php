@@ -1,26 +1,32 @@
 <form id="add_posts_form" action="{{ route('post.create_post') }}" method="POST">
     @csrf
     <div class="row">
-        <div class="col-sm-4">
+
+        <div class="col-sm-6">
             <div class="form-group mb-3">
-                <label for="event" class="form-label">Event: <span class="red">*</span></label>
-                <input placeholder="Enter Text Here" class="form-control" type="text" id="event" name="event" required >
+                <label for="content" class="form-label">Content: <span class="red">*</span></label>
+                <textarea id="content" class="form-control" name="content" rows="10" required></textarea>
             </div>
         </div>
-        <div class="col-sm-4">
+
+        <div class="col-md-6">
             <div id="image" class="form-group mb-3">
                 <label for="image" class="form-label">Upload Image: <span class="red">*</span></label>
                 <input class="form-control" type="file" accept="image/*,image/webp" name="image" required>
             </div>
-        </div>
-        <div class="col-md-4">
+
+            <div class="form-group mb-3">
+                <label for="event" class="form-label">Event: <span class="red">*</span></label>
+                <input placeholder="Enter Text Here" class="form-control" type="text" id="event" name="event" required >
+            </div>       
+
             <div class="form-group mb-3">
                 <label for="status" class="form-label">Status: <span class="red">*</span></label>
                 <select class="form-select" id="status1" name="status" required>
                     <option selected value="1">Active</option>
                     <option value="0">Inactive</option>
                 </select>
-            </div>
+            </div>            
         </div>
         {{--
         <div class="col-sm-12">
@@ -47,12 +53,6 @@
             </div>
         </div>
         --}}
-        <div class="col-sm-12">
-            <div class="form-group mb-3">
-                <label for="content" class="form-label">Content: <span class="red">*</span></label>
-                <textarea id="content" class="form-control" name="content" rows="10" required></textarea>
-            </div>
-        </div>
 
         <div class="col-sm-12">
             <div class="form-group mb-3 text-end">
