@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('page.name', 'Years Of Exp')
+@section('page.name', 'Years Of Experience')
 
 @section('page.content')
 <div class="card">

@@ -5,7 +5,7 @@
 <div class="aiz-titlebar text-left mt-2 mb-3">
     <div class="row align-items-center">
         <div class="col-md-6">
-            <h1 class="h3">All Report</h1>
+            <h1 class="h3">Logs</h1>
         </div>
     </div>
 </div>
@@ -16,7 +16,7 @@
         <div class="card-header row gutters-5">
 
             <div class="col-sm-2">
-                <h4>Report</h4>
+                <h4>List</h4>
             </div>
 
             <div class="col">

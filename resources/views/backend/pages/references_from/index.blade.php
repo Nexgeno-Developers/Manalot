@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('page.name', 'References From')
+@section('page.name', 'References')
 
 @section('page.content')
 <div class="card">

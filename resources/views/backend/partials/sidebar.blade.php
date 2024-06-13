@@ -50,27 +50,32 @@
             <li class="side-nav-item"> <!--menuitem-active-->
                 <a href="{{ route('backend.dashboard') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                     <i class="uil-home-alt"></i>
-                    <span> Dashboards </span>
+                    <span> Dashboard </span>
                 </a>
             </li>
 
             <li class="side-nav-item">
                 <a href="{{ route('users.list') }}" aria-expanded="false" aria-controls="sidebarusers" class="side-nav-link">
                     <i class="ri-bar-chart-2-line"></i> 
-                    <span> Users </span>
+                    <span> Manage Users </span>
                 </a>
             </li>
-
+            <li class="side-nav-item">
+                <a href="{{ route('post.index_post') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                    <i class="ri-edit-line"></i>                             
+                    <span>Manage Post </span>
+                </a>
+            </li>
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="{{ url('#sidebarEmail') }}" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
                     <i class="ri-article-line"></i>
-                    <span> Report</span>
+                    <span> Reports </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="sidebarEmail">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{ route('reports.index') }}">Log</a>
+                            <a href="{{ route('reports.index') }}">Logs</a>
                         </li>
                     </ul>
                 </div>
@@ -163,7 +168,7 @@
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="{{ url('#sidebarEmail2') }}" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
                     <i class="ri-settings-3-line"></i>
-                    <span> Master Manages</span>
+                    <span> Manage Masters </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="sidebarEmail2">
@@ -190,12 +195,7 @@
                 </div>
             </li> 
 
-            <li class="side-nav-item">
-                <a href="{{ route('post.index_post') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
-                    <i class="ri-edit-line"></i>                             
-                    <span> Post </span>
-                </a>
-            </li> 
+ 
         </ul>
         <!--- End Sidemenu -->
 

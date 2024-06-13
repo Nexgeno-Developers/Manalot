@@ -92,12 +92,12 @@ class ManageController extends Controller
         if ($affected) {
             $response = [
                 'status' => true,
-                'notification' => 'Profile updated successfully!',
+                'notification' => 'Experience updated successfully!',
             ];
         } else {
             $response = [
                 'status' => false,
-                'notification' => 'Nothing to update in profile.',
+                'notification' => 'Nothing to update in Experience.',
             ];
         }
 

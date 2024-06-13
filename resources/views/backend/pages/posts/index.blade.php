@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('page.name', 'Posts')
+@section('page.name', 'Manage Post')
 
 @section('page.content')
 <div class="card">
@@ -46,10 +46,10 @@
                             @if ($row->image_url)
                                 <button class="btn btn-primary" onclick="viewMedia('{{ asset('storage/' . $row->image_url) }}', 'image', 'View Image')">View Image</button>
                             @endif
-                            @if ($row->video_url)
+                           {{-- @if ($row->video_url)
                                 <button class="btn btn-primary" onclick="viewMedia('{{ asset('storage/' . $row->video_url) }}', 'video', 'View Video')">View Video</button>
-                            @endif
-                            @if (!$row->image_url && !$row->video_url)
+                            @endif --}}
+                            @if (!$row->image_url)
                                 N/A
                             @endif
                         </td>
