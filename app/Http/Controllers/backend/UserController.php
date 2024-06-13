@@ -4,9 +4,9 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -40,24 +40,68 @@ class UserController extends Controller
         }
     }
 
-    public function userslist() {
-        $users = User::where('role_id','<>', 1)->where('completed_status', 1)->get();        
+    public function userslist(Request $request) {
+        $query = User::where('role_id', '<>', 1)->where('completed_status', 1);
+    
+        // Apply filters if present
+        if ($request->filled('user_name')) {
+            $query->where('username', 'LIKE', '%' . $request->user_name . '%');
+        }
+    
+        if ($request->filled('approval_status')) {
+            $query->where('approval', $request->approval_status);
+        }
+        
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+    
+    
+        // Paginate the results
+        $users = $query->paginate(2); // Adjust the number per page as needed
+    
         return view('backend.pages.user.index', compact('users'));
-    } 
+    }
+    
 
     public function approvestatus(Request $request, $id) {
+        // Find the user by ID
         $user = User::find($id);
     
+        // Check if user exists
         if (!$user) {
             return response()->json(['status' => false, 'notification' => 'User not found'], 404);
         }
     
-        $user->approval = $request->input('approval');
-        $user->status = 1;
-        $user->save();
+        // Check if the user is not an admin (role_id != 1)
+        $users2 = User::where('role_id', '<>', 1)->where('id', $id)->first();
+        if (!$users2) {
+            return response()->json(['status' => false, 'notification' => 'User not found or is an admin'], 404);
+        }
     
-        return response()->json(['status' => true, 'notification' => 'Approval status updated successfully']);
+        // Toggle the approval status
+        $approvalstatus = $users2->approval;
+        $newApprovalStatus = $approvalstatus ? 0 : 1; // Assuming approval is a boolean or binary flag
+    
+        // Update the user record with the new approval status
+        $affected = User::where('id', $id)->update(['approval' => $newApprovalStatus]);
+    
+        if ($affected) {
+            $response = [
+                'status' => true,
+                'notification' => 'Profile updated successfully!',
+                'newApprovalStatus' => $newApprovalStatus // Include the new status in the response
+            ];
+        } else {
+            $response = [
+                'status' => false,
+                'notification' => 'Failed to update profile.',
+            ];
+        }
+    
+        return response()->json($response);
     }
+    
        
 
     public function view($id) {

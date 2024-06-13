@@ -22,10 +22,10 @@
             <div class="col">
                 <div class="form-group mb-0">
                     <input type="text" name="user_name" value="{{ request('user_name') }}" class="form-control"
-                        placeholder="Search by User Name">
+                        placeholder="Search by Name">
                 </div>
             </div>
-
+        {{--
             <div class="col">
                 <div class="form-group mb-3">
                     <select name="status" class="text-muted form-control">
@@ -44,6 +44,7 @@
                     </select>
                 </div>
             </div>
+            --}}
             <div class="col-md-auto d-flex justify-content-end">
                 <div class="input-group-append mx-md-2">
                     <button type="submit" class="btn btn-outline-secondary"><i class="ri-search-line"></i></button>
@@ -87,6 +88,6 @@
         {{ $logs->links('pagination::newbootstrap-6') }}
     </div>
 </div>
-</div>
+
 
 @endsection

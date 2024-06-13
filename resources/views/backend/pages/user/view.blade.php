@@ -48,7 +48,7 @@
         </div>
         <div class="col-sm-4">
             <div class="form-group mb-3">
-                <b>Status : </b><p>{{ $viewuser->status == 1 ? 'Active' : 'Inactive' }}</p>
+                <b>Status : </b><p>{{ $viewuser->status == 1 ? 'Active' : 'Suspended' }}</p>
             </div>
         </div>
     </div>

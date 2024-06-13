@@ -50,8 +50,8 @@
             <div class="form-group mb-3">
                 <label>User Status <span class="red">*</span></label>
                 <select name="status" class="form-control">
-                    <option value="1" {{ $author->status == 1 ? 'selected' : '' }}>Activate</option>
-                    <option value="0" {{ $author->status == 0 ? 'selected' : '' }}>Deactivate</option>
+                    <option value="1" {{ $author->status == 1 ? 'selected' : '' }}>Active</option>
+                    <option value="0" {{ $author->status == 0 ? 'selected' : '' }}>Suspend</option>
                 </select>
             </div>
         </div>

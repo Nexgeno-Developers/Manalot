@@ -90,7 +90,7 @@ Route::group(['prefix' => 'profile'], function () {
     Route::post('/update', [UserController::class, 'update'])->name('user.update');
     Route::post('/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
     Route::get('/status/{id}/{status}', [UserController::class, 'status'])->name('user.status');
-    Route::get('/approvestatusedit/{id}', [UserController::class, 'approvestatus'])->name('user.approvestatus');
+    Route::post('/approvestatusedit/{id}', [UserController::class, 'approvestatus'])->name('user.approvestatus');
     Route::get('/view/{id}', [UserController::class, 'view'])->name('user.view');
     Route::post('/password/reset/', [UserController::class, 'resetPassword'])->name('password.update');
 

@@ -19,13 +19,15 @@ class ReportController extends Controller
             $query->where('QP.username', 'LIKE', '%' . $request->user_name . '%');
         }
 
-        if ($request->filled('status')) {
-            $query->where('QP.status', $request->status);
-        }
+        /* 
+            if ($request->filled('status')) {
+                $query->where('QP.status', $request->status);
+            }
 
-        if ($request->filled('approval_status')) {
-            $query->where('QP.approval', $request->approval_status);
-        }
+            if ($request->filled('approval_status')) {
+                $query->where('QP.approval', $request->approval_status);
+            }
+        */
 
         $logs = $query->paginate(2);
 
