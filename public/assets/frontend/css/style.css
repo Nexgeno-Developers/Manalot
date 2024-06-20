@@ -554,11 +554,11 @@ body {
     font-size: 45px;
 }
 
-/*.register_image {*/
-/*    height: 100vh;*/
-/*    object-fit: cover;*/
-/*    object-position: left;*/
-/*}*/
+/* .register_image {
+height: 100vh;
+   object-fit: cover;
+ object-position: left;
+} */
 .register_width {
     width: 680px;
 }

@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
-                        <label for="name" class="form-label">Username *</label>
+                        <label for="name" class="form-label">Name *</label>
                         <input type="text" class="form-control input_text" id="name" name="name"
                             placeholder="Enter Your Name" pattern="[A-Za-z]+" minlength="1" maxlength="20" required />
                     </div>
@@ -33,37 +33,17 @@
                             placeholder="Enter Your email" required />
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
+
+                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
-                        <label for="password" class="form-label">Password</label>
-                         <img src="/assets/images/key.png" alt="" class="input_icon" />
-                        <input type="password" class="form-control input_text" id="password" name="password"
-                            placeholder="Enter your Password" minlength="6" maxlength="16" required />
-                        <img src="images/key.png" alt="" class="input_icon" />
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="position-relative">
-                        <label for="Phone" class="form-label">Phone</label>
+                        <label for="Phone" class="form-label">Phone*</label>
                         <input type="text" class="form-control input_text" id="Phone" name="phone_number"
                             placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10" maxlength="16"
                             required />
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
-                    <div class="position-relative">
-                        <label for="Employee" class="form-label">Employee Status</label>
-                        <select class="form-select form-control input_select" aria-label="Default select example" name="experience_Status" id="Employee" required> 
-                            <option value="">Select Employee Status</option>
-                            @foreach ($experience_status as $row)
-                                <option value="{{ $row->id }}">
-                                    {{ ucfirst($row->name) }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
+
+                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="formFile" class="form-label">Upload Resume</label>
                         <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
@@ -72,17 +52,38 @@
                         <img src="images/file.png" alt="" class="input_icon" />
                     </div>
                 </div>
+
+
+                <div class="col-md-6 mb-4">
+                    <div class="position-relative">
+                        <label for="password" class="form-label">Password*</label>
+                         <img src="/assets/images/key.png" alt="" class="input_icon" />
+                        <input type="password" class="form-control input_text" id="password" name="password"
+                            placeholder="Enter your Password" minlength="6" maxlength="16" required />
+                        <img src="images/key.png" alt="" class="input_icon" />
+                    </div>
+                </div>
+
+
+                
+                <div class="col-md-6 mb-4">
+                    <div class="position-relative">
+                        <label for="password" class="form-label">Confirm Password*</label>
+                         <img src="/assets/images/key.png" alt="" class="input_icon" />
+                        <input type="password" class="form-control input_text" id="password" name="password"
+                            placeholder="Enter your Password" minlength="6" maxlength="16" required />
+                        <img src="images/key.png" alt="" class="input_icon" />
+                    </div>
+                </div>
             </div>
 
-            <div class="col-md-6 mb-4">
+            <div class="col-md-6 mb-3">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="1" name="term_check"
                         id="flexCheckDefault" required />
-                    <label class="form-check-label terms_font" for="flexCheckDefault">
+                    <label class="form-check-label terms_font " for="flexCheckDefault">
                         I agree to the
-                        <a href="#" class="inherit"> Terms </a>
-                        and
-                        <a href="#" class="inherit"> Privacy Policy</a>
+                        <a href="#" class="purple"> <b>Terms & Condition</b></a>
                     </label>
                 </div>
             </div>
@@ -94,7 +95,7 @@
             </div>
         </form>
 
-        <p class="mt-5">
+        <p class="mt-4">
             Already have an account?
             <a href="{{ url(route('login')) }}" class="text-decoration-none purple">Login</a>
         </p>
