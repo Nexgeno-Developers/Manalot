@@ -11,9 +11,9 @@
             </div>
             <div class="col-sm-7">
                 <div class="text-sm-end">
-                    <a href="javascript:void(0);" class="btn btn-danger mb-2"
+                    <a href="javascript:void(0);" class="btn btn-danger mb-2 main_button"
                         onclick="smallModal('{{ url(route('manage.add_industry')) }}', 'Add Industry')"><i
-                            class="mdi mdi-plus-circle me-2"></i> Add Industry</a>
+                            class="mdi mdi-plus-circle"></i> Add Industry</a>
                 </div>
             </div>
         </div>

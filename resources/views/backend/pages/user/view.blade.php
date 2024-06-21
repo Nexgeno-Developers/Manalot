@@ -1,27 +1,23 @@
 @php
     $state= DB::table('states')->where('id', $usersdetails->state)->first();
-@endphp
-@php
+
     $country= DB::table('countries')->where('id', $usersdetails->country)->first();
-@endphp
-@php
+
     $job_title= DB::table('job_title')->where('id', $usersdetails->job_title)->first();
-@endphp
-@php
+
     $industry= DB::table('industry')->where('id', $usersdetails->industry)->first();
-@endphp
-@php
+
     $years_of_exp= DB::table('years_of_exp')->where('id', $usersdetails->wrk_exp_years)->first();
-@endphp
-@php
+
     $experience_status= DB::table('experience_status')->where('id', $usersdetails->experience_Status)->first();
-@endphp
-@php
+
     $skills= DB::table('skills')->where('id', $usersdetails->skill)->first();
-@endphp
-@php
+
     $references_from= DB::table('references_from')->where('id', $usersdetails->references)->first();
+
+    $references = json_decode($usersdetails->references, true);
 @endphp
+
     <div class="row">
         <h3>User Register Form Step 1</h3>
         <div class="col-sm-4">
@@ -42,7 +38,7 @@
         <div class="col-sm-4">
             <div class="form-group mb-3">
                 <b>Uploaded Resume CV : </b> 
-                <a target="_blank" href="{{ asset('storage/' . $usersdetails->resume_cv) }}" class="btn btn-success">View CV</a>
+                <a target="_blank" href="{{ asset('storage/' . $usersdetails->resume_cv) }}" class="btn btn-success main_button">View CV</a>
                 
             </div>
         </div>
@@ -71,24 +67,24 @@
             </div>  --}}    
             <div class="col-sm-4">
                 <div class="form-group mb-3">
+                    <b>Full name : </b> <p>{{ $usersdetails->fullname }}</p>
+                </div>
+            </div>  
+            {{--<div class="col-sm-4">
+                <div class="form-group mb-3">
                     <b>First name : </b> <p>{{ $usersdetails->first_name }}</p>
                 </div>
             </div>        
-            {{-- <div class="col-sm-4">
+             <div class="col-sm-4">
                 <div class="form-group mb-3">
                     <b>Middle name : </b> <p>{{ $usersdetails->middle_name }}</p>
                 </div>
-            </div> --}}      
+            </div>      
             <div class="col-sm-4">
                 <div class="form-group mb-3">
                     <b>Last name : </b> <p>{{ $usersdetails->last_name }}</p>
                 </div>
-            </div>        
-            <div class="col-sm-4">
-                <div class="form-group mb-3">
-                    <b>Profile Photo : </b> <img style="width:20vw;" src="{{ asset('storage/' . $usersdetails->profile_photo) }}">
-                </div>
-            </div>        
+            </div>     --}}    
             <div class="col-sm-4">
                 <div class="form-group mb-3">
                     <b>Gender : </b> 
@@ -98,9 +94,41 @@
             </div>   
             <div class="col-sm-4">
                 <div class="form-group mb-3">
+                    <b>Profile Photo : </b> <img style="width:20vw;" src="{{ asset('storage/' . $usersdetails->profile_photo) }}">
+                </div>
+            </div>        
+            <div class="col-sm-4">
+                <div class="form-group mb-3">
                     <b>DOB : </b> <p>{{ $usersdetails->dob }}</p>              
                 </div>
             </div>       
+            <div class="col-sm-4">
+                <div class="form-group mb-3">
+                    <b>Pincode : </b> <p>{{ $usersdetails->pincode }}</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group mb-3">
+                    <b>City : </b> <p>{{ $usersdetails->city }}</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group mb-3">
+                    <b>Country : </b> <p>{{ $country->name }}</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group mb-3">
+                    <b>State : </b> 
+                    <p>{{ $state->name }}</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group mb-3">
+                    <b>Address : </b> <p>{{ $usersdetails->address }}</p>                
+                </div>
+            </div>
+            {{--
             <div class="col-sm-4">
                 <div class="form-group mb-3">
                     <b>Email : </b> <p>{{ $viewuser->email }}</p>
@@ -111,70 +139,61 @@
                         <b>Phone Number : </b> <p>{{ $usersdetails->phone_number }}</p>
                     </div>
             </div>       
-            <div class="col-sm-4">
-                <div class="form-group mb-3">
-                    <b>Address : </b> <p>{{ $usersdetails->address }}</p>                
-                </div>
-            </div>        
+            --}}
+   
 
-            <div class="col-sm-4">
-                <div class="form-group mb-3">
-                    <b>State : </b> 
-                    <p>{{ $state->name }}</p>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group mb-3">
-                    <b>City : </b> <p>{{ $usersdetails->city }}</p>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group mb-3">
-                    <b>Pincode : </b> <p>{{ $usersdetails->pincode }}</p>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group mb-3">
-                    <b>Country : </b> <p>{{ $country->name }}</p>
-                </div>
-            </div>
+            
         </div>
 
         <hr class="mb-4">
 
         <div class="row">
         <h3>Work Experience</h3>
-        
+        {{--
             <div class="col-sm-4">
                 <div class="form-group mb-3">
                     <b>Job Title : </b> <p>{{ $job_title->name }}</p>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="form-group mb-3">
-                    <b>Industry : </b> <p>{{ $industry->name }}</p>
-                </div>
-            </div>
+
             <div class="col-sm-4">
                 <div class="form-group mb-3">
                     <b>Experience Status : </b> <p>{{ $experience_status->name }}</p>
                 </div>
             </div>
+            --}}
             <div class="col-sm-4">
                 <div class="form-group mb-3">
-                    <b>Work Exp Title : </b> <p>{{ $usersdetails->wrk_exp__title }}</p>
+                    <b>Profesional Title : </b> <p>{{ $usersdetails->wrk_exp__title }}</p>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group mb-3">
-                    <b>Work Exp Company Name : </b> <p>{{ $usersdetails->wrk_exp_company_name }}</p>
+                    <b>Company Name : </b> <p>{{ $usersdetails->wrk_exp_company_name }}</p>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group mb-3">
                     <b>Work Exp In Year : </b> <p>{{ $years_of_exp->year_range }}</p>
                 </div>
-            </div>            
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group mb-3">
+                    <b>Industry : </b> <p>{{ $industry->name }}</p>
+                </div>
+            </div>  
+            
+            @isset($skills->name)
+                <div class="row">
+                <h3>Skills and Competencies</h3>
+                    <div class="col-sm-4">
+                        <div class="form-group mb-3">
+                            <b>Skill : </b> <p>{{ $skills->name }}</p>
+                        </div>
+                    </div>
+                </div>
+            @endisset    
+
             <div class="col-sm-4">
                 <div class="form-group mb-3">
                     <b>Work Responsibility : </b> <p>{{ $usersdetails->wrk_exp_responsibilities }}</p>
@@ -188,12 +207,12 @@
         <h3>Education</h3>
             <div class="col-sm-4">
                 <div class="form-group mb-3">
-                    <b>Education Degree : </b> <p>{{ $usersdetails->edu_degree }}</p>
+                    <b>School/University Name : </b> <p>{{ $usersdetails->edu_clg_name }}</p>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group mb-3">
-                    <b>School/University Name : </b> <p>{{ $usersdetails->edu_clg_name }}</p>
+                    <b>Education Degree : </b> <p>{{ $usersdetails->edu_degree }}</p>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -205,27 +224,16 @@
                 <div class="form-group mb-3">
                     <b>Education Field : </b> <p>{{ $usersdetails->edu_field }}</p>
                 </div>
-            </div>            
+            </div>   
+            {{--       
             <div class="col-sm-4">
                 <div class="form-group mb-3">
                     <b>Education GPA : </b> <p>{{ $usersdetails->edu_cgpa }}</p>
                 </div>
             </div>
+            --}}    
 
-            <hr class="mb-4">
-
-            @isset($skills->name)
-                <div class="row">
-                <h3>Skills and Competencies</h3>
-                    <div class="col-sm-4">
-                        <div class="form-group mb-3">
-                            <b>Skill : </b> <p>{{ $skills->name }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <hr class="mb-4">
-            @endisset
+      
 
             <div class="row">
             <h3>Certifications</h3>
@@ -236,12 +244,12 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group mb-3">
-                        <b>Certificate Issuing : </b> <p>{{ $usersdetails->certificate_issuing }}</p>
+                        <b>Certificate Obtain Date : </b> <p>{{ $usersdetails->certificate_obtn_date }}</p>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group mb-3">
-                        <b>Certificate Obtain Date : </b> <p>{{ $usersdetails->certificate_obtn_date }}</p>
+                        <b>Certificate Issuing : </b> <p>{{ $usersdetails->certificate_issuing }}</p>
                     </div>
                 </div>
             </div>
@@ -275,6 +283,21 @@
                         <b>Expected Salary : </b> <p>{{ $usersdetails->pref_salary }}</p>
                     </div>
                 </div>
+                @isset($references)
+                <div class="col-sm-4">
+                    <div class="form-group mb-3">
+                        <b>References :</b>
+                        <div class="d-flex">
+                            @foreach($references as $key => $value)
+                            <div class="mx-3">
+                                <b>{{ ucfirst($key) }}: </b> <p>{{ $value }}</p>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                @endisset
+                {{--
                 @isset($references_from->name)
                 <div class="col-sm-4">
                     <div class="form-group mb-3">
@@ -282,9 +305,8 @@
                     </div>
                 </div>
                 @endisset
+                --}}
             </div>
-                
-            <hr class="mb-4">
 
             <div class="row">
             <h3>Work Authorization</h3>

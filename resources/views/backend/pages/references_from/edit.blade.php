@@ -16,7 +16,8 @@
             </select>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Update</button>
+    <div class="text-end">
+    <button type="submit" class="btn btn-primary main_button1">Update</button></div>
 </form>
 
 <script>

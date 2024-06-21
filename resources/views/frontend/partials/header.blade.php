@@ -6,7 +6,7 @@
 
           <header class="d-flex align-items-center py-1 justify-content-between">
               <a href="/">
-                  <img src="/assets/images/logo.png" alt="" />
+                  <img style="width:200px;" src="/assets/images/logo.png" alt="" />
               </a>
               <form class="search_input d-flex align-items-center mb-0">
                   <input type="text" placeholder="What Are You Looking For?" />

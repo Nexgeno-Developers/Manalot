@@ -21,7 +21,7 @@
 
     <div class="row mb-0">
         <div class="col-md-6 offset-md-4">
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary main_button">
                 Reset Password
             </button>
         </div>
@@ -58,7 +58,7 @@
  
         <div class="col-sm-12">
             <div class="form-group mb-3 text-end">
-                <button type="submit" class="btn btn-block btn-primary">Update</button>
+                <button type="submit" class="btn btn-block btn-primary main_button1">Update</button>
             </div>
         </div>
     </div>

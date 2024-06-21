@@ -1,6 +1,6 @@
 
 <!-- ================== Header Start =========================== -->
-            <div class="navbar-custom">
+            <div class="navbar-custom" style="background:#fff !important;">
                 <div class="topbar container-fluid">
                     <div class="d-flex align-items-center gap-lg-2 gap-1">
 
@@ -9,17 +9,17 @@
                             <!-- Logo light -->
                             <a href="{{ route('backend.dashboard') }}" class="logo-light">
                                 <span class="logo-lg">
-                                    <img src="{{ asset('/assets/images/logo.png') }}" alt="logo" style="width:200px; height:50px;" >
+                                    <img src="{{ asset('/assets/images/logo.png') }}" alt="logo" style="width:200px;" >
                                 </span>
                                 <span class="logo-sm">
-                                    <img src="{{ asset('/assets/images/logo.png') }}" alt="small logo" style="width:200px; height:50px;" >
+                                    <img src="{{ asset('/assets/images/logo.png') }}" alt="small logo" style="width:200px;" >
                                 </span>
                             </a>
 
                             <!-- Logo Dark -->
                             <a href="#" class="logo-dark">
                                 <span class="logo-lg">
-                                    <img src="/assets/images/logo-dark.png" alt="dark logo" style="width:200px; height:50px;" >
+                                    <img src="/assets/images/logo-dark.png" alt="dark logo" style="width:200px;" >
                                 </span>
                                 <span class="logo-sm">
                                     <img src="/assets/images/logo-dark-sm.png" alt="small logo"  style="width:200px; height:50px;" > 
@@ -344,11 +344,11 @@
                         </li>
                     --}}
 
-                        <li class="d-sm-inline-block">
+                        <!-- <li class="d-sm-inline-block">
                             <a href="{{ url(route('clear-cache')) }}" class="btn btn-success">Clear Cache</a>
-                        </li>
+                        </li> -->
 
-                        <li class="d-none d-sm-inline-block">
+                        <!-- <li class="d-none d-sm-inline-block">
                             <div class="nav-link" id="light-dark-mode" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="Theme Mode" data-bs-original-title="Theme Mode">
                                 <i class="ri-moon-line font-22"></i>
                             </div>
@@ -360,10 +360,11 @@
                             <a class="nav-link" href="" data-toggle="fullscreen">
                                 <i class="ri-fullscreen-line font-22"></i>
                             </a>
-                        </li>
+                        </li> -->
 
                         <li class="dropdown">
-                            <a class="nav-link dropdown-toggle arrow-none nav-user px-2" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle arrow-none nav-user px-2" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false" style="    background: transparent;
+    border: 0;">
                                 <span class="account-user-avatar">
                                     <img src="/assets/images/avatar.jpg" alt="user-image" width="32" class="rounded-circle">
                                 </span>
