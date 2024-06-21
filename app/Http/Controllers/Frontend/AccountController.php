@@ -181,8 +181,9 @@ class AccountController extends Controller
             'name' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:1', 'max:50'],
             'email' => 'required|email',
             'password' => 'required',
+            'confirm_password' => 'required|same:password',
             //'experience_Status' => 'required',
-            'phone_number' => 'required|regex:/^[\d\s-]+$/|min:10',
+            'phone_number' => 'required|regex:/^[\d\s\-\+]+$/|min:10',
             'resume_cv' => 'required|mimes:pdf|max:5120',
         ]);
 
@@ -289,6 +290,8 @@ class AccountController extends Controller
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "User Detail Added successfully. Please Proceed";
 
+        // session()->flash('success', 'User Detail Added successfully. Please Proceed');
+
         return $rsp_msg;
 
     }
@@ -298,14 +301,13 @@ class AccountController extends Controller
     public function create_personal_info($request){
 
         $validator = Validator::make($request->all(), [
-            'first_name' => 'required|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
-            'last_name' => 'required|regex:/^[A-Za-z\s,.\'\/&]+$/|min:2',
+            'fullname' => 'required|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
             'gender' => 'required',
             'dob' => 'required',
             //'email' => 'required|email',
             //'phone_number' => 'required|regex:/^[\d\s-]+$/|min:10',
-            //'address' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:250'],
-            'address' => ['required','min:1', 'max:250'],
+            'address' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&-]+$/i', 'min:3', 'max:250'],
+            // 'address' => ['required','min:1', 'max:250'],
             'city' => 'required',
             'state' => 'required',
             'pincode' => 'required',
@@ -342,8 +344,7 @@ class AccountController extends Controller
 
         DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
             //'phone_number' => $request->input('phone_number'),
-            'first_name' => $request->input('first_name'),
-            'last_name' => $request->input('last_name'),
+            'fullname' => $request->input('fullname'),
             'gender' => $request->input('gender'),
             'profile_photo' => $path,
             'dob' => $request->input('dob'),
@@ -363,7 +364,7 @@ class AccountController extends Controller
 
     }
 
-
+    //=============== not working code =====================
     public function create_login_info($request){
 
         $validator = Validator::make($request->all(), [
@@ -394,19 +395,39 @@ class AccountController extends Controller
         return $rsp_msg;
 
     }
+    //=============== not working code =====================
 
     public function creaste_personal_work_info($request){
 
         $validator = Validator::make($request->all(), [
             'wrk_exp_company_name' => 'required|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
-            //'wrk_exp__title' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:100'],
-            'wrk_exp__title' => ['required', 'min:1', 'max:100'],
+            'wrk_exp__title' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:100'],
+            // 'wrk_exp__title' => ['required', 'min:1', 'max:100'],
             'industry' => 'required',
-            'job_title' => 'required',
+            // 'job_title' => 'required',
             'wrk_exp_years' => 'required',
-            //'wrk_exp_responsibilities' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:250'],
-            'wrk_exp_responsibilities' => ['required', 'min:1', 'max:250'],
-            'resume_cv' => 'nullable|mimes:pdf|max:5120',
+            'wrk_exp_responsibilities' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&\-\(\)\[\]]+$/i', 'min:3'],
+            // 'resume_cv' => 'nullable|mimes:pdf|max:5120',
+            'skill' => 'required',
+        ], [
+            'wrk_exp_company_name.required' => 'The Company Name is required.',
+            'wrk_exp_company_name.regex' => 'The Company Name format is invalid.',
+            'wrk_exp_company_name.min' => 'The Company Name must be at least 3 characters.',
+            
+            'wrk_exp__title.required' => 'The Professional Title is required.',
+            'wrk_exp__title.min' => 'The Professional Title must be at least 1 character.',
+            'wrk_exp__title.max' => 'The Professional Title may not be greater than 100 characters.',
+            
+            'industry.required' => 'The Industry field is required.',
+            
+            'wrk_exp_years.required' => 'The Years of Experience field is required.',
+            
+            'wrk_exp_responsibilities.required' => 'The Responsibilities field is required.',
+            'wrk_exp_responsibilities.string' => 'The Responsibilities must be a string.',
+            'wrk_exp_responsibilities.regex' => 'The Responsibilities format is invalid.',
+            'wrk_exp_responsibilities.min' => 'The Responsibilities must be at least 3 characters.',
+            
+            'skill.required' => 'The Skill field is required.',
         ]);
 
         if ($validator->fails()) {
@@ -416,36 +437,39 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
-        $resume_cv_path = DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->value('resume_cv');
+        // $resume_cv_path = DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->value('resume_cv');
 
-        if($request->has('resume_cv')){
-            $path = $request->file('resume_cv')->store('user_data/resume_cv', 'public');
+        // if($request->has('resume_cv')){
+        //     $path = $request->file('resume_cv')->store('user_data/resume_cv', 'public');
 
-            if ($resume_cv_path) {
-                if (Storage::disk('public')->exists($resume_cv_path)) {
-                    Storage::disk('public')->delete($resume_cv_path);
-                }
-            }
+        //     if ($resume_cv_path) {
+        //         if (Storage::disk('public')->exists($resume_cv_path)) {
+        //             Storage::disk('public')->delete($resume_cv_path);
+        //         }
+        //     }
 
-        } else {
-            $path = $resume_cv_path;
-        }
+        // } else {
+        //     $path = $resume_cv_path;
+        // }
+
+
 
         DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
             'wrk_exp_years' => $request->input('wrk_exp_years'),
-            'job_title' => $request->input('job_title'),
+            // 'job_title' => $request->input('job_title'),
             'industry' => $request->input('industry'),
             'wrk_exp__title' => $request->input('wrk_exp__title'),
-            'resume_cv' => $path,
+            // 'resume_cv' => $path,
+            'skill' => json_encode($request->input('skill')),
             'wrk_exp_responsibilities' => $request->input('wrk_exp_responsibilities'),
             'wrk_exp_company_name' => $request->input('wrk_exp_company_name'),
         ]);
 
         DB::table('users')->where('id', Session::get('temp_user_id'))->update([
-            'step' =>  4,
+            'step' =>  3,
         ]);
 
-        Session::put('step', 5);
+        Session::put('step', 4);
 
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "User Personal and Work Detail Added successfully. Please Proceed";
@@ -453,6 +477,9 @@ class AccountController extends Controller
         return $rsp_msg;
 
     }
+
+
+    // =================== Not working code ====================
 
     public function create_education_info($request){
 
@@ -523,6 +550,8 @@ class AccountController extends Controller
 
     }
 
+    // =================== Not working code ====================
+
     public function create_certifications_info($request){
 
         $validator = Validator::make($request->all(), [
@@ -531,6 +560,12 @@ class AccountController extends Controller
             // 'certificate_issuing' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:50'],
             'certificate_issuing' => ['required', 'min:1', 'max:50'],
             'certificate_obtn_date' => 'required',
+
+            'edu_degree' => 'required',
+            'edu_clg_name' => 'required',
+            'edu_graduation_year' => 'required',
+            'edu_field' => 'required',
+            'edu_cgpa' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -544,13 +579,20 @@ class AccountController extends Controller
             'certificate_name' => $request->input('certificate_name'),
             'certificate_issuing' => $request->input('certificate_issuing'),
             'certificate_obtn_date' => $request->input('certificate_obtn_date'),
+            
+            'edu_degree' => $request->input('edu_degree'),
+            'edu_clg_name' => $request->input('edu_clg_name'),
+            'edu_graduation_year' => $request->input('edu_graduation_year'),
+            'edu_field' => $request->input('edu_field'),
+            // 'edu_cgpa' => $request->input('edu_cgpa'),
+            'wrk_exp_company_name' => $request->input('wrk_exp_company_name'),
         ]);
 
         DB::table('users')->where('id', Session::get('temp_user_id'))->update([
-            'step' =>  7,
+            'step' =>  4,
         ]);
 
-        Session::put('step', 8);
+        Session::put('step', 5);
 
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "User Skills Detail Added successfully. Please Proceed";

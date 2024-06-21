@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
-                        <label for="name" class="form-label">Name *</label>
+                        <label for="name" class="form-label">Username *</label>
                         <input type="text" class="form-control input_text" id="name" name="name"
                             placeholder="Enter Your Name" pattern="[A-Za-z]+" minlength="1" maxlength="20" required />
                     </div>
@@ -59,7 +59,7 @@
                         <label for="password" class="form-label">Password*</label>
                          <img src="/assets/images/key.png" alt="" class="input_icon" />
                         <input type="password" class="form-control input_text" id="password" name="password"
-                            placeholder="Enter your Password" minlength="6" maxlength="16" required />
+                            placeholder="Enter your Password" minlength="6" maxlength="20" required />
                         <img src="images/key.png" alt="" class="input_icon" />
                     </div>
                 </div>
@@ -70,8 +70,8 @@
                     <div class="position-relative">
                         <label for="password" class="form-label">Confirm Password*</label>
                          <img src="/assets/images/key.png" alt="" class="input_icon" />
-                        <input type="password" class="form-control input_text" id="password" name="password"
-                            placeholder="Enter your Password" minlength="6" maxlength="16" required />
+                        <input type="password" class="form-control input_text" id="confirm_password" name="confirm_password"
+                            placeholder="Enter your Password" minlength="6" maxlength="20" required />
                         <img src="images/key.png" alt="" class="input_icon" />
                     </div>
                 </div>
@@ -114,8 +114,7 @@
             ->where('user_id', Session::get('temp_user_id'))
             ->get([
                 'phone_number',
-                'first_name',
-                'last_name',
+                'fullname',
                 'profile_photo',
                 'gender',
                 'dob',
@@ -146,18 +145,10 @@
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
-                        <label for="first_name" class="form-label">First Name*</label>
-                        <input type="text" class="form-control input_text" name="first_name" id="first_name"
-                            placeholder="Enter First Name" pattern="[A-Za-z]+" minlength="1" maxlength="20"
-                            value="{{ $user_detail->first_name }}" required />
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="position-relative">
-                        <label for="last_name" class="form-label">Last Name*</label>
-                        <input type="text" class="form-control input_text" name="last_name" id="last_name"
-                            placeholder="Enter Last Name" pattern="[A-Za-z]+" minlength="1" maxlength="20"
-                            value="{{ $user_detail->last_name }}" required />
+                        <label for="first_name" class="form-label">Full Name*</label>
+                        <input type="text" class="form-control input_text" name="fullname" id="fullname"
+                            placeholder="Enter First Name" pattern="[A-Za-z]+" minlength="1" maxlength="255"
+                            value="{{ $user_detail->fullname }}" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
@@ -213,20 +204,21 @@
                             value="{{ $user_detail->phone_number }}" required />
                     </div>
                 </div> -->
-
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
-                        <label for="address" class="form-label">Address*</label>
-                        <input type="text" class="form-control input_text" id="address" pattern="[0-9A-Za-z]+"
-                            minlength="5" maxlength="250" name="address" placeholder="Enter your Address"
-                            value="{{ $user_detail->address }}" required />
+                        <label for="zip_code" class="form-label">Zip/Postal Code*</label>
+                        <input type="text" class="form-control input_text" id="pincode" name="pincode"
+                            pattern="[0-9A-Za-z]+" minlength="1" maxlength="10"
+                            placeholder="Enter Your zipcode / Pincode" value="{{ $user_detail->pincode }}"
+                            required />
                     </div>
                 </div>
+
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="city" class="form-label">City*</label>
                         <input type="text" class="form-control input_text" id="city" name="city"
-                            pattern="[A-Za-z]+" minlength="5" maxlength="50" placeholder="Enter Your City"
+                            pattern="[A-Za-z]+" minlength="3" maxlength="50" placeholder="Enter Your City"
                             value="{{ $user_detail->city }}" required />
                     </div>
                 </div>
@@ -246,15 +238,6 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
-                        <label for="zip_code" class="form-label">Zip/Postal Code*</label>
-                        <input type="text" class="form-control input_text" id="pincode" name="pincode"
-                            pattern="[0-9A-Za-z]+" minlength="1" maxlength="6"
-                            placeholder="Enter Your zipcode / Pincode" value="{{ $user_detail->pincode }}"
-                            required />
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="position-relative">
                         <label for="country_name" class="form-label">Country*</label>
                         <select class="form-select form-control  input_select" aria-label="Default select example"
                             id="country_name" name="country">
@@ -266,6 +249,20 @@
                         </select>
                     </div>
                 </div>
+
+                <div class="col-md-12 mb-12">
+                    <div class="position-relative">
+                        <label for="address" class="form-label">Address*</label>
+                        {{-- <input type="text" class="form-control input_text" id="address" pattern="[0-9A-Za-z]+"
+                            minlength="5" maxlength="250" name="address" placeholder="Enter your Address"
+                            value="{{ $user_detail->address }}" required /> --}}
+
+                        <textarea class="form-control" rows="4" cols="45" name="address" pattern="[0-9A-Za-z]+" placeholder="Address" required>{{ $user_detail->address }}</textarea>
+
+                    </div>
+                </div>
+
+
             </div>
             <div>
                 <div class="purple_btn">
@@ -279,10 +276,10 @@
 
 <!--------------------------------------------- personal info --------------------------------->
 
-
+<!----===================================== Not using code ==============================================--------->
 <!--------------------------------------------- login info --------------------------------->
 
-@if (!Session::has('step') || Session::get('step') == 3)
+@if (!Session::has('step') || Session::get('step') == 0)
     @php
 
         $user = DB::table('users')
@@ -335,18 +332,18 @@
 @endif
 
 <!--------------------------------------------- login info --------------------------------->
+<!----===================================== Not using code ==============================================--------->
 
 
 <!--------------------------------------------- personal work info  --------------------------------->
 
-@if (!Session::has('step') || Session::get('step') == 4)
+@if (!Session::has('step') || Session::get('step') == 3)
 
     @php
         $user_detail = DB::table('userdetails')
             ->where('user_id', Session::get('temp_user_id'))
             ->get([
-                'resume_cv',
-                'job_title',
+                'skill',
                 'industry',
                 'wrk_exp__title',
                 'wrk_exp_company_name',
@@ -355,19 +352,22 @@
             ])
             ->first();
         $years_of_exp = DB::table('years_of_exp')->where('status', '1')->get();
-        $job_title = DB::table('job_title')->where('status', '1')->get();
+        // $job_title = DB::table('job_title')->where('status', '1')->get();
         $industry = DB::table('industry')->where('status', '1')->get();
+        $skills = DB::table('skills')->where('status', '1')->get();
     @endphp
 
     <div class="register_width">
-        <div class="heading mb-4">
+        {{-- <div class="heading mb-4">
             <h2>Personal Information</h2>
-        </div>
+        </div> --}}
         <form id="personal-work-info" action="{{ url(route('account.create', ['param' => 'personal-work-info'])) }}"
             method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
             @csrf
             <div class="row">
-                <div class="col-md-6 mb-4">
+
+
+                {{-- <div class="col-md-6 mb-4">
                     <div class="position-relative">
                          @if (!empty($user_detail->resume_cv) && $user_detail->resume_cv != null)
                             <a  class="pdf_view" target="_blank" href="{{ asset('storage/' . $user_detail->resume_cv) }}">
@@ -412,7 +412,7 @@
                             @endforeach
                         </select>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="col-md-12 mt-3">
                     <div class="heading mt-4 mb-4">
@@ -422,7 +422,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
-                        <label for="job_title" class="form-label">Job Title*</label>
+                        <label for="job_title" class="form-label">Professional Title*</label>
                         <input type="text" class="form-control input_text" id="job_title" name="wrk_exp__title"
                             placeholder="Enter your Job Title" pattern="[A-Za-z]+" minlength="1" maxlength="100"
                             value="{{ $user_detail->wrk_exp__title }}" required />
@@ -455,6 +455,39 @@
                     </div>
                 </div>
 
+                <div class="col-md-6 mb-4">
+                    <div class="position-relative">
+                        <label for="industry" class="form-label">Industry*</label>
+                        <select class="form-select form-control input_select" aria-label="Default select example" id="industry"
+                            name="industry" required>
+                            <option value="">Select Industry</option>
+                            @foreach ($industry as $row)
+                                <option value="{{ $row->id }}"
+                                    @if ($user_detail->industry == $row->id) selected @endif>
+                                    {{ ucfirst($row->name) }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 mb-4">
+                    <div class="position-relative">
+                        <label for="skills" class="form-label">Skills*</label>
+                        <select class="select2 form-select form-control input_select" aria-label="Default select example" id="skills"
+                            name="skill[]" multiple required>
+                            <option value="">select skills</option>
+                            @foreach ($skills as $row)
+                                <option value="{{ $row->id }}" @if(in_array($row->id, json_decode($user_detail->skill, true))) selected @endif>
+                                    {{ ucfirst($row->name) }}
+                                </option>
+    
+                                
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
                 <div class="col-md-12">
                     <p>Responsibilities/Achievements</p>
                     <textarea class="form-control" rows="4" cols="45" name="wrk_exp_responsibilities" placeholder="Message" required>{{ $user_detail->wrk_exp_responsibilities }}</textarea>
@@ -477,7 +510,7 @@
 
 <!--------------------------------------------- Education info  --------------------------------->
 
-@if (!Session::has('step') || Session::get('step') == 5)
+@if (!Session::has('step') || Session::get('step') == 0)
     @php
         $user_detail = DB::table('userdetails')
             ->where('user_id', Session::get('temp_user_id'))
@@ -551,7 +584,7 @@
 
 <!--------------------------------------------- skills info  --------------------------------->
 
-@if (!Session::has('step') || Session::get('step') == 6)
+@if (!Session::has('step') || Session::get('step') == 0)
 
     @php
         $user_detail = DB::table('userdetails')
@@ -601,22 +634,63 @@
 
 <!--------------------------------------------- certifications-info  --------------------------------->
 
-@if (!Session::has('step') || Session::get('step') == 7)
+@if (!Session::has('step') || Session::get('step') == 4)
     @php
         $user_detail = DB::table('userdetails')
             ->where('user_id', Session::get('temp_user_id'))
-            ->get(['certificate_name', 'certificate_issuing', 'certificate_obtn_date'])
+            ->get(['certificate_name', 'certificate_issuing', 'certificate_obtn_date','edu_degree', 'edu_clg_name', 'edu_graduation_year', 'edu_field'])
             ->first();
 
     @endphp
 
     <div id="cirtificate_one" class="register_width">
-        <div class="heading mb-4">
+        {{-- <div class="heading mb-4">
             <h2>Certifications</h2>
+        </div> --}}
+        <div class="heading mb-4">
+            <h2>Education</h2>
         </div>
         <form id="skills-info" action="{{ url(route('account.create', ['param' => 'certifications-info'])) }}"
             method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
             @csrf
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="position-relative">
+                        <label for="School" class="form-label">School/University Name*</label>
+                        <input type="text" class="form-control input_text" id="School" name="edu_clg_name"
+                            placeholder="Enter your School / College Nmae" pattern="[A-Za-z]+" minlength="1"
+                            maxlength="50" value="{{ $user_detail->edu_clg_name }}" required />
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="position-relative">
+                        <label for="degree" class="form-label">Degree*</label>
+                        <input type="text" class="form-control input_text" id="degree" name="edu_degree"
+                            placeholder="Enter your Degree" pattern="[A-Za-z]+" minlength="1" maxlength="50"
+                            value="{{ $user_detail->edu_degree }}" required />
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="position-relative">
+                        <label for="Graduation" class="form-label">Graduation Year*</label>
+                        <input type="text" class="form-control input_text" id="Graduation"
+                            name="edu_graduation_year" placeholder="Enter Your Graduation Year"
+                            pattern="[0-9A-Za-z]+" minlength="1" maxlength="50"
+                            value="{{ $user_detail->edu_graduation_year }}" required />
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="position-relative">
+                        <label for="major" class="form-label">Major/Field of Study*</label>
+                        <input type="text" class="form-control input_text" id="major" name="edu_field"
+                            placeholder="Enter your Major Field of Study" pattern="[A-Za-z]+" minlength="1"
+                            maxlength="50" value="{{ $user_detail->edu_field }}" />
+                    </div>
+                </div>
+            </div>
+            <div class="heading mb-4">
+                <h2>Certifications</h2>
+            </div>
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
@@ -662,7 +736,7 @@
 
 <!--------------------------------------------- preferences-info  --------------------------------->
 
-@if (!Session::has('step') || Session::get('step') == 8)
+@if (!Session::has('step') || Session::get('step') == 5)
 
     @php
         $user_detail = DB::table('userdetails')
@@ -755,7 +829,7 @@
 
 <!--------------------------------------------- work-authorization-info  --------------------------------->
 
-@if (!Session::has('step') || Session::get('step') == 9)
+@if (!Session::has('step') || Session::get('step') == 6)
     @php
         $user_detail = DB::table('userdetails')
             ->where('user_id', Session::get('temp_user_id'))
@@ -825,7 +899,7 @@
 
 <!--------------------------------------------- social-media-info  --------------------------------->
 
-@if (!Session::has('step') || Session::get('step') == 10)
+@if (!Session::has('step') || Session::get('step') == 7)
     @php
         $user_detail = DB::table('userdetails')
             ->where('user_id', Session::get('temp_user_id'))
@@ -906,7 +980,7 @@
 
 <!--------------------------------------------- Proceeding  --------------------------------->
 
-@if (!Session::has('step') || Session::get('step') == 11)
+@if (!Session::has('step') || Session::get('step') == 8)
     <div id="work_autho"  class="register_width">
         <div class="heading mb-4">
             <h2>Proceeding</h2>
