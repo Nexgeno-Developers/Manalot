@@ -181,7 +181,7 @@ class AccountController extends Controller
             'name' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:1', 'max:50'],
             'email' => 'required|email',
             'password' => 'required',
-            'experience_Status' => 'required',
+            //'experience_Status' => 'required',
             'phone_number' => 'required|regex:/^[\d\s-]+$/|min:10',
             'resume_cv' => 'required|mimes:pdf|max:5120',
         ]);
@@ -245,7 +245,7 @@ class AccountController extends Controller
 
             DB::table('userdetails')->where('user_id',$users_email_temp->id)->update([
                 'phone_number' => $request->input('phone_number'),
-                'experience_Status' => $request->input('experience_Status'),
+                //'experience_Status' => $request->input('experience_Status'),
                 'resume_cv' => $path,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -271,7 +271,7 @@ class AccountController extends Controller
             DB::table('userdetails')->insert([
                 'user_id' => $userId,
                 'phone_number' => $request->input('phone_number'),
-                'experience_Status' => $request->input('experience_Status'),
+                //'experience_Status' => $request->input('experience_Status'),
                 'skill' => '[]',
                 'references' => '[]',
                 'resume_cv' => $path,
