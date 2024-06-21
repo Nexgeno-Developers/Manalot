@@ -43,7 +43,7 @@
                     <button type="submit" class="btn btn-outline-secondary"><i class="ri-search-line"></i></button>
                 </div>
                 <div class="resetbtn mx-md-2">
-                    <a href="{{ route('users.list') }}" class="btn btn-outline-danger">Reset</a>
+                    <a href="{{ route('users.list') }}" class="btn btn-outline-danger main_button">Reset</a>
                 </div>
             </div>
     </form>

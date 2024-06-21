@@ -42,7 +42,7 @@
         <div class="col-sm-4">
             <div class="form-group mb-3">
                 <b>Uploaded Resume CV : </b> 
-                <a target="_blank" href="{{ asset('storage/' . $usersdetails->resume_cv) }}" class="btn btn-success">View CV</a>
+                <a target="_blank" href="{{ asset('storage/' . $usersdetails->resume_cv) }}" class="btn btn-success main_button">View CV</a>
                 
             </div>
         </div>

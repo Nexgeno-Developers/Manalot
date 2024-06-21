@@ -16,7 +16,7 @@
         </div> 
         <div class="col-sm-12">
             <div class="form-group mb-3 text-end">
-                <button type="submit" class="btn btn-block btn-primary">Update</button>
+                <button type="submit" class="btn btn-block btn-primary main_button1">Update</button>
             </div>
         </div>
     </div>
