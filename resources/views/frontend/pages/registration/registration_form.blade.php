@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
-                        <label for="name" class="form-label">Username *</label>
+                        <label for="name" class="form-label">Name *</label>
                         <input type="text" class="form-control input_text" id="name" name="name"
                             placeholder="Enter Your Name" pattern="[A-Za-z]+" minlength="1" maxlength="20" required />
                     </div>
@@ -43,7 +43,7 @@
                     </div>
                 </div>
 
-                 <div class="col-md-6 mb-4">
+                <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="formFile" class="form-label">Upload Resume</label>
                         <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
@@ -153,6 +153,18 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
+                        <label for="Gender" class="form-label">Gender*</label>
+                        <select class="form-select form-control  input_select" aria-label="Default select example" id="Gender"
+                            name="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="1" @if ($user_detail->gender == 1) selected @endif>Male</option>
+                            <option value="2" @if ($user_detail->gender == 2) selected @endif>Female</option>
+                            <option value="3" @if ($user_detail->gender == 3) selected @endif>Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="position-relative">
                         <label for="formFile" class="form-label">Profile Photo</label>
                          @if (!empty($user_detail->profile_photo) && $user_detail->profile_photo != null)
                         <a class="pdf_view" target="_blank" href="{{ asset('storage/' . $user_detail->profile_photo) }}">
@@ -168,18 +180,7 @@
                    
 
                 </div>
-                <div class="col-md-6 mb-4">
-                    <div class="position-relative">
-                        <label for="Gender" class="form-label">Gender*</label>
-                        <select class="form-select form-control  input_select" aria-label="Default select example" id="Gender"
-                            name="gender" required>
-                            <option value="">Select Gender</option>
-                            <option value="1" @if ($user_detail->gender == 1) selected @endif>Male</option>
-                            <option value="2" @if ($user_detail->gender == 2) selected @endif>Female</option>
-                            <option value="3" @if ($user_detail->gender == 3) selected @endif>Other</option>
-                        </select>
-                    </div>
-                </div>
+
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Date" class="form-label">Date of Birth*</label>
@@ -224,6 +225,19 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
+                        <label for="country_name" class="form-label">Country*</label>
+                        <select class="form-select form-control  input_select" aria-label="Default select example"
+                            id="country_name" name="country">
+                            <option value="">Select Country</option>
+                            @foreach ($country as $row)
+                                <option value="{{ $row->id }}" @if ($user_detail->country == $row->id) selected @endif>
+                                    {{ ucfirst($row->name) }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="position-relative">
                         <label for="State" class="form-label">State*</label>
                         <select class="form-select form-control  input_select" aria-label="Default select example" id="State"
                             name="state">
@@ -236,19 +250,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
-                    <div class="position-relative">
-                        <label for="country_name" class="form-label">Country*</label>
-                        <select class="form-select form-control  input_select" aria-label="Default select example"
-                            id="country_name" name="country">
-                            <option value="">Select Country</option>
-                            @foreach ($country as $row)
-                                <option value="{{ $row->id }}" @if ($user_detail->country == $row->id) selected @endif>
-                                    {{ ucfirst($row->name) }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
+
 
                 <div class="col-md-12 mb-12">
                     <div class="position-relative">
@@ -349,6 +351,8 @@
                 'wrk_exp_company_name',
                 'wrk_exp_years',
                 'wrk_exp_responsibilities',
+                'employed',
+                'experience_letter',
             ])
             ->first();
         $years_of_exp = DB::table('years_of_exp')->where('status', '1')->get();
@@ -435,7 +439,7 @@
                         <input type="text" class="form-control input_text" id="company"
                             name="wrk_exp_company_name" placeholder="Enter your Company Name" pattern="[A-Za-z]+"
                             minlength="1" maxlength="100" value="{{ $user_detail->wrk_exp_company_name }}"
-                            required />
+                            required >
                     </div>
                 </div>
 
@@ -488,12 +492,32 @@
                     </div>
                 </div>
 
-                <div class="col-md-12">
-                    <p>Responsibilities/Achievements</p>
+
+                <div class="col-md-12 mb-4">
+                <label for="Responsibilities" class="form-label">Responsibilities/Achievements</label>
                     <textarea class="form-control" rows="4" cols="45" name="wrk_exp_responsibilities" placeholder="Message" required>{{ $user_detail->wrk_exp_responsibilities }}</textarea>
                 </div>
+                <div class="col-md-6 mb-4">
+                    <div class="option">
+                            <input type="checkbox" id="yes" name="Employed" value="yes"  @if(isset($user_detail) && $user_detail->employed == 'yes') checked @endif>
+                            <label for="yes" class="form-label">Currently Employed</label>
+                    </div>                    
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="position-relative">
+                        <label for="formFile" class="form-label">Upload Experience Letter</label>
+                        <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
+                        <input class="form-control" type="file" id="formFile" name="experience_letter" accept=".pdf,.doc,.docx,application/msword,image/*,.webp" />
+                        <img src="images/file.png" alt="" class="input_icon" />
+                    </div>
+                    @if ($user_detail->experience_letter)
+                        <div class="mt-2">
+                            <a href="{{ asset('storage/' . $user_detail->experience_letter) }}" class="btn btn-primary" target="_blank">View Experience Letter</a>
+                        </div>
+                    @endif
+                </div>
             </div>
-            <div class="d-flex align-items-center gap-4">
+            <div class="d-flex justify-content-end align-items-center gap-4">
                 <div class="blue_btn">
                     <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
                 </div>
@@ -503,7 +527,17 @@
             </div>
         </form>
     </div>
-
+    <script>
+    // JavaScript to allow only one checkbox to be checked at a time
+    function selectOnlyOneCheckbox(checkbox) {
+        var checkboxes = document.getElementsByName('choice');
+        checkboxes.forEach(function(currentCheckbox) {
+            if (currentCheckbox !== checkbox) {
+                currentCheckbox.checked = false;
+            }
+        });
+    }
+</script>
 @endif
 
 <!--------------------------------------------- personal work info --------------------------------->
@@ -526,6 +560,15 @@
             method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
             @csrf
             <div class="row">
+            <div class="col-md-6 mb-4">
+                    <div class="position-relative">
+                        <label for="School" class="form-label">School/University Name*</label>
+                        <input type="text" class="form-control input_text" id="School" name="edu_clg_name"
+                            placeholder="Enter your School / College Nmae" pattern="[A-Za-z]+" minlength="1"
+                            maxlength="50" value="{{ $user_detail->edu_clg_name }}" required />
+                    </div>
+                </div>
+
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="degree" class="form-label">Degree*</label>
@@ -534,14 +577,7 @@
                             value="{{ $user_detail->edu_degree }}" required />
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
-                    <div class="position-relative">
-                        <label for="School" class="form-label">School/University Name*</label>
-                        <input type="text" class="form-control input_text" id="School" name="edu_clg_name"
-                            placeholder="Enter your School / College Nmae" pattern="[A-Za-z]+" minlength="1"
-                            maxlength="50" value="{{ $user_detail->edu_clg_name }}" required />
-                    </div>
-                </div>
+                
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Graduation" class="form-label">Graduation Year*</label>
@@ -559,6 +595,7 @@
                             maxlength="50" value="{{ $user_detail->edu_field }}" />
                     </div>
                 </div>
+            {{--
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="gpa" class="form-label">GPA*</label>
@@ -567,6 +604,8 @@
                             value="{{ $user_detail->edu_cgpa }}" />
                     </div>
                 </div>
+            --}}
+
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
@@ -638,9 +677,10 @@
     @php
         $user_detail = DB::table('userdetails')
             ->where('user_id', Session::get('temp_user_id'))
-            ->get(['certificate_name', 'certificate_issuing', 'certificate_obtn_date','edu_degree', 'edu_clg_name', 'edu_graduation_year', 'edu_field'])
+            ->get(['certificate_name', 'certificate_data', 'certificate_issuing', 'certificate_obtn_date','edu_degree', 'edu_clg_name', 'edu_graduation_year', 'edu_field'])
             ->first();
 
+        $certificate_data = json_decode($user_detail->certificate_data, true);            
     @endphp
 
     <div id="cirtificate_one" class="register_width">
@@ -691,22 +731,57 @@
             <div class="heading mb-4">
                 <h2>Certifications</h2>
             </div>
-            <div class="row">
-                <div class="col-md-6 mb-4">
+            @if (!empty($certificate_data))
+                @foreach($certificate_data as $index => $certificate)
+                <div class="row certificate-row">
+                    <div class="col-md-12 mb-4">
+                        <div class="position-relative">
+                            <label for="Certificate" class="form-label">Certificate Name*</label>
+                            <input type="text" class="form-control input_text certificate_name" name="certificate_name[]"
+                                placeholder="Enter Your Certificate Name" pattern="[0-9A-Za-z]+" minlength="1" maxlength="100"
+                                value="{{ $certificate['certificate_name'] }}" required />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="position-relative">
+                            <label for="Date Obtained*" class="form-label">Date Obtained*</label>
+                            <img src="/assets/images/calender_icon.png" alt="" class="input_icon">
+                            <input type="date" class="form-control input_text certificate_obtn_date"
+                                name="certificate_obtn_date[]" placeholder="Date"
+                                value="{{ $certificate['certificate_obtn_date'] }}" required />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="position-relative">
+                            <label for="Issuing Registration*" class="form-label">Issuing Registration*</label>
+                            <input type="text" class="form-control input_text certificate_issuing"
+                                name="certificate_issuing[]" placeholder="Enter your Issuing Registration"
+                                pattern="[0-9A-Za-z]+" minlength="1" maxlength="50"
+                                value="{{ $certificate['certificate_issuing'] }}" required />
+                        </div>
+                    </div>
+
+                    @if ($index === 0)
+                    <div class="col-md-12 mb-4">
+                        <button type="button" class="btn btn-success add-row">Add More +</button>
+                    </div>
+                    @else
+                    <div class="col-md-12 mb-4">
+                        <button type="button" class="btn btn-danger remove-row">Remove -</button>
+                    </div>
+                    @endif
+                </div>
+                @endforeach
+            @else
+            <div class="row certificate-row">
+                <div class="col-md-12 mb-4">
                     <div class="position-relative">
                         <label for="Certificate" class="form-label">Certificate Name*</label>
-                        <input type="text" class="form-control input_text" id="Certificate"
-                            name="certificate_name" placeholder="Enter Your Certificatie Name" pattern="[0-9A-Za-z]+"
-                            minlength="1" maxlength="50" value="{{ $user_detail->certificate_name }}" required />
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="position-relative">
-                        <label for="Issuing Registration*" class="form-label">Issuing Registration*</label>
-                        <input type="text" class="form-control input_text" id="Issuing Registration*"
-                            name="certificate_issuing" placeholder="Enter your Issuing Registration"
-                            pattern="[0-9A-Za-z]+" minlength="1" maxlength="50"
-                            value="{{ $user_detail->certificate_issuing }}" required />
+                        <input type="text" class="form-control input_text certificate_name" name="certificate_name[]"
+                            placeholder="Enter Your Certificate Name" pattern="[0-9A-Za-z]+" minlength="1" maxlength="50"
+                            required />
                     </div>
                 </div>
 
@@ -714,13 +789,27 @@
                     <div class="position-relative">
                         <label for="Date Obtained*" class="form-label">Date Obtained*</label>
                         <img src="/assets/images/calender_icon.png" alt="" class="input_icon">
-                        <input type="date" class="form-control input_text" id="Date Obtained*"
-                            name="certificate_obtn_date" placeholder="Date"
-                            value="{{ $user_detail->certificate_obtn_date }}" required />
+                        <input type="date" class="form-control input_text certificate_obtn_date"
+                            name="certificate_obtn_date[]" placeholder="Date" required />
                     </div>
                 </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="position-relative">
+                        <label for="Issuing Registration*" class="form-label">Issuing Registration*</label>
+                        <input type="text" class="form-control input_text certificate_issuing"
+                            name="certificate_issuing[]" placeholder="Enter your Issuing Registration"
+                            pattern="[0-9A-Za-z]+" minlength="1" maxlength="50" required />
+                    </div>
+                </div>
+
+                <div class="col-md-12 mb-4">
+                    <button type="button" class="btn btn-success add-row">Add More +</button>
+                </div>
             </div>
-            <div class="d-flex align-items-center gap-4">
+           @endif
+
+            <div class="d-flex justify-content-end align-items-center gap-4">
                 <div class="blue_btn">
                     <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
                 </div>
@@ -730,8 +819,47 @@
             </div>
         </form>
     </div>
-@endif
 
+@endif
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Add row functionality
+            $(document).on('click', '.add-row', function () {
+                var newRow = $('.certificate-row').first().clone(); // Clone the first row
+                newRow.find('input').val(''); // Clear input values in the cloned row
+                newRow.find('.add-row').remove(); // Remove add button from the cloned row
+                newRow.append('<div class="col-md-12 d-flex gap-3 mb-4"><button type="button" class="btn btn-success add-row">Add More +</button><button type="button" class="btn btn-danger remove-row">Remove</button></div>'); // Add new add and remove buttons
+                $('.certificate-row').last().after(newRow); // Append the cloned row at the end
+            });
+
+            // Remove row functionality
+            $(document).on('click', '.remove-row', function () {
+                if ($('.certificate-row').length > 1) {
+                    $(this).closest('.certificate-row').remove(); // Remove the closest row
+                } else {
+                    alert('At least one row is required.'); // Alert if only one row is left
+                }
+            });
+         // Add row functionality for references
+         $(document).on('click', '.add-reference-row', function () {
+            var newRow = $('.reference-row').first().clone(); // Clone the first row
+            newRow.find('input').val(''); // Clear input values in the cloned row
+            newRow.find('.add-reference-row').remove(); // Remove add button from the cloned row
+            newRow.append('<div class="col-md-12 d-flex gap-3 mb-4"><button type="button" class="btn btn-success add-reference-row">Add More +</button><button type="button" class="btn btn-danger remove-reference-row">Remove</button></div>'); // Add new add and remove buttons
+            $('.reference-row').last().after(newRow); // Append the cloned row at the end
+        });
+
+        // Remove row functionality for references
+        $(document).on('click', '.remove-reference-row', function () {
+            if ($('.reference-row').length > 1) {
+                $(this).closest('.reference-row').remove(); // Remove the closest row
+            } else {
+                alert('At least one reference is required.'); // Alert if only one row is left
+            }
+        });
+        });
+    </script>
 <!--------------------------------------------- certifications-info --------------------------------->
 
 <!--------------------------------------------- preferences-info  --------------------------------->
@@ -741,15 +869,16 @@
     @php
         $user_detail = DB::table('userdetails')
             ->where('user_id', Session::get('temp_user_id'))
-            ->get(['pref_title', 'pref_emp_type', 'pref_industry', 'pref_location', 'pref_salary', 'references'])
+            ->get(['pref_title', 'pref_emp_type', 'pref_industry', 'pref_location', 'pref_salary', 'references','work_authorization_status', 'availability', 'notice_period'])
             ->first();
 
         $references_from = DB::table('references_from')->where('status', '1')->get();
-    @endphp
 
+        $references_data = json_decode($user_detail->references, true);
+    @endphp
     <div id="availibility_one" class="register_width">
-        <div class="heading mb-4">
-            <h2>Availability and Preferences</h2>
+        <div class="heading mt-4">
+            <h2>Availability</h2>
         </div>
         <form id="preferences-info" action="{{ url(route('account.create', ['param' => 'preferences-info'])) }}"
             method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
@@ -794,21 +923,123 @@
                         <input type="text" class="form-control input_text" id="Expected Salary*"
                             name="pref_salary" placeholder="Enter Your Expected Salary" pattern="[A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $user_detail->pref_salary }}" required />
+                    </div>  
+                </div>
+                <div class="heading mt-4">
+                    <h2>Reference</h2>
+                </div>
+                @if (!empty($references_data))
+                    @foreach($references_data as $index => $reference)
+                    <div class="row reference-row">
+                        <div class="col-md-6 mb-4">
+                            <div class="position-relative">
+                                <label for="name" class="form-label">Name *</label>
+                                <input type="text" class="form-control input_text reference_name" name="reference_name[]"
+                                    placeholder="Enter Your Name" pattern="[A-Za-z]+" minlength="1" maxlength="20"
+                                    value="{{ $reference['reference_name'] }}" required />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="position-relative">
+                                <label for="Phone" class="form-label">Phone*</label>
+                                <input type="text" class="form-control input_text reference_phone" name="reference_phone[]"
+                                    placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10" maxlength="16"
+                                    value="{{ $reference['reference_phone'] }}" required />
+                            </div>
+                        </div>
+
+                        @if ($index === 0)
+                        <div class="col-md-12 mb-3">
+                            <button type="button" class="btn btn-success add-reference-row">Add More +</button>
+                        </div>
+                        @else
+                        <div class="col-md-12 mb-3">
+                            <button type="button" class="btn btn-danger remove-reference-row">Remove -</button>
+                        </div>
+                        @endif
+                    </div>
+                    @endforeach
+                @else
+                <div class="row reference-row">
+                    <div class="col-md-6 mb-4">
+                        <div class="position-relative">
+                            <label for="name" class="form-label">Name *</label>
+                            <input type="text" class="form-control input_text" id="name" name="reference_name[]"
+                                placeholder="Enter Your Name" pattern="[A-Za-z]+" minlength="1" maxlength="20" required />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="position-relative">
+                            <label for="Phone" class="form-label">Phone*</label>
+                            <input type="text" class="form-control input_text" id="Phone" name="reference_phone[]"
+                                placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10" maxlength="16"
+                                required />
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <button type="button" class="btn btn-success add-reference-row">Add More +</button>
                     </div>
                 </div>
-
+                @endif
+                {{--
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="References*" class="form-label">References*</label>
                         <select class="select2 form-select input_select" aria-label="Default select example" id="References*"
-                            name="references[]" multiple required>
-                            <option value="">Select References</option>
-                            @foreach ($references_from as $row)
-                                <option value="{{ $row->id }}"
-                                    @if(in_array($row->id, json_decode($user_detail->references, true))) selected @endif>
-                                    {{ ucfirst($row->name) }}
-                                </option>
-                            @endforeach
+                        name="references[]" multiple required>
+                        <option value="">Select References</option>
+                        @foreach ($references_from as $row)
+                            <option value="{{ $row->id }}"
+                            @if(in_array($row->id, json_decode($user_detail->references, true))) selected @endif>
+                            {{ ucfirst($row->name) }}
+                        </option>
+                        @endforeach
+                    </select>
+                    </div>
+                </div>
+                --}}
+
+            </div>
+            <div class="heading mt-4">
+                <h2>Work Authorization</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="position-relative">
+                        <label for="Legal Authorization to work status*" class="form-label">Legal
+                            Authorization to work status*</label>
+                        <select class="form-select form-control input_select" aria-label="Default select example"
+                            id="Legal Authorization to work status*" name="work_authorization_status" required>
+                            <option value="">Select work status</option>
+                            <option value="1" @if ($user_detail->work_authorization_status == 1) selected @endif>Yes</option>
+                            <option value="0" @if ($user_detail->work_authorization_status == 0) selected @endif>No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="position-relative">
+                        <label for="Availability" class="form-label">Availability
+                        </label>
+                        <select class="form-select form-control input_select" aria-label="Default select example"
+                            id="Availability" name="availability" required>
+                            <option value="">Select Availability</option>
+                            <option value="1" @if ($user_detail->availability == 1) selected @endif>Yes</option>
+                            <option value="0" @if ($user_detail->availability == 0) selected @endif>No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="position-relative">
+                        <label for="Notice Period" class="form-label">Notice Period
+                        </label>
+                        <select class="form-select form-control input_select" aria-label="Default select example"
+                            id="Notice Period" name="notice_period" required>
+                            <option value="">Select Notice Period</option>
+                            <option value="1" @if ($user_detail->notice_period == 1) selected @endif>Yes</option>
+                            <option value="1" @if ($user_detail->notice_period == 0) selected @endif>No</option>
                         </select>
                     </div>
                 </div>
@@ -829,7 +1060,7 @@
 
 <!--------------------------------------------- work-authorization-info  --------------------------------->
 
-@if (!Session::has('step') || Session::get('step') == 6)
+@if (!Session::has('step') || Session::get('step') == 0)
     @php
         $user_detail = DB::table('userdetails')
             ->where('user_id', Session::get('temp_user_id'))
@@ -899,7 +1130,7 @@
 
 <!--------------------------------------------- social-media-info  --------------------------------->
 
-@if (!Session::has('step') || Session::get('step') == 7)
+@if (!Session::has('step') || Session::get('step') == 6)
     @php
         $user_detail = DB::table('userdetails')
             ->where('user_id', Session::get('temp_user_id'))
@@ -980,7 +1211,7 @@
 
 <!--------------------------------------------- Proceeding  --------------------------------->
 
-@if (!Session::has('step') || Session::get('step') == 8)
+@if (!Session::has('step') || Session::get('step') == 7)
     <div id="work_autho"  class="register_width">
         <div class="heading mb-4">
             <h2>Proceeding</h2>

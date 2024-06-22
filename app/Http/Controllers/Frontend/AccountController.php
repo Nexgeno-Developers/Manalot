@@ -283,7 +283,7 @@ class AccountController extends Controller
             Session::put('temp_user_id', $userId);
         }
 
-        Session::put('password', $request->input('password'));
+        // Session::put('password', $request->input('password'));
         Session::put('step', 2);
 
 
@@ -409,6 +409,8 @@ class AccountController extends Controller
             'wrk_exp_responsibilities' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&\-\(\)\[\]]+$/i', 'min:3'],
             // 'resume_cv' => 'nullable|mimes:pdf|max:5120',
             'skill' => 'required',
+            'employed' => 'nullable|string', // Assuming 'Employed' is nullable string
+            'experience_letter' => 'nullable|file|mimes:pdf,doc,docx,application/msword,image/webp|max:2048', // adjust max file size as needed
         ], [
             'wrk_exp_company_name.required' => 'The Company Name is required.',
             'wrk_exp_company_name.regex' => 'The Company Name format is invalid.',
@@ -453,8 +455,26 @@ class AccountController extends Controller
         // }
 
 
+    // Validate and store the uploaded file
+    // if ($request->hasFile('experience_letter') && $request->file('experience_letter')->isValid()) {
+    //     $path = $request->file('experience_letter')->store('user_data/experience_letters', 'public');
+    // } 
+    // else {
+    //     $path = null;
+    // }
+        // Retrieve user details from database
+        $userDetail = DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->first();
+
+        // Handle file upload for experience letter
+        if ($request->hasFile('experience_letter') && $request->file('experience_letter')->isValid()) {
+            $path = $request->file('experience_letter')->store('user_data/experience_letters', 'public');
+        } else {
+            // Check if existing path should be retained or set to null
+            $path = $userDetail ? $userDetail->experience_letter : null;
+        }
 
         DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
+            'wrk_exp_company_name' => $request->input('wrk_exp_company_name'),
             'wrk_exp_years' => $request->input('wrk_exp_years'),
             // 'job_title' => $request->input('job_title'),
             'industry' => $request->input('industry'),
@@ -462,7 +482,10 @@ class AccountController extends Controller
             // 'resume_cv' => $path,
             'skill' => json_encode($request->input('skill')),
             'wrk_exp_responsibilities' => $request->input('wrk_exp_responsibilities'),
-            'wrk_exp_company_name' => $request->input('wrk_exp_company_name'),
+            
+            'employed' => $request->has('Employed') ? 'yes' : 'no',
+            'experience_letter' => $path,
+
         ]);
 
         DB::table('users')->where('id', Session::get('temp_user_id'))->update([
@@ -565,7 +588,7 @@ class AccountController extends Controller
             'edu_clg_name' => 'required',
             'edu_graduation_year' => 'required',
             'edu_field' => 'required',
-            'edu_cgpa' => 'required',
+            //'edu_cgpa' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -575,11 +598,28 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
+        // Combine the form data into an array
+        $certificate_data = [];
+        $certificate_names = $request->input('certificate_name');
+        $certificate_dates = $request->input('certificate_obtn_date');
+        $certificate_issuings = $request->input('certificate_issuing');
+
+        for ($i = 0; $i < count($certificate_names); $i++) {
+            $certificate_data[] = [
+                'certificate_name' => $certificate_names[$i],
+                'certificate_obtn_date' => $certificate_dates[$i],
+                'certificate_issuing' => $certificate_issuings[$i],
+            ];
+        }
+
+
+
         $result = DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
-            'certificate_name' => $request->input('certificate_name'),
-            'certificate_issuing' => $request->input('certificate_issuing'),
-            'certificate_obtn_date' => $request->input('certificate_obtn_date'),
+            // 'certificate_name' => $request->input('certificate_name'),
+            // 'certificate_issuing' => $request->input('certificate_issuing'),
+            // 'certificate_obtn_date' => $request->input('certificate_obtn_date'),
             
+            'certificate_data' => json_encode($certificate_data),
             'edu_degree' => $request->input('edu_degree'),
             'edu_clg_name' => $request->input('edu_clg_name'),
             'edu_graduation_year' => $request->input('edu_graduation_year'),
@@ -614,7 +654,12 @@ class AccountController extends Controller
             'pref_industry' => ['required', 'min:1', 'max:50'],
             'pref_location' => ['required', 'min:1', 'max:50'],
             'pref_salary' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:1', 'max:100'],
-            'references' => 'required',
+            'reference_name' => 'required',
+            'reference_phone' => 'required',
+
+            'work_authorization_status' => 'required',
+            'availability' => 'required',
+            'notice_period' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -624,21 +669,39 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
+        // Combine the form data into an array
+        $references_data = [];
+        $reference_name = $request->input('reference_name');
+        $reference_phone = $request->input('reference_phone');
+
+        for ($i = 0; $i < count($reference_name); $i++) {
+            $references_data[] = [
+                'reference_name' => $reference_name[$i],
+                'reference_phone' => $reference_phone[$i],
+            ];
+        }
+
+
+
         $result =  DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
             'pref_title' => $request->input('pref_title'),
             'pref_emp_type' => $request->input('pref_emp_type'),
             'pref_industry' => $request->input('pref_industry'),
             'pref_location' => $request->input('pref_location'),
             'pref_salary' => $request->input('pref_salary'),
-            'references' => json_encode($request->input('references')),
+            'references' => json_encode($references_data),
+
+            'work_authorization_status' => $request->input('work_authorization_status'),
+            'availability' => $request->input('availability'),
+            'notice_period' => $request->input('notice_period'),
         ]);
 
 
         DB::table('users')->where('id', Session::get('temp_user_id'))->update([
-            'step' =>  8,
+            'step' =>  5,
         ]);
 
-        Session::put('step', 9);
+        Session::put('step', 6);
 
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "User Preferences Detail Added successfully. Please Proceed";
@@ -648,7 +711,7 @@ class AccountController extends Controller
 
     }
 
-
+    // =================== Not working code ====================
     public function create_work_authorization_info($request){
 
         $validator = Validator::make($request->all(), [
@@ -682,6 +745,7 @@ class AccountController extends Controller
         return $rsp_msg;
 
     }
+    // =================== Not working code ====================
 
     public function create_social_media_info($request){
 
@@ -714,10 +778,10 @@ class AccountController extends Controller
         ]);
 
         DB::table('users')->where('id', Session::get('temp_user_id'))->update([
-            'step' =>  10,
+            'step' =>  6,
         ]);
 
-        Session::put('step', 11);
+        Session::put('step', 7);
 
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "User Social Media Detail Added successfully. Please Proceed";

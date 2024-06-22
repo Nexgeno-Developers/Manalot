@@ -58,7 +58,7 @@ class UserController extends Controller
     
     
         // Paginate the results
-        $users = $query->paginate(2); // Adjust the number per page as needed
+        $users = $query->paginate(10); // Adjust the number per page as needed
     
         return view('backend.pages.user.index', compact('users'));
     }

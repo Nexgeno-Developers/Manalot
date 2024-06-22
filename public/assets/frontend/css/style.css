@@ -925,7 +925,7 @@ input.h_input::placeholder {
 }
 
 .register_width .col-md-6.mb-4:nth-child(even) {
-    padding-left: 40px;
+    /* padding-left: 40px; */
 }
 
 /** footer open **/
