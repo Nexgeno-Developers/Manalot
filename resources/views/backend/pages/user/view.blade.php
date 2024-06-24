@@ -234,7 +234,7 @@
             --}}    
 
       
-
+{{--
             <div class="row">
             <h3>Certifications</h3>
                 <div class="col-sm-4">
@@ -253,8 +253,8 @@
                     </div>
                 </div>
             </div>
-            
             <hr class="mb-4">
+            --}}
 
             <div class="row">
                 <h3>Availability and Preferences</h3>
@@ -283,6 +283,7 @@
                         <b>Expected Salary : </b> <p>{{ $usersdetails->pref_salary }}</p>
                     </div>
                 </div>
+                {{--
                 @isset($references)
                 <div class="col-sm-4">
                     <div class="form-group mb-3">
@@ -297,6 +298,8 @@
                     </div>
                 </div>
                 @endisset
+                --}}
+
                 {{--
                 @isset($references_from->name)
                 <div class="col-sm-4">
