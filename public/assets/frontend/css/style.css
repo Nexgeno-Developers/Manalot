@@ -162,12 +162,13 @@ p.divider {
 
 .blue_btn a {
     border-radius: 40px;
-    font-size: 18px;
+    font-size: 15px;
     background: linear-gradient(2.17deg, #327192 30.94%, #0C3873 69.79%);
     font-weight: 400;
-    padding: 2px 33px 5px 33px;
+    padding: 7px 33px 8px 33px;
     line-height: 24px;
     text-align: center;
+    cursor: pointer;
 }
 
 .bluegradian_bg {
@@ -826,9 +827,13 @@ footer b {
     font-weight: 600;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
+/* input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
     -webkit-appearance: none;
+} */
+
+textarea.form-control {
+    height: 60px;
 }
 
 span.select2.select2-container.select2-container--default.select2-container--below.select2-container--focus li.select2-search.select2-search--inline {
@@ -920,9 +925,9 @@ input.h_input::placeholder {
     color: #7A7878;
 }
 
-.register_width .col-md-6.mb-4:nth-child(odd) {
+/* .register_width .col-md-6.mb-4:nth-child(odd) {
     padding-right: 40px;
-}
+} */
 
 .register_width .col-md-6.mb-4:nth-child(even) {
     /* padding-left: 40px; */
@@ -1123,9 +1128,59 @@ div#personal-details {
 }
 
 #availibility_one {
-    margin-top: -100px;
+    margin-top: -30px;
+    padding-bottom: 70px;
 }
 
 #work_autho {
     margin-top: -100px;
+}
+
+.currently_work {
+    text-align: right;
+    padding-top: 37px;
+}
+
+button.btn.btn-success.add-row {
+    color: #901D56;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    text-decoration: underline;
+}
+
+
+button.btn.btn-success.add-reference-row {
+    color: #901D56;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    text-decoration: underline;
+}
+
+button.btn.btn-danger.remove-reference-row {
+    color: #0c3873;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    text-decoration: underline;
+}
+
+button.btn.btn-danger.remove-row {
+    color: #0c3873;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    text-decoration: underline;
+
+}
+
+.btn-check:focus+.btn-success,
+.btn-success:focus {
+    box-shadow: none !important;
+}
+
+.btn-check:focus+.btn-danger,
+.btn-danger:focus {
+    box-shadow: none !important;
 }
