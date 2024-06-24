@@ -352,7 +352,7 @@
             if (postalCode.length > 0) {
                 typingTimer = setTimeout(function () {
                     $.ajax({
-                        url: 'http://api.geonames.org/postalCodeSearchJSON',
+                        url: 'https://secure.geonames.org/postalCodeSearchJSON',
                         dataType: 'json',
                         data: {
                             postalcode: postalCode,
