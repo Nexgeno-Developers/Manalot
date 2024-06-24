@@ -257,9 +257,9 @@
             </div>
             --}}
             @if (!empty($certificate_data))
-                @foreach($certificate_data as $index => $certificate)
-                    <div class="row">
-                    <h3>Certifications</h3>
+                <div class="row">
+                <h3>Certifications</h3>
+                    @foreach($certificate_data as $index => $certificate)
                         <div class="col-sm-4">
                             <div class="form-group mb-3">
                                 <b>Certificate Name : </b> <p>{{ $certificate['certificate_name'] }}</p>
@@ -275,8 +275,8 @@
                                 <b>Certificate Issuing : </b> <p>{{ $certificate['certificate_issuing'] }}</p>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             @endif
 
             <hr class="mb-4">
