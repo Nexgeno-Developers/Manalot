@@ -184,7 +184,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Date" class="form-label">Date of Birth*</label>
-                        <img src="/assets/images/calender_icon.png" alt="" class="input_icon">
+                        <!-- <img src="/assets/images/calender_icon.png" alt="" class="input_icon"> -->
                         <input type="date" class="form-control input_text" id="Date" name="dob"
                             placeholder="Date" value="{{ $user_detail->dob }}" required />
                     </div>
@@ -259,7 +259,7 @@
                             minlength="5" maxlength="250" name="address" placeholder="Enter your Address"
                             value="{{ $user_detail->address }}" required /> --}}
 
-                        <textarea class="form-control" rows="4" cols="45" name="address" pattern="[0-9A-Za-z]+" placeholder="Address" required>{{ $user_detail->address }}</textarea>
+                        <textarea class="form-control" rows="3" cols="45" name="address" pattern="[0-9A-Za-z]+" placeholder="Address" required>{{ $user_detail->address }}</textarea>
 
                     </div>
                 </div>
@@ -267,7 +267,7 @@
 
             </div>
             <div>
-                <div class="purple_btn">
+                <div class="purple_btn text-end">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
                 </div>
             </div>
@@ -475,7 +475,31 @@
                     </div>
                 </div>
 
-                <div class="col-md-12 mb-4">
+               
+
+               
+                <div class="col-md-6 mb-4">
+                    <div class="position-relative">
+                        <label for="formFile" class="form-label">Upload Experience Letter</label>
+                        <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
+                        <input class="form-control" type="file" id="formFile" name="experience_letter" accept=".pdf,.doc,.docx,application/msword,image/*,.webp" />
+                        <img src="images/file.png" alt="" class="input_icon" />
+                    </div>
+                    @if ($user_detail->experience_letter)
+                        <div class="mt-2">
+                            <a href="{{ asset('storage/' . $user_detail->experience_letter) }}" class="btn btn-primary" target="_blank">View Experience Letter</a>
+                        </div>
+                    @endif
+                </div>
+
+                 <div class="col-md-6 mb-4">
+                    <div class="option currently_work">
+                            <input type="checkbox" id="yes" name="Employed" value="yes"  @if(isset($user_detail) && $user_detail->employed == 'yes') checked @endif>
+                            <label for="yes" class="form-label">Currently Employed</label>
+                    </div>                    
+                </div>
+
+                 <div class="col-md-12 mb-4">
                     <div class="position-relative">
                         <label for="skills" class="form-label">Skills*</label>
                         <select class="select2 form-select form-control input_select" aria-label="Default select example" id="skills"
@@ -492,30 +516,11 @@
                     </div>
                 </div>
 
-
-                <div class="col-md-12 mb-4">
+                <div class="col-md-12">
                 <label for="Responsibilities" class="form-label">Responsibilities/Achievements</label>
                     <textarea class="form-control" rows="4" cols="45" name="wrk_exp_responsibilities" placeholder="Message" required>{{ $user_detail->wrk_exp_responsibilities }}</textarea>
                 </div>
-                <div class="col-md-6 mb-4">
-                    <div class="option">
-                            <input type="checkbox" id="yes" name="Employed" value="yes"  @if(isset($user_detail) && $user_detail->employed == 'yes') checked @endif>
-                            <label for="yes" class="form-label">Currently Employed</label>
-                    </div>                    
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="position-relative">
-                        <label for="formFile" class="form-label">Upload Experience Letter</label>
-                        <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
-                        <input class="form-control" type="file" id="formFile" name="experience_letter" accept=".pdf,.doc,.docx,application/msword,image/*,.webp" />
-                        <img src="images/file.png" alt="" class="input_icon" />
-                    </div>
-                    @if ($user_detail->experience_letter)
-                        <div class="mt-2">
-                            <a href="{{ asset('storage/' . $user_detail->experience_letter) }}" class="btn btn-primary" target="_blank">View Experience Letter</a>
-                        </div>
-                    @endif
-                </div>
+                
             </div>
             <div class="d-flex justify-content-end align-items-center gap-4">
                 <div class="blue_btn">
@@ -728,7 +733,7 @@
                     </div>
                 </div>
             </div>
-            <div class="heading mb-4">
+            <div class="heading">
                 <h2>Certifications</h2>
             </div>
             @if (!empty($certificate_data))
@@ -746,7 +751,7 @@
                     <div class="col-md-6 mb-4">
                         <div class="position-relative">
                             <label for="Date Obtained*" class="form-label">Date Obtained*</label>
-                            <img src="/assets/images/calender_icon.png" alt="" class="input_icon">
+                            
                             <input type="date" class="form-control input_text certificate_obtn_date"
                                 name="certificate_obtn_date[]" placeholder="Date"
                                 value="{{ $certificate['certificate_obtn_date'] }}" required />
@@ -788,7 +793,6 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Date Obtained*" class="form-label">Date Obtained*</label>
-                        <img src="/assets/images/calender_icon.png" alt="" class="input_icon">
                         <input type="date" class="form-control input_text certificate_obtn_date"
                             name="certificate_obtn_date[]" placeholder="Date" required />
                     </div>
@@ -803,7 +807,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-12 mb-4">
+                <div class="col-md-12">
                     <button type="button" class="btn btn-success add-row">Add More +</button>
                 </div>
             </div>
@@ -829,7 +833,7 @@
                 var newRow = $('.certificate-row').first().clone(); // Clone the first row
                 newRow.find('input').val(''); // Clear input values in the cloned row
                 newRow.find('.add-row').remove(); // Remove add button from the cloned row
-                newRow.append('<div class="col-md-12 d-flex gap-3 mb-4"><button type="button" class="btn btn-success add-row">Add More +</button><button type="button" class="btn btn-danger remove-row">Remove</button></div>'); // Add new add and remove buttons
+                newRow.append('<div class="col-md-12 d-flex gap-3 mb-4"><button type="button" class="btn btn-success add-row">Add More +</button><button type="button" class="btn btn-danger remove-row">Remove -</button></div>'); // Add new add and remove buttons
                 $('.certificate-row').last().after(newRow); // Append the cloned row at the end
             });
 
@@ -846,7 +850,7 @@
             var newRow = $('.reference-row').first().clone(); // Clone the first row
             newRow.find('input').val(''); // Clear input values in the cloned row
             newRow.find('.add-reference-row').remove(); // Remove add button from the cloned row
-            newRow.append('<div class="col-md-12 d-flex gap-3 mb-4"><button type="button" class="btn btn-success add-reference-row">Add More +</button><button type="button" class="btn btn-danger remove-reference-row">Remove</button></div>'); // Add new add and remove buttons
+            newRow.append('<div class="col-md-12 d-flex gap-3 mb-4"><button type="button" class="btn btn-success add-reference-row">Add More +</button><button type="button" class="btn btn-danger remove-reference-row">Remove - </button></div>'); // Add new add and remove buttons
             $('.reference-row').last().after(newRow); // Append the cloned row at the end
         });
 
@@ -877,7 +881,7 @@
         $references_data = json_decode($user_detail->references, true);
     @endphp
     <div id="availibility_one" class="register_width">
-        <div class="heading mt-4">
+        <div class="heading mt-4 mb-4">
             <h2>Availability</h2>
         </div>
         <form id="preferences-info" action="{{ url(route('account.create', ['param' => 'preferences-info'])) }}"
@@ -925,13 +929,13 @@
                             minlength="1" maxlength="50" value="{{ $user_detail->pref_salary }}" required />
                     </div>  
                 </div>
-                <div class="heading mt-4">
+                <div class="heading mt-4 mb-4">
                     <h2>Reference</h2>
                 </div>
                 @if (!empty($references_data))
                     @foreach($references_data as $index => $reference)
                     <div class="row reference-row">
-                        <div class="col-md-6 mb-4">
+                        <div class="col-md-6 mb-3">
                             <div class="position-relative">
                                 <label for="name" class="form-label">Name *</label>
                                 <input type="text" class="form-control input_text reference_name" name="reference_name[]"
@@ -940,7 +944,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6 mb-4">
+                        <div class="col-md-6 mb-3">
                             <div class="position-relative">
                                 <label for="Phone" class="form-label">Phone*</label>
                                 <input type="text" class="form-control input_text reference_phone" name="reference_phone[]"
@@ -950,11 +954,11 @@
                         </div>
 
                         @if ($index === 0)
-                        <div class="col-md-12 mb-3">
+                        <div class="col-md-12 mb-4">
                             <button type="button" class="btn btn-success add-reference-row">Add More +</button>
                         </div>
                         @else
-                        <div class="col-md-12 mb-3">
+                        <div class="col-md-12 mb-4">
                             <button type="button" class="btn btn-danger remove-reference-row">Remove -</button>
                         </div>
                         @endif
@@ -962,7 +966,7 @@
                     @endforeach
                 @else
                 <div class="row reference-row">
-                    <div class="col-md-6 mb-4">
+                    <div class="col-md-6 mb-3">
                         <div class="position-relative">
                             <label for="name" class="form-label">Name *</label>
                             <input type="text" class="form-control input_text" id="name" name="reference_name[]"
@@ -970,7 +974,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 mb-4">
+                    <div class="col-md-6 mb-3">
                         <div class="position-relative">
                             <label for="Phone" class="form-label">Phone*</label>
                             <input type="text" class="form-control input_text" id="Phone" name="reference_phone[]"
@@ -979,7 +983,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12 mb-3">
+                    <div class="col-md-12 mb-4">
                         <button type="button" class="btn btn-success add-reference-row">Add More +</button>
                     </div>
                 </div>
