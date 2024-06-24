@@ -45,7 +45,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
-                        <label for="formFile" class="form-label">Upload Resume</label>
+                        <label for="formFile" class="form-label">Upload Resume*</label>
                         <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
                         <input class="form-control" type="file" id="formFile" name="resume_cv" accept=".pdf"
                             required />
@@ -764,11 +764,11 @@
                     </div>
 
                     @if ($index === 0)
-                    <div class="col-md-12 mb-4">
+                    <div class="col-md-12">
                         <button type="button" class="btn btn-success add-row">Add More +</button>
                     </div>
                     @else
-                    <div class="col-md-12 mb-4">
+                    <div class="col-md-12">
                         <button type="button" class="btn btn-danger remove-row">Remove -</button>
                     </div>
                     @endif
@@ -820,45 +820,7 @@
     </div>
 
 @endif
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Add row functionality
-            $(document).on('click', '.add-row', function () {
-                var newRow = $('.certificate-row').first().clone(); // Clone the first row
-                newRow.find('input').val(''); // Clear input values in the cloned row
-                newRow.find('.add-row').remove(); // Remove add button from the cloned row
-                newRow.append('<div class="col-md-12 d-flex gap-3 mb-4"><button type="button" class="btn btn-success add-row">Add More +</button><button type="button" class="btn btn-danger remove-row">Remove</button></div>'); // Add new add and remove buttons
-                $('.certificate-row').last().after(newRow); // Append the cloned row at the end
-            });
 
-            // Remove row functionality
-            $(document).on('click', '.remove-row', function () {
-                if ($('.certificate-row').length > 1) {
-                    $(this).closest('.certificate-row').remove(); // Remove the closest row
-                } else {
-                    alert('At least one row is required.'); // Alert if only one row is left
-                }
-            });
-         // Add row functionality for references
-         $(document).on('click', '.add-reference-row', function () {
-            var newRow = $('.reference-row').first().clone(); // Clone the first row
-            newRow.find('input').val(''); // Clear input values in the cloned row
-            newRow.find('.add-reference-row').remove(); // Remove add button from the cloned row
-            newRow.append('<div class="col-md-12 d-flex gap-3 mb-4"><button type="button" class="btn btn-success add-reference-row">Add More +</button><button type="button" class="btn btn-danger remove-reference-row">Remove</button></div>'); // Add new add and remove buttons
-            $('.reference-row').last().after(newRow); // Append the cloned row at the end
-        });
-
-        // Remove row functionality for references
-        $(document).on('click', '.remove-reference-row', function () {
-            if ($('.reference-row').length > 1) {
-                $(this).closest('.reference-row').remove(); // Remove the closest row
-            } else {
-                alert('At least one reference is required.'); // Alert if only one row is left
-            }
-        });
-        });
-    </script>
 <!--------------------------------------------- certifications-info --------------------------------->
 
 <!--------------------------------------------- preferences-info  --------------------------------->
@@ -924,12 +886,12 @@
                             minlength="1" maxlength="50" value="{{ $user_detail->pref_salary }}" required />
                     </div>  
                 </div>
-                <div class="heading mt-4 mb-4">
+                <div class="heading mt-4">
                     <h2>Reference</h2>
                 </div>
                 @if (!empty($references_data))
                     @foreach($references_data as $index => $reference)
-                    <div class="row reference-row">
+                    <div class="row reference-row mt-4">
                         <div class="col-md-6 mb-3">
                             <div class="position-relative">
                                 <label for="name" class="form-label">Name *</label>
@@ -949,18 +911,18 @@
                         </div>
 
                         @if ($index === 0)
-                        <div class="col-md-12 mb-4">
+                        <div class="col-md-12">
                             <button type="button" class="btn btn-success add-reference-row">Add More +</button>
                         </div>
                         @else
-                        <div class="col-md-12 mb-4">
+                        <div class="col-md-12">
                             <button type="button" class="btn btn-danger remove-reference-row">Remove -</button>
                         </div>
                         @endif
                     </div>
                     @endforeach
                 @else
-                <div class="row reference-row">
+                <div class="row reference-row mt-4">
                     <div class="col-md-6 mb-3">
                         <div class="position-relative">
                             <label for="name" class="form-label">Name *</label>
@@ -978,7 +940,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12 mb-4">
+                    <div class="col-md-12">
                         <button type="button" class="btn btn-success add-reference-row">Add More +</button>
                     </div>
                 </div>
@@ -1006,7 +968,7 @@
                 <h2>Work Authorization</h2>
             </div>
             <div class="row">
-                <div class="col-md-4 mb-4">
+                <div class="col-md-5">
                     <div class="position-relative">
                         <label for="Legal Authorization to work status*" class="form-label">Legal
                             Authorization to work status*</label>
@@ -1018,7 +980,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4">
                     <div class="position-relative">
                         <label for="Availability" class="form-label">Availability
                         </label>
@@ -1030,7 +992,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-3">
                     <div class="position-relative">
                         <label for="Notice Period" class="form-label">Notice Period
                         </label>
@@ -1043,7 +1005,7 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex align-items-center gap-4">
+            <div class="d-flex align-items-center gap-4 text-end justify-content-end">
                 <div class="blue_btn">
                     <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
                 </div>
@@ -1185,7 +1147,7 @@
                         <img src="images/facebook.png" alt="" class="input_icon" />
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
+                <div class="col-md-12">
                     <div class="position-relative">
                         <label for="others" class="form-label">Others</label>
                         <input type="url" class="form-control input_text" id="others"
@@ -1194,7 +1156,7 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex align-items-center gap-4">
+            <div class="d-flex align-items-center gap-4 justify-content-end">
                 <div class="blue_btn">
                     <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
                 </div>
