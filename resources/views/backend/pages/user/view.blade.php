@@ -201,6 +201,17 @@
                     <b>Work Responsibility : </b> <p>{{ $usersdetails->wrk_exp_responsibilities }}</p>
                 </div>
             </div>
+            <div class="col-sm-4">
+                <div class="form-group mb-3">
+                    <b>Currently Employed : </b> <p>{{ $usersdetails->employed }}</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group mb-3">
+                    <b>Uploaded Experience Letter : </b> 
+                    <a target="_blank" href="{{ asset('storage/' . $usersdetails->experience_letter) }}" class="btn btn-success main_button">View Experience Letter</a>
+                </div>
+            </div>
         </div>
 
         <hr class="mb-4">
@@ -285,7 +296,7 @@
 
             <hr class="mb-4">
 
-            <div class="row">
+            <div class="row mb-4">
                 <h3>Availability and Preferences</h3>
                 <div class="col-sm-4">
                     <div class="form-group mb-3">
@@ -313,26 +324,7 @@
                     </div>
                 </div>
 
-                @if (!empty($references_data))
-                    <h3>Reference</h3>
-                    @foreach($references_data as $index => $reference)
-                        <div class="row reference-row">
-                            <div class="col-sm-1">
-                                <h5>{{ $index + 1 }}</h5>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group mb-3">
-                                    <b>Reference Name : </b> <p>{{ $reference['reference_name'] }}</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group mb-3">
-                                    <b>Reference Phone : </b> <p>{{ $reference['reference_phone'] }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                @endif
+
 
                 {{--
                 @isset($references)
@@ -362,10 +354,31 @@
                 --}}
             </div>
 
-            <div class="row">
-            <h3>Work Authorization</h3>
-            
-           
+            <div class="row mb-4">
+                @if (!empty($references_data))
+                    <h3>Reference</h3>
+                    @foreach($references_data as $index => $reference)
+                        <div class="row reference-row">
+                            <div class="col-sm-1">
+                                <h5>{{ $index + 1 }}</h5>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group mb-3">
+                                    <b>Reference Name : </b> <p>{{ $reference['reference_name'] }}</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group mb-3">
+                                    <b>Reference Phone : </b> <p>{{ $reference['reference_phone'] }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                @endif
+            </div>
+
+            <div class="row mb-4">
+                <h3>Work Authorization</h3>
                 <div class="col-sm-4">
                     <div class="form-group mb-3">
                         <b>Legal Authorization to work status : </b> 
