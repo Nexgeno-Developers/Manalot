@@ -226,6 +226,8 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="country_name" class="form-label">Country*</label>
+                        <input type="text" class="form-control input_text" id="country_name" name="country" placeholder="Enter Your country" readonly required />
+                        {{--
                         <select class="form-select form-control  input_select" aria-label="Default select example"
                             id="country_name" name="country">
                             <option value="">Select Country</option>
@@ -234,11 +236,14 @@
                                     {{ ucfirst($row->name) }}</option>
                             @endforeach
                         </select>
+                        --}}
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="State" class="form-label">State*</label>
+                        <input type="text" class="form-control input_text" id="state" name="State" placeholder="Enter Your State" readonly required />
+                        {{--
                         <select class="form-select form-control  input_select" aria-label="Default select example" id="State"
                             name="state">
                             <option value="">Select State</option>
@@ -248,6 +253,7 @@
                                 </option>
                             @endforeach
                         </select>
+                        --}}
                     </div>
                 </div>
 
@@ -527,17 +533,6 @@
             </div>
         </form>
     </div>
-    <script>
-    // JavaScript to allow only one checkbox to be checked at a time
-    function selectOnlyOneCheckbox(checkbox) {
-        var checkboxes = document.getElementsByName('choice');
-        checkboxes.forEach(function(currentCheckbox) {
-            if (currentCheckbox !== checkbox) {
-                currentCheckbox.checked = false;
-            }
-        });
-    }
-</script>
 @endif
 
 <!--------------------------------------------- personal work info --------------------------------->
@@ -821,45 +816,6 @@
     </div>
 
 @endif
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Add row functionality
-            $(document).on('click', '.add-row', function () {
-                var newRow = $('.certificate-row').first().clone(); // Clone the first row
-                newRow.find('input').val(''); // Clear input values in the cloned row
-                newRow.find('.add-row').remove(); // Remove add button from the cloned row
-                newRow.append('<div class="col-md-12 d-flex gap-3 mb-4"><button type="button" class="btn btn-success add-row">Add More +</button><button type="button" class="btn btn-danger remove-row">Remove</button></div>'); // Add new add and remove buttons
-                $('.certificate-row').last().after(newRow); // Append the cloned row at the end
-            });
-
-            // Remove row functionality
-            $(document).on('click', '.remove-row', function () {
-                if ($('.certificate-row').length > 1) {
-                    $(this).closest('.certificate-row').remove(); // Remove the closest row
-                } else {
-                    alert('At least one row is required.'); // Alert if only one row is left
-                }
-            });
-         // Add row functionality for references
-         $(document).on('click', '.add-reference-row', function () {
-            var newRow = $('.reference-row').first().clone(); // Clone the first row
-            newRow.find('input').val(''); // Clear input values in the cloned row
-            newRow.find('.add-reference-row').remove(); // Remove add button from the cloned row
-            newRow.append('<div class="col-md-12 d-flex gap-3 mb-4"><button type="button" class="btn btn-success add-reference-row">Add More +</button><button type="button" class="btn btn-danger remove-reference-row">Remove</button></div>'); // Add new add and remove buttons
-            $('.reference-row').last().after(newRow); // Append the cloned row at the end
-        });
-
-        // Remove row functionality for references
-        $(document).on('click', '.remove-reference-row', function () {
-            if ($('.reference-row').length > 1) {
-                $(this).closest('.reference-row').remove(); // Remove the closest row
-            } else {
-                alert('At least one reference is required.'); // Alert if only one row is left
-            }
-        });
-        });
-    </script>
 <!--------------------------------------------- certifications-info --------------------------------->
 
 <!--------------------------------------------- preferences-info  --------------------------------->
