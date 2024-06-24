@@ -242,7 +242,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="State" class="form-label">State*</label>
-                        <input type="text" class="form-control input_text" id="state" name="State" placeholder="Enter Your State" readonly required />
+                        <input type="text" class="form-control input_text" id="state" name="state" placeholder="Enter Your State" readonly required />
                         {{--
                         <select class="form-select form-control  input_select" aria-label="Default select example" id="State"
                             name="state">
