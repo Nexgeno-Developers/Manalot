@@ -305,7 +305,7 @@
                 var newRow = $('.certificate-row').first().clone(); // Clone the first row
                 newRow.find('input').val(''); // Clear input values in the cloned row
                 newRow.find('.add-row').remove(); // Remove add button from the cloned row
-                newRow.append('<div class="col-md-12 d-flex gap-3 mb-4"><button type="button" class="btn btn-success add-row">Add More +</button><button type="button" class="btn btn-danger remove-row">Remove</button></div>'); // Add new add and remove buttons
+                newRow.append('<div class="col-md-12 d-flex gap-3 mb-2"><button type="button" class="btn btn-success add-row">Add More +</button><button type="button" class="btn btn-danger remove-row">Remove</button></div>'); // Add new add and remove buttons
                 $('.certificate-row').last().after(newRow); // Append the cloned row at the end
             });
 
@@ -322,7 +322,7 @@
                 var newRow = $('.reference-row').first().clone(); // Clone the first row
                 newRow.find('input').val(''); // Clear input values in the cloned row
                 newRow.find('.add-reference-row').remove(); // Remove add button from the cloned row
-                newRow.append('<div class="col-md-12 d-flex gap-3 mb-4"><button type="button" class="btn btn-success add-reference-row">Add More +</button><button type="button" class="btn btn-danger remove-reference-row">Remove</button></div>'); // Add new add and remove buttons
+                newRow.append('<div class="col-md-12 d-flex gap-3 mb-2"><button type="button" class="btn btn-success add-reference-row">Add More +</button><button type="button" class="btn btn-danger remove-reference-row">Remove -</button></div>'); // Add new add and remove buttons
                 $('.reference-row').last().after(newRow); // Append the cloned row at the end
             });
 
