@@ -16,6 +16,9 @@
 <link rel="stylesheet" href="/assets/frontend/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/assets/frontend/css/owl.carousel.min.css" />
 <link rel="stylesheet" href="/assets/frontend/css/owl.theme.default.min.css" />
+<link rel="stylesheet" href="/assets/frontend/css/utils.css" />
+<link rel="stylesheet" href="/assets/frontend/css/intlTelInput.min.js" />
+
 
 <!-- select2 css -->
 <link rel="preload" href="/assets/frontend/css/select2.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
