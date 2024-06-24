@@ -365,36 +365,36 @@ class AccountController extends Controller
     }
 
     //=============== not working code =====================
-    public function create_login_info($request){
+    // public function create_login_info($request){
 
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required',
-            'confirm_password' => 'required|same:password',
-        ]);
+    //     $validator = Validator::make($request->all(), [
+    //         'email' => 'required|email',
+    //         'password' => 'required',
+    //         'confirm_password' => 'required|same:password',
+    //     ]);
 
-        if ($validator->fails()) {
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message']  = $validator->errors()->all();
+    //     if ($validator->fails()) {
+    //         $rsp_msg['response'] = 'error';
+    //         $rsp_msg['message']  = $validator->errors()->all();
 
-            return $rsp_msg;
-        }
+    //         return $rsp_msg;
+    //     }
 
-        DB::table('users')->where('id', Session::get('temp_user_id'))->update([
-            'email' => strtolower($request->input('email')),
-            'password' => bcrypt($request->input('password')),
-            'step' =>  3,
-        ]);
+    //     DB::table('users')->where('id', Session::get('temp_user_id'))->update([
+    //         'email' => strtolower($request->input('email')),
+    //         'password' => bcrypt($request->input('password')),
+    //         'step' =>  3,
+    //     ]);
 
 
-        Session::put('step', 4);
+    //     Session::put('step', 4);
 
-        $rsp_msg['response'] = 'success';
-        $rsp_msg['message']  = "User Login Detail Added successfully. Please Proceed";
+    //     $rsp_msg['response'] = 'success';
+    //     $rsp_msg['message']  = "User Login Detail Added successfully. Please Proceed";
 
-        return $rsp_msg;
+    //     return $rsp_msg;
 
-    }
+    // }
     //=============== not working code =====================
 
     public function creaste_personal_work_info($request){
@@ -504,74 +504,74 @@ class AccountController extends Controller
 
     // =================== Not working code ====================
 
-    public function create_education_info($request){
+    // public function create_education_info($request){
 
-        $validator = Validator::make($request->all(), [
-            'edu_degree' => 'required',
-            'edu_clg_name' => 'required',
-            'edu_graduation_year' => 'required',
-            'edu_field' => 'required',
-            'edu_cgpa' => 'required',
-        ]);
+    //     $validator = Validator::make($request->all(), [
+    //         'edu_degree' => 'required',
+    //         'edu_clg_name' => 'required',
+    //         'edu_graduation_year' => 'required',
+    //         'edu_field' => 'required',
+    //         'edu_cgpa' => 'required',
+    //     ]);
 
-        if ($validator->fails()) {
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message']  = $validator->errors()->all();
+    //     if ($validator->fails()) {
+    //         $rsp_msg['response'] = 'error';
+    //         $rsp_msg['message']  = $validator->errors()->all();
 
-            return $rsp_msg;
-        }
+    //         return $rsp_msg;
+    //     }
 
-        DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
-            'edu_degree' => $request->input('edu_degree'),
-            'edu_clg_name' => $request->input('edu_clg_name'),
-            'edu_graduation_year' => $request->input('edu_graduation_year'),
-            'edu_field' => $request->input('edu_field'),
-            'edu_cgpa' => $request->input('edu_cgpa'),
-            'wrk_exp_company_name' => $request->input('wrk_exp_company_name'),
-        ]);
+    //     DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
+    //         'edu_degree' => $request->input('edu_degree'),
+    //         'edu_clg_name' => $request->input('edu_clg_name'),
+    //         'edu_graduation_year' => $request->input('edu_graduation_year'),
+    //         'edu_field' => $request->input('edu_field'),
+    //         'edu_cgpa' => $request->input('edu_cgpa'),
+    //         'wrk_exp_company_name' => $request->input('wrk_exp_company_name'),
+    //     ]);
 
-        DB::table('users')->where('id', Session::get('temp_user_id'))->update([
-            'step' =>  5,
-        ]);
+    //     DB::table('users')->where('id', Session::get('temp_user_id'))->update([
+    //         'step' =>  5,
+    //     ]);
 
-        Session::put('step', 6);
+    //     Session::put('step', 6);
 
-        $rsp_msg['response'] = 'success';
-        $rsp_msg['message']  = "User Education Detail Added successfully. Please Proceed";
+    //     $rsp_msg['response'] = 'success';
+    //     $rsp_msg['message']  = "User Education Detail Added successfully. Please Proceed";
 
-        return $rsp_msg;
+    //     return $rsp_msg;
 
-    }
+    // }
 
-    public function create_skills_info($request){
+    // public function create_skills_info($request){
 
-        $validator = Validator::make($request->all(), [
-            'skill' => 'required',
-        ]);
+    //     $validator = Validator::make($request->all(), [
+    //         'skill' => 'required',
+    //     ]);
 
-        if ($validator->fails()) {
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message']  = $validator->errors()->all();
+    //     if ($validator->fails()) {
+    //         $rsp_msg['response'] = 'error';
+    //         $rsp_msg['message']  = $validator->errors()->all();
 
-            return $rsp_msg;
-        }
+    //         return $rsp_msg;
+    //     }
 
-        DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
-            'skill' => json_encode($request->input('skill')),
-        ]);
+    //     DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
+    //         'skill' => json_encode($request->input('skill')),
+    //     ]);
 
-        DB::table('users')->where('id', Session::get('temp_user_id'))->update([
-            'step' =>  6,
-        ]);
+    //     DB::table('users')->where('id', Session::get('temp_user_id'))->update([
+    //         'step' =>  6,
+    //     ]);
 
-        Session::put('step', 7);
+    //     Session::put('step', 7);
 
-        $rsp_msg['response'] = 'success';
-        $rsp_msg['message']  = "User Skills Detail Added successfully. Please Proceed";
+    //     $rsp_msg['response'] = 'success';
+    //     $rsp_msg['message']  = "User Skills Detail Added successfully. Please Proceed";
 
-        return $rsp_msg;
+    //     return $rsp_msg;
 
-    }
+    // }
 
     // =================== Not working code ====================
 
