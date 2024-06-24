@@ -625,7 +625,7 @@ class AccountController extends Controller
             'edu_graduation_year' => $request->input('edu_graduation_year'),
             'edu_field' => $request->input('edu_field'),
             // 'edu_cgpa' => $request->input('edu_cgpa'),
-            'wrk_exp_company_name' => $request->input('wrk_exp_company_name'),
+            // 'wrk_exp_company_name' => $request->input('wrk_exp_company_name'),
         ]);
 
         DB::table('users')->where('id', Session::get('temp_user_id'))->update([
