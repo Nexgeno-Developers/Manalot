@@ -451,7 +451,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
-                        <label for="State" class="form-label">Years of Experience</label>
+                        <label for="State" class="form-label">Years of Experience*</label>
                         <select class="form-select form-control input_select" aria-label="Default select example"
                             id="wrk_exp_years" name="wrk_exp_years" required>
                             <option value="">Select Experience</option>
@@ -894,7 +894,7 @@
                     <div class="row reference-row mt-4">
                         <div class="col-md-6 mb-3">
                             <div class="position-relative">
-                                <label for="name" class="form-label">Name *</label>
+                                <label for="name" class="form-label">Name</label>
                                 <input type="text" class="form-control input_text reference_name" name="reference_name[]"
                                     placeholder="Enter Your Name" pattern="[A-Za-z]+" minlength="1" maxlength="20"
                                     value="{{ $reference['reference_name'] }}" required />
@@ -903,7 +903,7 @@
 
                         <div class="col-md-6 mb-3">
                             <div class="position-relative">
-                                <label for="Phone" class="form-label">Phone*</label>
+                                <label for="Phone" class="form-label">Phone</label>
                                 <input type="text" class="form-control input_text reference_phone" name="reference_phone[]"
                                     placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10" maxlength="16"
                                     value="{{ $reference['reference_phone'] }}" required />
@@ -925,7 +925,7 @@
                 <div class="row reference-row mt-4">
                     <div class="col-md-6 mb-3">
                         <div class="position-relative">
-                            <label for="name" class="form-label">Name *</label>
+                            <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control input_text" id="name" name="reference_name[]"
                                 placeholder="Enter Your Name" pattern="[A-Za-z]+" minlength="1" maxlength="20" required />
                         </div>
@@ -933,7 +933,7 @@
 
                     <div class="col-md-6 mb-3">
                         <div class="position-relative">
-                            <label for="Phone" class="form-label">Phone*</label>
+                            <label for="Phone" class="form-label">Phone</label>
                             <input type="text" class="form-control input_text" id="Phone" name="reference_phone[]"
                                 placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10" maxlength="16"
                                 required />
@@ -970,8 +970,8 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="position-relative">
-                        <label for="Legal Authorization to work status*" class="form-label">Legal
-                            Authorization to work status*</label>
+                        <label for="Legal Authorization to work status" class="form-label">Legal
+                            Authorization to work status</label>
                         <select class="form-select form-control input_select" aria-label="Default select example"
                             id="Legal Authorization to work status*" name="work_authorization_status" required>
                             <option value="">Select work status</option>
@@ -1041,7 +1041,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Legal Authorization to work status*" class="form-label">Legal
-                            Authorization to work status*</label>
+                            Authorization to work status</label>
                         <select class="form-select form-control input_select" aria-label="Default select example"
                             id="Legal Authorization to work status*" name="work_authorization_status" required>
                             <option value="">Select work status</option>
