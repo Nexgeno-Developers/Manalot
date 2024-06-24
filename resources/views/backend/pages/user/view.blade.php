@@ -15,7 +15,9 @@
 
     $references_from= DB::table('references_from')->where('id', $usersdetails->references)->first();
 
-    $references = json_decode($usersdetails->references, true);
+    $references_data = json_decode($usersdetails->references, true);
+
+    $certificate_data = json_decode($usersdetails->certificate_data, true);  
 @endphp
 
     <div class="row">
@@ -253,8 +255,31 @@
                     </div>
                 </div>
             </div>
-            <hr class="mb-4">
             --}}
+            @if (!empty($certificate_data))
+                @foreach($certificate_data as $index => $certificate)
+                    <div class="row">
+                    <h3>Certifications</h3>
+                        <div class="col-sm-4">
+                            <div class="form-group mb-3">
+                                <b>Certificate Name : </b> <p>{{ $certificate['certificate_name'] }}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group mb-3">
+                                <b>Certificate Obtain Date : </b> <p>{{ $certificate['certificate_obtn_date'] }}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group mb-3">
+                                <b>Certificate Issuing : </b> <p>{{ $certificate['certificate_issuing'] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
+
+            <hr class="mb-4">
 
             <div class="row">
                 <h3>Availability and Preferences</h3>
@@ -283,6 +308,24 @@
                         <b>Expected Salary : </b> <p>{{ $usersdetails->pref_salary }}</p>
                     </div>
                 </div>
+
+                @if (!empty($references_data))
+                    @foreach($references_data as $index => $reference)
+                        <div class="row reference-row">
+                            <div class="col-sm-4">
+                                <div class="form-group mb-3">
+                                    <b>Reference Name : </b> <p>{{ $reference['reference_name'] }}</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group mb-3">
+                                    <b>Reference Phone : </b> <p>{{ $reference['reference_phone'] }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+
                 {{--
                 @isset($references)
                 <div class="col-sm-4">
