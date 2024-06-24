@@ -342,42 +342,52 @@
      /*--------------------- API forms ------------------*/
      
      $(document).ready(function () {
-            $('#postalCodeForm').submit(function (e) {
-                e.preventDefault();
-                var postalCode = $('#postalCode').val();
-                $.ajax({
-                    url: 'http://api.geonames.org/postalCodeSearchJSON',
-                    dataType: 'json',
-                    data: {
-                        postalcode: postalCode,
-                        country: 'IN',
-                        username: 'umair.makent'
-                    },
-                    success: function (data) {
-                        if (data.postalCodes.length > 0) {
-                            $('#country_name').val(data.postalCodes[0].countryCode);
-                            $('#state').val(data.postalCodes[0].adminName1);
-                            $('#city').val(data.postalCodes[0].adminName2);
-                            // $('#placeName').val(data.postalCodes[0].placeName);
+        var typingTimer;
+        var typingDelay = 1200; // 1.2 seconds delay
 
-                            // Display response in a pretty format
-                            var responseHtml = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
-                            $('#response').html(responseHtml);
-                        } else {
-                            alert('Postal code not found');
+        $('#pincode').on('keyup', function () {
+            clearTimeout(typingTimer);
+            var postalCode = $(this).val();
+
+            if (postalCode.length > 0) {
+                typingTimer = setTimeout(function () {
+                    $.ajax({
+                        url: 'http://api.geonames.org/postalCodeSearchJSON',
+                        dataType: 'json',
+                        data: {
+                            postalcode: postalCode,
+                            country: 'IN',
+                            username: 'umair.makent'
+                        },
+                        success: function (data) {
+                            if (data.postalCodes.length > 0) {
+                                $('#country_name').val(data.postalCodes[0].countryCode);
+                                $('#state').val(data.postalCodes[0].adminName1);
+                                $('#city').val(data.postalCodes[0].adminName2);
+                                // $('#placeName').val(data.postalCodes[0].placeName);
+
+                                // Display response in a pretty format
+                                var responseHtml = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                                $('#response').html(responseHtml);
+                            } else {
+                                alert('Postal code not found');
+                            }
+                        },
+                        error: function () {
+                            alert('Error fetching data');
                         }
-                    },
-                    error: function () {
-                        alert('Error fetching data');
-                    }
-                });
-            });
-            // Reset form on click of reset button
-            $('#resetButton').click(function(){
-                $('#postalCodeForm')[0].reset();
-                $('#response').empty();
-            });
+                    });
+                }, typingDelay);
+            }
         });
+
+        // Reset form on click of reset button
+        // $('#resetButton').click(function () {
+        //     $('#postalCodeForm')[0].reset();
+        //     $('#response').empty();
+        // });
+    });
+
 
      /*--------------------- API forms ------------------*/
      </script>
