@@ -183,9 +183,9 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Date" class="form-label">Date of Birth*</label>
-                        <!-- <img src="/assets/images/calender_icon.png" alt="" class="input_icon"> -->
-                        <input type="date" class="form-control input_text" id="Date" name="dob"
-                            placeholder="Date" value="{{ $user_detail->dob }}"  max="2000-12-31" required />
+                        
+                            <input type="date" class="form-control input_text register_date_field" id="Date" name="dob"
+                                placeholder="Date" value="{{ $user_detail->dob }}"  max="2000-12-31" required />
                     </div>
                 </div>
                 <!-- <div class="col-md-6 mb-4">
@@ -743,7 +743,7 @@
                         <div class="position-relative">
                             <label for="Date Obtained*" class="form-label">Date Obtained*</label>
                             
-                            <input type="date" class="form-control input_text certificate_obtn_date"
+                            <input type="date" class="form-control input_text certificate_obtn_date register_date_field"
                                 name="certificate_obtn_date[]" placeholder="Date"
                                 value="{{ $certificate['certificate_obtn_date'] }}" />
                         </div>
@@ -784,7 +784,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Date Obtained*" class="form-label">Date Obtained*</label>
-                        <input type="date" class="form-control input_text certificate_obtn_date"
+                        <input type="date" class="form-control input_text certificate_obtn_date register_date_field"
                             name="certificate_obtn_date[]" placeholder="Date"  />
                     </div>
                 </div>
