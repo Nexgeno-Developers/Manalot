@@ -224,7 +224,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="country_name" class="form-label">Country*</label>
-                        <input type="text" class="form-control input_text" id="country_name" name="country" placeholder="Enter Your country" readonly required />
+                        <input type="text" value="{{isset($user_detail->country)}}" class="form-control input_text" id="country_name" name="country" placeholder="Enter Your country" required />
                         {{--
                         <select class="form-select form-control  input_select" aria-label="Default select example"
                             id="country_name" name="country">
@@ -240,7 +240,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="State" class="form-label">State*</label>
-                        <input type="text" class="form-control input_text" id="state" name="state" placeholder="Enter Your State" readonly required />
+                        <input type="text" value="{{isset($user_detail->state)}}" class="form-control input_text" id="state" name="state" placeholder="Enter Your State" required />
                         {{--
                         <select class="form-select form-control  input_select" aria-label="Default select example" id="State"
                             name="state">
