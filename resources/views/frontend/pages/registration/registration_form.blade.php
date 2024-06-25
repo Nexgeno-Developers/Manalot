@@ -154,7 +154,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="Gender" class="form-label">Gender*</label>
-                        <select class="form-select form-control  input_select" aria-label="Default select example" id="Gender"
+                        <select class="select2 form-select form-control  input_select" aria-label="Default select example" id="Gender"
                             name="gender" required>
                             <option value="">Select Gender</option>
                             <option value="1" @if ($user_detail->gender == 1) selected @endif>Male</option>
@@ -173,12 +173,10 @@
                     @endif
                         <img src="/assets/images/file.png" alt="" class="input_icon" />
                         <input class="form-control" type="file" id="formFile" name="profile_photo"
-                            accept=".jpg,.jpeg,.png,.webp" @if (empty($user_detail->profile_photo) || $user_detail->profile_photo == null) required @endif />
-                        
+                            accept=".jpg,.jpeg,.png,.webp" 
+                            {{-- @if (empty($user_detail->profile_photo) || $user_detail->profile_photo == null) @endif --}}
+                            />
                     </div>
-
-                   
-
                 </div>
 
                 <div class="col-md-6 mb-4">
@@ -186,7 +184,7 @@
                         <label for="Date" class="form-label">Date of Birth*</label>
                         <!-- <img src="/assets/images/calender_icon.png" alt="" class="input_icon"> -->
                         <input type="date" class="form-control input_text" id="Date" name="dob"
-                            placeholder="Date" value="{{ $user_detail->dob }}" required />
+                            placeholder="Date" value="{{ $user_detail->dob }}"  max="2000-12-31" required />
                     </div>
                 </div>
                 <!-- <div class="col-md-6 mb-4">
@@ -452,7 +450,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="State" class="form-label">Years of Experience*</label>
-                        <select class="form-select form-control input_select" aria-label="Default select example"
+                        <select class="select2 form-select form-control input_select" aria-label="Default select example"
                             id="wrk_exp_years" name="wrk_exp_years" required>
                             <option value="">Select Experience</option>
                             @foreach ($years_of_exp as $row)
@@ -468,7 +466,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
                         <label for="industry" class="form-label">Industry*</label>
-                        <select class="form-select form-control input_select" aria-label="Default select example" id="industry"
+                        <select class="select2 form-select form-control input_select" aria-label="Default select example" id="industry"
                             name="industry" required>
                             <option value="">Select Industry</option>
                             @foreach ($industry as $row)
@@ -739,7 +737,7 @@
                             <label for="Certificate" class="form-label">Certificate Name*</label>
                             <input type="text" class="form-control input_text certificate_name" name="certificate_name[]"
                                 placeholder="Enter Your Certificate Name" pattern="[0-9A-Za-z]+" minlength="1" maxlength="100"
-                                value="{{ $certificate['certificate_name'] }}" required />
+                                value="{{ $certificate['certificate_name'] }}" />
                         </div>
                     </div>
 
@@ -749,7 +747,7 @@
                             
                             <input type="date" class="form-control input_text certificate_obtn_date"
                                 name="certificate_obtn_date[]" placeholder="Date"
-                                value="{{ $certificate['certificate_obtn_date'] }}" required />
+                                value="{{ $certificate['certificate_obtn_date'] }}" />
                         </div>
                     </div>
 
@@ -759,7 +757,7 @@
                             <input type="text" class="form-control input_text certificate_issuing"
                                 name="certificate_issuing[]" placeholder="Enter your Issuing Registration"
                                 pattern="[0-9A-Za-z]+" minlength="1" maxlength="50"
-                                value="{{ $certificate['certificate_issuing'] }}" required />
+                                value="{{ $certificate['certificate_issuing'] }}" />
                         </div>
                     </div>
 
@@ -781,7 +779,7 @@
                         <label for="Certificate" class="form-label">Certificate Name*</label>
                         <input type="text" class="form-control input_text certificate_name" name="certificate_name[]"
                             placeholder="Enter Your Certificate Name" pattern="[0-9A-Za-z]+" minlength="1" maxlength="50"
-                            required />
+                             />
                     </div>
                 </div>
 
@@ -789,7 +787,7 @@
                     <div class="position-relative">
                         <label for="Date Obtained*" class="form-label">Date Obtained*</label>
                         <input type="date" class="form-control input_text certificate_obtn_date"
-                            name="certificate_obtn_date[]" placeholder="Date" required />
+                            name="certificate_obtn_date[]" placeholder="Date"  />
                     </div>
                 </div>
 
@@ -798,7 +796,7 @@
                         <label for="Issuing Registration*" class="form-label">Issuing Registration*</label>
                         <input type="text" class="form-control input_text certificate_issuing"
                             name="certificate_issuing[]" placeholder="Enter your Issuing Registration"
-                            pattern="[0-9A-Za-z]+" minlength="1" maxlength="50" required />
+                            pattern="[0-9A-Za-z]+" minlength="1" maxlength="50"  />
                     </div>
                 </div>
 
@@ -935,8 +933,7 @@
                         <div class="position-relative">
                             <label for="Phone" class="form-label">Phone</label>
                             <input type="text" class="form-control input_text" id="Phone" name="reference_phone[]"
-                                placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10" maxlength="16"
-                                required />
+                                placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10" maxlength="16" required />
                         </div>
                     </div>
 
@@ -972,7 +969,7 @@
                     <div class="position-relative">
                         <label for="Legal Authorization to work status" class="form-label">Legal
                             Authorization to work status</label>
-                        <select class="form-select form-control input_select" aria-label="Default select example"
+                        <select class="select2 form-select form-control input_select" aria-label="Default select example"
                             id="Legal Authorization to work status*" name="work_authorization_status" required>
                             <option value="">Select work status</option>
                             <option value="1" @if ($user_detail->work_authorization_status == 1) selected @endif>Yes</option>
@@ -984,7 +981,7 @@
                     <div class="position-relative">
                         <label for="Availability" class="form-label">Availability
                         </label>
-                        <select class="form-select form-control input_select" aria-label="Default select example"
+                        <select class="select2 form-select form-control input_select" aria-label="Default select example"
                             id="Availability" name="availability" required>
                             <option value="">Select Availability</option>
                             <option value="1" @if ($user_detail->availability == 1) selected @endif>Yes</option>
@@ -996,7 +993,7 @@
                     <div class="position-relative">
                         <label for="Notice Period" class="form-label">Notice Period
                         </label>
-                        <select class="form-select form-control input_select" aria-label="Default select example"
+                        <select class="select2 form-select form-control input_select" aria-label="Default select example"
                             id="Notice Period" name="notice_period" required>
                             <option value="">Select Notice Period</option>
                             <option value="1" @if ($user_detail->notice_period == 1) selected @endif>Yes</option>
@@ -1042,7 +1039,7 @@
                     <div class="position-relative">
                         <label for="Legal Authorization to work status*" class="form-label">Legal
                             Authorization to work status</label>
-                        <select class="form-select form-control input_select" aria-label="Default select example"
+                        <select class="select2 form-select form-control input_select" aria-label="Default select example"
                             id="Legal Authorization to work status*" name="work_authorization_status" required>
                             <option value="">Select work status</option>
                             <option value="1" @if ($user_detail->work_authorization_status == 1) selected @endif>Yes</option>
@@ -1054,7 +1051,7 @@
                     <div class="position-relative">
                         <label for="Availability" class="form-label">Availability
                         </label>
-                        <select class="form-select form-control input_select" aria-label="Default select example"
+                        <select class="select2 form-select form-control input_select" aria-label="Default select example"
                             id="Availability" name="availability" required>
                             <option value="">Select Availability</option>
                             <option value="1" @if ($user_detail->availability == 1) selected @endif>Yes</option>
@@ -1066,7 +1063,7 @@
                     <div class="position-relative">
                         <label for="Notice Period" class="form-label">Notice Period
                         </label>
-                        <select class="form-select form-control input_select" aria-label="Default select example"
+                        <select class="select2 form-select form-control input_select" aria-label="Default select example"
                             id="Notice Period" name="notice_period" required>
                             <option value="">Select Notice Period</option>
                             <option value="1" @if ($user_detail->notice_period == 1) selected @endif>Yes</option>
