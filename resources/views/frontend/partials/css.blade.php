@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="/assets/frontend/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/assets/frontend/css/owl.carousel.min.css" />
 <link rel="stylesheet" href="/assets/frontend/css/owl.theme.default.min.css" />
-<link rel="stylesheet" href="/assets/frontend/css/intlTelinput.css" />
+<link rel="stylesheet" href="/assets/frontend/css/intlTelinput1.css" />
 <!-- <link rel="stylesheet" href="/assets/frontend/css/input.css" /> -->
 
 
