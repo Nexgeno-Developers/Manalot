@@ -13,7 +13,7 @@
         <div class="row align-items-center">
 
             <div class="col-md-4">
-                <img class="register_image" src="/assets/images/register_image1.png" style="width:100%">
+                <img class="register_image" src="/assets/images/register_image2.png">
             </div>
 
             <div class="col-md-8 pddleft50">
