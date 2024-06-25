@@ -555,6 +555,42 @@ body {
     font-size: 45px;
 }
 
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border-bottom: 1px solid #aaa !important;
+    border: 0px !important;
+    margin-top: 9px;
+    font-weight: 300;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    border-bottom: 1px solid #ccc;
+}
+
+.select2-container--open .select2-dropdown--below {
+    border-top: 1px solid #ccc !important;
+}
+
+.select2-container--open .select2-dropdown--above {
+    border-bottom: 1px solid #ccc !important;
+}
+
+ul.select2-results__options li.select2-results__option {
+    cursor: pointer;
+}
+
+ul.select2-results__options li.select2-results__option:hover {
+    background-color: #f3f1f1;
+}
+
+.register_image {
+    position: fixed;
+    top: 0px;
+    width:33%;
+    height: 100vh;
+    object-fit: cover;
+}
+
 /* .register_image {
 height: 100vh;
    object-fit: cover;
@@ -771,6 +807,7 @@ input#formFile::file-selector-button {
 .pddleft50 {
     padding-left: 50px !important;
     padding-top: 60px;
+    padding-bottom: 60px;
 }
 
 .width45 img {
@@ -1107,11 +1144,11 @@ ul.ms-footer-services li {
 }
 
 div#user-add-details {
-    margin-top: -190px;
+    margin-top: 0px;
 }
 
 div#personal-details {
-    margin-top: -80px;
+    margin-top: 0px;
 
 }
 
@@ -1128,7 +1165,7 @@ div#personal-details {
 }
 
 #cirtificate_one {
-    margin-top: -100px;
+    margin-top: 0px;
 }
 
 #availibility_one {
@@ -1137,7 +1174,7 @@ div#personal-details {
 }
 
 #work_autho {
-    margin-top: -100px;
+    margin-top: 0px;
 }
 
 .currently_work {
