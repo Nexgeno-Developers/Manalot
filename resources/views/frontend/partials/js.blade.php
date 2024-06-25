@@ -27,7 +27,8 @@
 
 <!-- to show country code and flags in mobile view field -->
 <script defer src="/assets/frontend/js/utils.min.js"></script>
-<script defer src="/assets/frontend/js/intlTelInput.min.js"></script>
+<script defer src="/assets/frontend/js/intlTelinput.min.js"></script>
+    
 
 
 <!--------------------- extra ------------------------------->
@@ -38,12 +39,12 @@
 
 <!-- to show country code and flags in mobile view field -->
 <script>
-        $(document).ready(function() {
+          $(document).ready(function() {
             const phoneInputField = $("#Phone");
             phoneInputField.intlTelInput({
-                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js",
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
             });
-        });
+          });
     </script>
 
 <!--Custom Js-->
