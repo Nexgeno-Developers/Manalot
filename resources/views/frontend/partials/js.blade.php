@@ -27,7 +27,7 @@
 
 <!-- to show country code and flags in mobile view field -->
 <script src="/assets/frontend/js/utils.min.js"></script>
-<script src="/assets/frontend/js/intlTelinput.min.js"></script>
+<script src="/assets/frontend/js/inteliput.min.js"></script>
     
 
 
