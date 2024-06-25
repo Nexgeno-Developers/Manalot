@@ -52,8 +52,11 @@
 <script src="/assets/frontend/js/script.js"></script>
 
 
-
-
+<script>
+    function openDatePicker() {
+        document.getElementById('Date').click();
+    }
+</script>
 
 <script>
 $(document).ready(function(){
