@@ -507,15 +507,12 @@
                  <div class="col-md-12 mb-4">
                     <div class="position-relative">
                         <label for="skills" class="form-label">Skills*</label>
-                        <select class="select2 form-select form-control input_select" aria-label="Default select example" id="skills"
-                            name="skill[]" multiple required>
+                        <select name="skill[]" multiple="multiple" class="select2 form-select form-control input_select" aria-label="Default select example" id="skills" required>
                             <option value="">select skills</option>
                             @foreach ($skills as $row)
                                 <option value="{{ $row->id }}" @if(in_array($row->id, json_decode($user_detail->skill, true))) selected @endif>
                                     {{ ucfirst($row->name) }}
-                                </option>
-    
-                                
+                                </option>  
                             @endforeach
                         </select>
                     </div>
