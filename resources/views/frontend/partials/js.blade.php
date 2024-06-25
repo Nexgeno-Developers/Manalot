@@ -26,8 +26,8 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 <!-- to show country code and flags in mobile view field -->
-<script defer src="/assets/frontend/js/utils.min.js"></script>
-<script defer src="/assets/frontend/js/intlTelinput.min.js"></script>
+<script src="/assets/frontend/js/utils.min.js"></script>
+<script src="/assets/frontend/js/intlTelinput.min.js"></script>
     
 
 
