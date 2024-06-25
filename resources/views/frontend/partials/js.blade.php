@@ -25,6 +25,11 @@
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+<!-- to show country code and flags in mobile view field -->
+<script defer src="/assets/frontend/js/utils.min.js"></script>
+<script defer src="/assets/frontend/js/intlTelinput.min.js"></script>
+    
+
 
 <!--------------------- extra ------------------------------->
 <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>-->
@@ -32,9 +37,21 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!--------------------- extra ------------------------------->
 
+<!-- to show country code and flags in mobile view field -->
+<script>
+          $(document).ready(function() {
+            const phoneInputField = $("#Phone");
+            phoneInputField.intlTelInput({
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+            });
+          });
+    </script>
+
 <!--Custom Js-->
 <script src="/assets/frontend/js/Init.js"></script>
 <script src="/assets/frontend/js/script.js"></script>
+
+
 
 
 
@@ -45,3 +62,6 @@ $(document).ready(function(){
   });
 });
 </script>
+
+
+
