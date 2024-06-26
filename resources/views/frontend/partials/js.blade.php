@@ -37,22 +37,19 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!--------------------- extra ------------------------------->
 
-<!-- to show country code and flags in mobile view field -->
-<script>
-          $(document).ready(function() {
-            const phoneInputField = $("#Phone");
-            phoneInputField.intlTelInput({
-                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-            });
-          });
-    </script>
-
 <!--Custom Js-->
 <script src="/assets/frontend/js/Init.js"></script>
 <script src="/assets/frontend/js/script.js"></script>
 
-
 <script>
+  // to show country code and flags in mobile view field
+    $(document).ready(function() {
+      const phoneInputField = $("#Mobile");
+      phoneInputField.intlTelInput({
+          utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+      });
+    });
+
     function openDatePicker() {
         document.getElementById('Date').click();
     }

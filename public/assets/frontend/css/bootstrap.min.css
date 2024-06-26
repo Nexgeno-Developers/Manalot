@@ -3038,7 +3038,7 @@ textarea.form-control.is-valid {
     display: block
 }
 
-.form-control.is-invalid,
+/* .form-control.is-invalid,
 .was-validated .form-control:invalid {
     border-color: #dc3545;
     padding-right: calc(1.5em + .75rem);
@@ -3046,7 +3046,7 @@ textarea.form-control.is-valid {
     background-repeat: no-repeat;
     background-position: right calc(.375em + .1875rem) center;
     background-size: calc(.75em + .375rem) calc(.75em + .375rem)
-}
+} */
 
 .form-control.is-invalid:focus,
 .was-validated .form-control:invalid:focus {

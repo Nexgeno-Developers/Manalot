@@ -262,6 +262,20 @@
                     alert('At least one row is required.'); // Alert if only one row is left
                 }
             });
+        
+            var rowIndex = $('.reference-row').length; // Initialize with the number of existing rows
+
+            // Function to update IDs and initialize intlTelInput
+            function updateIDsAndInitialize() {
+                $('.reference-row').each(function(index) {
+                    var phoneInput = $(this).find('.reference_phone');
+                    phoneInput.attr('id', 'Phone' + (index + 1));
+                    phoneInput.intlTelInput({
+                        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+                    });
+                });
+            }
+
             // Add row functionality for references
             $(document).on('click', '.add-reference-row', function () {
                 var newRow = $('.reference-row').first().clone(); // Clone the first row
@@ -269,16 +283,24 @@
                 newRow.find('.add-reference-row').remove(); // Remove add button from the cloned row
                 newRow.append('<div class="col-md-12 d-flex gap-3 mb-2"><button type="button" class="btn btn-success add-reference-row">Add More +</button><button type="button" class="btn btn-danger remove-reference-row">Remove -</button></div>'); // Add new add and remove buttons
                 $('.reference-row').last().after(newRow); // Append the cloned row at the end
+                rowIndex++; // Increment row index
+                updateIDsAndInitialize(); // Update IDs and initialize intlTelInput
             });
 
             // Remove row functionality for references
             $(document).on('click', '.remove-reference-row', function () {
                 if ($('.reference-row').length > 1) {
                     $(this).closest('.reference-row').remove(); // Remove the closest row
+                    rowIndex--; // Decrement row index
+                    updateIDsAndInitialize(); // Update IDs and initialize intlTelInput
                 } else {
                     alert('At least one reference is required.'); // Alert if only one row is left
                 }
             });
+
+            updateIDsAndInitialize(); // Initial ID update and intlTelInput initialization
+    
+
         });
 
      /*--------------------- duplicate forms inputs ------------------*/
@@ -362,7 +384,7 @@
 
     // /*--------------------- education-info ------------------*/
 
-    //     initValidate('#education-info');
+        initValidate('#education-info');
 
     //     $('#education-info').on('submit', function(e){
     //         var form = $(this);

@@ -19,35 +19,35 @@
             @csrf
             <div class="row">
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="name" class="form-label">Name *</label>
-                        <input type="text" class="form-control input_text" id="name" name="name"
+                        <input type="text" class="form-control is-invalid input_text" id="name" name="name"
                             placeholder="Enter Your Name" pattern="[A-Za-z]+" minlength="1" maxlength="20" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="email" class="form-label">Email *</label>
                          <img src="/assets/images/email.png" alt="" class="input_icon" />
-                        <input type="email" class="form-control input_text" id="email" name="email"
+                        <input type="email" class="form-control is-invalid input_text" id="email" name="email"
                             placeholder="Enter Your email" required />
                     </div>
                 </div>
 
                  <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Phone" class="form-label">Phone*</label>
-                        <input type="text" class="form-control input_text" id="Phone" name="phone_number"
+                        <input type="text" class="form-control is-invalid input_text" id="Mobile" name="phone_number"
                             placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10" maxlength="16"
                             required />
                     </div>
                 </div>
 
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="formFile" class="form-label">Upload Resume*</label>
                         <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
-                        <input class="form-control" type="file" id="formFile" name="resume_cv" accept=".pdf"
+                        <input class="form-control is-invalid" type="file" id="formFile" name="resume_cv" accept=".pdf"
                             required />
                         <img src="images/file.png" alt="" class="input_icon" />
                     </div>
@@ -55,10 +55,10 @@
 
 
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="password" class="form-label">Password*</label>
                          <img src="/assets/images/key.png" alt="" class="input_icon" />
-                        <input type="password" class="form-control input_text" id="password" name="password"
+                        <input type="password" class="form-control is-invalid input_text" id="password" name="password"
                             placeholder="Enter your Password" minlength="6" maxlength="20" required />
                         <img src="images/key.png" alt="" class="input_icon" />
                     </div>
@@ -67,10 +67,10 @@
 
                 
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="password" class="form-label">Confirm Password*</label>
                          <img src="/assets/images/key.png" alt="" class="input_icon" />
-                        <input type="password" class="form-control input_text" id="confirm_password" name="confirm_password"
+                        <input type="password" class="form-control is-invalid input_text" id="confirm_password" name="confirm_password"
                             placeholder="Enter your Password" minlength="6" maxlength="20" required />
                         <img src="images/key.png" alt="" class="input_icon" />
                     </div>
@@ -145,17 +145,17 @@
             @csrf
             <div class="row">
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="first_name" class="form-label">Full Name*</label>
-                        <input type="text" class="form-control input_text" name="fullname" id="fullname"
+                        <input type="text" class="form-control is-invalid input_text" name="fullname" id="fullname"
                             placeholder="Enter First Name" pattern="[A-Za-z]+" minlength="1" maxlength="255"
                             value="{{ $user_detail->fullname }}" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Gender" class="form-label">Gender*</label>
-                        <select class="select2 form-select form-control  input_select" aria-label="Default select example" id="Gender"
+                        <select class="select2 form-select form-control is-invalid  input_select" aria-label="Default select example" id="Gender"
                             name="gender" required>
                             <option value="">Select Gender</option>
                             <option value="1" @if ($user_detail->gender == 1) selected @endif>Male</option>
@@ -165,7 +165,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="formFile" class="form-label">Profile Photo</label>
                          @if (!empty($user_detail->profile_photo) && $user_detail->profile_photo != null)
                         <a class="pdf_view" target="_blank" href="{{ asset('storage/' . $user_detail->profile_photo) }}">
@@ -173,7 +173,7 @@
                         </a>
                     @endif
                         <img src="/assets/images/file.png" alt="" class="input_icon" />
-                        <input class="form-control" type="file" id="formFile" name="profile_photo"
+                        <input class="form-control is-invalid" type="file" id="formFile" name="profile_photo"
                             accept=".jpg,.jpeg,.png,.webp" 
                             {{-- @if (empty($user_detail->profile_photo) || $user_detail->profile_photo == null) @endif --}}
                             />
@@ -181,33 +181,33 @@
                 </div>
 
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Date" class="form-label">Date of Birth*</label>
-                        
-                            <input type="date" class="form-control input_text register_date_field" id="Date" name="dob"
-                                placeholder="Date" value="{{ $user_detail->dob }}"  max="2000-12-31" required />
+                        <!-- <img src="/assets/images/calender_icon.png" alt="" class="input_icon"> -->
+                        <input type="date" class="form-control is-invalid input_text" id="Date" name="dob"
+                            placeholder="Date" value="{{ $user_detail->dob }}"  max="2000-12-31" required />
                     </div>
                 </div>
                 <!-- <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="email" class="form-label">Email Address*</label>
-                        <input type="email" class="form-control input_text" id="email" name="email"
+                        <input type="email" class="form-control is-invalid input_text" id="email" name="email"
                             placeholder="Enter Your Email" value="{{ $user->email }}" required />
                     </div>
                 </div> -->
 
                 <!-- <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Phone" class="form-label">Phone*</label>
-                        <input type="number" class="form-control input_text" id="Phone" name="phone_number"
+                        <input type="number" class="form-control is-invalid input_text" id="Phone" name="phone_number"
                             placeholder="Enter Your Phone No" pattern="[0-9]+" minlength="10" maxlength="10"
                             value="{{ $user_detail->phone_number }}" required />
                     </div>
                 </div> -->
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="zip_code" class="form-label">Zip/Postal Code*</label>
-                        <input type="text" class="form-control input_text" id="pincode" name="pincode"
+                        <input type="text" class="form-control is-invalid input_text" id="pincode" name="pincode"
                             pattern="[0-9A-Za-z]+" minlength="1" maxlength="10"
                             placeholder="Enter Your zipcode / Pincode" value="{{ $user_detail->pincode }}"
                             required />
@@ -215,19 +215,19 @@
                 </div>
 
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="city" class="form-label">City*</label>
-                        <input type="text" class="form-control input_text" id="city" name="city"
+                        <input type="text" class="form-control is-invalid input_text" id="city" name="city"
                             pattern="[A-Za-z]+" minlength="3" maxlength="50" placeholder="Enter Your City"
                             value="{{ $user_detail->city }}" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="country_name" class="form-label">Country*</label>
-                        <input type="text" value="{{isset($user_detail->country) ? $user_detail->country : ''}}" class="form-control input_text" id="country_name" name="country" placeholder="Enter Your country" required />
+                        <input type="text" value="{{isset($user_detail->country) ? $user_detail->country : ''}}" class="form-control is-invalid input_text" id="country_name" name="country" placeholder="Enter Your country" required />
                         {{--
-                        <select class="form-select form-control  input_select" aria-label="Default select example"
+                        <select class="form-select form-control is-invalid  input_select" aria-label="Default select example"
                             id="country_name" name="country">
                             <option value="">Select Country</option>
                             @foreach ($country as $row)
@@ -239,11 +239,11 @@
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="State" class="form-label">State*</label>
-                        <input type="text" value="{{isset($user_detail->state) ? $user_detail->state : ''}}" class="form-control input_text" id="state" name="state" placeholder="Enter Your State" required />
+                        <input type="text" value="{{isset($user_detail->state) ? $user_detail->state : ''}}" class="form-control is-invalid input_text" id="state" name="state" placeholder="Enter Your State" required />
                         {{--
-                        <select class="form-select form-control  input_select" aria-label="Default select example" id="State"
+                        <select class="form-select form-control is-invalid  input_select" aria-label="Default select example" id="State"
                             name="state">
                             <option value="">Select State</option>
                             @foreach ($state as $row)
@@ -258,13 +258,13 @@
 
 
                 <div class="col-md-12 mb-12">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="address" class="form-label">Address*</label>
-                        {{-- <input type="text" class="form-control input_text" id="address" pattern="[0-9A-Za-z]+"
+                        {{-- <input type="text" class="form-control is-invalid input_text" id="address" pattern="[0-9A-Za-z]+"
                             minlength="5" maxlength="250" name="address" placeholder="Enter your Address"
                             value="{{ $user_detail->address }}" required /> --}}
 
-                        <textarea class="form-control" rows="3" cols="45" name="address" pattern="[0-9A-Za-z]+" placeholder="Address" required>{{ $user_detail->address }}</textarea>
+                        <textarea class="form-control is-invalid" rows="3" cols="45" name="address" pattern="[0-9A-Za-z]+" placeholder="Address" required>{{ $user_detail->address }}</textarea>
 
                     </div>
                 </div>
@@ -283,11 +283,7 @@
 
 <!--------------------------------------------- personal info --------------------------------->
 
-
-{{-- 
-
 <!----===================================== Not using code ==============================================--------->
-
 <!--------------------------------------------- login info --------------------------------->
 
 @if (!Session::has('step') || Session::get('step') == 0)
@@ -307,23 +303,23 @@
         <form id="login-info" action="{{ url(route('account.create', ['param' => 'login-info'])) }}"
             method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
             @csrf
-            <div class="position-relative">
+            <div class="position-relative form-group">
                 <label for="email" class="form-label">Email*</label>
                 <img src="/assets/images/email.png" alt="" class="input_icon">
-                <input type="email" class="form-control input_text" id="email" name="email"
+                <input type="email" class="form-control is-invalid input_text" id="email" name="email"
                     placeholder="Enter Your Email" value="{{ $user->email }}" required/>
                 <img src="images/email.png" alt="" class="input_icon" />
             </div>
-            <div class="position-relative">
+            <div class="position-relative form-group">
                 <label for="password" class="form-label">Password*</label>
                 <img src="/assets/images/key.png" alt="" class="input_icon">
-                <input type="password" class="form-control input_text" id="password" name="password" placeholder="Enter Your Password" value="{{ session('password', '') }}" minlength="6" maxlength="16" required/>
+                <input type="password" class="form-control is-invalid input_text" id="password" name="password" placeholder="Enter Your Password" value="{{ session('password', '') }}" minlength="6" maxlength="16" required/>
                 <img src="images/key.png" alt="" class="input_icon" />
             </div>
-            <div class="position-relative">
+            <div class="position-relative form-group">
                 <label for="password" class="form-label">Confirm Password*</label>
                 <img src="/assets/images/key.png" alt="" class="input_icon">
-                <input type="password" class="form-control input_text" id="confirm_password" name="confirm_password" placeholder="Enter Your Confirm Password" value="{{ session('password', '') }}" minlength="6" maxlength="16" required/>
+                <input type="password" class="form-control is-invalid input_text" id="confirm_password" name="confirm_password" placeholder="Enter Your Confirm Password" value="{{ session('password', '') }}" minlength="6" maxlength="16" required/>
                 <img src="images/key.png" alt="" class="input_icon" />
             </div>
 
@@ -340,11 +336,9 @@
     </div>
 
 
-@endif 
+@endif
 
 <!--------------------------------------------- login info --------------------------------->
---}}
-
 <!----===================================== Not using code ==============================================--------->
 
 
@@ -383,7 +377,7 @@
 
 
                 {{-- <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                          @if (!empty($user_detail->resume_cv) && $user_detail->resume_cv != null)
                             <a  class="pdf_view" target="_blank" href="{{ asset('storage/' . $user_detail->resume_cv) }}">
                                 View
@@ -391,7 +385,7 @@
                         @endif
                         <label for="formFile" class="form-label">Resume/CV*</label>
                         <img src="/assets/images/file.png" alt="" class="input_icon" />
-                        <input class="form-control" type="file" id="formFile" name="resume_cv" accept=".pdf"
+                        <input class="form-control is-invalid" type="file" id="formFile" name="resume_cv" accept=".pdf"
                             @if (empty($user_detail->resume_cv) || $user_detail->resume_cv == null) required @endif />
                         
                     </div>
@@ -399,9 +393,9 @@
                 </div>
                 
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="job" class="form-label">Job Title*</label>
-                        <select class="form-select form-control input_select" aria-label="Default select example" id="job"
+                        <select class="form-select form-control is-invalid input_select" aria-label="Default select example" id="job"
                             name="job_title" required>
                             <option value="">Select Job Title</option>
                             @foreach ($job_title as $row)
@@ -414,9 +408,9 @@
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="industry" class="form-label">Industry*</label>
-                        <select class="form-select form-control input_select" aria-label="Default select example" id="industry"
+                        <select class="form-select form-control is-invalid input_select" aria-label="Default select example" id="industry"
                             name="industry" required>
                             <option value="">Select Industry</option>
                             @foreach ($industry as $row)
@@ -436,18 +430,18 @@
                 </div>
 
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="job_title" class="form-label">Professional Title*</label>
-                        <input type="text" class="form-control input_text" id="job_title" name="wrk_exp__title"
+                        <input type="text" class="form-control is-invalid input_text" id="job_title" name="wrk_exp__title"
                             placeholder="Enter your Job Title" pattern="[A-Za-z]+" minlength="1" maxlength="100"
                             value="{{ $user_detail->wrk_exp__title }}" required />
                     </div>
                 </div>
 
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="company" class="form-label">Company Name*</label>
-                        <input type="text" class="form-control input_text" id="company"
+                        <input type="text" class="form-control is-invalid input_text" id="company"
                             name="wrk_exp_company_name" placeholder="Enter your Company Name" pattern="[A-Za-z]+"
                             minlength="1" maxlength="100" value="{{ $user_detail->wrk_exp_company_name }}"
                             required >
@@ -455,9 +449,9 @@
                 </div>
 
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="State" class="form-label">Years of Experience*</label>
-                        <select class="select2 form-select form-control input_select" aria-label="Default select example"
+                        <select class="select2 form-select form-control is-invalid input_select" aria-label="Default select example"
                             id="wrk_exp_years" name="wrk_exp_years" required>
                             <option value="">Select Experience</option>
                             @foreach ($years_of_exp as $row)
@@ -471,9 +465,9 @@
                 </div>
 
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="industry" class="form-label">Industry*</label>
-                        <select class="select2 form-select form-control input_select" aria-label="Default select example" id="industry"
+                        <select class="select2 form-select form-control is-invalid input_select" aria-label="Default select example" id="industry"
                             name="industry" required>
                             <option value="">Select Industry</option>
                             @foreach ($industry as $row)
@@ -491,7 +485,7 @@
                
                 <div class="col-md-6 mb-4">
                     <div class="position-relative">
-                        <label for="formFile" class="form-label">Upload Experience Letter</label>
+                        <label for="experience_letter" class="form-label">Upload Experience Letter</label>
                         <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
                         <input class="form-control" type="file" id="formFile" name="experience_letter" accept=".pdf,.doc,.docx,application/msword,image/*,.webp" />
                         <img src="images/file.png" alt="" class="input_icon" />
@@ -511,9 +505,9 @@
                 </div>
 
                  <div class="col-md-12 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="skills" class="form-label">Skills*</label>
-                        <select name="skill[]" multiple="multiple" class="select2 form-select form-control input_select" aria-label="Default select example" id="skills" required>
+                        <select name="skill[]" multiple="multiple" class="select2 form-select form-control is-invalid input_select" aria-label="Default select example" id="skills" required>
                             <option value="">select skills</option>
                             @foreach ($skills as $row)
                                 <option value="{{ $row->id }}" @if(in_array($row->id, json_decode($user_detail->skill, true))) selected @endif>
@@ -525,8 +519,10 @@
                 </div>
 
                 <div class="col-md-12">
-                <label for="Responsibilities" class="form-label">Responsibilities/Achievements</label>
-                    <textarea class="form-control" rows="4" cols="45" name="wrk_exp_responsibilities" placeholder="Message" required>{{ $user_detail->wrk_exp_responsibilities }}</textarea>
+                    <div class="form-group">
+                        <label for="Responsibilities" class="form-label">Responsibilities/Achievements</label>
+                        <textarea class="form-control is-invalid" rows="4" cols="45" name="wrk_exp_responsibilities" placeholder="Message" required>{{ $user_detail->wrk_exp_responsibilities }}</textarea>
+                    </div>
                 </div>
                 
             </div>
@@ -544,11 +540,9 @@
 
 <!--------------------------------------------- personal work info --------------------------------->
 
-{{--
-
 <!--------------------------------------------- Education info  --------------------------------->
 
- @if (!Session::has('step') || Session::get('step') == 0)
+@if (!Session::has('step') || Session::get('step') == 0)
     @php
         $user_detail = DB::table('userdetails')
             ->where('user_id', Session::get('temp_user_id'))
@@ -565,51 +559,51 @@
             @csrf
             <div class="row">
             <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="School" class="form-label">School/University Name*</label>
-                        <input type="text" class="form-control input_text" id="School" name="edu_clg_name"
+                        <input type="text" class="form-control is-invalid input_text" id="School" name="edu_clg_name"
                             placeholder="Enter your School / College Nmae" pattern="[A-Za-z]+" minlength="1"
                             maxlength="50" value="{{ $user_detail->edu_clg_name }}" required />
                     </div>
                 </div>
 
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="degree" class="form-label">Degree*</label>
-                        <input type="text" class="form-control input_text" id="degree" name="edu_degree"
+                        <input type="text" class="form-control is-invalid input_text" id="degree" name="edu_degree"
                             placeholder="Enter your Degree" pattern="[A-Za-z]+" minlength="1" maxlength="50"
                             value="{{ $user_detail->edu_degree }}" required />
                     </div>
                 </div>
                 
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Graduation" class="form-label">Graduation Year*</label>
-                        <input type="text" class="form-control input_text" id="Graduation"
+                        <input type="text" class="form-control is-invalid input_text" id="Graduation"
                             name="edu_graduation_year" placeholder="Enter Your Graduation Year"
                             pattern="[0-9A-Za-z]+" minlength="1" maxlength="50"
                             value="{{ $user_detail->edu_graduation_year }}" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
-                        <label for="major" class="form-label">Major/Field of Study*</label>
-                        <input type="text" class="form-control input_text" id="major" name="edu_field"
+                    <div class="position-relative form-group">
+                        <label for="edu_field" class="form-label">Major/Field of Study*</label>
+                        <input type="text" class="form-control is-invalid input_text" id="major" name="edu_field"
                             placeholder="Enter your Major Field of Study" pattern="[A-Za-z]+" minlength="1"
                             maxlength="50" value="{{ $user_detail->edu_field }}" />
                     </div>
                 </div>
             {{--
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="gpa" class="form-label">GPA*</label>
-                        <input type="text" class="form-control input_text" id="gpa" name="edu_cgpa"
+                        <input type="text" class="form-control is-invalid input_text" id="gpa" name="edu_cgpa"
                             placeholder="Enter Your GPA" pattern="[0-9A-Za-z]+" minlength="1" maxlength="50"
                             value="{{ $user_detail->edu_cgpa }}" />
                     </div>
                 </div>
             --}}
-            {{--            
+
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="blue_btn">
@@ -621,7 +615,7 @@
             </div>
         </form>
     </div>
-@endif 
+@endif
 
 <!--------------------------------------------- Education info --------------------------------->
 
@@ -646,9 +640,9 @@
             method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
             @csrf
             <div class="col-md-12 mb-4">
-                <div class="position-relative">
+                <div class="position-relative form-group">
                     <label for="skills" class="form-label">Skills*</label>
-                    <select class="select2 form-select form-control input_select" aria-label="Default select example" id="skills"
+                    <select class="select2 form-select form-control is-invalid input_select" aria-label="Default select example" id="skills"
                         name="skill[]" multiple required>
                         <option value="">select skills</option>
                         @foreach ($skills as $row)
@@ -675,9 +669,7 @@
 
 <!--------------------------------------------- skill info --------------------------------->
 
---}}
-
-<!--------------------------------------------- certifications and edu-info  --------------------------------->
+<!--------------------------------------------- certifications-info  --------------------------------->
 
 @if (!Session::has('step') || Session::get('step') == 4)
     @php
@@ -701,36 +693,36 @@
             @csrf
             <div class="row">
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="School" class="form-label">School/University Name*</label>
-                        <input type="text" class="form-control input_text" id="School" name="edu_clg_name"
+                        <input type="text" class="form-control is-invalid input_text" id="School" name="edu_clg_name"
                             placeholder="Enter your School / College Nmae" pattern="[A-Za-z]+" minlength="1"
                             maxlength="50" value="{{ $user_detail->edu_clg_name }}" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="degree" class="form-label">Degree*</label>
-                        <input type="text" class="form-control input_text" id="degree" name="edu_degree"
+                        <input type="text" class="form-control is-invalid input_text" id="degree" name="edu_degree"
                             placeholder="Enter your Degree" pattern="[A-Za-z]+" minlength="1" maxlength="50"
                             value="{{ $user_detail->edu_degree }}" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Graduation" class="form-label">Graduation Year*</label>
-                        <input type="text" class="form-control input_text" id="Graduation"
+                        <input type="text" class="form-control is-invalid input_text" id="Graduation"
                             name="edu_graduation_year" placeholder="Enter Your Graduation Year"
                             pattern="[0-9A-Za-z]+" minlength="1" maxlength="50"
                             value="{{ $user_detail->edu_graduation_year }}" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="major" class="form-label">Major/Field of Study*</label>
-                        <input type="text" class="form-control input_text" id="major" name="edu_field"
+                        <input type="text" class="form-control is-invalid input_text" id="major" name="edu_field"
                             placeholder="Enter your Major Field of Study" pattern="[A-Za-z]+" minlength="1"
-                            maxlength="50" value="{{ $user_detail->edu_field }}" />
+                            maxlength="50" value="{{ $user_detail->edu_field }}" required/>
                     </div>
                 </div>
             </div>
@@ -741,28 +733,28 @@
                 @foreach($certificate_data as $index => $certificate)
                 <div class="row certificate-row">
                     <div class="col-md-12 mb-4">
-                        <div class="position-relative">
+                        <div class="position-relative form-group">
                             <label for="Certificate" class="form-label">Certificate Name*</label>
-                            <input type="text" class="form-control input_text certificate_name" name="certificate_name[]"
+                            <input type="text" class="form-control is-invalid input_text certificate_name" name="certificate_name[]"
                                 placeholder="Enter Your Certificate Name" pattern="[0-9A-Za-z]+" minlength="1" maxlength="100"
                                 value="{{ $certificate['certificate_name'] }}" />
                         </div>
                     </div>
 
                     <div class="col-md-6 mb-4">
-                        <div class="position-relative">
+                        <div class="position-relative form-group">
                             <label for="Date Obtained*" class="form-label">Date Obtained*</label>
                             
-                            <input type="date" class="form-control input_text certificate_obtn_date register_date_field"
+                            <input type="date" class="form-control is-invalid input_text certificate_obtn_date"
                                 name="certificate_obtn_date[]" placeholder="Date"
                                 value="{{ $certificate['certificate_obtn_date'] }}" />
                         </div>
                     </div>
 
                     <div class="col-md-6 mb-4">
-                        <div class="position-relative">
+                        <div class="position-relative form-group">
                             <label for="Issuing Registration*" class="form-label">Issuing Registration*</label>
-                            <input type="text" class="form-control input_text certificate_issuing"
+                            <input type="text" class="form-control is-invalid input_text certificate_issuing"
                                 name="certificate_issuing[]" placeholder="Enter your Issuing Registration"
                                 pattern="[0-9A-Za-z]+" minlength="1" maxlength="50"
                                 value="{{ $certificate['certificate_issuing'] }}" />
@@ -783,26 +775,26 @@
             @else
             <div class="row certificate-row">
                 <div class="col-md-12 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Certificate" class="form-label">Certificate Name*</label>
-                        <input type="text" class="form-control input_text certificate_name" name="certificate_name[]"
+                        <input type="text" class="form-control is-invalid input_text certificate_name" name="certificate_name[]"
                             placeholder="Enter Your Certificate Name" pattern="[0-9A-Za-z]+" minlength="1" maxlength="50"
                              />
                     </div>
                 </div>
 
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Date Obtained*" class="form-label">Date Obtained*</label>
-                        <input type="date" class="form-control input_text certificate_obtn_date register_date_field"
+                        <input type="date" class="form-control is-invalid input_text certificate_obtn_date"
                             name="certificate_obtn_date[]" placeholder="Date"  />
                     </div>
                 </div>
 
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Issuing Registration*" class="form-label">Issuing Registration*</label>
-                        <input type="text" class="form-control input_text certificate_issuing"
+                        <input type="text" class="form-control is-invalid input_text certificate_issuing"
                             name="certificate_issuing[]" placeholder="Enter your Issuing Registration"
                             pattern="[0-9A-Za-z]+" minlength="1" maxlength="50"  />
                     </div>
@@ -827,7 +819,7 @@
 
 @endif
 
-<!--------------------------------------------- certifications and edu-info --------------------------------->
+<!--------------------------------------------- certifications-info --------------------------------->
 
 <!--------------------------------------------- preferences-info  --------------------------------->
 
@@ -852,42 +844,42 @@
             @csrf
             <div class="row">
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Preferred Title/Role*" class="form-label">Preferred Title/Role*</label>
-                        <input type="text" class="form-control input_text" id="Preferred Title/Role*"
+                        <input type="text" class="form-control is-invalid input_text" id="Preferred Title/Role*"
                             name="pref_title" placeholder="Enter Your Preferred Title" pattern="[0-9A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $user_detail->pref_title }}" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Employment Type*" class="form-label">Employment Type*</label>
-                        <input type="text" class="form-control input_text" id="Employment Type*"
+                        <input type="text" class="form-control is-invalid input_text" id="Employment Type*"
                             name="pref_emp_type" placeholder="Enter your Employment Type" pattern="[A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $user_detail->pref_emp_type }}" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Preferred Industry*" class="form-label">Preferred Industry*</label>
-                        <input type="text" class="form-control input_text" id="Preferred Industry*"
+                        <input type="text" class="form-control is-invalid input_text" id="Preferred Industry*"
                             name="pref_industry" placeholder="Enter Your Preferred Industry" pattern="[A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $user_detail->pref_industry }}" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Desired Job Location*" class="form-label">Desired Job Location*</label>
-                        <input type="text" class="form-control input_text" id="Desired Job Location*"
+                        <input type="text" class="form-control is-invalid input_text" id="Desired Job Location*"
                             name="pref_location" pattern="[A-Za-z]+" minlength="1" maxlength="50"
                             value="{{ $user_detail->pref_location }}" placeholder="Enter your Desired Job Location"
                             required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Expected Salary*" class="form-label">Expected Salary*</label>
-                        <input type="text" class="form-control input_text" id="Expected Salary*"
+                        <input type="text" class="form-control is-invalid input_text" id="Expected Salary*"
                             name="pref_salary" placeholder="Enter Your Expected Salary" pattern="[A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $user_detail->pref_salary }}" required />
                     </div>  
@@ -896,63 +888,64 @@
                     <h2>Reference</h2>
                 </div>
                 @if (!empty($references_data))
-                    @foreach($references_data as $index => $reference)
-                    <div class="row reference-row mt-4">
-                        <div class="col-md-6 mb-3">
-                            <div class="position-relative">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control input_text reference_name" name="reference_name[]"
-                                    placeholder="Enter Your Name" pattern="[A-Za-z]+" minlength="1" maxlength="20"
-                                    value="{{ $reference['reference_name'] }}" required />
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <div class="position-relative">
-                                <label for="Phone" class="form-label">Phone</label>
-                                <input type="text" class="form-control input_text reference_phone" name="reference_phone[]"
-                                    placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10" maxlength="16"
-                                    value="{{ $reference['reference_phone'] }}" required />
-                            </div>
-                        </div>
-
-                        @if ($index === 0)
-                        <div class="col-md-12">
-                            <button type="button" class="btn btn-success add-reference-row">Add More +</button>
-                        </div>
-                        @else
-                        <div class="col-md-12">
-                            <button type="button" class="btn btn-danger remove-reference-row">Remove -</button>
-                        </div>
-                        @endif
-                    </div>
-                    @endforeach
-                @else
-                <div class="row reference-row mt-4">
-                    <div class="col-md-6 mb-3">
-                        <div class="position-relative">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control input_text" id="name" name="reference_name[]"
-                                placeholder="Enter Your Name" pattern="[A-Za-z]+" minlength="1" maxlength="20" required />
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-                        <div class="position-relative">
-                            <label for="Phone" class="form-label">Phone</label>
-                            <input type="text" class="form-control input_text" id="Phone" name="reference_phone[]"
-                                placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10" maxlength="16" required />
-                        </div>
-                    </div>
-
-                    <div class="col-md-12">
-                        <button type="button" class="btn btn-success add-reference-row">Add More +</button>
-                    </div>
+    @foreach($references_data as $index => $reference)
+        <div class="row reference-row mt-4">
+            <div class="col-md-6 mb-3">
+                <div class="position-relative form-group">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control is-invalid input_text reference_name" name="reference_name[]"
+                        placeholder="Enter Your Name" pattern="[A-Za-z]+" minlength="1" maxlength="20"
+                        value="{{ $reference['reference_name'] }}" required />
                 </div>
-                @endif
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="position-relative form-group">
+                    <label for="Phone{{ $index + 1 }}" class="form-label">Phone</label>
+                    <input type="text" class="form-control is-invalid input_text reference_phone" name="reference_phone[]"
+                        id="Phone{{ $index + 1 }}" placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10" maxlength="16"
+                        value="{{ $reference['reference_phone'] }}" required />
+                </div>
+            </div>
+
+            @if ($index === 0)
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-success add-reference-row">Add More +</button>
+                </div>
+            @else
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-danger remove-reference-row">Remove -</button>
+                </div>
+            @endif
+        </div>
+    @endforeach
+@else
+    <div class="row reference-row mt-4">
+        <div class="col-md-6 mb-3">
+            <div class="position-relative form-group">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control is-invalid input_text" id="name" name="reference_name[]"
+                    placeholder="Enter Your Name" pattern="[A-Za-z]+" minlength="1" maxlength="20" required />
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="position-relative form-group">
+                <label for="Phone1" class="form-label">Phone</label>
+                <input type="text" class="form-control is-invalid input_text reference_phone" id="Phone1" name="reference_phone[]"
+                    placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10" maxlength="16" required />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <button type="button" class="btn btn-success add-reference-row">Add More +</button>
+        </div>
+    </div>
+@endif
+
                 {{--
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="References*" class="form-label">References*</label>
                         <select class="select2 form-select input_select" aria-label="Default select example" id="References*"
                         name="references[]" multiple required>
@@ -974,10 +967,10 @@
             </div>
             <div class="row">
                 <div class="col-md-5">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Legal Authorization to work status" class="form-label">Legal
                             Authorization to work status</label>
-                        <select class="select2 form-select form-control input_select" aria-label="Default select example"
+                        <select class="select2 form-select form-control is-invalid input_select" aria-label="Default select example"
                             id="Legal Authorization to work status*" name="work_authorization_status" required>
                             <option value="">Select work status</option>
                             <option value="1" @if ($user_detail->work_authorization_status == 1) selected @endif>Yes</option>
@@ -986,10 +979,10 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Availability" class="form-label">Availability
                         </label>
-                        <select class="select2 form-select form-control input_select" aria-label="Default select example"
+                        <select class="select2 form-select form-control is-invalid input_select" aria-label="Default select example"
                             id="Availability" name="availability" required>
                             <option value="">Select Availability</option>
                             <option value="1" @if ($user_detail->availability == 1) selected @endif>Yes</option>
@@ -998,10 +991,10 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Notice Period" class="form-label">Notice Period
                         </label>
-                        <select class="select2 form-select form-control input_select" aria-label="Default select example"
+                        <select class="select2 form-select form-control is-invalid input_select" aria-label="Default select example"
                             id="Notice Period" name="notice_period" required>
                             <option value="">Select Notice Period</option>
                             <option value="1" @if ($user_detail->notice_period == 1) selected @endif>Yes</option>
@@ -1024,8 +1017,6 @@
 
 <!--------------------------------------------- preferences-info --------------------------------->
 
-
-{{--
 <!--------------------------------------------- work-authorization-info  --------------------------------->
 
 @if (!Session::has('step') || Session::get('step') == 0)
@@ -1046,10 +1037,10 @@
             @csrf
             <div class="row">
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Legal Authorization to work status*" class="form-label">Legal
                             Authorization to work status</label>
-                        <select class="select2 form-select form-control input_select" aria-label="Default select example"
+                        <select class="select2 form-select form-control is-invalid input_select" aria-label="Default select example"
                             id="Legal Authorization to work status*" name="work_authorization_status" required>
                             <option value="">Select work status</option>
                             <option value="1" @if ($user_detail->work_authorization_status == 1) selected @endif>Yes</option>
@@ -1058,10 +1049,10 @@
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Availability" class="form-label">Availability
                         </label>
-                        <select class="select2 form-select form-control input_select" aria-label="Default select example"
+                        <select class="select2 form-select form-control is-invalid input_select" aria-label="Default select example"
                             id="Availability" name="availability" required>
                             <option value="">Select Availability</option>
                             <option value="1" @if ($user_detail->availability == 1) selected @endif>Yes</option>
@@ -1070,10 +1061,10 @@
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Notice Period" class="form-label">Notice Period
                         </label>
-                        <select class="select2 form-select form-control input_select" aria-label="Default select example"
+                        <select class="select2 form-select form-control is-invalid input_select" aria-label="Default select example"
                             id="Notice Period" name="notice_period" required>
                             <option value="">Select Notice Period</option>
                             <option value="1" @if ($user_detail->notice_period == 1) selected @endif>Yes</option>
@@ -1096,8 +1087,6 @@
 
 <!--------------------------------------------- work-authorization-info --------------------------------->
 
---}}
-
 <!--------------------------------------------- social-media-info  --------------------------------->
 
 @if (!Session::has('step') || Session::get('step') == 6)
@@ -1117,49 +1106,49 @@
             @csrf
             <div class="row">
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Linkdin" class="form-label">Linkdin</label>
                         <img src="/assets/images/linkedin-in1.png" alt="" class="input_icon linkedin_icon">
-                        <input type="url" class="form-control input_text" id="Linkdin" name="linkdin"
+                        <input type="url" class="form-control is-invalid input_text" id="Linkdin" name="linkdin"
                             placeholder="Enter Your Linkdn URL" value="{{ $user_detail->linkdin }}" name="linkdin"
                              />
                         <img src="images/linkedin.png" alt="" class="input_icon" />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Twitter" class="form-label">Twitter</label>
                         <img src="/assets/images/x-twitter1.png" alt="" class="input_icon twitter_icon">
-                        <input type="url" class="form-control input_text" id="Twitter" name="twitter"
+                        <input type="url" class="form-control is-invalid input_text" id="Twitter" name="twitter"
                             placeholder="Enter Your Twitter URL" value="{{ $user_detail->twitter }}" name="twitter"
                              />
                         <img src="images/x.png" alt="" class="input_icon" />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Instagram" class="form-label">Instagram</label>
                         <img src="/assets/images/instagram1.png" alt="" class="input_icon insta_icon">
-                        <input type="url" class="form-control input_text" id="Instagram"
+                        <input type="url" class="form-control is-invalid input_text" id="Instagram"
                             placeholder="Enter Your Instagram URL" value="{{ $user_detail->instagram }}"
                             name="instagram" >
                         <img src="images/instagram.png" alt="" class="input_icon" />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="Facebook" class="form-label">Facebook</label>
                         <img src="/assets/images/facebook-f1.png" alt="" class="input_icon facebook_icon">
-                        <input type="url" class="form-control input_text" id="Facebook"
+                        <input type="url" class="form-control is-invalid input_text" id="Facebook"
                             placeholder="Enter Your Facebook URL" value="{{ $user_detail->facebook }}"
                             name="facebook"  />
                         <img src="images/facebook.png" alt="" class="input_icon" />
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <div class="position-relative">
+                    <div class="position-relative form-group">
                         <label for="others" class="form-label">Others</label>
-                        <input type="url" class="form-control input_text" id="others"
+                        <input type="url" class="form-control is-invalid input_text" id="others"
                             placeholder="Enter Your Others URL" value="{{ $user_detail->other }}" name="other"
                              />
                     </div>
