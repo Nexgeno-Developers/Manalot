@@ -6,21 +6,28 @@ body {
 
 /* Style the entire scrollbar */
 body::-webkit-scrollbar {
-    width: 5px; /* Width of the vertical scrollbar */
-    height: 2px; /* Height of the horizontal scrollbar */
+    width: 5px;
+    /* Width of the vertical scrollbar */
+    height: 2px;
+    /* Height of the horizontal scrollbar */
 }
 
 /* Style the scrollbar thumb */
 body::-webkit-scrollbar-thumb {
-    background: linear-gradient(34.89deg, #4B2779 8%, #BE2475 83.76%); /* Gradient color for the thumb */
-    border-radius: 10px; /* Roundness of the scroll thumb */
-    box-shadow: 0 0 0 3px #f1f1f1; /* Simulating a border with box-shadow */
+    background: linear-gradient(34.89deg, #4B2779 8%, #BE2475 83.76%);
+    /* Gradient color for the thumb */
+    border-radius: 10px;
+    /* Roundness of the scroll thumb */
+    box-shadow: 0 0 0 3px #f1f1f1;
+    /* Simulating a border with box-shadow */
 }
 
 /* Style the scrollbar track */
 body::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Color of the scrollbar track */
-    border-radius: 10px; /* Roundness of the track */
+    background: #f1f1f1;
+    /* Color of the scrollbar track */
+    border-radius: 10px;
+    /* Roundness of the track */
 }
 
 .rounded-sm {
@@ -605,7 +612,7 @@ ul.select2-results__options li.select2-results__option:hover {
 .register_image {
     position: fixed;
     top: 0px;
-    width:33%;
+    width: 33%;
     height: 100vh;
     object-fit: cover;
 }
@@ -618,7 +625,7 @@ ul.select2-results__options li.select2-results__option:hover {
     position: relative;
     background-size: 17px;
 }
-    
+
 input[type="date"]::-webkit-calendar-picker-indicator {
     opacity: 0;
     cursor: pointer;
@@ -1164,7 +1171,7 @@ input.h_input::placeholder {
 
 .ms-footer-wrap .col-12 {
     margin-bottom: 0;
-} 
+}
 
 .ms-footer {
     background-image: url(https://manalot.com/public/gfx/footer-bg.png);
@@ -1257,4 +1264,9 @@ button.btn.btn-danger.remove-row {
 .btn-check:focus+.btn-danger,
 .btn-danger:focus {
     box-shadow: none !important;
+}
+
+.checkbox_error label#term_check-error {
+    position: absolute;
+    margin-top: 25px;
 }

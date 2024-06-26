@@ -78,7 +78,7 @@
             </div>
 
             <div class="col-md-6 mb-3">
-                <div class="form-check">
+                <div class="form-check checkbox_error">
                     <input class="form-check-input" type="checkbox" value="1" name="term_check"
                         id="flexCheckDefault" required />
                     <label class="form-check-label terms_font " for="flexCheckDefault">
