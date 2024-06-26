@@ -58,7 +58,7 @@
 
         setTimeout(function () {
             location.reload();
-        }, 1000);
+        }, 500);
 
     }
 
@@ -100,25 +100,6 @@
 
     /*---------------------  personal info ------------------*/ 
 
-    /*--------------------- login info ------------------*/
-
-        initValidate('#login-info');
-
-        $('#login-info').on('submit', function(e){
-            var form = $(this);
-            ajax_form_submit(e, form, responseHandler);
-        });
-
-        var responseHandler = function (response) {
-            $("input, textarea").val("");
-            $("select option:first").prop("selected", !0);
-            setTimeout(function () {
-                location.reload();
-            }, 500);
-        };
-
-    /*---------------------  Login info ------------------*/ 
-
     /*--------------------- personal work info ------------------*/
 
         initValidate('#personal-work-info');
@@ -137,25 +118,6 @@
         };
 
     /*---------------------  personal work info ------------------*/ 
-
-    /*--------------------- education-info ------------------*/
-
-        initValidate('#education-info');
-
-        $('#education-info').on('submit', function(e){
-            var form = $(this);
-            ajax_form_submit(e, form, responseHandler);
-        });
-
-        var responseHandler = function (response) {
-            $("input, textarea").val("");
-            $("select option:first").prop("selected", !0);
-            setTimeout(function () {
-                location.reload();
-            }, 500);
-        };
-
-    /*---------------------  education-info ------------------*/ 
 
     /*--------------------- skills-info ------------------*/
 
@@ -214,24 +176,7 @@
 
     /*---------------------  preferences-info ------------------*/ 
 
-    /*--------------------- work-authorization-info ------------------*/
 
-        initValidate('#work-authorization-info');
-
-        $('#work-authorization-info').on('submit', function(e){
-            var form = $(this);
-            ajax_form_submit(e, form, responseHandler);
-        });
-
-        var responseHandler = function (response) {
-            $("input, textarea").val("");
-            $("select option:first").prop("selected", !0);
-            setTimeout(function () {
-                location.reload();
-            }, 500);
-        };
-
-    /*---------------------  work-authorization-info ------------------*/ 
 
     /*--------------------- social-media-info ------------------*/
 
@@ -390,6 +335,69 @@
 
 
      /*--------------------- API forms ------------------*/
+
+
+
+    // -----==================== Not working ======================= 
+
+
+    // /*--------------------- work-authorization-info ------------------*/
+
+    //     initValidate('#work-authorization-info');
+
+    //     $('#work-authorization-info').on('submit', function(e){
+    //         var form = $(this);
+    //         ajax_form_submit(e, form, responseHandler);
+    //     });
+
+    //     var responseHandler = function (response) {
+    //         $("input, textarea").val("");
+    //         $("select option:first").prop("selected", !0);
+    //         setTimeout(function () {
+    //             location.reload();
+    //         }, 500);
+    //     };
+
+    // /*---------------------  work-authorization-info ------------------*/ 
+
+    // /*--------------------- education-info ------------------*/
+
+    //     initValidate('#education-info');
+
+    //     $('#education-info').on('submit', function(e){
+    //         var form = $(this);
+    //         ajax_form_submit(e, form, responseHandler);
+    //     });
+
+    //     var responseHandler = function (response) {
+    //         $("input, textarea").val("");
+    //         $("select option:first").prop("selected", !0);
+    //         setTimeout(function () {
+    //             location.reload();
+    //         }, 500);
+    //     };
+
+    // /*---------------------  education-info ------------------*/ 
+
+    // /*--------------------- login info ------------------*/
+
+    //     initValidate('#login-info');
+
+    //     $('#login-info').on('submit', function(e){
+    //         var form = $(this);
+    //         ajax_form_submit(e, form, responseHandler);
+    //     });
+
+    //     var responseHandler = function (response) {
+    //         $("input, textarea").val("");
+    //         $("select option:first").prop("selected", !0);
+    //         setTimeout(function () {
+    //             location.reload();
+    //         }, 500);
+    //     };
+
+    // /*---------------------  Login info ------------------*/ 
+
      </script>
     
 @endsection
