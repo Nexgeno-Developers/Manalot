@@ -123,7 +123,7 @@
 
                     <div class="modal-body">
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label form-label">Otp:</label>
+                                <label for="recipient-name" class="col-form-label form-label">OTP:</label>
                                 <input type="text" class="form-control" id="recipient-name" name="otp" pattern="[0-9]+" minlength="6"
                                 maxlength="6" placeholder="Please Enter OTP" required>
                             </div>
