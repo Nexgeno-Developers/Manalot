@@ -105,6 +105,8 @@ class AccountController extends Controller
         if($authenticated)
         {
 
+            Session()->flush();
+
             Session::put('user_id', auth()->user()->id);
 
             $rsp_msg['response'] = 'success';
@@ -125,6 +127,10 @@ class AccountController extends Controller
         if($param == "user-info"){
 
             $rsp_msg = $this->create_user_detail($request);
+
+        }elseif($param == "email-verify"){
+
+            $rsp_msg = $this->email_verification($request);
 
         }elseif($param == "personal-info"){
 
@@ -221,20 +227,23 @@ class AccountController extends Controller
             $path = null;
         }
 
+
+
+
         if($users_email_temp){
 
-            DB::table('users')->where('id',$users_email_temp->id)->update([
-                'username' => $request->input('name'),
-                'email' => strtolower($request->input('email')),
-                'password' => bcrypt($request->input('password')),
-                'approval' => '0',
-                'status' => '0',
-                'completed_status' => '0',
-                'step' => 1,
-                'role_id'  => '2',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+            // DB::table('users')->where('id',$users_email_temp->id)->update([
+            //     'username' => $request->input('name'),
+            //     'email' => strtolower($request->input('email')),
+            //     'password' => bcrypt($request->input('password')),
+            //     'approval' => '0',
+            //     'status' => '0',
+            //     'completed_status' => '0',
+            //     'step' => 1,
+            //     'role_id'  => '2',
+            //     'created_at' => now(),
+            //     'updated_at' => now(),
+            // ]);
 
             $resume_path = DB::table('userdetails')->where('user_id', $users_email_temp->id)->value('resume_cv');
 
@@ -244,51 +253,75 @@ class AccountController extends Controller
                 }
             } 
 
-            DB::table('userdetails')->where('user_id',$users_email_temp->id)->update([
-                'phone_number' => $request->input('phone_number'),
-                //'experience_Status' => $request->input('experience_Status'),
-                'resume_cv' => $path,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+            // DB::table('userdetails')->where('user_id',$users_email_temp->id)->update([
+            //     'phone_number' => $request->input('phone_number'),
+            //     //'experience_Status' => $request->input('experience_Status'),
+            //     'resume_cv' => $path,
+            //     'created_at' => now(),
+            //     'updated_at' => now(),
+            // ]);
 
-            Session::put('temp_user_id', $users_email_temp->id);
+            // Session::put('temp_user_id', $users_email_temp->id);
 
         } else {
 
-            $userId = DB::table('users')->insertGetId([
-                'username' => $request->input('name'),
-                'email' => strtolower($request->input('email')),
-                'password' => bcrypt($request->input('password')),
-                'approval' => '0',
-                'role_id'  => '2',
-                'completed_status' => '0',
-                'status' => '0',
-                'step' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+            // $userId = DB::table('users')->insertGetId([
+            //     'username' => $request->input('name'),
+            //     'email' => strtolower($request->input('email')),
+            //     'password' => bcrypt($request->input('password')),
+            //     'approval' => '0',
+            //     'role_id'  => '2',
+            //     'completed_status' => '0',
+            //     'status' => '0',
+            //     'step' => 1,
+            //     'created_at' => now(),
+            //     'updated_at' => now(),
+            // ]);
 
-            DB::table('userdetails')->insert([
-                'user_id' => $userId,
-                'phone_number' => $request->input('phone_number'),
-                //'experience_Status' => $request->input('experience_Status'),
-                'skill' => '[]',
-                'references' => '[]',
-                'resume_cv' => $path,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+            // DB::table('userdetails')->insert([
+            //     'user_id' => $userId,
+            //     'phone_number' => $request->input('phone_number'),
+            //     //'experience_Status' => $request->input('experience_Status'),
+            //     'skill' => '[]',
+            //     'references' => '[]',
+            //     'resume_cv' => $path,
+            //     'created_at' => now(),
+            //     'updated_at' => now(),
+            // ]);
 
-            Session::put('temp_user_id', $userId);
+            // Session::put('temp_user_id', $userId);
         }
 
         // Session::put('password', $request->input('password'));
-        Session::put('step', 2);
 
+
+        // Session::put('step', 2);
+
+
+        $user_info = [
+            'username' => $request->input('name'),
+            'email' => strtolower($request->input('email')),
+            'password' => bcrypt($request->input('password')),
+            'phone_number' => $request->input('phone_number'),
+            'resume_cv' => $path,
+        ];
+
+
+        $otp = mt_rand(100000, 999999);
+        $timestamp = Carbon::now();
+        Session::put('otp', $otp);
+        Session::put('otp_timestamp', $timestamp);
+
+        $to = $user_info['email'];
+        $subject = "Email Verification for Manalot Application";
+        $body = "Your OTP code to verify your Email ID for the Manalot application is '.$otp.'.This OTP is valid for only 2 minutes.";
+
+        sendEmail($to, $subject, $body);
+
+        Session::put('user_info', $user_info);
 
         $rsp_msg['response'] = 'success';
-        $rsp_msg['message']  = "User Detail Added successfully. Please Proceed";
+        $rsp_msg['message']  = "User Detail Added successfully. Please verify Your Email ID";
 
         // session()->flash('success', 'User Detail Added successfully. Please Proceed');
 
@@ -296,6 +329,103 @@ class AccountController extends Controller
 
     }
 
+    public function email_verification($request){
+        
+        $validator = Validator::make($request->all(), [
+            'otp' => 'required|digits:6',
+        ]);
+
+        if ($validator->fails()) {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = $validator->errors()->all();
+
+            return $rsp_msg; 
+        } 
+
+        $otp = Session::get('otp');
+        $timestamp = Session::get('otp_timestamp');
+
+        // Check if OTP expired (2 minutes)
+        if (Carbon::parse($timestamp)->diffInMinutes(Carbon::now()) > 2) {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = "OTP has expired. Please request a new one";
+
+            return $rsp_msg;
+        }
+
+        if ($request->otp == $otp) {
+
+            $user_info = Session::get('user_info');
+
+            $users_email_temp = DB::table('users')->where('email', $user_info['email'])->get()->first();
+
+            if($users_email_temp){
+
+                DB::table('users')->where('id',$users_email_temp->id)->update([
+                    'username' => $user_info['username'],
+                    'email' => $user_info['email'],
+                    'password' => $user_info['password'],
+                    'approval' => '0',
+                    'status' => '0',
+                    'completed_status' => '0',
+                    'step' => 1,
+                    'role_id'  => '2',
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+    
+                DB::table('userdetails')->where('user_id',$users_email_temp->id)->update([
+                    'phone_number' => $user_info['phone_number'],
+                    'resume_cv' => $user_info['resume_cv'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+    
+                Session::put('temp_user_id', $users_email_temp->id);
+    
+            } else {
+    
+                $userId = DB::table('users')->insertGetId([
+                    'username' => $user_info['username'],
+                    'email' => $user_info['email'],
+                    'password' => $user_info['password'],
+                    'approval' => '0',
+                    'role_id'  => '2',
+                    'completed_status' => '0',
+                    'status' => '0',
+                    'step' => 1,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+    
+                DB::table('userdetails')->insert([
+                    'user_id' => $userId,
+                    'phone_number' => $user_info['phone_number'],
+                    'skill' => '[]',
+                    'references' => '[]',
+                    'resume_cv' => $user_info['resume_cv'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+    
+                Session::put('temp_user_id', $userId);
+            }
+
+            Session::put('step', 2);
+
+            session()->forget('user_info');
+
+            $rsp_msg['response'] = 'success';
+            $rsp_msg['message']  = "Email ID has been Verified";
+
+        } else {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = "Invalid OTP";
+        }
+        
+
+        return $rsp_msg;
+    }
 
 
     public function create_personal_info($request){

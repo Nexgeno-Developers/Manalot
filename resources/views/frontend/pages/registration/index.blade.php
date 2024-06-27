@@ -35,6 +35,8 @@
 @section('component.scripts')
     <script>
 
+
+
     // $(document).ready(function() {
     //     initSelect2('.select2');
     //     initTrumbowyg('.trumbowyg');
@@ -68,18 +70,41 @@
 
         $('#user-info').on('submit', function(e){
             var form = $(this);
-            ajax_form_submit(e, form, responseHandler);
+            ajax_form_submit(e, form, responseHandler_user_info);
         });
 
-        var responseHandler = function (response) {
+        var responseHandler_user_info = function (response) {
+            $("input, textarea").val("");
+            $("select option:first").prop("selected", !0);
+            setTimeout(function () {
+                // location.reload();
+                $('#email_otp_model').modal('show');
+            }, 100);
+        };
+
+    /*--------------------- user info ------------------*/ 
+
+    /*--------------------- email verify otp ------------------*/
+
+        initValidate('#email-verify-otp');
+
+        $('#email-verify-otp').on('submit', function(e){
+            var form = $(this);
+            ajax_form_submit(e, form, responseHandler_email_verify_otp);
+        });
+
+        var responseHandler_email_verify_otp = function (response) {
             $("input, textarea").val("");
             $("select option:first").prop("selected", !0);
             setTimeout(function () {
                 location.reload();
-            }, 500);
+            }, 100);
         };
 
-    /*--------------------- user info ------------------*/ 
+        function close_Emai_modal() {
+            $('#email_otp_model').modal('toggle');
+        };
+    /*--------------------- email verify otp ------------------*/ 
 
     /*--------------------- personal info ------------------*/
 
@@ -87,10 +112,10 @@
 
         $('#personal-info').on('submit', function(e){
             var form = $(this);
-            ajax_form_submit(e, form, responseHandler);
+            ajax_form_submit(e, form, responseHandler_personal_info);
         });
 
-        var responseHandler = function (response) {
+        var responseHandler_personal_info = function (response) {
             $("input, textarea").val("");
             $("select option:first").prop("selected", !0);
             setTimeout(function () {
@@ -106,10 +131,10 @@
 
         $('#personal-work-info').on('submit', function(e){
             var form = $(this);
-            ajax_form_submit(e, form, responseHandler);
+            ajax_form_submit(e, form, responseHandler_personal_work_info);
         });
 
-        var responseHandler = function (response) {
+        var responseHandler_personal_work_info = function (response) {
             $("input, textarea").val("");
             $("select option:first").prop("selected", !0);
             setTimeout(function () {
@@ -125,10 +150,10 @@
 
         $('#skills-info').on('submit', function(e){
             var form = $(this);
-            ajax_form_submit(e, form, responseHandler);
+            ajax_form_submit(e, form, responseHandler_skill_info);
         });
 
-        var responseHandler = function (response) {
+        var responseHandler_skill_info = function (response) {
             $("input, textarea").val("");
             $("select option:first").prop("selected", !0);
             setTimeout(function () {
@@ -144,10 +169,10 @@
 
         $('#certifications-info').on('submit', function(e){
             var form = $(this);
-            ajax_form_submit(e, form, responseHandler);
+            ajax_form_submit(e, form, responseHandler_certifications_info);
         });
 
-        var responseHandler = function (response) {
+        var responseHandler_certifications_info = function (response) {
             $("input, textarea").val("");
             $("select option:first").prop("selected", !0);
             setTimeout(function () {
@@ -163,10 +188,10 @@
 
         $('#preferences-info').on('submit', function(e){
             var form = $(this);
-            ajax_form_submit(e, form, responseHandler);
+            ajax_form_submit(e, form, responseHandler_preference_info);
         });
 
-        var responseHandler = function (response) {
+        var responseHandler_preference_info = function (response) {
             $("input, textarea").val("");
             $("select option:first").prop("selected", !0);
             setTimeout(function () {
@@ -184,10 +209,10 @@
 
         $('#social-media-info').on('submit', function(e){
             var form = $(this);
-            ajax_form_submit(e, form, responseHandler);
+            ajax_form_submit(e, form, responseHandler_social_media_info);
         });
 
-        var responseHandler = function (response) {
+        var responseHandler_social_media_info = function (response) {
             $("input, textarea").val("");
             $("select option:first").prop("selected", !0);
             setTimeout(function () {
@@ -203,10 +228,10 @@
 
         $('#proceeding-info').on('submit', function(e){
             var form = $(this);
-            ajax_form_submit(e, form, responseHandler1);
+            ajax_form_submit(e, form, responseHandler_proceeding_info);
         });
 
-        var responseHandler1 = function (response) {
+        var responseHandler_proceeding_info = function (response) {
             $("input, textarea").val("");
             $("select option:first").prop("selected", !0);
             setTimeout(function () {
@@ -384,7 +409,7 @@
 
     // /*--------------------- education-info ------------------*/
 
-        initValidate('#education-info');
+    // initValidate('#education-info');
 
     //     $('#education-info').on('submit', function(e){
     //         var form = $(this);
