@@ -1224,7 +1224,8 @@ div#personal-details {
     padding-top: 37px;
 }
 
-button.btn.btn-success.add-row {
+button.btn.btn-success.add-row,
+a.btn.btn-success.add-row {
     color: #901D56;
     background: transparent;
     border: 0;
