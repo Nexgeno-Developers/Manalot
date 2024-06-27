@@ -106,12 +106,16 @@
     <div class="modal fade" id="email_otp_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content py-3">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Verify Email</h5>
-                    <button type="button" onclick="close_Emai_modal();" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <div class="heading">
+                        <h5 class="modal-title" id="exampleModalLabel">Verify Email</h5>
+                    </div>
+                    <div class="purple_btn">
+                        <button type="button" onclick="close_Emai_modal();" class="close p-1 px-3" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="font-size: 24px;">&times;</span>
+                        </button>
+                    </div>
                 </div>
                 <form id="email-verify-otp" action="{{ url(route('account.create', ['param' => 'email-verify'])) }}"
                     method="post">
@@ -119,14 +123,18 @@
 
                     <div class="modal-body">
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Otp:</label>
+                                <label for="recipient-name" class="col-form-label form-label">Otp:</label>
                                 <input type="text" class="form-control" id="recipient-name" name="otp" pattern="[0-9]+" minlength="6"
                                 maxlength="6" placeholder="Please Enter OTP" required>
                             </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" onclick="close_Emai_modal();" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Send message</button>
+                        <div class="blue_btn">
+                            <button type="button" onclick="close_Emai_modal();" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                        <div class="purple_btn">
+                            <button type="submit" class="btn btn-primary">Send message</button>
+                        </div>
                     </div>
                 </form>
             </div>

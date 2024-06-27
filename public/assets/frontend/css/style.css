@@ -81,7 +81,8 @@ body::-webkit-scrollbar-track {
     color: #2FACAB;
 }
 
-.heading h2 {
+.heading h2,
+.heading h5 {
     font-size: 24px;
     font-weight: 300;
     color: #901D56;
@@ -638,6 +639,23 @@ height: 100vh;
 } */
 .register_width {
     width: 680px;
+}
+
+/* email otp */
+
+#email_otp_model .modal-content {
+    margin: 0px auto;
+    width: 90%;
+}
+
+#email-verify-otp .modal-body,
+#email-verify-otp .modal-footer {
+    padding: 0px 1rem .75rem !important;
+}
+
+#email-verify-otp .modal-footer, 
+#email_otp_model .modal-header {
+    border: 0px !important;
 }
 
 .intl-tel-input input {
