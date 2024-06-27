@@ -810,7 +810,7 @@
 
                         <div class="col-md-6 mb-4">
                             <div class="position-relative form-group">
-                                <label for="Date Obtained*" class="form-label">Date Obtained*</label>
+                                <label for="Date Obtained*" class="form-label">Date Obtained</label>
 
                                 <input type="date" class="form-control is-invalid input_text certificate_obtn_date register_date_field"
                                     name="certificate_obtn_date[]" placeholder="Date"
@@ -820,7 +820,7 @@
 
                         <div class="col-md-6 mb-4">
                             <div class="position-relative form-group">
-                                <label for="Issuing Registration*" class="form-label">Issuing Registration*</label>
+                                <label for="Issuing Registration*" class="form-label">Issuing Registration</label>
                                 <input type="text" class="form-control is-invalid input_text certificate_issuing"
                                     name="certificate_issuing[]" placeholder="Enter your Issuing Registration"
                                     pattern="[0-9A-Za-z]+" minlength="1" maxlength="50"
@@ -852,7 +852,7 @@
 
                     <div class="col-md-6 mb-4">
                         <div class="position-relative form-group">
-                            <label for="Date Obtained*" class="form-label">Date Obtained*</label>
+                            <label for="Date Obtained*" class="form-label">Date Obtained</label>
                             <input type="date" class="form-control is-invalid input_text certificate_obtn_date"
                                 name="certificate_obtn_date[]" placeholder="Date" />
                         </div>
@@ -860,7 +860,7 @@
 
                     <div class="col-md-6 mb-4">
                         <div class="position-relative form-group">
-                            <label for="Issuing Registration*" class="form-label">Issuing Registration*</label>
+                            <label for="Issuing Registration*" class="form-label">Issuing Registration</label>
                             <input type="text" class="form-control is-invalid input_text certificate_issuing"
                                 name="certificate_issuing[]" placeholder="Enter your Issuing Registration"
                                 pattern="[0-9A-Za-z]+" minlength="1" maxlength="50" />
