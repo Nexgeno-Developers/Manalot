@@ -29,13 +29,69 @@
 
 @endsection
 
-<!----------========================== Registration ============----------->
-
 
 @section('component.scripts')
     <script>
+    
 
+    function next_page_preview(step_info){
+        var step = {{ Session::has('step') ? Session::get('step') : '0' }};
+        
+        var elements = [
+            'user-add-details',
+            'personal-details',
+            'work-details-div',
+            'cirtificate_one',
+            'availibility_one',
+            'social_media_div',
+            'doc_verify_div'
+        ];
 
+        // Update the step value if step_info is passed
+        if (step_info !== undefined) {
+            step = step_info;
+        }
+
+        console.log('step');
+        console.log(step);
+
+        // Hide all elements
+        elements.forEach(function(id) {
+            document.getElementById(id).classList.add('d-none');
+        });
+
+        // Show elements based on step
+        switch(step) {
+            case 1:
+                document.getElementById('user-add-details').classList.remove('d-none');
+                break;
+            case 2:
+                document.getElementById('personal-details').classList.remove('d-none');
+                break;
+            case 3:
+                document.getElementById('work-details-div').classList.remove('d-none');
+                break;
+            case 4:
+                document.getElementById('personal-details').classList.remove('d-none');
+                document.getElementById('cirtificate_one').classList.remove('d-none');
+                break;
+            case 5:
+                document.getElementById('personal-details').classList.remove('d-none');
+                document.getElementById('availibility_one').classList.remove('d-none');
+                break;
+            case 6:
+                document.getElementById('personal-details').classList.remove('d-none');
+                document.getElementById('social_media_div').classList.remove('d-none');
+                break;
+            case 7:
+                document.getElementById('personal-details').classList.remove('d-none');
+                document.getElementById('doc_verify_div').classList.remove('d-none');
+                break;
+            default:
+                document.getElementById('user-add-details').classList.remove('d-none');
+                break;
+        }
+    }
 
     // $(document).ready(function() {
     //     initSelect2('.select2');
@@ -48,6 +104,12 @@
     });
 
     function back_to_privious(){
+
+        var current_step = {{ Session::has('step') ? Session::get('step') : '0' }};
+
+        console.log('current_step');
+        console.log(current_step);
+
         // Create an XMLHttpRequest object
         var xhr = new XMLHttpRequest();
 
@@ -58,9 +120,11 @@
         xhr.open('GET', url, true);
         xhr.send();
 
-        setTimeout(function () {
-            location.reload();
-        }, 100);
+        // setTimeout(function () {
+        //     location.reload();
+        // }, 100);
+
+        next_page_preview(current_step);
 
     }
 
@@ -96,9 +160,11 @@
         var responseHandler_email_verify_otp = function (response) {
             $("input, textarea").val("");
             $("select option:first").prop("selected", !0);
-            setTimeout(function () {
-                location.reload();
-            }, 100);
+            // setTimeout(function () {
+            //     location.reload();
+            // }, 100);
+            $('#email_otp_model').modal('toggle');
+            next_page_preview(2);
         };
 
         function close_Emai_modal() {
@@ -118,9 +184,11 @@
         var responseHandler_personal_info = function (response) {
             $("input, textarea").val("");
             $("select option:first").prop("selected", !0);
-            setTimeout(function () {
-                location.reload();
-            }, 100);
+            // setTimeout(function () {
+            //     location.reload();
+            // }, 100);
+
+            next_page_preview(3);
         };
 
     /*---------------------  personal info ------------------*/ 
@@ -137,9 +205,11 @@
         var responseHandler_personal_work_info = function (response) {
             $("input, textarea").val("");
             $("select option:first").prop("selected", !0);
-            setTimeout(function () {
-                location.reload();
-            }, 100);
+            // setTimeout(function () {
+            //     location.reload();
+            // }, 100);
+
+            next_page_preview(4);
         };
 
     /*---------------------  personal work info ------------------*/ 
@@ -156,31 +226,14 @@
         var responseHandler_skill_info = function (response) {
             $("input, textarea").val("");
             $("select option:first").prop("selected", !0);
-            setTimeout(function () {
-                location.reload();
-            }, 100);
+            // setTimeout(function () {
+            //     location.reload();
+            // }, 100);
+
+            next_page_preview(5);
         };
 
     /*---------------------  skills-info ------------------*/ 
-
-    /*--------------------- certifications-info ------------------*/
-
-        initValidate('#certifications-info');
-
-        $('#certifications-info').on('submit', function(e){
-            var form = $(this);
-            ajax_form_submit(e, form, responseHandler_certifications_info);
-        });
-
-        var responseHandler_certifications_info = function (response) {
-            $("input, textarea").val("");
-            $("select option:first").prop("selected", !0);
-            setTimeout(function () {
-                location.reload();
-            }, 100);
-        };
-
-    /*---------------------  certifications-info ------------------*/ 
 
     /*--------------------- Preferences-info ------------------*/
 
@@ -194,9 +247,11 @@
         var responseHandler_preference_info = function (response) {
             $("input, textarea").val("");
             $("select option:first").prop("selected", !0);
-            setTimeout(function () {
-                location.reload();
-            }, 100);
+            // setTimeout(function () {
+            //     location.reload();
+            // }, 100);
+
+            next_page_preview(6);
         };
 
     /*---------------------  preferences-info ------------------*/ 
@@ -215,9 +270,11 @@
         var responseHandler_social_media_info = function (response) {
             $("input, textarea").val("");
             $("select option:first").prop("selected", !0);
-            setTimeout(function () {
-                location.reload();
-            }, 100);
+            // setTimeout(function () {
+            //     location.reload();
+            // }, 100);
+
+            next_page_preview(7);
         };
 
     /*---------------------  social-media-info ------------------*/ 
@@ -240,6 +297,8 @@
         };
 
     /*---------------------  proceeding_info ------------------*/ 
+
+    next_page_preview();
 
     /*--------------------- Resend-otp------------------*/    
 

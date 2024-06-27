@@ -16,5 +16,6 @@ class VerifyCsrfToken extends Middleware
         '/login',
         '/create-account/user-info',
         '/create-account/email-verify',
+        '/create-account/'
     ];
 }

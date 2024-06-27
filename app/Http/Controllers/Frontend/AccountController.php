@@ -411,6 +411,7 @@ class AccountController extends Controller
                 Session::put('temp_user_id', $userId);
             }
 
+            Session()->put('register', 1);
             Session::put('step', 2);
 
             session()->forget('user_info');
@@ -485,6 +486,7 @@ class AccountController extends Controller
             'country' => $request->input('country'),
         ]);
 
+        session()->forget('register');
         Session::put('step', 3);
 
         $rsp_msg['response'] = 'success';
