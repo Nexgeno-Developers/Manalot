@@ -644,7 +644,7 @@ height: 100vh;
 /* email otp */
 
 #email_otp_model .modal-content {
-    margin: 0px auto;
+    margin: 0px auto; 
     width: 90%;
 }
 

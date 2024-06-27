@@ -548,7 +548,7 @@
                             <a href="{{ asset('storage/' . $user_detail->experience_letter) }}" class="btn btn-success add-row" target="_blank">View Experience Letter</a>
                         </div>
                     @endif
-                </div> 
+                </div>  
 
                 <div class="col-md-6 mb-4">
                     <div class="option currently_work">
@@ -556,7 +556,7 @@
                             @if (isset($user_detail) && $user_detail->employed == 'yes') checked @endif>
                         <label for="yes" class="form-label">Currently Employed</label>
                     </div>
-                </div>
+                </div> 
 
                 <div class="col-md-12 mb-4">
                     <div class="position-relative form-group">
