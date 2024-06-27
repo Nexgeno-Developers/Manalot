@@ -925,6 +925,8 @@ li.select2-search.select2-search--inline {
     display: block;
 }
 
+
+
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
     border-right: 0px solid #aaa !important;
 }
