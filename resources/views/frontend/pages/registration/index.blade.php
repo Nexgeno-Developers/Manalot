@@ -60,7 +60,7 @@
 
         setTimeout(function () {
             location.reload();
-        }, 500);
+        }, 300);
 
     }
 
@@ -120,7 +120,7 @@
             $("select option:first").prop("selected", !0);
             setTimeout(function () {
                 location.reload();
-            }, 500);
+            }, 300);
         };
 
     /*---------------------  personal info ------------------*/ 
@@ -139,7 +139,7 @@
             $("select option:first").prop("selected", !0);
             setTimeout(function () {
                 location.reload();
-            }, 500);
+            }, 300);
         };
 
     /*---------------------  personal work info ------------------*/ 
@@ -158,7 +158,7 @@
             $("select option:first").prop("selected", !0);
             setTimeout(function () {
                 location.reload();
-            }, 500);
+            }, 300);
         };
 
     /*---------------------  skills-info ------------------*/ 
@@ -177,7 +177,7 @@
             $("select option:first").prop("selected", !0);
             setTimeout(function () {
                 location.reload();
-            }, 500);
+            }, 300);
         };
 
     /*---------------------  certifications-info ------------------*/ 
@@ -196,7 +196,7 @@
             $("select option:first").prop("selected", !0);
             setTimeout(function () {
                 location.reload();
-            }, 500);
+            }, 300);
         };
 
     /*---------------------  preferences-info ------------------*/ 
@@ -217,7 +217,7 @@
             $("select option:first").prop("selected", !0);
             setTimeout(function () {
                 location.reload();
-            }, 500);
+            }, 300);
         };
 
     /*---------------------  social-media-info ------------------*/ 
@@ -236,7 +236,7 @@
             $("select option:first").prop("selected", !0);
             setTimeout(function () {
                 window.location.href = "{{ url(route('index')) }}";
-            }, 500);
+            }, 300);
         };
 
     /*---------------------  proceeding_info ------------------*/ 
@@ -402,7 +402,7 @@
     //         $("select option:first").prop("selected", !0);
     //         setTimeout(function () {
     //             location.reload();
-    //         }, 500);
+    //         }, 300);
     //     };
 
     // /*---------------------  work-authorization-info ------------------*/ 
@@ -421,7 +421,7 @@
     //         $("select option:first").prop("selected", !0);
     //         setTimeout(function () {
     //             location.reload();
-    //         }, 500);
+    //         }, 300);
     //     };
 
     // /*---------------------  education-info ------------------*/ 
@@ -440,7 +440,7 @@
     //         $("select option:first").prop("selected", !0);
     //         setTimeout(function () {
     //             location.reload();
-    //         }, 500);
+    //         }, 300);
     //     };
 
     // /*---------------------  Login info ------------------*/ 
