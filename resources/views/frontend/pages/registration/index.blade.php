@@ -72,19 +72,15 @@
                 document.getElementById('work-details-div').classList.remove('d-none');
                 break;
             case 4:
-                document.getElementById('personal-details').classList.remove('d-none');
                 document.getElementById('cirtificate_one').classList.remove('d-none');
                 break;
             case 5:
-                document.getElementById('personal-details').classList.remove('d-none');
                 document.getElementById('availibility_one').classList.remove('d-none');
                 break;
             case 6:
-                document.getElementById('personal-details').classList.remove('d-none');
                 document.getElementById('social_media_div').classList.remove('d-none');
                 break;
             case 7:
-                document.getElementById('personal-details').classList.remove('d-none');
                 document.getElementById('doc_verify_div').classList.remove('d-none');
                 break;
             default:
