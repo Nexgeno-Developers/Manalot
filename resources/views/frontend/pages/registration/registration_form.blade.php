@@ -492,7 +492,7 @@
                     </div>
                     @if ($user_detail->experience_letter)
                         <div class="mt-2">
-                            <a href="{{ asset('storage/' . $user_detail->experience_letter) }}" class="btn btn-primary" target="_blank">View Experience Letter</a>
+                            <a href="{{ asset('storage/' . $user_detail->experience_letter) }}" class="btn btn-success add-row" target="_blank">View Experience Letter</a>
                         </div>
                     @endif
                 </div>
