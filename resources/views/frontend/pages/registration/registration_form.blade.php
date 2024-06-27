@@ -856,7 +856,7 @@
                             <input type="date" class="form-control is-invalid input_text certificate_obtn_date"
                                 name="certificate_obtn_date[]" placeholder="Date" />
                         </div>
-                    </div>
+                    </div> 
 
                     <div class="col-md-6 mb-4">
                         <div class="position-relative form-group">
