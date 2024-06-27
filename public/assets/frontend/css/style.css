@@ -918,12 +918,14 @@ textarea.form-control {
 }
 
 span.select2.select2-container.select2-container--default.select2-container--below.select2-container--focus li.select2-search.select2-search--inline {
-    display: none;
+    display: block;
 }
 
 li.select2-search.select2-search--inline {
-    display: none;
+    display: block;
 }
+
+
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
     border-right: 0px solid #aaa !important;
@@ -1222,7 +1224,8 @@ div#personal-details {
     padding-top: 37px;
 }
 
-button.btn.btn-success.add-row {
+button.btn.btn-success.add-row,
+a.btn.btn-success.add-row {
     color: #901D56;
     background: transparent;
     border: 0;
