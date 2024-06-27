@@ -231,7 +231,7 @@
                     <div class="position-relative form-group">
                         <label for="Date" class="form-label">Date of Birth*</label>
                         <!-- <img src="/assets/images/calender_icon.png" alt="" class="input_icon"> -->
-                        <input type="date" class="form-control is-invalid input_text" id="Date"
+                        <input type="date" class="form-control is-invalid input_text register_date_field" id="Date"
                             name="dob" placeholder="Date" value="{{ $user_detail->dob }}" max="2000-12-31"
                             required />
                     </div>
@@ -548,7 +548,7 @@
                             <a href="{{ asset('storage/' . $user_detail->experience_letter) }}" class="btn btn-success add-row" target="_blank">View Experience Letter</a>
                         </div>
                     @endif
-                </div>
+                </div>  
 
                 <div class="col-md-6 mb-4">
                     <div class="option currently_work">
@@ -556,7 +556,7 @@
                             @if (isset($user_detail) && $user_detail->employed == 'yes') checked @endif>
                         <label for="yes" class="form-label">Currently Employed</label>
                     </div>
-                </div>
+                </div> 
 
                 <div class="col-md-12 mb-4">
                     <div class="position-relative form-group">
@@ -800,7 +800,7 @@
                     <div class="row certificate-row">
                         <div class="col-md-12 mb-4">
                             <div class="position-relative form-group">
-                                <label for="Certificate" class="form-label">Certificate Name*</label>
+                                <label for="Certificate" class="form-label">Certificate Name</label>
                                 <input type="text" class="form-control is-invalid input_text certificate_name"
                                     name="certificate_name[]" placeholder="Enter Your Certificate Name"
                                     pattern="[0-9A-Za-z]+" minlength="1" maxlength="100"
@@ -812,7 +812,7 @@
                             <div class="position-relative form-group">
                                 <label for="Date Obtained*" class="form-label">Date Obtained*</label>
 
-                                <input type="date" class="form-control is-invalid input_text certificate_obtn_date"
+                                <input type="date" class="form-control is-invalid input_text certificate_obtn_date register_date_field"
                                     name="certificate_obtn_date[]" placeholder="Date"
                                     value="{{ $certificate['certificate_obtn_date'] }}" />
                             </div>
@@ -843,7 +843,7 @@
                 <div class="row certificate-row">
                     <div class="col-md-12 mb-4">
                         <div class="position-relative form-group">
-                            <label for="Certificate" class="form-label">Certificate Name*</label>
+                            <label for="Certificate" class="form-label">Certificate Name</label>
                             <input type="text" class="form-control is-invalid input_text certificate_name"
                                 name="certificate_name[]" placeholder="Enter Your Certificate Name"
                                 pattern="[0-9A-Za-z]+" minlength="1" maxlength="50" />
