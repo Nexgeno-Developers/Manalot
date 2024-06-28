@@ -184,7 +184,7 @@ class AccountController extends Controller
     public function create_user_detail($request){
 
         $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:1', 'max:50'],
+            'name' => ['required', 'string', 'regex:/^[A-Za-z0-9_.]+$/',  'min:1', 'max:50'],
             'email' => 'required|email',
             'password' => 'required',
             'confirm_password' => 'required|same:password',

@@ -240,7 +240,7 @@
                             <button type="button" onclick="close_Emai_modal();" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                         <div class="purple_btn">
-                            <button type="submit" class="btn btn-primary">Send message</button>
+                            <button type="submit" class="btn btn-primary">Verify</button>
                         </div>
                     </div>
                 </form>
@@ -398,7 +398,7 @@
                             minlength="5" maxlength="250" name="address" placeholder="Enter your Address"
                             value="{{ $address }}" required /> --}}
 
-                        <textarea class="form-control is-invalid" rows="3" cols="45" name="address" pattern="[0-9A-Za-z]+"
+                        <textarea class="form-control is-invalid" rows="3" cols="45" name="address" id="address" pattern="[0-9A-Za-z]+"
                             placeholder="Address" required>{{ $address }}</textarea>
 
                     </div>

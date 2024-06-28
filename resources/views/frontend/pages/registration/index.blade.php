@@ -32,7 +32,7 @@
 
 @section('component.scripts')
     <script>
-    
+
     function next_page_preview(step_info){
         var step = {{ Session::has('step') ? Session::get('step') : '0' }};
         
@@ -438,9 +438,11 @@
                         },
                         success: function (data) {
                             if (data.postalCodes.length > 0) {
-                                $('#country_name').val(data.postalCodes[0].countryCode);
-                                $('#state').val(data.postalCodes[0].adminName1);
-                                $('#city').val(data.postalCodes[0].adminName2);
+                                $('#country_name').val(data.postalCodes[0].countryCode).focus();
+                                $('#city').val(data.postalCodes[0].adminName2).focus();
+                                $('#state').val(data.postalCodes[0].adminName1).focus();
+                                $('#address').focus();
+
                                 // $('#placeName').val(data.postalCodes[0].placeName);
 
                                 // Display response in a pretty format
