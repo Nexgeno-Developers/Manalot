@@ -22,7 +22,7 @@
                         <div class='mt-5 d-flex flex-column gap-2'>
                             <div class="item d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center gap-2">
-                                    <img src="/images/candinet1.png" alt="" />
+                                    {{-- <img src="/images/candinet1.png" alt="" /> --}}
                                     <div>
                                         <p class="mb-0"> <span class="username"> Manalot </span> <span
                                                 class="text-xs">Reacted on your Comment</span></p>
@@ -33,7 +33,7 @@
                             </div>
                             <div class="item d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center gap-2">
-                                    <img src="/images/candinet1.png" alt="" />
+                                    {{-- <img src="/images/candinet1.png" alt="" /> --}}
                                     <div>
                                         <p class="mb-0"> <span class="username"> Manalot </span> <span
                                                 class="text-xs">Reacted on your Comment</span></p>
@@ -55,7 +55,7 @@
                             </div>
                             <div class="item d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center gap-2">
-                                    <img src="/images/candinet1.png" alt="" />
+                                    {{-- <img src="/images/candinet1.png" alt="" /> --}}
                                     <div>
                                         <p class="mb-0"> <span class="username"> Manalot </span> <span
                                                 class="text-xs">Reacted on your Comment</span></p>

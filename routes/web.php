@@ -58,11 +58,17 @@ Route::get('/login', [AccountController::class, 'login'])->name('login');
 
 Route::post('/login', [AccountController::class, 'customer_login'])->name('customer.login');
 
-Route::any('/get-privious-page', function () {
+Route::get('/csrf-token', function () {
+    return response()->json(['token' => csrf_token()]);
+});
+
+Route::any('/get-previous-page', function () {
     $step = Session()->get('step');
     $step = $step - 1;
     Session()->put('step', $step);
-})->name('get-privious-page');
+
+    // return response()->json(['step' => $step]);
+})->name('get-previous-page');
 
 
 Route::get('/update-session', function () {

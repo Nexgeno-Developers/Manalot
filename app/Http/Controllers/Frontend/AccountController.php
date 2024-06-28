@@ -411,9 +411,8 @@ class AccountController extends Controller
                 Session::put('temp_user_id', $userId);
             }
 
-            Session()->put('register', 1);
-            Session::put('step', 2);
 
+            Session::put('step', 2);
             session()->forget('user_info');
 
             $rsp_msg['response'] = 'success';
@@ -486,7 +485,6 @@ class AccountController extends Controller
             'country' => $request->input('country'),
         ]);
 
-        session()->forget('register');
         Session::put('step', 3);
 
         $rsp_msg['response'] = 'success';
@@ -721,6 +719,21 @@ class AccountController extends Controller
             'edu_graduation_year' => 'required',
             'edu_field' => 'required',
             //'edu_cgpa' => 'required',
+        ], [
+            'certificate_name.required' => 'The Certificate Name is required.',
+            'certificate_name.min' => 'The Certificate Name must be at least 1 character.',
+            'certificate_name.max' => 'The Certificate Name may not be greater than 100 characters.',
+            
+            'certificate_issuing.required' => 'The Certificate Issuing field is required.',
+            'certificate_issuing.min' => 'The Certificate Issuing must be at least 1 character.',
+            'certificate_issuing.max' => 'The Certificate Issuing may not be greater than 50 characters.',
+            
+            'certificate_obtn_date.required' => 'The Certificate Obtain Date is required.',
+        
+            'edu_degree.required' => 'The Education Degree field is required.',
+            'edu_clg_name.required' => 'The College Name field is required.',
+            'edu_graduation_year.required' => 'The Graduation Year field is required.',
+            'edu_field.required' => 'The Field of Education field is required.',
         ]);
 
         if ($validator->fails()) {
@@ -786,12 +799,63 @@ class AccountController extends Controller
             'pref_industry' => ['required', 'min:1', 'max:50'],
             'pref_location' => ['required', 'min:1', 'max:50'],
             'pref_salary' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:1', 'max:100'],
-            'reference_name' => 'required',
-            'reference_phone' => 'required',
-
+            'reference_name' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    foreach ($value as $name) {
+                        // Allow numbers and the plus sign (+)
+                        if (!preg_match('/^[A-Za-z+\s]+$/', $name)) {
+                            $fail("The $attribute must contain only Alphabetical values only.");
+                        }
+                    }
+                }
+            ],
+            'reference_phone' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    foreach ($value as $phone) {
+                        // Allow numbers, plus sign (+), and spaces
+                        if (!preg_match('/^[0-9+\s]+$/', $phone)) {
+                            $fail("The $attribute must contain only numeric values, spaces, and the plus sign (+).");
+                        }
+                    }
+                }
+            ],
             'work_authorization_status' => 'required',
             'availability' => 'required',
             'notice_period' => 'required',
+        ], [
+            'pref_title.required' => 'The Preferred Title is required.',
+            'pref_title.min' => 'The Preferred Title must be at least 1 character.',
+            'pref_title.max' => 'The Preferred Title may not be greater than 50 characters.',
+        
+            'pref_emp_type.required' => 'The Preferred Employment Type is required.',
+            'pref_emp_type.min' => 'The Preferred Employment Type must be at least 1 character.',
+            'pref_emp_type.max' => 'The Preferred Employment Type may not be greater than 50 characters.',
+        
+            'pref_industry.required' => 'The Preferred Industry field is required.',
+            'pref_industry.min' => 'The Preferred Industry must be at least 1 character.',
+            'pref_industry.max' => 'The Preferred Industry may not be greater than 50 characters.',
+        
+            'pref_location.required' => 'The Preferred Location is required.',
+            'pref_location.min' => 'The Preferred Location must be at least 1 character.',
+            'pref_location.max' => 'The Preferred Location may not be greater than 50 characters.',
+        
+            'pref_salary.required' => 'The Preferred Salary is required.',
+            'pref_salary.min' => 'The Preferred Salary must be at least 1 character.',
+            'pref_salary.max' => 'The Preferred Salary may not be greater than 100 characters.',
+            'pref_salary.regex' => 'The Preferred Salary format is invalid.',
+        
+            'reference_name.required' => 'The Reference Name is required.',
+        
+            'reference_phone.required' => 'The Reference Phone Number is required.',
+            'reference_phone.numeric' => 'The Reference Phone Number must contain only numeric values.',
+        
+            'work_authorization_status.required' => 'The Work Authorization Status is required.',
+            
+            'availability.required' => 'The Availability field is required.',
+        
+            'notice_period.required' => 'The Notice Period is required.',
         ]);
 
         if ($validator->fails()) {

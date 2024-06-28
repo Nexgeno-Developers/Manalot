@@ -1,21 +1,124 @@
 <!--------------------------------------------- user info --------------------------------->
 
+@php
+// session()->forget('step');
+
+    if(!Session::has('step')){
+        Session()->put('step', 1);
+    }
+
+    $user_detail = DB::table('userdetails')
+    ->where('user_id', Session::get('temp_user_id'))
+    ->get([
+        'phone_number',
+        'fullname',
+        'profile_photo',
+        'gender',
+        'dob',
+        'address',
+        'city',
+        'state',
+        'pincode',
+        'country',
+        'skill',
+        'industry',
+        'wrk_exp__title',
+        'wrk_exp_company_name',
+        'wrk_exp_years',
+        'wrk_exp_responsibilities',
+        'employed',
+        'experience_letter',
+        'certificate_name',
+        'certificate_data',
+        'certificate_issuing',
+        'certificate_obtn_date',
+        'edu_degree',
+        'edu_clg_name',
+        'edu_graduation_year',
+        'edu_field',
+        'pref_title',
+        'pref_emp_type',
+        'pref_industry',
+        'pref_location',
+        'pref_salary',
+        'references',
+        'work_authorization_status',
+        'availability',
+        'notice_period',
+        'linkdin', 'twitter', 'instagram', 'facebook', 'other',
+    ])
+    ->first();
+
+    $user = DB::table('users')
+        ->where('id', Session::get('temp_user_id'))
+        ->get(['email'])
+        ->first();
+        
+    $experience_status = DB::table('experience_status')->where('status', 1)->get();
+
+    $years_of_exp = DB::table('years_of_exp')->where('status', '1')->get();
+    // $job_title = DB::table('job_title')->where('status', '1')->get();
+    $industry = DB::table('industry')->where('status', '1')->get();
+    $skills = DB::table('skills')->where('status', '1')->get();
+
+    $references_from = DB::table('references_from')->where('status', '1')->get();
+
+    $fullname = isset($user_detail->fullname) ? $user_detail->fullname : null;
+    $gender = isset($user_detail->gender) ? $user_detail->gender : null;
+    $profile_photo = isset($user_detail->profile_photo) ? $user_detail->profile_photo : null;
+    $dob = isset($user_detail->dob) ? $user_detail->dob : null;
+    $pincode = isset($user_detail->pincode) ? $user_detail->pincode : null;
+    $city = isset($user_detail->city) ? $user_detail->city : null;
+    $country = isset($user_detail->country) ? $user_detail->country : null;
+    $state = isset($user_detail->state) ? $user_detail->state : null;
+    $address = isset($user_detail->address) ? $user_detail->address : null;
+
+    $wrk_exp__title = isset($user_detail->wrk_exp__title) ? $user_detail->wrk_exp__title : null;
+    $wrk_exp_company_name = isset($user_detail->wrk_exp_company_name) ? $user_detail->wrk_exp_company_name : null;
+    $wrk_exp_years = isset($user_detail->wrk_exp_years) ? $user_detail->wrk_exp_years : null;
+    $industry_check = isset($user_detail->industry) ? $user_detail->industry : null;
+    $experience_letter = isset($user_detail->experience_letter) ? $user_detail->experience_letter : null;
+    $employed = isset($user_detail->employed) ? $user_detail->employed : null;
+    $skill_check = isset($user_detail->skill) ? $user_detail->skill : '[]';
+    $wrk_exp_responsibilities = isset($user_detail->wrk_exp_responsibilities) ? $user_detail->wrk_exp_responsibilities : null;
+    $address = isset($user_detail->address) ? $user_detail->address : null;
+
+    $edu_clg_name = isset($user_detail->edu_clg_name) ? $user_detail->edu_clg_name : null;
+    $edu_degree = isset($user_detail->edu_degree) ? $user_detail->edu_degree : null;
+    $edu_graduation_year = isset($user_detail->edu_graduation_year) ? $user_detail->edu_graduation_year : null;
+    $edu_field = isset($user_detail->edu_field) ? $user_detail->edu_field : null;
+
+    $certificate_data = isset($user_detail->certificate_data) ? $user_detail->certificate_data : '[]';
+    $certificate_data = json_decode($certificate_data, true);
+
+    $pref_title = isset($user_detail->pref_title) ? $user_detail->pref_title : null;
+    $pref_emp_type = isset($user_detail->pref_emp_type) ? $user_detail->pref_emp_type : null;
+    $pref_industry = isset($user_detail->pref_industry) ? $user_detail->pref_industry : null;
+    $pref_location = isset($user_detail->pref_location) ? $user_detail->pref_location : null;
+
+    $pref_salary = isset($user_detail->pref_salary) ? $user_detail->pref_salary : null;
+    $work_authorization_status = isset($user_detail->work_authorization_status) ? $user_detail->work_authorization_status : null;
+    $notice_period = isset($user_detail->notice_period) ? $user_detail->notice_period : null;
+    $availability = isset($user_detail->availability) ? $user_detail->availability : null;
+
+    $references_data = isset($user_detail->references) ? $user_detail->references : '[]';
+    $references_data = json_decode($references_data, true);
+
+    $linkdin = isset($user_detail->linkdin) ? $user_detail->linkdin : null;
+    $twitter = isset($user_detail->twitter) ? $user_detail->twitter : null;
+    $instagram = isset($user_detail->instagram) ? $user_detail->instagram : null;
+    $facebook = isset($user_detail->facebook) ? $user_detail->facebook : null;
+    $other = isset($user_detail->other) ? $user_detail->other : null;
+
+@endphp
+
+
 {{-- @if (!Session::has('step') || Session::get('step') == 1) --}}
 
     <div id="user-add-details" class="register_width d-none">
         <div class="heading mb-4">
             <h2>Register</h2>
         </div>
-
-        @php
-            // session()->forget('step');
-
-            if(!Session::has('step')){
-                Session()->put('step', 1);
-            }
-                
-            $experience_status = DB::table('experience_status')->where('status', 1)->get();
-        @endphp
 
         <form id="user-info" action="{{ route('account.create', ['param' => 'user-info']) }}" method="post"
             enctype="multipart/form-data" class="d-flex gap-3 flex-column">
@@ -52,7 +155,7 @@
                         <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
                         <input class="form-control is-invalid" type="file" id="formFile" name="resume_cv"
                             accept=".pdf" required />
-                        <img src="images/file.png" alt="" class="input_icon" />
+                        {{-- <img src="images/file.png" alt="" class="input_icon" /> --}}
                     </div>
                 </div>
 
@@ -63,7 +166,7 @@
                         <img src="/assets/images/key.png" alt="" class="input_icon" />
                         <input type="password" class="form-control is-invalid input_text" id="password" name="password"
                             placeholder="Enter your Password" minlength="6" maxlength="20" required />
-                        <img src="images/key.png" alt="" class="input_icon" />
+                        {{-- <img src="images/key.png" alt="" class="input_icon" /> --}}
                     </div>
                 </div>
 
@@ -76,7 +179,7 @@
                         <input type="password" class="form-control is-invalid input_text" id="confirm_password"
                             name="confirm_password" placeholder="Enter your Password" minlength="6" maxlength="20"
                             required />
-                        <img src="images/key.png" alt="" class="input_icon" />
+                        {{-- <img src="images/key.png" alt="" class="input_icon" /> --}}
                     </div>
                 </div>
             </div>
@@ -160,40 +263,8 @@
 {{-- @if (!Session::has('step') || Session::get('step') == 2) --}}
 
     @php
-        $user_detail = DB::table('userdetails')
-            ->where('user_id', Session::get('temp_user_id'))
-            ->get([
-                'phone_number',
-                'fullname',
-                'profile_photo',
-                'gender',
-                'dob',
-                'address',
-                'city',
-                'state',
-                'pincode',
-                'country',
-            ])
-            ->first();
-
-        $user = DB::table('users')
-            ->where('id', Session::get('temp_user_id'))
-            ->get(['email'])
-            ->first();
-
         //$state = DB::table('states')->get();
         //$country = DB::table('countries')->get();
-        
-        $fullname = isset($user_detail->fullname) ? $user_detail->fullname : null;
-        $gender = isset($user_detail->gender) ? $user_detail->gender : null;
-        $profile_photo = isset($user_detail->profile_photo) ? $user_detail->profile_photo : null;
-        $dob = isset($user_detail->dob) ? $user_detail->dob : null;
-        $pincode = isset($user_detail->pincode) ? $user_detail->pincode : null;
-        $city = isset($user_detail->city) ? $user_detail->city : null;
-        $country = isset($user_detail->country) ? $user_detail->country : null;
-        $state = isset($user_detail->state) ? $user_detail->state : null;
-        $address = isset($user_detail->address) ? $user_detail->address : null;
-
     @endphp
 
     <div id="personal-details" class="register_width d-none">
@@ -354,37 +425,6 @@
 
 {{-- @if (!Session::has('step') || Session::get('step') == 3) --}}
 
-    @php
-        $user_detail = DB::table('userdetails')
-            ->where('user_id', Session::get('temp_user_id'))
-            ->get([
-                'skill',
-                'industry',
-                'wrk_exp__title',
-                'wrk_exp_company_name',
-                'wrk_exp_years',
-                'wrk_exp_responsibilities',
-                'employed',
-                'experience_letter',
-            ])
-            ->first();
-        $years_of_exp = DB::table('years_of_exp')->where('status', '1')->get();
-        // $job_title = DB::table('job_title')->where('status', '1')->get();
-        $industry = DB::table('industry')->where('status', '1')->get();
-        $skills = DB::table('skills')->where('status', '1')->get();
-
-        $wrk_exp__title = isset($user_detail->wrk_exp__title) ? $user_detail->wrk_exp__title : null;
-        $wrk_exp_company_name = isset($user_detail->wrk_exp_company_name) ? $user_detail->wrk_exp_company_name : null;
-        $wrk_exp_years = isset($user_detail->wrk_exp_years) ? $user_detail->wrk_exp_years : null;
-        $industry_check = isset($user_detail->industry) ? $user_detail->industry : null;
-        $experience_letter = isset($user_detail->experience_letter) ? $user_detail->experience_letter : null;
-        $employed = isset($user_detail->employed) ? $user_detail->employed : null;
-        $skill_check = isset($user_detail->skill) ? $user_detail->skill : '[]';
-        $wrk_exp_responsibilities = isset($user_detail->wrk_exp_responsibilities) ? $user_detail->wrk_exp_responsibilities : null;
-        $address = isset($user_detail->address) ? $user_detail->address : null;
-
-    @endphp
-
     <div id="work-details-div" class="register_width d-none">
         <form id="personal-work-info" action="{{ url(route('account.create', ['param' => 'personal-work-info'])) }}"
             method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
@@ -455,7 +495,7 @@
                         <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
                         <input class="form-control" type="file" id="formFile" name="experience_letter"
                             accept=".pdf,.doc,.docx,application/msword,image/*,.webp" />
-                        <img src="images/file.png" alt="" class="input_icon" />
+                        {{-- <img src="images/file.png" alt="" class="input_icon" /> --}}
                     </div>
                     @if ($experience_letter)
                         <div class="mt-2">
@@ -515,29 +555,6 @@
 <!--------------------------------------------- certifications-info  --------------------------------->
 
 {{-- @if (!Session::has('step') || Session::get('step') == 4) --}}
-    @php
-        $user_detail = DB::table('userdetails')
-            ->where('user_id', Session::get('temp_user_id'))
-            ->get([
-                'certificate_name',
-                'certificate_data',
-                'certificate_issuing',
-                'certificate_obtn_date',
-                'edu_degree',
-                'edu_clg_name',
-                'edu_graduation_year',
-                'edu_field',
-            ])
-            ->first();
-
-        $edu_clg_name = isset($user_detail->edu_clg_name) ? $user_detail->edu_clg_name : null;
-        $edu_degree = isset($user_detail->edu_degree) ? $user_detail->edu_degree : null;
-        $edu_graduation_year = isset($user_detail->edu_graduation_year) ? $user_detail->edu_graduation_year : null;
-        $edu_field = isset($user_detail->edu_field) ? $user_detail->edu_field : null;
-
-        $certificate_data = isset($user_detail->certificate_data) ? $user_detail->certificate_data : '[]';
-        $certificate_data = json_decode($certificate_data, true);
-    @endphp
 
     <div id="cirtificate_one" class="register_width d-none">
         {{-- <div class="heading mb-4">
@@ -645,7 +662,7 @@
                     <div class="col-md-6 mb-4">
                         <div class="position-relative form-group">
                             <label for="Date Obtained*" class="form-label">Date Obtained</label>
-                            <input type="date" class="form-control is-invalid input_text certificate_obtn_date"
+                            <input type="date" class="form-control is-invalid input_text certificate_obtn_date register_date_field"
                                 name="certificate_obtn_date[]" placeholder="Date" />
                         </div>
                     </div> 
@@ -684,37 +701,7 @@
 
 {{-- @if (!Session::has('step') || Session::get('step') == 5) --}}
 
-    @php
-        $user_detail = DB::table('userdetails')
-            ->where('user_id', Session::get('temp_user_id'))
-            ->get([
-                'pref_title',
-                'pref_emp_type',
-                'pref_industry',
-                'pref_location',
-                'pref_salary',
-                'references',
-                'work_authorization_status',
-                'availability',
-                'notice_period',
-            ])
-            ->first();
 
-        $references_from = DB::table('references_from')->where('status', '1')->get();
-
-        $pref_title = isset($user_detail->pref_title) ? $user_detail->pref_title : null;
-        $pref_emp_type = isset($user_detail->pref_emp_type) ? $user_detail->pref_emp_type : null;
-        $pref_industry = isset($user_detail->pref_industry) ? $user_detail->pref_industry : null;
-        $pref_location = isset($user_detail->pref_location) ? $user_detail->pref_location : null;
-
-        $pref_salary = isset($user_detail->pref_salary) ? $user_detail->pref_salary : null;
-        $work_authorization_status = isset($user_detail->work_authorization_status) ? $user_detail->work_authorization_status : null;
-        $notice_period = isset($user_detail->notice_period) ? $user_detail->notice_period : null;
-        $availability = isset($user_detail->availability) ? $user_detail->availability : null;
-
-        $references_data = isset($user_detail->references) ? $user_detail->references : '[]';
-        $references_data = json_decode($references_data, true);
-    @endphp
     <div id="availibility_one" class="register_width d-none">
         <div class="heading mt-4 mb-4">
             <h2>Availability</h2>
@@ -907,18 +894,6 @@
 <!--------------------------------------------- social-media-info  --------------------------------->
 
 {{-- @if (!Session::has('step') || Session::get('step') == 6) --}}
-    @php
-        $user_detail = DB::table('userdetails')
-            ->where('user_id', Session::get('temp_user_id'))
-            ->get(['linkdin', 'twitter', 'instagram', 'facebook', 'other'])
-            ->first();
-
-        $linkdin = isset($user_detail->linkdin) ? $user_detail->linkdin : null;
-        $twitter = isset($user_detail->twitter) ? $user_detail->twitter : null;
-        $instagram = isset($user_detail->instagram) ? $user_detail->instagram : null;
-        $facebook = isset($user_detail->facebook) ? $user_detail->facebook : null;
-        $other = isset($user_detail->other) ? $user_detail->other : null;
-    @endphp
 
     <div id="social_media_div" class="register_width d-none">
         <div class="heading mb-4">
@@ -935,7 +910,7 @@
                         <input type="url" class="form-control is-invalid input_text" id="Linkdin"
                             name="linkdin" placeholder="Enter Your Linkdn URL" value="{{ $linkdin }}"
                             name="linkdin" />
-                        <img src="images/linkedin.png" alt="" class="input_icon" />
+                        {{-- <img src="images/linkedin.png" alt="" class="input_icon" /> --}}
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
@@ -945,7 +920,7 @@
                         <input type="url" class="form-control is-invalid input_text" id="Twitter"
                             name="twitter" placeholder="Enter Your Twitter URL" value="{{ $twitter }}"
                             name="twitter" />
-                        <img src="images/x.png" alt="" class="input_icon" />
+                        {{-- <img src="images/x.png" alt="" class="input_icon" /> --}}
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
@@ -955,7 +930,7 @@
                         <input type="url" class="form-control is-invalid input_text" id="Instagram"
                             placeholder="Enter Your Instagram URL" value="{{ $instagram }}"
                             name="instagram">
-                        <img src="images/instagram.png" alt="" class="input_icon" />
+                        {{-- <img src="images/instagram.png" alt="" class="input_icon" /> --}}
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
@@ -965,7 +940,7 @@
                         <input type="url" class="form-control is-invalid input_text" id="Facebook"
                             placeholder="Enter Your Facebook URL" value="{{ $facebook }}"
                             name="facebook" />
-                        <img src="images/facebook.png" alt="" class="input_icon" />
+                        {{-- <img src="images/facebook.png" alt="" class="input_icon" /> --}}
                     </div>
                 </div>
                 <div class="col-md-12">

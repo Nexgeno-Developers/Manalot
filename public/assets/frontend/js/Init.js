@@ -71,6 +71,72 @@ function initSelect2(selector) {
 
 /*------------------- form submit ajax new --------------------*/
 
+function getCsrfToken() {
+    return $.get('/csrf-token'); // An endpoint that returns a new CSRF token
+}
+
+// function ajax_form_submit(e, form, callBackFunction) {
+//     if (form.valid()) {
+//         e.preventDefault();
+//         var btn = $(form).find('button[type="submit"]');
+//         var btn_text = $(btn).html();
+//         $(btn).html('please wait... <i class="las la-spinner la-spin"></i>');
+//         $(btn).css("opacity", "0.7");
+//         $(btn).css("pointer-events", "none");
+//         var action = form.attr("action");
+//         var data = new FormData(form[0]); // Corrected to form[0] to get the raw DOM element
+//         $.ajax({
+//             type: "POST",
+//             url: action,
+//             processData: false,
+//             contentType: false,
+//             dataType: "json",
+//             data: data,
+//             success: function (response) {
+//                 resetButton(btn, btn_text);
+//                 if (response.response_message.response === "success") {
+//                     Command: toastr.success(
+//                         response.response_message.message,
+//                         "Success"
+//                     );
+//                     callBackFunction(response);
+//                 } else {
+//                     if (Array.isArray(response.response_message.message)) {
+//                         var errors = "";
+//                         $.each(
+//                             response.response_message.message,
+//                             function (key, msg) {
+//                                 errors +=
+//                                     "<div>" + (key + 1) + ". " + msg + "</div>";
+//                             }
+//                         );
+//                         Command: toastr.error(errors, "Alert");
+//                     } else {
+//                         Command: toastr.error(
+//                             response.response_message.message,
+//                             "Alert"
+//                         );
+//                     }
+//                 }
+//             },
+//             error: function (xhr, status, error) {
+//                 resetButton(btn, btn_text);
+//                 Command: toastr.error("An error occurred: " + error, "Error");
+//             },
+//         });
+//     } else {
+//         toastr.error("Please make sure to fill all the necessary fields");
+//         resetButton($(form).find('button[type="submit"]'), btn_text);
+//     }
+// }
+
+// function resetButton(btn, btn_text) {
+//     $(btn).html(btn_text);
+//     $(btn).css("opacity", "1");
+//     $(btn).css("pointer-events", "inherit");
+// }
+
+
 function ajax_form_submit(e, form, callBackFunction) {
     if (form.valid()) {
         e.preventDefault();
@@ -81,44 +147,53 @@ function ajax_form_submit(e, form, callBackFunction) {
         $(btn).css("pointer-events", "none");
         var action = form.attr("action");
         var data = new FormData(form[0]); // Corrected to form[0] to get the raw DOM element
-        $.ajax({
-            type: "POST",
-            url: action,
-            processData: false,
-            contentType: false,
-            dataType: "json",
-            data: data,
-            success: function (response) {
-                resetButton(btn, btn_text);
-                if (response.response_message.response === "success") {
-                    Command: toastr.success(
-                        response.response_message.message,
-                        "Success"
-                    );
-                    callBackFunction(response);
-                } else {
-                    if (Array.isArray(response.response_message.message)) {
-                        var errors = "";
-                        $.each(
+
+        getCsrfToken().done(function(response) {
+            var token = response.token;
+            data.append('_token', token);
+
+            $.ajax({
+                type: "POST",
+                url: action,
+                processData: false,
+                contentType: false,
+                dataType: "json",
+                data: data,
+                success: function (response) {
+                    resetButton(btn, btn_text);
+                    if (response.response_message.response === "success") {
+                        Command: toastr.success(
                             response.response_message.message,
-                            function (key, msg) {
-                                errors +=
-                                    "<div>" + (key + 1) + ". " + msg + "</div>";
-                            }
+                            "Success"
                         );
-                        Command: toastr.error(errors, "Alert");
+                        callBackFunction(response);
                     } else {
-                        Command: toastr.error(
-                            response.response_message.message,
-                            "Alert"
-                        );
+                        if (Array.isArray(response.response_message.message)) {
+                            var errors = "";
+                            $.each(
+                                response.response_message.message,
+                                function (key, msg) {
+                                    errors +=
+                                        "<div>" + (key + 1) + ". " + msg + "</div>";
+                                }
+                            );
+                            Command: toastr.error(errors, "Alert");
+                        } else {
+                            Command: toastr.error(
+                                response.response_message.message,
+                                "Alert"
+                            );
+                        }
                     }
-                }
-            },
-            error: function (xhr, status, error) {
-                resetButton(btn, btn_text);
-                Command: toastr.error("An error occurred: " + error, "Error");
-            },
+                },
+                error: function (xhr, status, error) {
+                    resetButton(btn, btn_text);
+                    Command: toastr.error("An error occurred: " + error, "Error");
+                },
+            });
+        }).fail(function() {
+            resetButton(btn, btn_text);
+            Command: toastr.error("Failed to retrieve CSRF token", "Error");
         });
     } else {
         toastr.error("Please make sure to fill all the necessary fields");
@@ -131,6 +206,7 @@ function resetButton(btn, btn_text) {
     $(btn).css("opacity", "1");
     $(btn).css("pointer-events", "inherit");
 }
+
 
 /*------------------- form submit ajax new --------------------*/
 

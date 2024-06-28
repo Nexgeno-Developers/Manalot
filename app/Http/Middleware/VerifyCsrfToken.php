@@ -14,8 +14,5 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         'backend/trumbowyg/upload',
         '/login',
-        '/create-account/user-info',
-        '/create-account/email-verify',
-        '/create-account/'
     ];
 }

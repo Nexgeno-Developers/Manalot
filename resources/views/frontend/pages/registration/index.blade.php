@@ -33,7 +33,6 @@
 @section('component.scripts')
     <script>
     
-
     function next_page_preview(step_info){
         var step = {{ Session::has('step') ? Session::get('step') : '0' }};
         
@@ -52,42 +51,63 @@
             step = step_info;
         }
 
-        console.log('step');
-        console.log(step);
+        // console.log('step');
+        // console.log(step);
 
         // Hide all elements
         elements.forEach(function(id) {
+            document.getElementById(id).classList.remove('fade-in');
             document.getElementById(id).classList.add('d-none');
+            document.getElementById(id).classList.add('fade-out');
         });
 
         // Show elements based on step
         switch(step) {
             case 1:
                 document.getElementById('user-add-details').classList.remove('d-none');
+                document.getElementById('user-add-details').classList.remove('fade-out');
+                document.getElementById('user-add-details').classList.add('fade-in');
                 break;
             case 2:
                 document.getElementById('personal-details').classList.remove('d-none');
+                document.getElementById('personal-details').classList.remove('fade-out');
+                document.getElementById('personal-details').classList.add('fade-in');
                 break;
             case 3:
                 document.getElementById('work-details-div').classList.remove('d-none');
+                document.getElementById('work-details-div').classList.remove('fade-out');
+                document.getElementById('work-details-div').classList.add('fade-in');
                 break;
             case 4:
                 document.getElementById('cirtificate_one').classList.remove('d-none');
+                document.getElementById('cirtificate_one').classList.remove('fade-out');
+                document.getElementById('cirtificate_one').classList.add('fade-in');
                 break;
             case 5:
                 document.getElementById('availibility_one').classList.remove('d-none');
+                document.getElementById('availibility_one').classList.remove('fade-out');
+                document.getElementById('availibility_one').classList.add('fade-in');
                 break;
             case 6:
                 document.getElementById('social_media_div').classList.remove('d-none');
+                document.getElementById('social_media_div').classList.remove('fade-out');
+                document.getElementById('social_media_div').classList.add('fade-in');
                 break;
             case 7:
                 document.getElementById('doc_verify_div').classList.remove('d-none');
+                document.getElementById('doc_verify_div').classList.remove('fade-out');
+                document.getElementById('doc_verify_div').classList.add('fade-in');
                 break;
             default:
                 document.getElementById('user-add-details').classList.remove('d-none');
+                document.getElementById('user-add-details').classList.remove('fade-out');
+                document.getElementById('user-add-details').classList.add('fade-in');
                 break;
         }
+
+        initSelect2('.select2');
     }
+
 
     // $(document).ready(function() {
     //     initSelect2('.select2');
@@ -100,7 +120,6 @@
     });
 
     function back_to_privious(){
-
         var current_step = {{ Session::has('step') ? Session::get('step') : '0' }};
 
         console.log('current_step');
@@ -110,18 +129,14 @@
         var xhr = new XMLHttpRequest();
 
         // Specify the URL to hit using the route name
-        var url = '{{ route("get-privious-page") }}';
+        var url = '{{ route("get-previous-page") }}';
 
         // Send a GET request to the URL asynchronously
         xhr.open('GET', url, true);
         xhr.send();
 
-        // setTimeout(function () {
-        //     location.reload();
-        // }, 100);
 
-        next_page_preview(current_step);
-
+        location.reload();
     }
 
     /*--------------------- user info ------------------*/
@@ -134,8 +149,10 @@
         });
 
         var responseHandler_user_info = function (response) {
-            $("input, textarea").val("");
-            $("select option:first").prop("selected", !0);
+            var form = $('#user-info'); 
+            
+            form.find("input[type=text], input[type=email], input[type=password], textarea").val("");
+            form.find("select").prop("selectedIndex", 0);
             setTimeout(function () {
                 // location.reload();
                 $('#email_otp_model').modal('show');
@@ -154,13 +171,16 @@
         });
 
         var responseHandler_email_verify_otp = function (response) {
-            $("input, textarea").val("");
-            $("select option:first").prop("selected", !0);
+            var form = $('#email-verify-otp'); 
+            
+            form.find("input[type=text], input[type=email], input[type=password], textarea").val("");
+            form.find("select").prop("selectedIndex", 0); 
             // setTimeout(function () {
             //     location.reload();
             // }, 100);
             $('#email_otp_model').modal('toggle');
             next_page_preview(2);
+            
         };
 
         function close_Emai_modal() {
@@ -178,8 +198,10 @@
         });
 
         var responseHandler_personal_info = function (response) {
-            $("input, textarea").val("");
-            $("select option:first").prop("selected", !0);
+            var form = $('#personal-info'); 
+            
+            form.find("input[type=text], input[type=email], input[type=password], textarea").val("");
+            form.find("select").prop("selectedIndex", 0); 
             // setTimeout(function () {
             //     location.reload();
             // }, 100);
@@ -199,8 +221,10 @@
         });
 
         var responseHandler_personal_work_info = function (response) {
-            $("input, textarea").val("");
-            $("select option:first").prop("selected", !0);
+            var form = $('#personal-work-info');
+
+            form.find("input[type=text], input[type=email], input[type=password], textarea").val("");
+            form.find("select").prop("selectedIndex", 0); 
             // setTimeout(function () {
             //     location.reload();
             // }, 100);
@@ -220,8 +244,10 @@
         });
 
         var responseHandler_skill_info = function (response) {
-            $("input, textarea").val("");
-            $("select option:first").prop("selected", !0);
+            var form = $('#skills-info');
+
+            form.find("input[type=text], input[type=email], input[type=password], textarea").val("");
+            form.find("select").prop("selectedIndex", 0); 
             // setTimeout(function () {
             //     location.reload();
             // }, 100);
@@ -241,8 +267,10 @@
         });
 
         var responseHandler_preference_info = function (response) {
-            $("input, textarea").val("");
-            $("select option:first").prop("selected", !0);
+            var form = $('#preferences-info');
+
+            form.find("input[type=text], input[type=email], input[type=password], textarea").val("");
+            form.find("select").prop("selectedIndex", 0); 
             // setTimeout(function () {
             //     location.reload();
             // }, 100);
@@ -264,8 +292,10 @@
         });
 
         var responseHandler_social_media_info = function (response) {
-            $("input, textarea").val("");
-            $("select option:first").prop("selected", !0);
+            var form = $('#social-media-info');
+    
+            form.find("input[type=text], input[type=email], input[type=password], textarea").val("");
+            form.find("select").prop("selectedIndex", 0); 
             // setTimeout(function () {
             //     location.reload();
             // }, 100);
