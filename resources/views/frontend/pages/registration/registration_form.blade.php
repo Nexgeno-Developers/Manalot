@@ -41,6 +41,8 @@
         'pref_industry',
         'pref_location',
         'pref_salary',
+        'current_salary',
+        'notice_period_duration',
         'references',
         'work_authorization_status',
         'availability',
@@ -55,6 +57,10 @@
         ->first();
         
     $experience_status = DB::table('experience_status')->where('status', 1)->get();
+
+    $employ_types = DB::table('employ_types')->where('status', 1)->get();
+
+    $notice_period_list = DB::table('notice_period')->where('status', 1)->get();
 
     $years_of_exp = DB::table('years_of_exp')->where('status', '1')->get();
     // $job_title = DB::table('job_title')->where('status', '1')->get();
@@ -76,7 +82,7 @@
     $wrk_exp__title = isset($user_detail->wrk_exp__title) ? $user_detail->wrk_exp__title : null;
     $wrk_exp_company_name = isset($user_detail->wrk_exp_company_name) ? $user_detail->wrk_exp_company_name : null;
     $wrk_exp_years = isset($user_detail->wrk_exp_years) ? $user_detail->wrk_exp_years : null;
-    $industry_check = isset($user_detail->industry) ? $user_detail->industry : null;
+    $industry_check = isset($user_detail->industry) ? $user_detail->industry : '[]';
     $experience_letter = isset($user_detail->experience_letter) ? $user_detail->experience_letter : null;
     $employed = isset($user_detail->employed) ? $user_detail->employed : null;
     $skill_check = isset($user_detail->skill) ? $user_detail->skill : '[]';
@@ -96,6 +102,8 @@
     $pref_industry = isset($user_detail->pref_industry) ? $user_detail->pref_industry : null;
     $pref_location = isset($user_detail->pref_location) ? $user_detail->pref_location : null;
 
+    $current_salary = isset($user_detail->current_salary) ? $user_detail->current_salary : null;
+    $notice_period_check = isset($user_detail->notice_period_duration) ? $user_detail->notice_period_duration : null;
     $pref_salary = isset($user_detail->pref_salary) ? $user_detail->pref_salary : null;
     $work_authorization_status = isset($user_detail->work_authorization_status) ? $user_detail->work_authorization_status : null;
     $notice_period = isset($user_detail->notice_period) ? $user_detail->notice_period : null;
@@ -393,13 +401,13 @@
 
                 <div class="col-md-12 mb-12">
                     <div class="position-relative form-group">
-                        <label for="address" class="form-label">Address*</label>
+                        <label for="address" class="form-label">Address</label>
                         {{-- <input type="text" class="form-control is-invalid input_text" id="address" pattern="[0-9A-Za-z]+"
                             minlength="5" maxlength="250" name="address" placeholder="Enter your Address"
                             value="{{ $address }}" required /> --}}
 
                         <textarea class="form-control is-invalid" rows="3" cols="45" name="address" id="address" pattern="[0-9A-Za-z]+"
-                            placeholder="Address" required>{{ $address }}</textarea>
+                            placeholder="Address">{{ $address }}</textarea>
 
                     </div>
                 </div>
@@ -474,11 +482,12 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
                         <label for="industry" class="form-label">Industry*</label>
-                        <select class="select2 form-select form-control is-invalid input_select"
-                            aria-label="Default select example" id="industry" name="industry" required>
+                        <select class="select2 form-select form-control is-invalid input_select" multiple="multiple"
+                            aria-label="Default select example" id="industry" name="industry[]" required>
                             <option value="">Select Industry</option>
                             @foreach ($industry as $row)
-                                <option value="{{ $row->id }}" @if ($industry_check == $row->id) selected @endif>
+                                <option value="{{ $row->name }}"
+                                    @if (in_array($row->name, json_decode($industry_check, true))) selected @endif>
                                     {{ ucfirst($row->name) }}
                                 </option>
                             @endforeach
@@ -520,8 +529,8 @@
                             aria-label="Default select example" id="skills" required>
                             <option value="">select skills</option>
                             @foreach ($skills as $row)
-                                <option value="{{ $row->id }}"
-                                    @if (in_array($row->id, json_decode($skill_check, true))) selected @endif>
+                                <option value="{{ $row->name }}"
+                                    @if (in_array($row->name, json_decode($skill_check, true))) selected @endif>
                                     {{ ucfirst($row->name) }}
                                 </option>
                             @endforeach
@@ -629,7 +638,7 @@
 
                         <div class="col-md-6 mb-4">
                             <div class="position-relative form-group">
-                                <label for="Issuing Registration*" class="form-label">Issuing Registration</label>
+                                <label for="Issuing Registration*" class="form-label">Registration Number</label>
                                 <input type="text" class="form-control is-invalid input_text certificate_issuing"
                                     name="certificate_issuing[]" placeholder="Enter your Issuing Registration"
                                     pattern="[0-9A-Za-z]+" minlength="1" maxlength="50"
@@ -721,9 +730,19 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
                         <label for="Employment Type*" class="form-label">Employment Type*</label>
-                        <input type="text" class="form-control is-invalid input_text" id="Employment Type*"
+                        {{-- <input type="text" class="form-control is-invalid input_text" id="Employment Type*"
                             name="pref_emp_type" placeholder="Enter your Employment Type" pattern="[A-Za-z]+"
-                            minlength="1" maxlength="50" value="{{ $pref_emp_type }}" required />
+                            minlength="1" maxlength="50" value="{{ $pref_emp_type }}" required /> --}}
+
+                        <select class="select2 form-select form-control is-invalid input_select"
+                            aria-label="Default select example" id="pref_emp_type" name="pref_emp_type" required>
+                            <option value="">Select Employment Type</option>
+                            @foreach ($employ_types as $row)
+                                <option value="{{ $row->id }}" @if ($pref_emp_type == $row->id) selected @endif>
+                                    {{ ucfirst($row->name) }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
@@ -745,10 +764,32 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
+                        <label for="Current Salary*" class="form-label">Current Salary</label>
+                        <input type="text" class="form-control is-invalid input_text" id="Expected Salary*"
+                            name="current_salary" placeholder="Enter Your Current Salary" pattern="[A-Za-z]+"
+                            minlength="1" maxlength="50" value="{{ $current_salary }}" />
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="position-relative form-group">
                         <label for="Expected Salary*" class="form-label">Expected Salary*</label>
                         <input type="text" class="form-control is-invalid input_text" id="Expected Salary*"
                             name="pref_salary" placeholder="Enter Your Expected Salary" pattern="[A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $pref_salary }}" required />
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="position-relative form-group">
+                        <label for="Employment Type*" class="form-label">Notice Period Duration*</label>
+                        <select class="select2 form-select form-control is-invalid input_select"
+                            aria-label="Default select example" id="notice_period_duration" name="notice_period_duration" required>
+                            <option value="">Select Notice Period Duration</option>
+                            @foreach ($notice_period_list as $row)
+                                <option value="{{ $row->id }}" @if ($notice_period_check == $row->id) selected @endif>
+                                    {{ ucfirst($row->name) }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="heading mt-4">

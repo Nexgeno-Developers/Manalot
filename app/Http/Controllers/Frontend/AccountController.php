@@ -436,7 +436,7 @@ class AccountController extends Controller
             'dob' => 'required',
             //'email' => 'required|email',
             //'phone_number' => 'required|regex:/^[\d\s-]+$/|min:10',
-            'address' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&-]+$/i', 'min:3', 'max:250'],
+            'address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&-]+$/i', 'min:3', 'max:250'],
             // 'address' => ['required','min:1', 'max:250'],
             'city' => 'required',
             'state' => 'required',
@@ -569,30 +569,34 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
-        // $resume_cv_path = DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->value('resume_cv');
 
-        // if($request->has('resume_cv')){
-        //     $path = $request->file('resume_cv')->store('user_data/resume_cv', 'public');
+        $skill = $request->input('skill');
 
-        //     if ($resume_cv_path) {
-        //         if (Storage::disk('public')->exists($resume_cv_path)) {
-        //             Storage::disk('public')->delete($resume_cv_path);
-        //         }
-        //     }
+        foreach($skill as $row){
+            $skill_data = DB::table('skills')->where('name', $row)->get()->first();
 
-        // } else {
-        //     $path = $resume_cv_path;
-        // }
+            if(!$skill_data){
+                 DB::table('skills')->insert([
+                    'name' => $row,
+                    'status' => 1,
+                ]);
+            } 
+        }
+
+        $industry = $request->input('industry');
+
+        foreach($industry as $row){
+            $industry_data = DB::table('industry')->where('name', $row)->get()->first();
+
+            if(!$industry_data){
+                 DB::table('industry')->insert([
+                    'name' => $row,
+                    'status' => 1,
+                ]);
+            } 
+        }
 
 
-    // Validate and store the uploaded file
-    // if ($request->hasFile('experience_letter') && $request->file('experience_letter')->isValid()) {
-    //     $path = $request->file('experience_letter')->store('user_data/experience_letters', 'public');
-    // } 
-    // else {
-    //     $path = null;
-    // }
-        // Retrieve user details from database
         $userDetail = DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->first();
 
         // Handle file upload for experience letter
@@ -607,10 +611,10 @@ class AccountController extends Controller
             'wrk_exp_company_name' => $request->input('wrk_exp_company_name'),
             'wrk_exp_years' => $request->input('wrk_exp_years'),
             // 'job_title' => $request->input('job_title'),
-            'industry' => $request->input('industry'),
+            'industry' => json_encode($industry),
             'wrk_exp__title' => $request->input('wrk_exp__title'),
             // 'resume_cv' => $path,
-            'skill' => json_encode($request->input('skill')),
+            'skill' => json_encode($skill),
             'wrk_exp_responsibilities' => $request->input('wrk_exp_responsibilities'),
             
             'employed' => $request->has('Employed') ? 'yes' : 'no',
@@ -799,6 +803,8 @@ class AccountController extends Controller
             'pref_industry' => ['required', 'min:1', 'max:50'],
             'pref_location' => ['required', 'min:1', 'max:50'],
             'pref_salary' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:1', 'max:100'],
+            'current_salary' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:1', 'max:100'],
+            'notice_period_duration' => 'required',
             'reference_name' => [
                 'required',
                 function ($attribute, $value, $fail) {
@@ -832,6 +838,8 @@ class AccountController extends Controller
             'pref_emp_type.required' => 'The Preferred Employment Type is required.',
             'pref_emp_type.min' => 'The Preferred Employment Type must be at least 1 character.',
             'pref_emp_type.max' => 'The Preferred Employment Type may not be greater than 50 characters.',
+
+            'notice_period_duration.required' => 'The Notice Period Duration is required.',
         
             'pref_industry.required' => 'The Preferred Industry field is required.',
             'pref_industry.min' => 'The Preferred Industry must be at least 1 character.',
@@ -841,6 +849,10 @@ class AccountController extends Controller
             'pref_location.min' => 'The Preferred Location must be at least 1 character.',
             'pref_location.max' => 'The Preferred Location may not be greater than 50 characters.',
         
+            'current_salary.min' => 'The Current Salary must be at least 1 character.',
+            'current_salary.max' => 'The Current Salary may not be greater than 100 characters.',
+            'current_salary.regex' => 'The Current Salary format is invalid.',
+
             'pref_salary.required' => 'The Preferred Salary is required.',
             'pref_salary.min' => 'The Preferred Salary must be at least 1 character.',
             'pref_salary.max' => 'The Preferred Salary may not be greater than 100 characters.',
@@ -884,12 +896,14 @@ class AccountController extends Controller
             'pref_emp_type' => $request->input('pref_emp_type'),
             'pref_industry' => $request->input('pref_industry'),
             'pref_location' => $request->input('pref_location'),
+            'current_salary' => $request->input('current_salary'),
             'pref_salary' => $request->input('pref_salary'),
             'references' => json_encode($references_data),
 
             'work_authorization_status' => $request->input('work_authorization_status'),
             'availability' => $request->input('availability'),
             'notice_period' => $request->input('notice_period'),
+            'notice_period_duration' => $request->input('notice_period_duration'),
         ]);
 
 
