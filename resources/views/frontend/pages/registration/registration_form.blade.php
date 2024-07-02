@@ -678,7 +678,7 @@
 
                     <div class="col-md-6 mb-4">
                         <div class="position-relative form-group">
-                            <label for="Issuing Registration*" class="form-label">Issuing Registration</label>
+                            <label for="Issuing Registration*" class="form-label">Registration Number</label>
                             <input type="text" class="form-control is-invalid input_text certificate_issuing"
                                 name="certificate_issuing[]" placeholder="Enter your Issuing Registration"
                                 pattern="[0-9A-Za-z]+" minlength="1" maxlength="50" />
