@@ -479,7 +479,23 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 mb-4">
+                 <div class="col-md-6 mb-4">
+                    <div class="position-relative">
+                        <label for="experience_letter" class="form-label">Upload Experience Letter</label>
+                        <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
+                        <input class="form-control" type="file" id="formFile" name="experience_letter"
+                            accept=".pdf,.doc,.docx,application/msword,image/*,.webp" />
+                        {{-- <img src="images/file.png" alt="" class="input_icon" /> --}}
+                    </div>
+                    @if ($experience_letter)
+                        <div class="mt-2">
+                            <a href="{{ asset('storage/' . $experience_letter) }}" class="btn btn-success add-row" target="_blank">View Experience Letter</a>
+                        </div>
+                    @endif
+                </div>  
+
+
+                <div class="col-md-9 mb-4">
                     <div class="position-relative form-group">
                         <label for="industry" class="form-label">Industry*</label>
                         <select class="select2 form-select form-control is-invalid input_select" multiple="multiple"
@@ -498,22 +514,9 @@
 
 
 
-                <div class="col-md-6 mb-4">
-                    <div class="position-relative">
-                        <label for="experience_letter" class="form-label">Upload Experience Letter</label>
-                        <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
-                        <input class="form-control" type="file" id="formFile" name="experience_letter"
-                            accept=".pdf,.doc,.docx,application/msword,image/*,.webp" />
-                        {{-- <img src="images/file.png" alt="" class="input_icon" /> --}}
-                    </div>
-                    @if ($experience_letter)
-                        <div class="mt-2">
-                            <a href="{{ asset('storage/' . $experience_letter) }}" class="btn btn-success add-row" target="_blank">View Experience Letter</a>
-                        </div>
-                    @endif
-                </div>  
+               
 
-                <div class="col-md-6 mb-4">
+                <div class="col-md-3 mb-4">
                     <div class="option currently_work">
                         <input type="checkbox" id="yes" name="Employed" value="yes"
                             @if ($employed == 'yes') checked @endif>
@@ -540,7 +543,7 @@
 
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="Responsibilities" class="form-label">Responsibilities/Achievements</label>
+                        <label for="Responsibilities" class="form-label">Responsibilities/Achievements*</label>
                         <textarea class="form-control is-invalid" rows="4" cols="45" name="wrk_exp_responsibilities"
                             placeholder="Message" required>{{ $wrk_exp_responsibilities }}</textarea>
                     </div>
@@ -638,7 +641,7 @@
 
                         <div class="col-md-6 mb-4">
                             <div class="position-relative form-group">
-                                <label for="Issuing Registration*" class="form-label">Registration Number</label>
+                                <label for="Issuing Registration*" class="form-label">Registration Number, If Applicable</label>
                                 <input type="text" class="form-control is-invalid input_text certificate_issuing"
                                     name="certificate_issuing[]" placeholder="Enter your Issuing Registration"
                                     pattern="[0-9A-Za-z]+" minlength="1" maxlength="50"
