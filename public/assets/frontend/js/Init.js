@@ -278,7 +278,11 @@ function ajaxSubmit(e, form, callBackFunction) {
                 if (response.status) {
                     Command: toastr["success"](
                         response.notification,
-                        "Success"
+                        "Success",
+                        {
+                            "closeButton": true,
+                            "progressBar": true,
+                        }
                     );
                     callBackFunction(response);
                 } else {
@@ -288,18 +292,30 @@ function ajaxSubmit(e, form, callBackFunction) {
                             errors +=
                                 "<div>" + (key + 1) + ". " + msg + "</div>";
                         });
-                        Command: toastr["error"](errors, "Alert");
+                        Command: toastr["error"](errors, "Alert",
+                        {
+                            "closeButton": true,
+                            "progressBar": true,
+                        });
                     } else {
                         Command: toastr["error"](
                             response.notification,
-                            "Alert"
+                            "Alert",
+                            {
+                                "closeButton": true,
+                                "progressBar": true,
+                            }
                         );
                     }
                 }
             },
         });
     } else {
-        toastr.error("Please make sure to fill all the necessary fields");
+        toastr.error("Please make sure to fill all the necessary fields", "Error",
+            {
+                "closeButton": true,
+                "progressBar": true,
+            });
     }
 }
 
