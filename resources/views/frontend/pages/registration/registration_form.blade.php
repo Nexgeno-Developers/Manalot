@@ -99,7 +99,7 @@
 
     $pref_title = isset($user_detail->pref_title) ? $user_detail->pref_title : null;
     $pref_emp_type = isset($user_detail->pref_emp_type) ? $user_detail->pref_emp_type : null;
-    $pref_industry = isset($user_detail->pref_industry) ? $user_detail->pref_industry : null;
+    $pref_industry_check = isset($user_detail->pref_industry) ? $user_detail->pref_industry : '[]';
     $pref_location = isset($user_detail->pref_location) ? $user_detail->pref_location : null;
 
     $current_salary = isset($user_detail->current_salary) ? $user_detail->current_salary : null;
@@ -753,11 +753,25 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
                         <label for="Preferred Industry*" class="form-label">Preferred Industry*</label>
-                        <input type="text" class="form-control is-invalid input_text" id="Preferred Industry*"
+                        {{-- <input type="text" class="form-control is-invalid input_text" id="Preferred Industry*"
                             name="pref_industry" placeholder="Enter Your Preferred Industry" pattern="[A-Za-z]+"
-                            minlength="1" maxlength="50" value="{{ $pref_industry }}" required />
+                            minlength="1" maxlength="50" value="{{ $pref_industry }}" required /> --}}
+                        
+                        <select class="select2 form-select form-control is-invalid input_select" multiple="multiple"
+                            aria-label="Default select example" id="pref_industry" name="pref_industry[]" required>
+                            <option value="">Select Preferred Industry</option>
+                            @foreach ($industry as $row)
+                                <option value="{{ $row->name }}"
+                                    @if (in_array($row->name, json_decode($pref_industry_check, true))) selected @endif>
+                                    {{ ucfirst($row->name) }}
+                                </option>
+                            @endforeach
+                        </select>
+                        
                     </div>
                 </div>
+
+
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
                         <label for="Desired Job Location*" class="form-label">Desired Job Location*</label>

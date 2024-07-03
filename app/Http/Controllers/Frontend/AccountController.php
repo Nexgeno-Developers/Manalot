@@ -850,7 +850,7 @@ class AccountController extends Controller
             // 'pref_salary' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:1', 'max:50'],
             'pref_title' => ['required', 'min:1', 'max:50'],
             'pref_emp_type' => ['required', 'min:1', 'max:50'],
-            'pref_industry' => ['required', 'min:1', 'max:50'],
+            'pref_industry' => 'required',
             'pref_location' => ['required', 'min:1', 'max:50'],
             'pref_salary' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:1', 'max:100'],
             'current_salary' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:1', 'max:100'],
@@ -892,8 +892,6 @@ class AccountController extends Controller
             'notice_period_duration.required' => 'The Notice Period Duration is required.',
         
             'pref_industry.required' => 'The Preferred Industry field is required.',
-            'pref_industry.min' => 'The Preferred Industry must be at least 1 character.',
-            'pref_industry.max' => 'The Preferred Industry may not be greater than 50 characters.',
         
             'pref_location.required' => 'The Preferred Location is required.',
             'pref_location.min' => 'The Preferred Location must be at least 1 character.',
@@ -944,7 +942,7 @@ class AccountController extends Controller
         $result =  DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
             'pref_title' => $request->input('pref_title'),
             'pref_emp_type' => $request->input('pref_emp_type'),
-            'pref_industry' => $request->input('pref_industry'),
+            'pref_industry' => json_encode($request->input('pref_industry')),
             'pref_location' => $request->input('pref_location'),
             'current_salary' => $request->input('current_salary'),
             'pref_salary' => $request->input('pref_salary'),

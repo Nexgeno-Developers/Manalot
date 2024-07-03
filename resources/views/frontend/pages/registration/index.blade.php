@@ -110,6 +110,8 @@
         }
 
         initSelect2('.select2');
+        initSelect3('#industry');
+        initSelect3('#pref_industry');
     }
 
 
@@ -121,6 +123,8 @@
 
     $(document).ready(function() {
         initSelect2('.select2');
+        initSelect3('#industry');
+        initSelect3('#pref_industry');
     });
 
     function back_to_privious(){
