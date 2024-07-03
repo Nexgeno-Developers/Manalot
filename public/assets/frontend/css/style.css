@@ -863,7 +863,7 @@ input#formFile::file-selector-button {
 }
 
 .pddleft50 {
-    padding-left: 50px !important;
+    padding-left: 80px !important;
     padding-top: 60px;
     padding-bottom: 60px;
 }
@@ -1026,13 +1026,7 @@ input.h_input::placeholder {
     color: #7A7878;
 }
 
-/* .register_width .col-md-6.mb-4:nth-child(odd) {
-    padding-right: 40px;
-} */
 
-.register_width .col-md-6.mb-4:nth-child(even) {
-    /* padding-left: 40px; */
-}
 
 /** footer open **/
 
@@ -1295,4 +1289,30 @@ button.btn.btn-danger.remove-row {
 .leble_size {
     font-size: 12px;
     font-weight: 400;
+}
+
+.register_width .col-md-6.mb-4:nth-child(even) {
+    padding-left: 30px;
+}
+
+.register_width .col-md-6.mb-4:nth-child(odd) {
+    padding-right: 30px;
+}
+
+.cirtificate_pdd .col-md-6:nth-child(even) {
+    padding-left: 15px !important;
+    padding-right: 30px;
+}
+
+.cirtificate_pdd .col-md-6:nth-child(odd) {
+    padding-left: 30px;
+    padding-right: 0px !important;
+}
+
+.intl-tel-input {
+    margin-top: 8px;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+    padding-left: 0 !important;
 }
