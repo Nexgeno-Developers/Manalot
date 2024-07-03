@@ -224,9 +224,17 @@ function ajax_form_submit_login(e, form, callBackFunction) {
                         $.each(response.response_message.message, function (key, msg) {
                             errors += "<div>" + (key + 1) + ". " + msg + "</div>";
                         });
-                        Command: toastr.error(errors, "Alert");
+                        Command: toastr.error(errors, "Alert",
+                        {
+                            "closeButton": true,
+                            "progressBar": true,
+                        });
                     } else {
-                        Command: toastr.error(response.response_message.message, "Alert");
+                        Command: toastr.error(response.response_message.message, "Alert",                        
+                        {
+                            "closeButton": true,
+                            "progressBar": true,
+                        });
 
                         if(response.response_message.status === "incomplete"){
 
@@ -247,11 +255,19 @@ function ajax_form_submit_login(e, form, callBackFunction) {
             },
             error: function (xhr, status, error) {
                 resetButton(btn, btn_text);
-                Command: toastr.error("An error occurred: " + error, "Error");
+                Command: toastr.error("An error occurred: " + error, "Error",
+                {
+                    "closeButton": true,
+                    "progressBar": true,
+                });
             }
         });
     } else {
-        toastr.error("Please make sure to fill all the necessary fields");
+        toastr.error("Please make sure to fill all the necessary fields", "Error",
+        {
+            "closeButton": true,
+            "progressBar": true,
+        });
         resetButton($(form).find('button[type="submit"]'), btn_text);
     }
 }

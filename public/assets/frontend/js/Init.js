@@ -315,7 +315,8 @@ function ajaxSubmit(e, form, callBackFunction) {
             {
                 "closeButton": true,
                 "progressBar": true,
-            });
+            }
+        );
     }
 }
 
