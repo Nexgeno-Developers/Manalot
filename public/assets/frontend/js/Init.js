@@ -175,7 +175,11 @@ function ajax_form_submit(e, form, callBackFunction) {
                     if (response.response_message.response === "success") {
                         Command: toastr.success(
                             response.response_message.message,
-                            "Success"
+                            "Success",
+                            {
+                                "closeButton": true,
+                                "progressBar": true,
+                            }
                         );
                         callBackFunction(response);
                     } else {
@@ -188,26 +192,50 @@ function ajax_form_submit(e, form, callBackFunction) {
                                         "<div>" + (key + 1) + ". " + msg + "</div>";
                                 }
                             );
-                            Command: toastr.error(errors, "Alert");
+                            Command: toastr.error(errors, "Alert", 
+                                {
+                                    "closeButton": true,
+                                    "progressBar": true,
+                                }
+                            );
                         } else {
                             Command: toastr.error(
                                 response.response_message.message,
-                                "Alert"
+                                "Alert",
+                                {
+                                    "closeButton": true,
+                                    "progressBar": true,
+                                }
                             );
                         }
                     }
                 },
                 error: function (xhr, status, error) {
                     resetButton(btn, btn_text);
-                    Command: toastr.error("An error occurred: " + error, "Error");
+                    Command: toastr.error( "An error occurred: " +  error, "Error",
+                        {
+                            "closeButton": true,
+                            "progressBar": true,
+                        }
+                    );
                 },
             });
         }).fail(function() {
             resetButton(btn, btn_text);
-            Command: toastr.error("Failed to retrieve CSRF token", "Error");
+            Command: toastr.error("Failed to retrieve CSRF token", "Error",
+                {
+                    "closeButton": true,
+                    "progressBar": true,
+                }
+            );
         });
     } else {
-        toastr.error("Please make sure to fill all the necessary fields");
+        toastr.error("Please make sure to fill all the necessary fields", "Error",
+            {
+                "closeButton": true,
+                "progressBar": true,
+            }
+        );
         resetButton($(form).find('button[type="submit"]'), btn_text);
     }
 }

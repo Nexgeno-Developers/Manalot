@@ -442,7 +442,7 @@ class AccountController extends Controller
             'state' => 'required',
             'pincode' => 'required',
             'country' => 'required',
-            'profile_photo' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
+            'profile_photo' => 'nullable|image|mimes:jpg,jpeg,png|max:5120',
         ]);
 
         if ($validator->fails()) {
