@@ -33,6 +33,10 @@
 @section('component.scripts')
     <script>
 
+    document.getElementById('Mobile').addEventListener('input', function (event) {
+        this.value = this.value.replace(/[^0-9+ ]/g, '');
+    });
+
     function next_page_preview(step_info){
         var step = {{ Session::has('step') ? Session::get('step') : '0' }};
         
@@ -157,6 +161,13 @@
                 // location.reload();
                 $('#email_otp_model').modal('show');
             }, 100);
+
+            // Show resend OTP button after 30 seconds
+            setTimeout(function() {
+                var resendButton = document.getElementById('resendOTPButton');
+                resendButton.style.display = 'block';
+            }, 30000); // 30 seconds
+
         };
 
     /*--------------------- user info ------------------*/ 
@@ -179,7 +190,8 @@
             //     location.reload();
             // }, 100);
             $('#email_otp_model').modal('toggle');
-            next_page_preview(2);
+            location.reload();
+            // next_page_preview(2);
             
         };
 
@@ -187,6 +199,35 @@
             $('#email_otp_model').modal('toggle');
         };
     /*--------------------- email verify otp ------------------*/ 
+
+    /*--------------------- Resend-otp------------------*/    
+
+        $(document).ready(function(){
+
+
+
+            $('#resendOTPButton').click(function(e){
+                e.preventDefault();
+
+                var csrfToken = '{{ csrf_token() }}';
+
+                $.ajax({
+                    url: "{{ route('account.create', ['param' =>'resend-otp']) }}",
+                    type: "Post",
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    success: function(response) {
+                        toastr.success(response.response_message.message, response.response_message.response);
+                    },
+                    error: function(xhr, status, error) {
+                        toastr.error(response.response_message.message, response.response_message.response);
+                    }
+                });
+            });
+        });
+
+    /*--------------------- Resend-otp------------------*/  
 
     /*--------------------- personal info ------------------*/
 
@@ -326,31 +367,6 @@
 
     next_page_preview();
 
-    /*--------------------- Resend-otp------------------*/    
-
-        $(document).ready(function(){
-            $('#resendOTPButton').click(function(e){
-                e.preventDefault();
-
-                var csrfToken = '{{ csrf_token() }}';
-
-                $.ajax({
-                    url: "{{ route('account.create', ['param' =>'resend-otp']) }}",
-                    type: "Post",
-                    headers: {
-                        'X-CSRF-TOKEN': csrfToken
-                    },
-                    success: function(response) {
-                        toastr.success(response.response_message.message, response.response_message.response);
-                    },
-                    error: function(xhr, status, error) {
-                        toastr.error(response.response_message.message, response.response_message.response);
-                    }
-                });
-            });
-        });
-
-    /*--------------------- Resend-otp------------------*/  
     
     /*--------------------- duplicate forms inputs ------------------*/
 
@@ -383,6 +399,11 @@
                     phoneInput.intlTelInput({
                         utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
                     });
+
+                    document.getElementById('Phone' + (index + 1)).addEventListener('input', function (event) {
+                        this.value = this.value.replace(/[^0-9+ ]/g, '');
+                    });
+
                 });
             }
 

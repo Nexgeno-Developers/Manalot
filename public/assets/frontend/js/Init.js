@@ -179,6 +179,7 @@ function ajax_form_submit(e, form, callBackFunction) {
                             {
                                 "closeButton": true,
                                 "progressBar": true,
+                                "tapToDismiss": false,
                             }
                         );
                         callBackFunction(response);
@@ -196,6 +197,7 @@ function ajax_form_submit(e, form, callBackFunction) {
                                 {
                                     "closeButton": true,
                                     "progressBar": true,
+                                    "tapToDismiss": false,
                                 }
                             );
                         } else {
@@ -205,6 +207,7 @@ function ajax_form_submit(e, form, callBackFunction) {
                                 {
                                     "closeButton": true,
                                     "progressBar": true,
+                                    "tapToDismiss": false,
                                 }
                             );
                         }
@@ -216,6 +219,7 @@ function ajax_form_submit(e, form, callBackFunction) {
                         {
                             "closeButton": true,
                             "progressBar": true,
+                            "tapToDismiss": false,
                         }
                     );
                 },
@@ -226,6 +230,7 @@ function ajax_form_submit(e, form, callBackFunction) {
                 {
                     "closeButton": true,
                     "progressBar": true,
+                    "tapToDismiss": false,
                 }
             );
         });
@@ -234,6 +239,7 @@ function ajax_form_submit(e, form, callBackFunction) {
             {
                 "closeButton": true,
                 "progressBar": true,
+                "tapToDismiss": false,
             }
         );
         resetButton($(form).find('button[type="submit"]'), btn_text);
@@ -282,6 +288,7 @@ function ajaxSubmit(e, form, callBackFunction) {
                         {
                             "closeButton": true,
                             "progressBar": true,
+                            "tapToDismiss": false,
                         }
                     );
                     callBackFunction(response);
@@ -296,6 +303,7 @@ function ajaxSubmit(e, form, callBackFunction) {
                         {
                             "closeButton": true,
                             "progressBar": true,
+                            "tapToDismiss": false,
                         });
                     } else {
                         Command: toastr["error"](
@@ -304,6 +312,7 @@ function ajaxSubmit(e, form, callBackFunction) {
                             {
                                 "closeButton": true,
                                 "progressBar": true,
+                                "tapToDismiss": false,
                             }
                         );
                     }
@@ -315,6 +324,7 @@ function ajaxSubmit(e, form, callBackFunction) {
             {
                 "closeButton": true,
                 "progressBar": true,
+                "tapToDismiss": false,
             }
         );
     }

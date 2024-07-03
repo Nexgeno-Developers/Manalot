@@ -131,6 +131,10 @@ class AccountController extends Controller
         }elseif($param == "email-verify"){
 
             $rsp_msg = $this->email_verification($request);
+        
+        }elseif($param == "resend-otp"){
+
+            $rsp_msg = $this->resendOtp($request);
 
         }elseif($param == "personal-info"){
 
@@ -184,14 +188,37 @@ class AccountController extends Controller
     public function create_user_detail($request){
 
         $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'regex:/^[A-Za-z0-9_.]+$/',  'min:1', 'max:50'],
+            'name' => ['required', 'string', 'regex:/^[A-Za-z0-9_.]+$/', 'min:1', 'max:50'],
             'email' => 'required|email',
             'password' => 'required',
             'confirm_password' => 'required|same:password',
             //'experience_Status' => 'required',
             'phone_number' => 'required|regex:/^[\d\s\-\+]+$/|min:10',
-            'resume_cv' => 'required|mimes:pdf|max:5120',
+            'resume_cv' => 'required|mimes:pdf,doc,docx|max:5120',
+        ], [
+            'name.required' => 'The Name field is required.',
+            'name.string' => 'The Name must be a string.',
+            'name.regex' => 'The Name format is invalid. Only letters, numbers, dots, underscores are allowed, and spacing is not allowed.',
+            'name.min' => 'The Name must be at least 1 character.',
+            'name.max' => 'The Name may not be greater than 50 characters.',
+            
+            'email.required' => 'The Email field is required.',
+            'email.email' => 'The Email must be a valid email address.',
+            
+            'password.required' => 'The Password field is required.',
+            
+            'confirm_password.required' => 'The Confirm Password field is required.',
+            'confirm_password.same' => 'The Confirm Password must match the Password.',
+        
+            'phone_number.required' => 'The Phone Number field is required.',
+            'phone_number.regex' => 'The Phone Number format is invalid.',
+            'phone_number.min' => 'The Phone Number must be at least 10 characters.',
+            
+            'resume_cv.required' => 'The Resume file is required.',
+            'resume_cv.mimes' => 'The Resume must be a PDF, DOC, or DOCX file.',
+            'resume_cv.max' => 'The Resume may not be larger than 5MB.',
         ]);
+        
 
         if ($validator->fails()) {
             $rsp_msg['response'] = 'error';
@@ -427,6 +454,29 @@ class AccountController extends Controller
         return $rsp_msg;
     }
 
+    public function resendOtp($request)
+    {
+        $otp = mt_rand(100000, 999999);
+        Session::put('otp', $otp);
+
+        $timestamp = Carbon::now();
+        Session::put('otp_timestamp', $timestamp);
+        
+        $user_info = Session::get('user_info');
+
+        $to = $user_info['email'];
+        $subject = "Email Verification for Manalot Application";
+        $body = "Your Resend OTP code to verify your Email ID for the Manalot application is <b>$otp</b> This OTP is valid for only 2 minutes.";
+
+        sendEmail($to, $subject, $body);
+
+        $rsp_msg['response'] = 'success';
+        $rsp_msg['message']  = "OTP has been Resend no this Email : " . $user_info['email'];
+
+        return $rsp_msg;
+    }
+
+
 
     public function create_personal_info($request){
 
@@ -531,20 +581,20 @@ class AccountController extends Controller
 
         $validator = Validator::make($request->all(), [
             'wrk_exp_company_name' => 'required|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
-            'wrk_exp__title' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:100'],
+            'wrk_exp__title' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:2', 'max:100'],
             // 'wrk_exp__title' => ['required', 'min:1', 'max:100'],
             'industry' => 'required',
             // 'job_title' => 'required',
             'wrk_exp_years' => 'required',
-            'wrk_exp_responsibilities' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&\-\(\)\[\]]+$/i', 'min:3'],
+            'wrk_exp_responsibilities' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&\-\(\)\[\]_?]+$/i', 'min:2'],
             // 'resume_cv' => 'nullable|mimes:pdf|max:5120',
             'skill' => 'required',
             'employed' => 'nullable|string', // Assuming 'Employed' is nullable string
-            'experience_letter' => 'nullable|file|mimes:pdf,doc,docx,application/msword,image/webp|max:2048', // adjust max file size as needed
+            'experience_letter' => 'nullable|mimes:pdf,doc,docx|max:5120',
         ], [
             'wrk_exp_company_name.required' => 'The Company Name is required.',
             'wrk_exp_company_name.regex' => 'The Company Name format is invalid.',
-            'wrk_exp_company_name.min' => 'The Company Name must be at least 3 characters.',
+            'wrk_exp_company_name.min' => 'The Company Name must be at least 2 characters.',
             
             'wrk_exp__title.required' => 'The Professional Title is required.',
             'wrk_exp__title.min' => 'The Professional Title must be at least 1 character.',
@@ -557,7 +607,7 @@ class AccountController extends Controller
             'wrk_exp_responsibilities.required' => 'The Responsibilities field is required.',
             'wrk_exp_responsibilities.string' => 'The Responsibilities must be a string.',
             'wrk_exp_responsibilities.regex' => 'The Responsibilities format is invalid.',
-            'wrk_exp_responsibilities.min' => 'The Responsibilities must be at least 3 characters.',
+            'wrk_exp_responsibilities.min' => 'The Responsibilities must be at least 2 characters.',
             
             'skill.required' => 'The Skill field is required.',
         ]);

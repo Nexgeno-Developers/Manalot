@@ -250,6 +250,9 @@
                         <div class="purple_btn">
                             <button type="submit" class="btn btn-primary">Verify</button>
                         </div>
+                        <div class="purple_btn">
+                            <a class="ms-4" class="btn btn-primary" id="resendOTPButton" style="display: none; cursor: pointer;">Resend OTP</a>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -450,7 +453,7 @@
                         <label for="job_title" class="form-label">Professional Title*</label>
                         <input type="text" class="form-control is-invalid input_text" id="job_title"
                             name="wrk_exp__title" placeholder="Enter your Job Title" pattern="[A-Za-z]+"
-                            minlength="1" maxlength="100" value="{{ $wrk_exp__title }}" required />
+                            minlength="2" maxlength="100" value="{{ $wrk_exp__title }}" required />
                     </div>
                 </div>
 

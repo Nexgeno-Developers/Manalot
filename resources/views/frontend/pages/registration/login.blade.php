@@ -228,12 +228,14 @@ function ajax_form_submit_login(e, form, callBackFunction) {
                         {
                             "closeButton": true,
                             "progressBar": true,
+                            "tapToDismiss": false,
                         });
                     } else {
                         Command: toastr.error(response.response_message.message, "Alert",                        
                         {
                             "closeButton": true,
                             "progressBar": true,
+                            "tapToDismiss": false,
                         });
 
                         if(response.response_message.status === "incomplete"){
@@ -259,6 +261,7 @@ function ajax_form_submit_login(e, form, callBackFunction) {
                 {
                     "closeButton": true,
                     "progressBar": true,
+                    "tapToDismiss": false,
                 });
             }
         });
@@ -267,6 +270,7 @@ function ajax_form_submit_login(e, form, callBackFunction) {
         {
             "closeButton": true,
             "progressBar": true,
+            "tapToDismiss": false,
         });
         resetButton($(form).find('button[type="submit"]'), btn_text);
     }
