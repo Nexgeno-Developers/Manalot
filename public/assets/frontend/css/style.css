@@ -644,7 +644,7 @@ height: 100vh;
 /* email otp */
 
 #email_otp_model .modal-content {
-    margin: 0px auto; 
+    margin: 0px auto;
     width: 90%;
 }
 
@@ -653,7 +653,7 @@ height: 100vh;
     padding: 0px 1rem .75rem !important;
 }
 
-#email-verify-otp .modal-footer, 
+#email-verify-otp .modal-footer,
 #email_otp_model .modal-header {
     border: 0px !important;
 }
@@ -1290,4 +1290,9 @@ button.btn.btn-danger.remove-row {
 .checkbox_error label#term_check-error {
     position: absolute;
     margin-top: 25px;
+}
+
+.leble_size {
+    font-size: 12px;
+    font-weight: 400;
 }

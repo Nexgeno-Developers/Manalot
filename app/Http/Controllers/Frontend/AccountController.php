@@ -314,7 +314,7 @@ class AccountController extends Controller
 
         $to = $user_info['email'];
         $subject = "Email Verification for Manalot Application";
-        $body = "Your OTP code to verify your Email ID for the Manalot application is '.$otp.'.This OTP is valid for only 2 minutes.";
+        $body = "Your OTP code to verify your Email ID for the Manalot application is <b>$otp</b> This OTP is valid for only 2 minutes.";
 
         sendEmail($to, $subject, $body);
 

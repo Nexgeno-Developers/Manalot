@@ -159,7 +159,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="formFile" class="form-label">Upload Resume*</label>
+                        <label for="formFile" class="form-label">Upload Resume* <span class="leble_size">(doc, docx, rtf, pdf)</span></label>
                         <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
                         <input class="form-control is-invalid" type="file" id="formFile" name="resume_cv"
                             accept=".pdf" required />
@@ -305,7 +305,7 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="formFile" class="form-label">Profile Photo</label>
+                        <label for="formFile" class="form-label">Profile Photo <span class="leble_size">(png, jpg, jpeg)</span></label>
                         @if (!empty($profile_photo) && $profile_photo != null)
                             <a class="pdf_view" target="_blank"
                                 href="{{ asset('storage/' . $profile_photo) }}">
