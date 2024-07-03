@@ -159,7 +159,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="formFile" class="form-label">Upload Resume* <span class="leble_size">(doc, docx, rtf, pdf)</span></label>
+                        <label for="formFile" class="form-label">Upload Resume* <span class="leble_size">(doc, docx, pdf -  up to 5MB)</span></label>
                         <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
                         <input class="form-control is-invalid" type="file" id="formFile" name="resume_cv"
                             accept=".pdf" required />
@@ -308,12 +308,12 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="formFile" class="form-label">Profile Photo <span class="leble_size">(png, jpg, jpeg)</span></label>
+                        <label for="formFile" class="form-label">Profile Photo <span class="leble_size">(png, jpg)</span></label>
                         @if (!empty($profile_photo) && $profile_photo != null)
-                            <a class="pdf_view" target="_blank"
+                            <!-- {{--<a class="pdf_view" target="_blank"
                                 href="{{ asset('storage/' . $profile_photo) }}">
                                 View
-                            </a>
+                            </a> --}} -->
                         @endif
                         <img src="/assets/images/file.png" alt="" class="input_icon" />
                         <input class="form-control is-invalid" type="file" id="formFile" name="profile_photo"
@@ -437,17 +437,16 @@
 {{-- @if (!Session::has('step') || Session::get('step') == 3) --}}
 
     <div id="work-details-div" class="register_width d-none">
+         <div class="heading mt-4 mb-4">
+                        <h2>Work Experience</h2>
+                    </div>
         <form id="personal-work-info" action="{{ url(route('account.create', ['param' => 'personal-work-info'])) }}"
             method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
             @csrf
-            <div class="row">
+           
 
-                <div class="col-md-12 mt-3">
-                    <div class="heading mt-4 mb-4">
-                        <h2>Work Experience</h2>
-                    </div>
-                </div>
-
+                
+ <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
                         <label for="job_title" class="form-label">Professional Title*</label>
@@ -484,7 +483,7 @@
 
                  <div class="col-md-6 mb-4">
                     <div class="position-relative">
-                        <label for="experience_letter" class="form-label">Upload Experience Letter</label>
+                        <label for="experience_letter" class="form-label">Upload Experience Letter <span class="leble_size">(docx, pdf -  up to 5MB)</span></label>
                         <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
                         <input class="form-control" type="file" id="formFile" name="experience_letter"
                             accept=".pdf,.doc,.docx,application/msword,image/*,.webp" />
@@ -621,7 +620,7 @@
             </div>
             @if (!empty($certificate_data))
                 @foreach ($certificate_data as $index => $certificate)
-                    <div class="row certificate-row">
+                    <div class="row certificate-row cirtificate_pdd">
                         <div class="col-md-12 mb-4">
                             <div class="position-relative form-group">
                                 <label for="Certificate" class="form-label">Certificate Name</label>
