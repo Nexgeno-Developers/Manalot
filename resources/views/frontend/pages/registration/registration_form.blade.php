@@ -663,7 +663,7 @@
                     </div>
                 @endforeach
             @else
-                <div class="row certificate-row">
+                <div class="row certificate-row cirtificate_pdd">
                     <div class="col-md-12 mb-4">
                         <div class="position-relative form-group">
                             <label for="Certificate" class="form-label">Certificate Name</label>
@@ -683,7 +683,7 @@
 
                     <div class="col-md-6 mb-4">
                         <div class="position-relative form-group">
-                            <label for="Issuing Registration*" class="form-label">Registration Number</label>
+                            <label for="Issuing Registration*" class="form-label">Registration Number, If Applicable</label>
                             <input type="text" class="form-control is-invalid input_text certificate_issuing"
                                 name="certificate_issuing[]" placeholder="Enter your Issuing Registration"
                                 pattern="[0-9A-Za-z]+" minlength="1" maxlength="50" />
@@ -750,7 +750,56 @@
                         </select>
                     </div>
                 </div>
+
+
+                
+
+
                 <div class="col-md-6 mb-4">
+                    <div class="position-relative form-group">
+                        <label for="Desired Job Location*" class="form-label">Desired Job Location*</label>
+                        <input type="text" class="form-control is-invalid input_text" id="Desired Job Location*"
+                            name="pref_location" pattern="[A-Za-z]+" minlength="1" maxlength="50"
+                            value="{{ $pref_location }}" placeholder="Enter your Desired Job Location"
+                            required />
+                    </div>
+                </div>
+
+                  <div class="col-md-6 mb-4">
+                    <div class="position-relative form-group">
+                        <label for="Employment Type*" class="form-label">Notice Period Duration*</label>
+                        <select class="select2 form-select form-control is-invalid input_select"
+                            aria-label="Default select example" id="notice_period_duration" name="notice_period_duration" required>
+                            <option value="">Select Notice Period Duration</option>
+                            @foreach ($notice_period_list as $row)
+                                <option value="{{ $row->id }}" @if ($notice_period_check == $row->id) selected @endif>
+                                    {{ ucfirst($row->name) }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 mb-4">
+                    <div class="position-relative form-group">
+                        <label for="Current Salary*" class="form-label">Current Salary</label>
+                        <input type="text" class="form-control is-invalid input_text" id="Expected Salary*"
+                            name="current_salary" placeholder="Enter Your Current Salary" pattern="[A-Za-z]+"
+                            minlength="1" maxlength="50" value="{{ $current_salary }}" />
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="position-relative form-group">
+                        <label for="Expected Salary*" class="form-label">Expected Salary*</label>
+                        <input type="text" class="form-control is-invalid input_text" id="Expected Salary*"
+                            name="pref_salary" placeholder="Enter Your Expected Salary" pattern="[A-Za-z]+"
+                            minlength="1" maxlength="50" value="{{ $pref_salary }}" required />
+                    </div>
+                </div>
+              
+
+                <div class="col-md-12 mb-4">
                     <div class="position-relative form-group">
                         <label for="Preferred Industry*" class="form-label">Preferred Industry*</label>
                         {{-- <input type="text" class="form-control is-invalid input_text" id="Preferred Industry*"
@@ -772,45 +821,6 @@
                 </div>
 
 
-                <div class="col-md-6 mb-4">
-                    <div class="position-relative form-group">
-                        <label for="Desired Job Location*" class="form-label">Desired Job Location*</label>
-                        <input type="text" class="form-control is-invalid input_text" id="Desired Job Location*"
-                            name="pref_location" pattern="[A-Za-z]+" minlength="1" maxlength="50"
-                            value="{{ $pref_location }}" placeholder="Enter your Desired Job Location"
-                            required />
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="position-relative form-group">
-                        <label for="Current Salary*" class="form-label">Current Salary</label>
-                        <input type="text" class="form-control is-invalid input_text" id="Expected Salary*"
-                            name="current_salary" placeholder="Enter Your Current Salary" pattern="[A-Za-z]+"
-                            minlength="1" maxlength="50" value="{{ $current_salary }}" />
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="position-relative form-group">
-                        <label for="Expected Salary*" class="form-label">Expected Salary*</label>
-                        <input type="text" class="form-control is-invalid input_text" id="Expected Salary*"
-                            name="pref_salary" placeholder="Enter Your Expected Salary" pattern="[A-Za-z]+"
-                            minlength="1" maxlength="50" value="{{ $pref_salary }}" required />
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="position-relative form-group">
-                        <label for="Employment Type*" class="form-label">Notice Period Duration*</label>
-                        <select class="select2 form-select form-control is-invalid input_select"
-                            aria-label="Default select example" id="notice_period_duration" name="notice_period_duration" required>
-                            <option value="">Select Notice Period Duration</option>
-                            @foreach ($notice_period_list as $row)
-                                <option value="{{ $row->id }}" @if ($notice_period_check == $row->id) selected @endif>
-                                    {{ ucfirst($row->name) }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
                 <div class="heading mt-4">
                     <h2>Reference</h2>
                 </div>

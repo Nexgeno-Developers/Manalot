@@ -51,7 +51,7 @@
 }
 .mt-35
 {
-	margin-top:35px;
+	margin-top:25px;
 }
 .padd-40
 {
@@ -76,18 +76,18 @@
 </style>
 
 
-<div class="profile-page">
+<div class="profile-page pb-5">
 <div class="container">
 
 <div class="top-section">
 		<div class="row align-items-center">
 			<div class="col-md-6">
-				<img src="http://127.0.0.1:8000/assets/images/namalot_logo.png">
+				<a href="/login"><img src="http://127.0.0.1:8000/assets/images/namalot_logo.png"></a>
 			</div>
 
 			<div class="col-md-6">
 				<div class="blue_btn text-end">
-				<a  href="#" class="text-decoration-none text-white">Continue to Login</a>
+				<a  href="/login" class="text-decoration-none text-white">Continue to Login</a>
 				</div>
 			</div>
 
