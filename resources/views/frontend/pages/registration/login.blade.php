@@ -57,7 +57,7 @@
 
                                 <p>
                                     Forgot your password?
-                                    <a href="#" class="purple text-decoration-none">Reset</a>
+                                    <a onclick="open_reset_password_form();" class="purple text-decoration-none">Reset</a>
                                 </p>
                             </div>
                             <div>
@@ -119,6 +119,11 @@
         </div>
     </div>
 </section>
+
+<!-- forgot password modal popup open-->
+@include('frontend.component.forgot_password_modal_form')
+<!--- forgot password Modal Popup ------->
+
 <footer class="ms-footer">
 	<div class="ms-footer-wrap">
 		<div class="container">
@@ -193,6 +198,12 @@
 
 @section('component.scripts')
 <script>
+
+function open_reset_password_form(){
+
+    $('#forgot_password').modal('show');
+
+}
 
 /*--------------------- login form ------------------*/
 

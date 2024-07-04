@@ -15,5 +15,7 @@ class VerifyCsrfToken extends Middleware
         'backend/trumbowyg/upload',
         '/login',
         '/create-account/resend-otp',
+        'forgot-password/verify-forgot-otp',
+        'forgot-password/reset-password',
     ];
 }

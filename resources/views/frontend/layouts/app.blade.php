@@ -39,6 +39,8 @@
     @yield('page.scripts')
     @yield('component.scripts')
 
+    @yield('forgot.scripts')
+
     @if (session('toastr'))
         <script>
             $(document).ready(function() {

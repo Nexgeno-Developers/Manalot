@@ -50,60 +50,68 @@ class AccountController extends Controller
 
         Session()->flush();
 
-        $user = DB::table('users')->where('email', $request->input('email'))->get()->first();
-
-        if($user){
-
-            if ($user->completed_status == '0'){
-
-                Session::put('temp_user_id', $user->id);
-                Session::put('step', $user->step + 1);
-
-                $rsp_msg['response'] = 'error';
-                $rsp_msg['status'] = 'incomplete';
-                $rsp_msg['message']  = 'Please Fill ALL Forms';
-    
-                return response()->json(array('response_message' => $rsp_msg));
-            }
-
-            if ($user->approval != 1 && $user->status != 1){
-
-                $rsp_msg['response'] = 'error';
-                $rsp_msg['status'] = 'completed';
-                $rsp_msg['message']  = 'Application Status Under Review';
-    
-                return response()->json(array('response_message' => $rsp_msg));
-            }
-
-            if ($user->status != 1){
-
-                $rsp_msg['response'] = 'error';
-                $rsp_msg['message']  = 'Your ID is Not Active!';
-    
-                return response()->json(array('response_message' => $rsp_msg));
-            }
-
-            if ($user->approval != 1){
-
-                $rsp_msg['response'] = 'error';
-                $rsp_msg['message']  = 'ID is Not Approve!';
-    
-                return response()->json(array('response_message' => $rsp_msg));
-            }
-
-        } else {
-
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message']  = 'User Not Exiest!, Please Register';
-
-            return response()->json(array('response_message' => $rsp_msg));
-        }
-
-
-
         $authenticated = Auth::guard('web')->attempt($request->only(['email', 'password']));
         if($authenticated)
         {
+
+            $user = DB::table('users')->where('email', $request->input('email'))->get()->first();
+
+            if($user){
+    
+                if ($user->completed_status == '0'){
+
+                    Session()->flush();
+    
+                    Session::put('temp_user_id', $user->id);
+                    Session::put('step', $user->step + 1);
+    
+                    $rsp_msg['response'] = 'error';
+                    $rsp_msg['status'] = 'incomplete';
+                    $rsp_msg['message']  = 'Please Fill ALL Forms';
+        
+                    return response()->json(array('response_message' => $rsp_msg));
+                }
+    
+                if ($user->approval != 1 && $user->status != 1){
+
+                    Session()->flush();
+    
+                    $rsp_msg['response'] = 'error';
+                    $rsp_msg['status'] = 'completed';
+                    $rsp_msg['message']  = 'Application Status Under Review';
+        
+                    return response()->json(array('response_message' => $rsp_msg));
+                }
+    
+                if ($user->status != 1){
+
+                    Session()->flush();
+    
+                    $rsp_msg['response'] = 'error';
+                    $rsp_msg['message']  = 'Your ID is Not Active!';
+        
+                    return response()->json(array('response_message' => $rsp_msg));
+                }
+    
+                if ($user->approval != 1){
+
+                    Session()->flush();
+    
+                    $rsp_msg['response'] = 'error';
+                    $rsp_msg['message']  = 'ID is Not Approve!';
+        
+                    return response()->json(array('response_message' => $rsp_msg));
+                }
+    
+            } else {
+
+                Session()->flush();
+    
+                $rsp_msg['response'] = 'error';
+                $rsp_msg['message']  = 'User Not Exiest!, Please Register';
+    
+                return response()->json(array('response_message' => $rsp_msg));
+            }
 
             Session()->flush();
 
@@ -121,6 +129,168 @@ class AccountController extends Controller
 
         return response()->json(array('response_message' => $rsp_msg));
     }
+
+    /*------------------------------ Forgot password Function --------------------------------------------*/
+
+    public function forgot_password($param, Request $request){
+
+
+        if($param == "verify-number-send-otp"){
+
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email',
+            ]);
+    
+            if ($validator->fails()) {
+                $errors = $validator->errors()->all();
+        
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $errors
+                ], 200);
+            } 
+    
+            $user = DB::table('users')->where('email', $request->email)->where('step', '!=', '1')->first(['id']);
+    
+            if($user){
+
+                Session()->flush();
+
+                $otp = mt_rand(100000, 999999);
+                $timestamp = Carbon::now();
+                Session::put('otp', $otp);
+                Session::put('otp_timestamp', $timestamp);
+                Session::put('user_forget_id', $user->id);
+
+                $email = $request->email;
+                
+                $to = $email;
+                $subject = "Forgot Password Email Verification for Manalot Application";
+                $body = "Your OTP code to verify your Email ID for the Manalot application is <b>$otp</b> This OTP is valid for only 2 minutes.";
+        
+                sendEmail($to, $subject, $body);
+
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'OTP has been Share on this Email Id : '.$email.''
+                ], 200);
+
+            } else {
+
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'User Not exist Please Provide Valid Email Id',
+                ], 200);
+
+            }
+    
+
+        }elseif($param == "verify-forgot-otp"){
+
+            $validator = Validator::make($request->all(), [
+                'otp' => 'required|digits:6',
+            ]);
+    
+            if ($validator->fails()) {
+                $errors = $validator->errors()->all();
+        
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $errors
+                ], 200);
+            } 
+    
+            $otp = Session::get('otp');
+            $timestamp = Session::get('otp_timestamp');
+    
+            // Check if OTP expired (2 minutes)
+            if (Carbon::parse($timestamp)->diffInMinutes(Carbon::now()) > 2) {
+
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'OTP has expired. Please request a new one',
+                ], 200);
+
+            }
+    
+            if ($request->otp == $otp) {
+
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'OTP has been Verify successfully'
+                ], 200);
+
+            } else {
+
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Invalid OTP',
+                ], 200);
+
+
+            }
+    
+        
+        }elseif($param == "reset-password"){
+
+
+            $validator = Validator::make($request->all(), [
+                'password' => 'required|min:8|same:password_conform',
+                'password_conform' => 'required|min:8',
+            ]);
+    
+            if ($validator->fails()) {
+                $errors = $validator->errors()->all();
+        
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $errors
+                ], 200);
+            }
+    
+            $user = DB::table('users')->where('id', Session::get('user_forget_id'))->get(['id'])->first();
+
+            if($user){
+                DB::table('users')->where('id', Session::get('user_forget_id'))->update([
+                    'password' => bcrypt($request->input('password')),
+                ]);
+    
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'New Password Update Successfully',
+                ], 200);
+
+            } else {
+
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Something Went Wrong'
+                ], 200);
+
+            }
+
+
+
+        } else {
+
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Something Went Wrong or Invalid parameter: '.$param.''
+            ], 200);
+
+        }
+
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Successfully forgot Password'
+        ], 200);
+
+    }
+
+
+    /*------------------------------ Forgot password Function -------------------------------------------*/
+
 
     public function create_account($param, Request $request){
 
