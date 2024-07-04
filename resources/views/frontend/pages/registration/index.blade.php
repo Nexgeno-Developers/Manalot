@@ -47,7 +47,8 @@
             'cirtificate_one',
             'availibility_one',
             'social_media_div',
-            'doc_verify_div'
+            'doc_verify_div',
+            'thankyou-page'
         ];
 
         // Update the step value if step_info is passed
@@ -101,6 +102,11 @@
                 document.getElementById('doc_verify_div').classList.remove('d-none');
                 document.getElementById('doc_verify_div').classList.remove('fade-out');
                 document.getElementById('doc_verify_div').classList.add('fade-in');
+                break;
+            case 8:
+                document.getElementById('thankyou-page').classList.remove('d-none');
+                document.getElementById('thankyou-page').classList.remove('fade-out');
+                document.getElementById('thankyou-page').classList.add('fade-in');
                 break;
             default:
                 document.getElementById('user-add-details').classList.remove('d-none');
@@ -362,9 +368,10 @@
         var responseHandler_proceeding_info = function (response) {
             $("input, textarea").val("");
             $("select option:first").prop("selected", !0);
-            setTimeout(function () {
-                window.location.href = "{{ url(route('index')) }}";
-            }, 100);
+            // setTimeout(function () {
+            //     window.location.href = "{{ url(route('index')) }}";
+            // }, 100);
+            next_page_preview(8);
         };
 
     /*---------------------  proceeding_info ------------------*/ 
