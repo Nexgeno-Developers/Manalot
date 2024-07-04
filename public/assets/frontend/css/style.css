@@ -931,10 +931,6 @@ footer b {
     -webkit-appearance: none;
 } */
 
-textarea.form-control {
-    height: 60px;
-}
-
 span.select2.select2-container.select2-container--default.select2-container--below.select2-container--focus li.select2-search.select2-search--inline {
     display: block;
 }
@@ -961,23 +957,23 @@ span.select2-selection.select2-selection--multiple {
 }
 
 .linkedin_icon {
-    width: 16px;
-    margin-top: 40px;
+    width: 26px;
+    margin-top: 30px;
 }
 
 .twitter_icon {
-    width: 16px;
-    margin-top: 42px;
+    width: 26px;
+    margin-top: 30px;
 }
 
 .insta_icon {
-    width: 16px;
-    margin-top: 42px;
+    width: 28px;
+    margin-top: 30px;
 }
 
 .facebook_icon {
-    width: 13px;
-    margin-top: 42px;
+    width: 26px;
+    margin-top: 30px;
 }
 
 .menu_rightsidebaar img {
@@ -1315,4 +1311,25 @@ button.btn.btn-danger.remove-row {
 
 .select2-container .select2-selection--single .select2-selection__rendered {
     padding-left: 0 !important;
+}
+
+.fonts36 {
+    font-size: 36px !important;
+    font-weight: 500 !important;
+}
+
+div#thankyou-page {
+    margin-top: 80px;
+}
+
+#doc_verify_div {
+    margin-top: 80px;
+}
+
+.reference-row .col-md-6:nth-child(even) {
+    padding-left: 42px;
+}
+
+.reference-row .col-md-6:nth-child(odd) {
+    padding-right: 17px;
 }
