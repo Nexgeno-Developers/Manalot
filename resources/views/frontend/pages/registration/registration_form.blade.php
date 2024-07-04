@@ -952,27 +952,27 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
                         <label for="Linkdin" class="form-label">Linkdin</label>
-                        <img src="/assets/images/linkedin-in1.png" alt="" class="input_icon linkedin_icon">
+                        <img src="/assets/images/linkedin_icon.svg" alt="" class="input_icon linkedin_icon">
                         <input type="url" class="form-control is-invalid input_text" id="Linkdin"
                             name="linkdin" placeholder="Enter Your Linkdn URL" value="{{ $linkdin }}"
                             name="linkdin" />
-                        {{-- <img src="images/linkedin.png" alt="" class="input_icon" /> --}}
+                        <!-- {{-- <img src="images/linkedin.png" alt="" class="input_icon" /> --}} -->
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="Twitter" class="form-label">Twitter</label>
-                        <img src="/assets/images/x-twitter1.png" alt="" class="input_icon twitter_icon">
+                        <label for="Twitter" class="form-label">X</label>
+                        <img src="/assets/images/twitter_icon.svg" alt="" class="input_icon twitter_icon">
                         <input type="url" class="form-control is-invalid input_text" id="Twitter"
                             name="twitter" placeholder="Enter Your Twitter URL" value="{{ $twitter }}"
                             name="twitter" />
-                        {{-- <img src="images/x.png" alt="" class="input_icon" /> --}}
+                        <!-- {{-- <img src="images/x.png" alt="" class="input_icon" /> --}} -->
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
                         <label for="Instagram" class="form-label">Instagram</label>
-                        <img src="/assets/images/instagram1.png" alt="" class="input_icon insta_icon">
+                        <img src="/assets/images/instagram_icon.svg" alt="" class="input_icon insta_icon">
                         <input type="url" class="form-control is-invalid input_text" id="Instagram"
                             placeholder="Enter Your Instagram URL" value="{{ $instagram }}"
                             name="instagram">
@@ -982,7 +982,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
                         <label for="Facebook" class="form-label">Facebook</label>
-                        <img src="/assets/images/facebook-f1.png" alt="" class="input_icon facebook_icon">
+                        <img src="/assets/images/facebook_icon.svg" alt="" class="input_icon facebook_icon">
                         <input type="url" class="form-control is-invalid input_text" id="Facebook"
                             placeholder="Enter Your Facebook URL" value="{{ $facebook }}"
                             name="facebook" />
@@ -1029,10 +1029,38 @@
             </p>
             <div>
                 <div class="purple_btn text-start">
-                    <button type="submit" class="text-decoration-none text-white">Continue to Home</button>
+                    <button type="submit" class="text-decoration-none text-white">Proceed to Submit </button>
                 </div>
             </div>
         </form>
+    </div>
+{{-- @endif --}}
+
+
+<!--------------------------------------------- thank you  --------------------------------->
+
+{{-- @if (!Session::has('step') || Session::get('step') == 8) --}}
+    <div id="thankyou-page" class="register_width d-none">
+       
+        <img class="prroceed_icons" src="/assets/images/thankyou_icon.svg" alt="file check" />
+         <div class="heading mb-2 mt-5">
+            <h2 class="fonts36"><b>Thank You</b></h2>
+        </div>
+
+        <p>You have successfully registered! We will provide an update within 48 hours.</p>
+      
+
+                 <div class="mt-5 d-flex align-items-center gap-3 justify-content-start">
+                <div class="blue_btn">
+                    <a class="text-decoration-none text-white">Continue to Login</a>
+                </div>
+                <div class="purple_btn">
+                    <button type="submit" class="text-decoration-none text-white">View Sample Profile</button>
+                </div>
+            </div>
+
+
+
     </div>
 {{-- @endif --}}
 
