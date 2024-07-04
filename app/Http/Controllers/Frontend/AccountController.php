@@ -496,7 +496,7 @@ class AccountController extends Controller
 
 
         $user_info = [
-            'username' => $request->input('name'),
+            'username' => strtolower($request->input('name')),
             'email' => strtolower($request->input('email')),
             'password' => bcrypt($request->input('password')),
             'phone_number' => $request->input('phone_number'),
