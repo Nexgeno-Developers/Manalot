@@ -1333,3 +1333,19 @@ div#thankyou-page {
 .reference-row .col-md-6:nth-child(odd) {
     padding-right: 17px;
 }
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-color: #8880 transparent transparent transparent !important;
+    border-style: hidden !important;
+    border-width: 5px 4px 0 4px;
+    height: 52px !important;
+    left: 50%;
+    margin-left: -6px;
+    margin-top: 5px;
+    position: absolute;
+    top: 50%;
+    width: 17px !important;
+    background-image: url(/assets/images/arrow_down.svg);
+    background-size: 16px;
+    background-repeat: no-repeat;
+}
