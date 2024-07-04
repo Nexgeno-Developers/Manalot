@@ -1069,7 +1069,7 @@
                     <a class="text-decoration-none text-white">Continue to Login</a>
                 </div>
                 <div class="purple_btn">
-                    <button type="submit" class="text-decoration-none text-white">View Sample Profile</button>
+                    <a target="_blank" href="/sample-profile" class="text-decoration-none text-white">View Sample Profile</button>
                 </div>
             </div>
 
