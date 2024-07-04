@@ -1349,3 +1349,14 @@ div#thankyou-page {
     background-size: 16px;
     background-repeat: no-repeat;
 }
+
+.purple_btn a {
+    background: linear-gradient(34.89deg, #4B2779 8%, #BE2475 83.76%);
+    border-radius: 40px;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 7px 33px 8px 33px;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+}

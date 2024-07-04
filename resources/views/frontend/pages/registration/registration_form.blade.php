@@ -1066,7 +1066,7 @@
 
                  <div class="mt-5 d-flex align-items-center gap-3 justify-content-start">
                 <div class="blue_btn">
-                    <a class="text-decoration-none text-white">Continue to Login</a>
+                    <a href="/login" class="text-decoration-none text-white">Continue to Login</a>
                 </div>
                 <div class="purple_btn">
                     <a target="_blank" href="/sample-profile" class="text-decoration-none text-white">View Sample Profile</button>
