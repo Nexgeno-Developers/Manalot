@@ -40,6 +40,8 @@
         'pref_emp_type',
         'pref_industry',
         'pref_location',
+        'current_salary_currency',
+        'pref_salary_currency',
         'pref_salary',
         'current_salary',
         'notice_period_duration',
@@ -66,6 +68,8 @@
     // $job_title = DB::table('job_title')->where('status', '1')->get();
     $industry = DB::table('industry')->where('status', '1')->get();
     $skills = DB::table('skills')->where('status', '1')->get();
+
+    $currencies = DB::table('currencies')->get(['id','symbol','code']);
 
     $references_from = DB::table('references_from')->where('status', '1')->get();
 
@@ -101,6 +105,9 @@
     $pref_emp_type = isset($user_detail->pref_emp_type) ? $user_detail->pref_emp_type : null;
     $pref_industry_check = isset($user_detail->pref_industry) ? $user_detail->pref_industry : '[]';
     $pref_location = isset($user_detail->pref_location) ? $user_detail->pref_location : null;
+
+    $current_salary_currency  = isset($user_detail->current_salary_currency) ? $user_detail->current_salary_currency : null;
+    $pref_salary_currency  = isset($user_detail->pref_salary_currency) ? $user_detail->pref_salary_currency : null;
 
     $current_salary = isset($user_detail->current_salary) ? $user_detail->current_salary : null;
     $notice_period_check = isset($user_detail->notice_period_duration) ? $user_detail->notice_period_duration : null;
@@ -790,8 +797,23 @@
                     </div>
                 </div>
 
+                <div class="col-md-3 mb-4">
+                    <div class="position-relative form-group">
+                        <label for="State" class="form-label">Currency*</label>
+                        <select class="select2 form-select form-control is-invalid input_select"
+                            aria-label="Default select example" id="current_salary_currency" name="current_salary_currency" required>
+                            <option value="">Select Currency</option>
+                            @foreach ($currencies as $row)
+                                <option value="{{ $row->id }}" @if ($current_salary_currency == $row->id) selected @endif>
+                                    {{ ucfirst($row->code) }} - ({{ $row->symbol }})
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
 
-                <div class="col-md-6 mb-4">
+
+                <div class="col-md-3 mb-4">
                     <div class="position-relative form-group">
                         <label for="Current Salary*" class="form-label">Current Salary</label>
                         <input type="text" class="form-control is-invalid input_text" id="Expected Salary*"
@@ -799,7 +821,23 @@
                             minlength="1" maxlength="50" value="{{ $current_salary }}" />
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
+
+                <div class="col-md-3 mb-4">
+                    <div class="position-relative form-group">
+                        <label for="State" class="form-label">Currency*</label>
+                        <select class="select2 form-select form-control is-invalid input_select"
+                            aria-label="Default select example" id="pref_salary_currency" name="pref_salary_currency" required>
+                            <option value="">Select Currency</option>
+                            @foreach ($currencies as $row)
+                                <option value="{{ $row->id }}" @if ($pref_salary_currency == $row->id) selected @endif>
+                                    {{ ucfirst($row->code) }} - ({{ $row->symbol }})
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
                     <div class="position-relative form-group">
                         <label for="Expected Salary*" class="form-label">Expected Salary*</label>
                         <input type="text" class="form-control is-invalid input_text" id="Expected Salary*"

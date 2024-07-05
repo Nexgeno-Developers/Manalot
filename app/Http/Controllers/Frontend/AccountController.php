@@ -756,7 +756,7 @@ class AccountController extends Controller
             'industry' => 'required',
             // 'job_title' => 'required',
             'wrk_exp_years' => 'required',
-            'wrk_exp_responsibilities' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&\-\(\)\[\]_?]+$/i', 'min:2'],
+            'wrk_exp_responsibilities' => ['required', 'string','regex:/^[A-Za-z0-9\s,.\/\'&\-\(\)\[\]_?+]+$/i', 'min:2'],
             // 'resume_cv' => 'nullable|mimes:pdf|max:5120',
             'skill' => 'required',
             'Employed' => 'required', // Assuming 'Employed' is nullable string
