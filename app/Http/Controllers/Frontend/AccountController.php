@@ -760,7 +760,7 @@ class AccountController extends Controller
             // 'resume_cv' => 'nullable|mimes:pdf|max:5120',
             'skill' => 'required',
             'Employed' => 'required', // Assuming 'Employed' is nullable string
-            'experience_letter' => 'nullable|mimes:pdf,doc,docx|max:5120',
+            'experience_letter' => 'nullable|mimes:pdf,doc,docx|max:5120', 
         ], [
             'wrk_exp_company_name.required' => 'The Company Name is required.',
             'wrk_exp_company_name.regex' => 'The Company Name format is invalid.',
