@@ -759,7 +759,7 @@ class AccountController extends Controller
             'wrk_exp_responsibilities' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&\-\(\)\[\]_?]+$/i', 'min:2'],
             // 'resume_cv' => 'nullable|mimes:pdf|max:5120',
             'skill' => 'required',
-            'employed' => 'nullable|string', // Assuming 'Employed' is nullable string
+            'Employed' => 'required', // Assuming 'Employed' is nullable string
             'experience_letter' => 'nullable|mimes:pdf,doc,docx|max:5120',
         ], [
             'wrk_exp_company_name.required' => 'The Company Name is required.',
@@ -771,6 +771,7 @@ class AccountController extends Controller
             'wrk_exp__title.max' => 'The Professional Title may not be greater than 100 characters.',
             
             'industry.required' => 'The Industry field is required.',
+            'Employed.required' => 'The Employed Status is required.',
             
             'wrk_exp_years.required' => 'The Years of Experience field is required.',
             
@@ -837,7 +838,7 @@ class AccountController extends Controller
             'skill' => json_encode($skill),
             'wrk_exp_responsibilities' => $request->input('wrk_exp_responsibilities'),
             
-            'employed' => $request->has('Employed') ? 'yes' : 'no',
+            'employed' => $request->has('Employed'),
             'experience_letter' => $path,
 
         ]);

@@ -497,7 +497,7 @@
                 </div>  
 
 
-                <div class="col-md-9 mb-4">
+                <div class="col-md-7 mb-4">
                     <div class="position-relative form-group">
                         <label for="industry" class="form-label">Industry*</label>
                         <select class="select2 form-select form-control is-invalid input_select" multiple="multiple"
@@ -518,11 +518,21 @@
 
                
 
-                <div class="col-md-3 mb-4">
-                    <div class="option currently_work">
-                        <input type="checkbox" id="yes" name="Employed" value="yes"
+                <div class="col-md-5 mb-4 text-end">
+                    <div class="option currently_work d-flex gap-3" style="float: right;">
+
+                    
+                        <div>
+                        <input type="radio" id="employed" name="Employed" value="yes"
                             @if ($employed == 'yes') checked @endif>
-                        <label for="yes" class="form-label">Currently Employed</label>
+                        <label for="employed" class="form-label">Employed </label>
+                        </div>
+
+                        <div>
+                        <input type="radio" id="unemployed" name="Employed" value="no"
+                            @if ($employed == 'no') checked @endif>
+                        <label for="unemployed" class="form-label">Unemployed </label>
+                        </div>
                     </div>
                 </div> 
 
