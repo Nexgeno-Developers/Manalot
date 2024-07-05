@@ -44,7 +44,7 @@ Route::post('/comment-save', [IndexController::class, 'comment_save'])->name('co
 Route::get('/search', [IndexController::class, 'search'])->name('search');
 // Home END
 
-//------------------------------ dummy controller ----------------------
+
 
 Route::get('/registration', [AccountController::class, 'registration_page'])->name('registration');
 

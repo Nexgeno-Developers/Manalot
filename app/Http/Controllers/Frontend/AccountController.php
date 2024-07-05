@@ -176,9 +176,16 @@ class AccountController extends Controller
                 $email = $request->email;
                 
                 $to = $email;
-                $subject = "Forgot Password Email Verification for Manalot Application";
-                $body = "Your OTP code to verify your Email ID for the Manalot application is <b>$otp</b> This OTP is valid for only 2 minutes.";
-        
+                $subject = "$otp is your Manalot Leadership Network Forgot Password Verification Code.";
+                $body = "Hello, <br> 
+        For security purposes, please enter the code below to verify your account.<br> 
+        Forgot Password Verification Code: <b>$otp</b> <br>
+        The code is valid for 2 minutes.  <br>
+        Having problems with the code? <br>
+        The code will not work if timed out. <br>
+        Please request for a new code.";
+
+
                 sendEmail($to, $subject, $body);
 
                 return response()->json([
@@ -246,8 +253,8 @@ class AccountController extends Controller
 
 
             $validator = Validator::make($request->all(), [
-                'password' => 'required|min:8|same:password_conform',
-                'password_conform' => 'required|min:8',
+                'password' => 'required|min:6|same:password_conform',
+                'password_conform' => 'required|min:6',
             ]);
     
             if ($validator->fails()) {
@@ -521,8 +528,14 @@ class AccountController extends Controller
         Session::put('otp_timestamp', $timestamp);
 
         $to = $user_info['email'];
-        $subject = "Email Verification for Manalot Application";
-        $body = "Your OTP code to verify your Email ID for the Manalot application is <b>$otp</b> This OTP is valid for only 2 minutes.";
+        $subject = "$otp is your Manalot Leadership Network Verification Code.";
+        $body = "Hello, <br> 
+        For security purposes, please enter the code below to verify your account.<br> 
+        Account Verification Code: <b>$otp</b> <br>
+        The code is valid for 2 minutes.  <br>
+        Having problems with the code? <br>
+        The code will not work if timed out. <br>
+        Please request for a new code.";
 
         sendEmail($to, $subject, $body);
 
@@ -646,8 +659,15 @@ class AccountController extends Controller
         $user_info = Session::get('user_info');
 
         $to = $user_info['email'];
-        $subject = "Email Verification for Manalot Application";
-        $body = "Your Resend OTP code to verify your Email ID for the Manalot application is <b>$otp</b> This OTP is valid for only 2 minutes.";
+        $subject = "$otp is your Manalot Leadership Network Reset Verification Code.";
+        $body = "Hello, <br> 
+        For security purposes, please enter the code below to verify your account.<br> 
+        Resend Verification Code: <b>$otp</b> <br>
+        The code is valid for 2 minutes.  <br>
+        Having problems with the code? <br>
+        The code will not work if timed out. <br>
+        Please request for a new code.";
+
 
         sendEmail($to, $subject, $body);
 

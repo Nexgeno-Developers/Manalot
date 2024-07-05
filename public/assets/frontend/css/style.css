@@ -1349,3 +1349,83 @@ div#thankyou-page {
     background-size: 16px;
     background-repeat: no-repeat;
 }
+
+.purple_btn a {
+    background: linear-gradient(34.89deg, #4B2779 8%, #BE2475 83.76%);
+    border-radius: 40px;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 7px 33px 8px 33px;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.purple_btn_close button {
+    background: transparent;
+    border: 0;
+    color: #592678;
+    padding: 0 !important;
+    position: relative;
+    top: -30px;
+}
+
+.resend_otp a {
+    color: #9c27b0;
+    text-decoration: underline !important;
+    margin-left: 5px !important;
+}
+
+#toast-container>div {
+    padding: 10px 15px 11px 40px !important;
+    border-radius: 10px !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    border: 0 !important;
+    background-position: 10px center !important;
+}
+
+.toast-close-button {
+    color: #000000 !important;
+    opacity: 1 !important;
+}
+
+.toast-progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px !important;
+    background-color: #7e6667 !important;
+    opacity: .4;
+}
+
+.toast-error {
+    background-color: #ffe4e3 !important;
+    color: #6b2529 !important;
+}
+
+body div#toast-container .toast.toast-error {
+    background-image: url(/assets/images/cancel_icon.png) !important;
+    background-size: 20px;
+}
+
+.toast-success {
+    background-color: #d8f2e3 !important;
+    color: #004f2d !important;
+}
+
+body div#toast-container .toast-success {
+    background-image: url(/assets/images/check-mark1.png) !important;
+    background-size: 20px;
+}
+
+.toast-message {
+    font-size: 12px;
+    line-height: 15px;
+    padding-top: 2px;
+}
+
+#toast-container>div {
+    width: 260px !important;
+
+}
