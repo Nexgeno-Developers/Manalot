@@ -59,37 +59,35 @@ function initValidate(selector) {
             $(element).addClass("is-invalid");
         },
         unhighlight: function (element, errorClass, validClass) {
-        $(element).removeClass('is-invalid');
-        }      
+            $(element).removeClass("is-invalid");
+        },
     });
 }
 
 //select2
 function initSelect2(selector) {
     $(selector).select2({
-        tags: true
+        tags: true,
     });
 
     // $("select").on("select2:select", function (evt) {
     //     var element = evt.params.data.element;
     //     var $element = $(element);
-        
+
     //     $element.detach();
     //     $(this).append($element);
     //     $(this).trigger("change");
     //   });
 }
 
-
 function initSelect3(selector) {
     $(selector).select2();
 }
 
-
 /*------------------- form submit ajax new --------------------*/
 
 function getCsrfToken() {
-    return $.get('/csrf-token'); // An endpoint that returns a new CSRF token
+    return $.get("/csrf-token"); // An endpoint that returns a new CSRF token
 }
 
 // function ajax_form_submit(e, form, callBackFunction) {
@@ -153,7 +151,6 @@ function getCsrfToken() {
 //     $(btn).css("pointer-events", "inherit");
 // }
 
-
 function ajax_form_submit(e, form, callBackFunction) {
     if (form.valid()) {
         e.preventDefault();
@@ -165,87 +162,99 @@ function ajax_form_submit(e, form, callBackFunction) {
         var action = form.attr("action");
         var data = new FormData(form[0]); // Corrected to form[0] to get the raw DOM element
 
-        getCsrfToken().done(function(response) {
-            var token = response.token;
-            data.append('_token', token);
+        getCsrfToken()
+            .done(function (response) {
+                var token = response.token;
+                data.append("_token", token);
 
-            $.ajax({
-                type: "POST",
-                url: action,
-                processData: false,
-                contentType: false,
-                dataType: "json",
-                data: data,
-                success: function (response) {
-                    resetButton(btn, btn_text);
-                    if (response.response_message.response === "success") {
-                        Command: toastr.success(
-                            response.response_message.message,
-                            "Success",
+                $.ajax({
+                    type: "POST",
+                    url: action,
+                    processData: false,
+                    contentType: false,
+                    dataType: "json",
+                    data: data,
+                    success: function (response) {
+                        resetButton(btn, btn_text);
+                        if (response.response_message.response === "success") {
+                            Command: toastr.success(
+                                response.response_message.message,
+                                "Success",
+                                {
+                                    closeButton: true,
+                                    progressBar: true,
+                                    tapToDismiss: false,
+                                }
+                            );
+                            callBackFunction(response);
+                        } else {
+                            if (
+                                Array.isArray(response.response_message.message)
+                            ) {
+                                var errors = "";
+                                $.each(
+                                    response.response_message.message,
+                                    function (key, msg) {
+                                        errors +=
+                                            "<div>" +
+                                            (key + 1) +
+                                            ". " +
+                                            msg +
+                                            "</div>";
+                                    }
+                                );
+                                Command: toastr.error(errors, "Alert", {
+                                    closeButton: true,
+                                    progressBar: true,
+                                    tapToDismiss: false,
+                                });
+                            } else {
+                                Command: toastr.error(
+                                    response.response_message.message,
+                                    "Alert",
+                                    {
+                                        closeButton: true,
+                                        progressBar: true,
+                                        tapToDismiss: false,
+                                    }
+                                );
+                            }
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        resetButton(btn, btn_text);
+                        Command: toastr.error(
+                            "An error occurred: " + error,
+                            "Error",
                             {
-                                "closeButton": true,
-                                "progressBar": true,
-                                "tapToDismiss": false,
+                                closeButton: true,
+                                progressBar: true,
+                                tapToDismiss: false,
                             }
                         );
-                        callBackFunction(response);
-                    } else {
-                        if (Array.isArray(response.response_message.message)) {
-                            var errors = "";
-                            $.each(
-                                response.response_message.message,
-                                function (key, msg) {
-                                    errors +=
-                                        "<div>" + (key + 1) + ". " + msg + "</div>";
-                                }
-                            );
-                            Command: toastr.error(errors, "Alert", 
-                                {
-                                    "closeButton": true,
-                                    "progressBar": true,
-                                    "tapToDismiss": false,
-                                }
-                            );
-                        } else {
-                            Command: toastr.error(
-                                response.response_message.message,
-                                "Alert",
-                                {
-                                    "closeButton": true,
-                                    "progressBar": true,
-                                    "tapToDismiss": false,
-                                }
-                            );
-                        }
+                    },
+                });
+            })
+            .fail(function () {
+                resetButton(btn, btn_text);
+                Command: toastr.error(
+                    "Failed to retrieve CSRF token",
+                    "Error",
+                    {
+                        closeButton: true,
+                        progressBar: true,
+                        tapToDismiss: false,
                     }
-                },
-                error: function (xhr, status, error) {
-                    resetButton(btn, btn_text);
-                    Command: toastr.error( "An error occurred: " +  error, "Error",
-                        {
-                            "closeButton": true,
-                            "progressBar": true,
-                            "tapToDismiss": false,
-                        }
-                    );
-                },
+                );
             });
-        }).fail(function() {
-            resetButton(btn, btn_text);
-            Command: toastr.error("Failed to retrieve CSRF token", "Error",
-                {
-                    "closeButton": true,
-                    "progressBar": true,
-                    "tapToDismiss": false,
-                }
-            );
-        });
     } else {
-        toastr.error("Please make sure to fill all the necessary fields", "Error",
+        toastr.error(
+            "Please make sure to fill all the necessary fields",
+            "Error",
             {
-                "closeButton": true,
-                "progressBar": true,
-                "tapToDismiss": false,
+                closeButton: true,
+                progressBar: true,
+                tapToDismiss: false,
             }
         );
         resetButton($(form).find('button[type="submit"]'), btn_text);
@@ -257,7 +266,6 @@ function resetButton(btn, btn_text) {
     $(btn).css("opacity", "1");
     $(btn).css("pointer-events", "inherit");
 }
-
 
 /*------------------- form submit ajax new --------------------*/
 
@@ -292,9 +300,9 @@ function ajaxSubmit(e, form, callBackFunction) {
                         response.notification,
                         "Success",
                         {
-                            "closeButton": true,
-                            "progressBar": true,
-                            "tapToDismiss": false,
+                            closeButton: true,
+                            progressBar: true,
+                            tapToDismiss: false,
                         }
                     );
                     callBackFunction(response);
@@ -305,20 +313,19 @@ function ajaxSubmit(e, form, callBackFunction) {
                             errors +=
                                 "<div>" + (key + 1) + ". " + msg + "</div>";
                         });
-                        Command: toastr["error"](errors, "Alert",
-                        {
-                            "closeButton": true,
-                            "progressBar": true,
-                            "tapToDismiss": false,
+                        Command: toastr["error"](errors, "Alert", {
+                            closeButton: true,
+                            progressBar: true,
+                            tapToDismiss: false,
                         });
                     } else {
                         Command: toastr["error"](
                             response.notification,
                             "Alert",
                             {
-                                "closeButton": true,
-                                "progressBar": true,
-                                "tapToDismiss": false,
+                                closeButton: true,
+                                progressBar: true,
+                                tapToDismiss: false,
                             }
                         );
                     }
@@ -326,11 +333,13 @@ function ajaxSubmit(e, form, callBackFunction) {
             },
         });
     } else {
-        toastr.error("Please make sure to fill all the necessary fields", "Error",
+        toastr.error(
+            "Please make sure to fill all the necessary fields",
+            "Error",
             {
-                "closeButton": true,
-                "progressBar": true,
-                "tapToDismiss": false,
+                closeButton: true,
+                progressBar: true,
+                tapToDismiss: false,
             }
         );
     }

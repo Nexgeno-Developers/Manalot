@@ -163,10 +163,10 @@
         });
 
         var responseHandler_user_info = function (response) {
-            var form = $('#user-info'); 
+            /* var form = $('#user-info'); 
             
             form.find("input[type=text], input[type=email], input[type=password], textarea").val("");
-            form.find("select").prop("selectedIndex", 0);
+            form.find("select").prop("selectedIndex", 0); */
             setTimeout(function () {
                 // location.reload();
                 $('#email_otp_model').modal('show');

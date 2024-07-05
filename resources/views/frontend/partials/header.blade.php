@@ -1,6 +1,7 @@
 
 @if(auth()->user())
 
+
   <div class="header">
       <div class="container">
 
