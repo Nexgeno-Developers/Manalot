@@ -28,6 +28,9 @@ class AccountController extends Controller
         return view('frontend.pages.registration.index');
     }
 
+
+    //---------- login and loag out---------------------
+
     public function login(){
         return view('frontend.pages.registration.login');
     }
@@ -102,6 +105,8 @@ class AccountController extends Controller
         
                     return response()->json(array('response_message' => $rsp_msg));
                 }
+
+
     
             } else {
 
@@ -112,8 +117,6 @@ class AccountController extends Controller
     
                 return response()->json(array('response_message' => $rsp_msg));
             }
-
-            Session()->flush();
 
             Session::put('user_id', auth()->user()->id);
 
@@ -129,6 +132,14 @@ class AccountController extends Controller
 
         return response()->json(array('response_message' => $rsp_msg));
     }
+
+    public function customer_logout(){
+        Auth::guard('web')->logout();
+        Session()->flush();
+        return redirect()->route('login');
+    }
+
+    //------------------------ login and log out-----------------------------------------
 
     /*------------------------------ Forgot password Function --------------------------------------------*/
 

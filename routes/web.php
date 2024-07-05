@@ -23,11 +23,6 @@ Route::middleware('auth.frontend')->group(function () {
 });
 
 
-
-
-
-
-
 Route::get('/about-us', [IndexController::class, 'about_us'])->name('about-us');
 Route::get('/help-center', [IndexController::class, 'help_center'])->name('help-center');
 
@@ -60,6 +55,8 @@ Route::get('/login', [AccountController::class, 'login'])->name('login');
 Route::post('/login', [AccountController::class, 'customer_login'])->name('customer.login');
 
 Route::any('/forgot-password/{param}', [AccountController::class, 'forgot_password'])->name('customer.forgot');
+
+Route::get('/logout', [AccountController::class, 'customer_logout'])->name('customer.logout');
 
 Route::get('/csrf-token', function () {
     return response()->json(['token' => csrf_token()]);
