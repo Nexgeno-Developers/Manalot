@@ -756,7 +756,8 @@ class AccountController extends Controller
             'industry' => 'required',
             // 'job_title' => 'required',
             'wrk_exp_years' => 'required',
-            'wrk_exp_responsibilities' => ['required', 'string','regex:/^[A-Za-z0-9\s,.\/\'&\-\(\)\[\]_?+]+$/i', 'min:2'],
+            // 'wrk_exp_responsibilities' => ['required', 'string','regex:/^[A-Za-z0-9\s,.\/\'&\-\(\)\[\]_?+]+$/i', 'min:2'],
+            'wrk_exp_responsibilities' => ['required', 'min:2'],
             // 'resume_cv' => 'nullable|mimes:pdf|max:5120',
             'skill' => 'required',
             'Employed' => 'required', // Assuming 'Employed' is nullable string
@@ -776,8 +777,8 @@ class AccountController extends Controller
             'wrk_exp_years.required' => 'The Years of Experience field is required.',
             
             'wrk_exp_responsibilities.required' => 'The Responsibilities field is required.',
-            'wrk_exp_responsibilities.string' => 'The Responsibilities must be a string.',
-            'wrk_exp_responsibilities.regex' => 'The Responsibilities format is invalid.',
+            // 'wrk_exp_responsibilities.string' => 'The Responsibilities must be a string.',
+            // 'wrk_exp_responsibilities.regex' => 'The Responsibilities format is invalid.',
             'wrk_exp_responsibilities.min' => 'The Responsibilities must be at least 2 characters.',
             
             'skill.required' => 'The Skill field is required.',
