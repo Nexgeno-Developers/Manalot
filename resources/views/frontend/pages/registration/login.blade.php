@@ -13,7 +13,7 @@
     <div class="fluid-container">
         <div class="row align-items-center">
             <div class="col-md-6">
-                <img src="/assets/images/login_bg.png" style="width:100%">
+                <img src="/assets/images/login_bg.png" class="mobile_none" style="width:100%">
             </div>
             <div class="col-md-6 pddleft50">
                 <h1 class="main_heading mt50">
