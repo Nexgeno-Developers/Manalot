@@ -9,49 +9,7 @@
 
     $user_detail = DB::table('userdetails')
     ->where('user_id', Session::get('temp_user_id'))
-    ->get([
-        'phone_number',
-        'fullname',
-        'profile_photo',
-        'gender',
-        'dob',
-        'address',
-        'city',
-        'state',
-        'pincode',
-        'country',
-        'skill',
-        'industry',
-        'wrk_exp__title',
-        'wrk_exp_company_name',
-        'wrk_exp_years',
-        'wrk_exp_responsibilities',
-        'employed',
-        'experience_letter',
-        'certificate_name',
-        'certificate_data',
-        'certificate_issuing',
-        'certificate_obtn_date',
-        'edu_degree',
-        'edu_clg_name',
-        'edu_graduation_year',
-        'edu_field',
-        'pref_title',
-        'pref_emp_type',
-        'pref_industry',
-        'pref_location',
-        'current_salary_currency',
-        'pref_salary_currency',
-        'pref_salary',
-        'current_salary',
-        'notice_period_duration',
-        'references',
-        'work_authorization_status',
-        'availability',
-        'notice_period',
-        'linkdin', 'twitter', 'instagram', 'facebook', 'other',
-    ])
-    ->first();
+    ->get()->first();
 
     $user = DB::table('users')
         ->where('id', Session::get('temp_user_id'))
@@ -97,6 +55,9 @@
     $edu_degree = isset($user_detail->edu_degree) ? $user_detail->edu_degree : null;
     $edu_graduation_year = isset($user_detail->edu_graduation_year) ? $user_detail->edu_graduation_year : null;
     $edu_field = isset($user_detail->edu_field) ? $user_detail->edu_field : null;
+
+    $edu_data = isset($user_detail->edu_data) ? $user_detail->edu_data : '[]';
+    $edu_data = json_decode($edu_data, true);
 
     $certificate_data = isset($user_detail->certificate_data) ? $user_detail->certificate_data : '[]';
     $certificate_data = json_decode($certificate_data, true);
@@ -597,7 +558,7 @@
         <form id="skills-info" action="{{ url(route('account.create', ['param' => 'certifications-info'])) }}"
             method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
             @csrf
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
                         <label for="School" class="form-label">School/University Name*</label>
@@ -631,7 +592,118 @@
                             minlength="1" maxlength="50" value="{{ $edu_field }}" required />
                     </div>
                 </div>
-            </div>
+            </div> --}}
+
+            @if (!empty($edu_data))
+                @foreach ($edu_data as $index => $education)
+                    <div id="education-div">
+                        <div class="row education-row cirtificate_pdd">
+                            <div class="col-md-6 mb-4">
+                                <div class="position-relative form-group">
+                                    <label for="School" class="form-label">School/University Name*</label>
+                                    <input type="text" class="form-control is-invalid input_text certificate_name"
+                                        name="edu_clg_name[]" placeholder="Enter Your School/University Name"
+                                        pattern="[A-Za-z]+" minlength="1" maxlength="100"
+                                        value="{{ $education['edu_clg_name'] }}" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <div class="position-relative form-group">
+                                    <label for="Degree" class="form-label">Degree*</label>
+                                    <input type="text" class="form-control is-invalid input_text certificate_name"
+                                        name="edu_degree[]" placeholder="Enter your Degree"
+                                        pattern="[A-Za-z]+" minlength="1" maxlength="100"
+                                        value="{{ $education['edu_degree'] }}" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <div class="position-relative form-group">
+                                    <label for="Certificate" class="form-label">Graduation Year*</label>
+                                    <input type="text" class="form-control is-invalid input_text certificate_name"
+                                        name="edu_graduation_year[]" placeholder="Enter Your Graduation Year"
+                                        pattern="[0-9A-Za-z]+" minlength="1" maxlength="100"
+                                        value="{{ $education['edu_graduation_year'] }}" />
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6 mb-4">
+                                <div class="position-relative form-group">
+                                    <label for="Certificate" class="form-label">Major/Field of Study*</label>
+                                    <input type="text" class="form-control is-invalid input_text certificate_name"
+                                        name="edu_field[]" placeholder="Enter your Major Field of Study"
+                                        pattern="[A-Za-z]+" minlength="1" maxlength="100"
+                                        value="{{ $education['edu_field'] }}" />
+                                </div>
+                            </div>
+
+                            @if ($index === 0)
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-success add-edu-row">Add More +</button>
+                                </div>
+                            @else
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-danger remove-edu-row">Remove -</button>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                <div id="education-div">
+                    <div class="row education-row cirtificate_pdd">
+                        <div class="col-md-6 mb-4">
+                            <div class="position-relative form-group">
+                                <label for="School" class="form-label">School/University Name*</label>
+                                <input type="text" class="form-control is-invalid input_text certificate_name"
+                                    name="edu_clg_name[]" placeholder="Enter Your School/University Name"
+                                    pattern="[A-Za-z]+" minlength="1" maxlength="100"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="position-relative form-group">
+                                <label for="Degree" class="form-label">Degree*</label>
+                                <input type="text" class="form-control is-invalid input_text certificate_name"
+                                    name="edu_degree[]" placeholder="Enter your Degree"
+                                    pattern="[A-Za-z]+" minlength="1" maxlength="100"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="position-relative form-group">
+                                <label for="Certificate" class="form-label">Graduation Year*</label>
+                                <input type="text" class="form-control is-invalid input_text certificate_name"
+                                    name="edu_graduation_year[]" placeholder="Enter Your Graduation Year"
+                                    pattern="[0-9A-Za-z]+" minlength="1" maxlength="100"
+                                />
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6 mb-4">
+                            <div class="position-relative form-group">
+                                <label for="Certificate" class="form-label">Major/Field of Study*</label>
+                                <input type="text" class="form-control is-invalid input_text certificate_name"
+                                    name="edu_field[]" placeholder="Enter your Major Field of Study"
+                                    pattern="[A-Za-z]+" minlength="1" maxlength="100"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-success add-edu-row">Add More +</button>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+
+
             <div class="heading">
                 <h2>Certifications</h2>
             </div>
@@ -805,7 +877,7 @@
                             <option value="">Select Currency</option>
                             @foreach ($currencies as $row)
                                 <option value="{{ $row->id }}" @if ($current_salary_currency == $row->id) selected @endif>
-                                    {{ ucfirst($row->code) }} - ({{ $row->symbol }})
+                                    {{ strtoupper($row->code) }} - ({{ $row->symbol }})
                                 </option>
                             @endforeach
                         </select>
@@ -830,7 +902,7 @@
                             <option value="">Select Currency</option>
                             @foreach ($currencies as $row)
                                 <option value="{{ $row->id }}" @if ($pref_salary_currency == $row->id) selected @endif>
-                                    {{ ucfirst($row->code) }} - ({{ $row->symbol }})
+                                    {{ strtoupper($row->code) }} - ({{ $row->symbol }})
                                 </option>
                             @endforeach
                         </select>
@@ -987,11 +1059,15 @@
                         <label for="Notice Period" class="form-label">Notice Period
                         </label>
                         <select class="select2 form-select form-control is-invalid input_select"
-                            aria-label="Default select example" id="Notice Period" name="notice_period" required>
+                            aria-label="Default select example" id="notice_period" name="notice_period" required>
                             <option value="">Select Notice Period</option>
-                            <option value="1" @if ($notice_period == 1) selected @endif>Yes</option>
-                            <option value="1" @if ($notice_period == 0) selected @endif>No</option>
+                            @foreach ($notice_period_list as $row)
+                                <option value="{{ $row->id }}" @if ($notice_period == $row->id) selected @endif>
+                                    {{ ucfirst($row->name) }}
+                                </option>
+                            @endforeach
                         </select>
+
                     </div>
                 </div>
             </div>

@@ -863,7 +863,7 @@ class AccountController extends Controller
 
         $validator = Validator::make($request->all(), [
             // 'certificate_name' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:50'],
-            'certificate_name' => ['required', 'min:1', 'max:100'],
+            'certificate_name' => 'required',
             // 'certificate_issuing' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:50'],
             'certificate_issuing' => ['required', 'min:1', 'max:50'],
             'certificate_obtn_date' => 'required',
@@ -872,7 +872,7 @@ class AccountController extends Controller
             'edu_clg_name' => 'required',
             'edu_graduation_year' => 'required',
             'edu_field' => 'required',
-            //'edu_cgpa' => 'required',
+
         ], [
             'certificate_name.required' => 'The Certificate Name is required.',
             'certificate_name.min' => 'The Certificate Name must be at least 1 character.',
@@ -897,6 +897,24 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
+        //---- education -------
+        $edu_data = [];
+        $edu_clg_name = $request->input('edu_clg_name');
+        $edu_degree = $request->input('edu_degree');
+        $edu_graduation_year = $request->input('edu_graduation_year');
+        $edu_field = $request->input('edu_field');
+
+        for ($i = 0; $i < count($edu_clg_name); $i++) {
+            $edu_data[] = [
+                'edu_clg_name' => $edu_clg_name[$i],
+                'edu_degree' => $edu_degree[$i],
+                'edu_graduation_year' => $edu_graduation_year[$i],
+                'edu_field' => $edu_field[$i],
+            ];
+        }
+
+        //------ education -----------
+
         // Combine the form data into an array
         $certificate_data = [];
         $certificate_names = $request->input('certificate_name');
@@ -914,17 +932,14 @@ class AccountController extends Controller
 
 
         $result = DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
-            // 'certificate_name' => $request->input('certificate_name'),
-            // 'certificate_issuing' => $request->input('certificate_issuing'),
-            // 'certificate_obtn_date' => $request->input('certificate_obtn_date'),
-            
+
             'certificate_data' => json_encode($certificate_data),
-            'edu_degree' => $request->input('edu_degree'),
-            'edu_clg_name' => $request->input('edu_clg_name'),
-            'edu_graduation_year' => $request->input('edu_graduation_year'),
-            'edu_field' => $request->input('edu_field'),
-            // 'edu_cgpa' => $request->input('edu_cgpa'),
-            // 'wrk_exp_company_name' => $request->input('wrk_exp_company_name'),
+            // 'edu_degree' => $request->input('edu_degree'),
+            // 'edu_clg_name' => $request->input('edu_clg_name'),
+            // 'edu_graduation_year' => $request->input('edu_graduation_year'),
+            // 'edu_field' => $request->input('edu_field'),
+            'edu_data' => json_encode($edu_data),
+
         ]);
 
         DB::table('users')->where('id', Session::get('temp_user_id'))->update([
