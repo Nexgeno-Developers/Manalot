@@ -751,7 +751,8 @@ class AccountController extends Controller
 
         $validator = Validator::make($request->all(), [
             'wrk_exp_company_name' => 'required|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
-            'wrk_exp__title' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:2', 'max:100'],
+            // 'wrk_exp__title' => ['required', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:2', 'max:100'],
+            'wrk_exp__title' => 'required|regex:/^[A-Za-z0-9\s,.\/\'&]+$/i|min:3|max:100',
             // 'wrk_exp__title' => ['required', 'min:1', 'max:100'],
             'industry' => 'required',
             // 'job_title' => 'required',
@@ -768,6 +769,8 @@ class AccountController extends Controller
             'wrk_exp_company_name.min' => 'The Company Name must be at least 2 characters.',
             
             'wrk_exp__title.required' => 'The Professional Title is required.',
+            // 'wrk_exp__title.string' => 'The Professional Title must be a string.',
+            'wrk_exp__title.regex' => 'The Professional Title format is invalid.',
             'wrk_exp__title.min' => 'The Professional Title must be at least 1 character.',
             'wrk_exp__title.max' => 'The Professional Title may not be greater than 100 characters.',
             
@@ -996,6 +999,8 @@ class AccountController extends Controller
             'work_authorization_status' => 'required',
             'availability' => 'required',
             'notice_period' => 'required',
+            'pref_salary_currency' => 'required',
+            'current_salary_currency' => 'required',
         ], [
             'pref_title.required' => 'The Preferred Title is required.',
             'pref_title.min' => 'The Preferred Title must be at least 1 character.',
@@ -1032,6 +1037,9 @@ class AccountController extends Controller
             'availability.required' => 'The Availability field is required.',
         
             'notice_period.required' => 'The Notice Period is required.',
+
+            'current_salary_currency.required' => 'The Currency is required.',
+            'pref_salary_currency.required' => 'The Currency is required.',
         ]);
 
         if ($validator->fails()) {
@@ -1062,6 +1070,8 @@ class AccountController extends Controller
             'pref_location' => $request->input('pref_location'),
             'current_salary' => $request->input('current_salary'),
             'pref_salary' => $request->input('pref_salary'),
+            'current_salary_currency' => $request->input('current_salary_currency'),
+            'pref_salary_currency' => $request->input('pref_salary_currency'),
             'references' => json_encode($references_data),
 
             'work_authorization_status' => $request->input('work_authorization_status'),

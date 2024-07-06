@@ -294,7 +294,7 @@
                         <label for="Date" class="form-label">Date of Birth*</label>
                         <!-- <img src="/assets/images/calender_icon.png" alt="" class="input_icon"> -->
                         <input type="date" class="form-control is-invalid input_text register_date_field" id="Date"
-                            name="dob" placeholder="Date" value="{{ $dob }}"
+                            name="dob" placeholder="Date" value="{{ $dob }}" max="{{ date('Y-m-d') }}"
                             required />
                     </div>
                 </div>
@@ -316,7 +316,7 @@
                 </div> --> --}}
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="zip_code" class="form-label">Zip/Pin Code*</label>
+                        <label for="zip_code" class="form-label">Zip/Postal Code*</label>
                         <input type="text" class="form-control is-invalid input_text" id="pincode"
                             name="pincode" pattern="[0-9A-Za-z]+" minlength="1" maxlength="10"
                             placeholder="Enter Your zipcode / Pincode" value="{{ $pincode }}" required />
@@ -491,15 +491,15 @@
 
                     
                         <div>
-                        <input class="custom-radio" type="radio" id="employed" name="Employed" value="yes"
-                            @if ($employed == 'yes') checked @endif>
-                        <label for="employed" class="form-label">Employed </label>
+                        <input class="custom-radio" type="radio" id="employed1" name="Employed" value="yes"
+                            @if ($employed == 'yes') checked @endif required>
+                        <label for="employed1" class="form-label">Employed </label>
                         </div>
 
                         <div>
-                        <input class="custom-radio" type="radio" id="unemployed" name="Employed" value="no"
+                        <input class="custom-radio" type="radio" id="unemployed1" name="Employed" value="no"
                             @if ($employed == 'no') checked @endif>
-                        <label for="unemployed" class="form-label">Unemployed </label>
+                        <label for="unemployed1" class="form-label">Unemployed </label>
                         </div>
                     </div>
                 </div> 
@@ -604,7 +604,8 @@
 
             @if (!empty($edu_data))
                 @foreach ($edu_data as $index => $education)
-                        <div class="row education-row">
+                    <div id="education-div">
+                        <div class="row education-row cirtificate_pdd">
                             <div class="col-md-6 mb-4">
                                 <div class="position-relative form-group">
                                     <label for="School" class="form-label">School/University Name*</label>
@@ -656,9 +657,11 @@
                                 </div>
                             @endif
                         </div>
+                    </div>
                 @endforeach
             @else
-                    <div class="row education-row">
+                <div id="education-div">
+                    <div class="row education-row cirtificate_pdd">
                         <div class="col-md-6 mb-4">
                             <div class="position-relative form-group">
                                 <label for="School" class="form-label">School/University Name*</label>
@@ -704,11 +707,12 @@
                             <button type="button" class="btn btn-success add-edu-row">Add More +</button>
                         </div>
                     </div>
+                </div>
             @endif
 
 
 
-            <div class="heading mt-4">
+            <div class="heading">
                 <h2>Certifications</h2>
             </div>
             @if (!empty($certificate_data))
@@ -728,7 +732,7 @@
                             <div class="position-relative form-group">
                                 <label for="Date Obtained*" class="form-label">Date Obtained</label>
 
-                                <input type="date" class="form-control is-invalid input_text certificate_obtn_date register_date_field"
+                                <input type="date" class="form-control is-invalid input_text certificate_obtn_date register_date_field" max="{{ date('Y-m-d') }}"
                                     name="certificate_obtn_date[]" placeholder="Date"
                                     value="{{ $certificate['certificate_obtn_date'] }}" />
                             </div>
@@ -769,7 +773,7 @@
                     <div class="col-md-6 mb-4">
                         <div class="position-relative form-group">
                             <label for="Date Obtained*" class="form-label">Date Obtained</label>
-                            <input type="date" class="form-control is-invalid input_text certificate_obtn_date register_date_field"
+                            <input type="date" class="form-control is-invalid input_text certificate_obtn_date register_date_field" max="{{ date('Y-m-d') }}"
                                 name="certificate_obtn_date[]" placeholder="Date" />
                         </div>
                     </div> 
@@ -884,8 +888,8 @@
                             aria-label="Default select example" id="current_salary_currency" name="current_salary_currency" required>
                             <option value="">Currency</option>
                             @foreach ($currencies as $row)
-                                <option value="{{ $row->id }}" @if ($current_salary_currency == $row->id) selected @endif>
-                                    {{ strtoupper($row->code) }} - ({{ $row->symbol }})
+                                <option value="{{ $row->id }}" @if ($current_salary_currency == $row->id || ($row->id == '28' && $current_salary_currency == null)) selected @endif>
+                                    <b>{{ $row->symbol }}</b>
                                 </option>
                             @endforeach
                         </select>
@@ -908,8 +912,8 @@
                             aria-label="Default select example" id="pref_salary_currency" name="pref_salary_currency" required>
                             <option value="">Currency</option>
                             @foreach ($currencies as $row)
-                                <option value="{{ $row->id }}" @if ($pref_salary_currency == $row->id) selected @endif>
-                                    {{ strtoupper($row->code) }} - ({{ $row->symbol }})
+                                <option value="{{ $row->id }}" @if ($pref_salary_currency == $row->id || ($row->id == '28' && $pref_salary_currency == null)) selected @endif>
+                                    <b>{{ $row->symbol }}</b>
                                 </option>
                             @endforeach
                         </select>
@@ -1033,8 +1037,8 @@
                 <h2>Work Authorization</h2>
             </div>
             <div class="row">
-                <div class="col-md-6">
-                    <div class="position-relative form-group mb-md-0 mb-4">
+                <div class="col-md-5">
+                    <div class="position-relative form-group">
                         <label for="Legal Authorization to work status" class="form-label">Legal
                             Authorization to work status</label>
                         <select class="select2 form-select form-control is-invalid input_select"
@@ -1046,8 +1050,8 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="position-relative form-group mb-md-0 mb-4">
+                <div class="col-md-4">
+                    <div class="position-relative form-group">
                         <label for="Availability" class="form-label">Availability
                         </label>
                         <select class="select2 form-select form-control is-invalid input_select"
@@ -1058,7 +1062,22 @@
                         </select>
                     </div>
                 </div>
-                
+                <div class="col-md-3">
+                    <div class="position-relative form-group">
+                        <label for="Notice Period" class="form-label">Notice Period
+                        </label>
+                        <select class="select2 form-select form-control is-invalid input_select"
+                            aria-label="Default select example" id="notice_period" name="notice_period" required>
+                            <option value="">Select Notice Period</option>
+                            @foreach ($notice_period_list as $row)
+                                <option value="{{ $row->id }}" @if ($notice_period == $row->id) selected @endif>
+                                    {{ ucfirst($row->name) }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                    </div>
+                </div>
             </div>
             <div class="d-flex align-items-center gap-4 text-end justify-content-end">
                 <div class="blue_btn">
