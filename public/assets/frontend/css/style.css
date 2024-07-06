@@ -1572,6 +1572,21 @@ body div#toast-container .toast-success {
     background-size: 10px !important;
 }
 
+button.btn.btn-success.add-edu-row {
+    color: #901D56;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    text-decoration: underline;
+}
+
+button.btn.btn-danger.remove-edu-row {
+    color: #0c3873;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    text-decoration: underline;
+}
 
 @media(max-width:767px) {
     .mobile_none {

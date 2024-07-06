@@ -604,8 +604,7 @@
 
             @if (!empty($edu_data))
                 @foreach ($edu_data as $index => $education)
-                    <div id="education-div">
-                        <div class="row education-row cirtificate_pdd">
+                        <div class="row education-row">
                             <div class="col-md-6 mb-4">
                                 <div class="position-relative form-group">
                                     <label for="School" class="form-label">School/University Name*</label>
@@ -657,11 +656,9 @@
                                 </div>
                             @endif
                         </div>
-                    </div>
                 @endforeach
             @else
-                <div id="education-div">
-                    <div class="row education-row cirtificate_pdd">
+                    <div class="row education-row">
                         <div class="col-md-6 mb-4">
                             <div class="position-relative form-group">
                                 <label for="School" class="form-label">School/University Name*</label>
@@ -707,12 +704,11 @@
                             <button type="button" class="btn btn-success add-edu-row">Add More +</button>
                         </div>
                     </div>
-                </div>
             @endif
 
 
 
-            <div class="heading">
+            <div class="heading mt-4">
                 <h2>Certifications</h2>
             </div>
             @if (!empty($certificate_data))
