@@ -1571,3 +1571,43 @@ body div#toast-container .toast-success {
 .sallery_width1 .select2-container--default .select2-selection--single .select2-selection__arrow b {
     background-size: 10px !important;
 }
+
+
+@media(max-width:767px) {
+    .mobile_none {
+        display: none;
+    }
+
+    .pddleft50 {
+        padding-left: 30px !important;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-right: 30px !important;
+    }
+
+    html {
+        overflow-x: hidden;
+    }
+
+    .login_logo img {
+        position: relative;
+        margin-left: 10px;
+        right: 0;
+        width: 120px;
+        top: 9px;
+    }
+
+    .font-size70 {
+        font-size: 36px;
+
+    }
+
+    .main_heading {
+        font-size: 22px;
+        line-height: 50px;
+    }
+
+    .login_width {
+        width: 100%;
+    }
+}
