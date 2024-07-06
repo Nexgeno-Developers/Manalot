@@ -316,7 +316,7 @@
                 </div> --> --}}
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="zip_code" class="form-label">Zip/Postal Code*</label>
+                        <label for="zip_code" class="form-label">Zip/Pin Code*</label>
                         <input type="text" class="form-control is-invalid input_text" id="pincode"
                             name="pincode" pattern="[0-9A-Za-z]+" minlength="1" maxlength="10"
                             placeholder="Enter Your zipcode / Pincode" value="{{ $pincode }}" required />
@@ -1033,8 +1033,8 @@
                 <h2>Work Authorization</h2>
             </div>
             <div class="row">
-                <div class="col-md-5">
-                    <div class="position-relative form-group">
+                <div class="col-md-6">
+                    <div class="position-relative form-group mb-md-0 mb-4">
                         <label for="Legal Authorization to work status" class="form-label">Legal
                             Authorization to work status</label>
                         <select class="select2 form-select form-control is-invalid input_select"
@@ -1046,8 +1046,8 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="position-relative form-group">
+                <div class="col-md-6">
+                    <div class="position-relative form-group mb-md-0 mb-4">
                         <label for="Availability" class="form-label">Availability
                         </label>
                         <select class="select2 form-select form-control is-invalid input_select"
@@ -1058,22 +1058,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="position-relative form-group">
-                        <label for="Notice Period" class="form-label">Notice Period
-                        </label>
-                        <select class="select2 form-select form-control is-invalid input_select"
-                            aria-label="Default select example" id="notice_period" name="notice_period" required>
-                            <option value="">Select Notice Period</option>
-                            @foreach ($notice_period_list as $row)
-                                <option value="{{ $row->id }}" @if ($notice_period == $row->id) selected @endif>
-                                    {{ ucfirst($row->name) }}
-                                </option>
-                            @endforeach
-                        </select>
-
-                    </div>
-                </div>
+                
             </div>
             <div class="d-flex align-items-center gap-4 text-end justify-content-end">
                 <div class="blue_btn">

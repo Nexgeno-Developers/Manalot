@@ -71,7 +71,7 @@
                 <div class="text-center my-4">
                         <p class="divider">Or</p>
                     </div>
-                    <div class="d-flex align-items-center gap-4">
+                    <div class="d-flex align-items-center gap-4 mobile-d-block">
                         <button class="google_btn">
                             Continue with
                             <img src="/assets/images/google.svg" alt="google icon" class="google_icon" />
@@ -86,7 +86,7 @@
 
 
 
-<section class="pt-5">
+<section class="md-pt-5 pt-2">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6 width55">
