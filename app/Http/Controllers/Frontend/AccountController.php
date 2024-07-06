@@ -687,8 +687,8 @@ class AccountController extends Controller
             'dob' => 'required',
             //'email' => 'required|email',
             //'phone_number' => 'required|regex:/^[\d\s-]+$/|min:10',
-            'address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&-]+$/i', 'min:3', 'max:250'],
-            // 'address' => ['required','min:1', 'max:250'],
+            //'address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&-]+$/i', 'min:3', 'max:250'],
+            'address' => ['required','min:1', 'max:250'],
             'city' => 'required',
             'state' => 'required',
             'pincode' => 'required',
@@ -761,7 +761,7 @@ class AccountController extends Controller
             // 'resume_cv' => 'nullable|mimes:pdf|max:5120',
             'skill' => 'required',
             'Employed' => 'required', // Assuming 'Employed' is nullable string
-            'experience_letter' => 'nullable|mimes:pdf,doc,docx|max:5120', 
+            'experience_letter' => 'nullable|mimes:pdf,doc,docx,jpg,jpeg,png|max:5120',
         ], [
             'wrk_exp_company_name.required' => 'The Company Name is required.',
             'wrk_exp_company_name.regex' => 'The Company Name format is invalid.',

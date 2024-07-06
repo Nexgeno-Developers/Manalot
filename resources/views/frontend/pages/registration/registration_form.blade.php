@@ -294,7 +294,7 @@
                         <label for="Date" class="form-label">Date of Birth*</label>
                         <!-- <img src="/assets/images/calender_icon.png" alt="" class="input_icon"> -->
                         <input type="date" class="form-control is-invalid input_text register_date_field" id="Date"
-                            name="dob" placeholder="Date" value="{{ $dob }}" max="2000-12-31"
+                            name="dob" placeholder="Date" value="{{ $dob }}"
                             required />
                     </div>
                 </div>
