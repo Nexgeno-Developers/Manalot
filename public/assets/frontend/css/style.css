@@ -1341,7 +1341,7 @@ div#thankyou-page {
     height: 52px !important;
     left: 50%;
     margin-left: -6px;
-    margin-top: 5px;
+    margin-top: 5px !important;
     position: absolute;
     top: 50%;
     width: 17px !important;
@@ -1428,4 +1428,146 @@ body div#toast-container .toast-success {
 #toast-container>div {
     width: 260px !important;
 
+}
+
+.custom-checkbox {
+    display: none;
+}
+
+/* Create a custom checkbox */
+.custom-checkbox+label {
+    position: relative;
+    cursor: pointer;
+    padding-left: 25px;
+    user-select: none;
+}
+
+/* Create the box around the checkbox */
+.custom-checkbox+label:before {
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: 2px;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #901D56;
+    background-color: #fff;
+    border-radius: 3px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Style the checkmark */
+.custom-checkbox:checked+label:before {
+    border-color: #901D56;
+    background: linear-gradient(34.89deg, #4B2779 8%, #BE2475 83.76%);
+    border: 0px solid #901D56;
+}
+
+.custom-checkbox:checked+label:after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.btn-check:focus+.btn-primary,
+.btn-primary:focus {
+    color: #fff;
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    box-shadow: none !important;
+}
+
+.custom-radio {
+    display: none;
+}
+
+/* Create a custom radio button */
+.custom-radio+label {
+    position: relative;
+    cursor: pointer;
+    padding-left: 25px;
+    user-select: none;
+}
+
+/* Create the circle around the radio button */
+.custom-radio+label:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #901D56;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Style the dot inside the radio button */
+.custom-radio:checked+label:before {
+    border-color: #901D56;
+}
+
+.custom-radio:checked+label:after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 7px;
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(34.89deg, #4B2779 8%, #BE2475 83.76%);
+    border-radius: 50%;
+}
+
+.writewithai img {
+    width: 25px;
+    margin-right: 8px;
+    position: relative;
+    top: -2px;
+}
+
+.writewithai {
+    border: 0px solid #ccc;
+    border-radius: 50px;
+    position: absolute;
+    margin-top: 19px;
+    color: #901D56 !important;
+}
+
+.writewithai span {
+    color: #901D56 !important;
+    text-decoration: underline;
+}
+
+.sallery_width1 {
+    width: 33%;
+    float: left;
+}
+
+.sallery_width2 {
+    width: 67%;
+    float: left;
+    padding-top: 1px;
+}
+
+.sallery_width1 span.select2.select2-container.select2-container--default {
+    width: 100% !important;
+}
+
+.sallery_width2 input {
+    padding-left: 15px !important;
+}
+
+.sallery_width2 .select2-container--default .select2-selection--single .select2-selection__arrow b {
+    background-size: 10px !important;
+}
+
+.sallery_width1 .select2-container--default .select2-selection--single .select2-selection__arrow b {
+    background-size: 10px !important;
 }

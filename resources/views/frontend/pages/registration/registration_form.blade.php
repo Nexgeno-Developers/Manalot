@@ -200,8 +200,8 @@
             </div>
 
             <div class="col-md-6 mb-3">
-                <div class="form-check checkbox_error">
-                    <input class="form-check-input" type="checkbox" value="1" name="term_check"
+                <div class="form-check checkbox_error ps-0">
+                    <input class="form-check-input custom-checkbox" type="checkbox" value="1" name="term_check"
                         id="flexCheckDefault" required />
                     <label class="form-check-label terms_font " for="flexCheckDefault">
                         I agree to the
@@ -530,13 +530,13 @@
 
                     
                         <div>
-                        <input type="radio" id="employed" name="Employed" value="yes"
+                        <input class="custom-radio" type="radio" id="employed" name="Employed" value="yes"
                             @if ($employed == 'yes') checked @endif>
                         <label for="employed" class="form-label">Employed </label>
                         </div>
 
                         <div>
-                        <input type="radio" id="unemployed" name="Employed" value="no"
+                        <input class="custom-radio" type="radio" id="unemployed" name="Employed" value="no"
                             @if ($employed == 'no') checked @endif>
                         <label for="unemployed" class="form-label">Unemployed </label>
                         </div>
@@ -566,6 +566,14 @@
                         <textarea class="form-control is-invalid" rows="4" cols="45" name="wrk_exp_responsibilities"
                             placeholder="Message" required>{{ $wrk_exp_responsibilities }}</textarea>
                     </div>
+                </div>
+
+                 <div class="col-md-12">
+                   
+                 <div class="writewithai">
+                    <a href="https://chatgpt.com/" target="_blank" title="ChatGPT" ><img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg"> <span>Write With ChatGPT!</span></a>
+                 </div>
+
                 </div>
 
             </div>
@@ -784,10 +792,10 @@
 
                   <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="Employment Type*" class="form-label">Notice Period Duration*</label>
+                        <label for="Employment Type*" class="form-label">Notice Period*</label>
                         <select class="select2 form-select form-control is-invalid input_select"
                             aria-label="Default select example" id="notice_period_duration" name="notice_period_duration" required>
-                            <option value="">Select Notice Period Duration</option>
+                            <option value="">Select Notice Period</option>
                             @foreach ($notice_period_list as $row)
                                 <option value="{{ $row->id }}" @if ($notice_period_check == $row->id) selected @endif>
                                     {{ ucfirst($row->name) }}
@@ -797,52 +805,52 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 mb-4">
-                    <div class="position-relative form-group">
-                        <label for="State" class="form-label">Currency*</label>
+               
+
+                <div class="col-md-6 mb-4">
+                    <div class="position-relative form-group sallery_width">
+                        <label for="Current Salary*" class="form-label d-block">Current Salary</label>
+                        <div class="sallery_width1">
+                        
                         <select class="select2 form-select form-control is-invalid input_select"
                             aria-label="Default select example" id="current_salary_currency" name="current_salary_currency" required>
-                            <option value="">Select Currency</option>
+                            <option value="">Currency</option>
                             @foreach ($currencies as $row)
                                 <option value="{{ $row->id }}" @if ($current_salary_currency == $row->id) selected @endif>
                                     {{ ucfirst($row->code) }} - ({{ $row->symbol }})
                                 </option>
                             @endforeach
                         </select>
-                    </div>
-                </div>
-
-
-                <div class="col-md-3 mb-4">
-                    <div class="position-relative form-group">
-                        <label for="Current Salary*" class="form-label">Current Salary</label>
+                        </div>
+                         <div class="sallery_width2">
                         <input type="text" class="form-control is-invalid input_text" id="Expected Salary*"
                             name="current_salary" placeholder="Enter Your Current Salary" pattern="[A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $current_salary }}" />
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-md-3 mb-4">
+
+                <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="State" class="form-label">Currency*</label>
+                        <label for="State" class="form-label d-block">Expected Salary*</label>
+<div class="sallery_width1">
+                         
                         <select class="select2 form-select form-control is-invalid input_select"
                             aria-label="Default select example" id="pref_salary_currency" name="pref_salary_currency" required>
-                            <option value="">Select Currency</option>
+                            <option value="">Currency</option>
                             @foreach ($currencies as $row)
                                 <option value="{{ $row->id }}" @if ($pref_salary_currency == $row->id) selected @endif>
                                     {{ ucfirst($row->code) }} - ({{ $row->symbol }})
                                 </option>
                             @endforeach
                         </select>
-                    </div>
-                </div>
-
-                <div class="col-md-4 mb-4">
-                    <div class="position-relative form-group">
-                        <label for="Expected Salary*" class="form-label">Expected Salary*</label>
+                        </div> 
+<div class="sallery_width2">
                         <input type="text" class="form-control is-invalid input_text" id="Expected Salary*"
                             name="pref_salary" placeholder="Enter Your Expected Salary" pattern="[A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $pref_salary }}" required />
+                           </div> 
                     </div>
                 </div>
               
