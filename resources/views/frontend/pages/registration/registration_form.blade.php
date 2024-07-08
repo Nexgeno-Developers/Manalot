@@ -501,7 +501,7 @@
                     </div>
                 </div> 
 
-                <div class="col-md-12 mb-4">
+                <div class="col-md-12 mb-2">
                     <div class="position-relative form-group">
                         <label for="skills" class="form-label">Skills*</label>
                         <select name="skill[]" multiple="multiple"
@@ -520,7 +520,7 @@
 
                 <div class="d-none" id="option-skills"></div>
 
-                <div class="col-md-12">
+                <div class="col-md-12 pt-4">
                     <div class="form-group">
                         <label for="Responsibilities" class="form-label">Responsibilities/Achievements*</label>
                         <textarea class="form-control is-invalid" rows="4" cols="45" name="wrk_exp_responsibilities"

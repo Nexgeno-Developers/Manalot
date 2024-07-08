@@ -1615,6 +1615,44 @@ button.btn.btn-danger.remove-edu-row {
     width: 100% !important;
 }
 
+div#option-skills ul {
+    float: left;
+    width: 100%;
+    display: block;
+    clear: both;
+}
+
+div#option-skills ul li {
+    float: left;
+    height: 39px;
+    text-align: center;
+    padding: 6px 19px;
+    margin-bottom: 11px;
+    border: 1px solid #aaaaaa52;
+    margin-right: 6px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    background: #fff;
+}
+
+
+#work-details-div .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    font-size: 20px !important;
+    left: 3px !important;
+}
+
+#work-details-div .select2-container--default .select2-selection--multiple .select2-selection__choice {
+
+    height: 36px !important;
+    padding: 5px 17px 5px 24px !important;
+    border-radius: 50px !important;
+    cursor: pointer;
+    margin-top: 7px;
+    font-weight: 600 !important;
+    background: #cccccc36 !important;
+}
+
 @media(max-width:767px) {
     .mobile_none {
         display: none;
