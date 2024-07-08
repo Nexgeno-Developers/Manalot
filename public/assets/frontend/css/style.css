@@ -1624,7 +1624,7 @@ div#option-skills ul {
 
 div#option-skills ul li {
     float: left;
-    height: 39px;
+    height: 36px;
     text-align: center;
     padding: 6px 19px;
     margin-bottom: 11px;
@@ -1632,7 +1632,7 @@ div#option-skills ul li {
     margin-right: 6px;
     border-radius: 50px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     background: #fff;
 }
 
@@ -1644,13 +1644,14 @@ div#option-skills ul li {
 
 #work-details-div .select2-container--default .select2-selection--multiple .select2-selection__choice {
 
-    height: 36px !important;
+    height: 34px !important;
     padding: 5px 17px 5px 24px !important;
     border-radius: 50px !important;
     cursor: pointer;
     margin-top: 7px;
     font-weight: 600 !important;
     background: #cccccc36 !important;
+    font-size: 14px;
 }
 
 @media(max-width:767px) {
