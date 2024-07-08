@@ -33,6 +33,10 @@
 @section('component.scripts')
     <script>
 
+    $('#skills-data').on('focusout', function() {
+        $('#option-skills').addClass('d-none');
+    });
+
     $(document).ready(function() {
         $('#skills-data').select2({
             placeholder: 'Select skills',
@@ -61,22 +65,41 @@
             }
         }); 
         
-        
         $('#skills-data').on('change', function() {
-                var selectedSkill = $(this).val().pop();
-                console.log(selectedSkill); // Get the last selected value
-                $.ajax({
-                    url: '{{ url(route('get.RelatedSkills')) }}',
-                    data: { skill: selectedSkill },
-                    success: function(data) {
-                        var optionsHtml = '';
-                        data.forEach(function(skill) {
-                            optionsHtml += '<li>' + skill.name + '</li>';
-                        });
-                        $('#option-skills').html('<ul>' + optionsHtml + '</ul>').removeClass('d-none');
-                    }
-                });
+                selectedSkills = $(this).val();
+                console.log(selectedSkills);
+                if (selectedSkills && selectedSkills.length > 0) {
+                    var selectedSkill = selectedSkills.pop(); // Get the last selected value
+                    $.ajax({
+                        url: '/related-skills',
+                        data: { skill: selectedSkill },
+                        success: function(data) {
+                            var optionsHtml = '';
+                            data.forEach(function(skill) {
+                                optionsHtml += '<li class="list-group-item">' + skill.name + '</li>';
+                            });
+                            $('#option-skills').html('<ul class="list-group">' + optionsHtml + '</ul>').removeClass('d-none');
+                        }
+                    });
+                } else {
+                    $('#option-skills').addClass('d-none');
+                }
         });
+
+
+        $('#option-skills').on('click', 'li', function() {
+                var skillText = $(this).text();
+                // Select the clicked skill in the select2 element
+                var optionExists = $('#skills-data option[value="' + skillText + '"]').length > 0;
+                if (optionExists) {
+                    var selectedValues = $('#skills-data').val() || [];
+                    selectedValues.push(skillText);
+                    $('#skills-data').val(selectedValues).trigger('change');
+                }
+                // Hide the #option-skills div
+                $('#option-skills').addClass('d-none');
+        });
+        
 
     });
 
