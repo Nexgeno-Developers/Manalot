@@ -1057,6 +1057,7 @@
                         </select>
                     </div>
                 </div>
+                {{--
                 <!-- <div class="col-md-3">
                     <div class="position-relative form-group">
                         <label for="Notice Period" class="form-label">Notice Period
@@ -1073,6 +1074,7 @@
 
                     </div>
                 </div> -->
+                --}}
             </div>
             <div class="d-flex align-items-center gap-4 text-end justify-content-end">
                 <div class="blue_btn">
