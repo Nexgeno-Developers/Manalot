@@ -27,7 +27,7 @@
     $industry = DB::table('industry')->where('status', '1')->get();
     $skills = DB::table('skills')->where('status', '1')->get();
 
-    $currencies = DB::table('currencies')->get(['id','symbol','code']);
+    $currencies = DB::table('currencies')->get(['id','symbol']);
 
     $references_from = DB::table('references_from')->where('status', '1')->get();
 
@@ -265,7 +265,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
                         <label for="Gender" class="form-label">Gender*</label>
-                        <select class="select2 form-select form-control is-invalid  input_select"
+                        <select class="select2 form-select form-control is-invalid  input_select old-select2"
                             aria-label="Default select example" id="Gender" name="gender" required>
                             <option value="">Select Gender</option>
                             <option value="1" @if ($gender == 1) selected @endif>Male</option>
@@ -437,7 +437,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
                         <label for="State" class="form-label">Years of Experience*</label>
-                        <select class="select2 form-select form-control is-invalid input_select"
+                        <select class="select2 form-select form-control is-invalid input_select old-select2"
                             aria-label="Default select example" id="wrk_exp_years" name="wrk_exp_years" required>
                             <option value="">Select Experience</option>
                             @foreach ($years_of_exp as $row)
@@ -488,14 +488,11 @@
 
                 <div class="col-md-5 mb-4 text-end">
                     <div class="option currently_work d-flex gap-3" style="float: right;">
-
-                    
                         <div>
                         <input class="custom-radio" type="radio" id="employed1" name="Employed" value="yes"
                             @if ($employed == 'yes') checked @endif required>
                         <label for="employed1" class="form-label">Employed </label>
                         </div>
-
                         <div>
                         <input class="custom-radio" type="radio" id="unemployed1" name="Employed" value="no"
                             @if ($employed == 'no') checked @endif>
@@ -509,7 +506,7 @@
                         <label for="skills" class="form-label">Skills*</label>
                         <select name="skill[]" multiple="multiple"
                             class="select2 form-select form-control is-invalid input_select"
-                            aria-label="Default select example" id="skills" required>
+                            aria-label="Default select example" id="skills-data" required>
                             <option value="">select skills</option>
                             @foreach ($skills as $row)
                                 <option value="{{ $row->name }}"
@@ -520,6 +517,8 @@
                         </select>
                     </div>
                 </div>
+
+                <div class="d-none" id="option-skills"></div>
 
                 <div class="col-md-12">
                     <div class="form-group">
@@ -836,7 +835,7 @@
                             name="pref_emp_type" placeholder="Enter your Employment Type" pattern="[A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $pref_emp_type }}" required /> --}}
 
-                        <select class="select2 form-select form-control is-invalid input_select"
+                        <select class="select2 form-select form-control is-invalid input_select old-select2"
                             aria-label="Default select example" id="pref_emp_type" name="pref_emp_type" required>
                             <option value="">Select Employment Type</option>
                             @foreach ($employ_types as $row)
@@ -865,7 +864,7 @@
                   <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
                         <label for="Employment Type*" class="form-label">Notice Period*</label>
-                        <select class="select2 form-select form-control is-invalid input_select"
+                        <select class="select2 form-select form-control is-invalid input_select old-select2"
                             aria-label="Default select example" id="notice_period_duration" name="notice_period_duration" required>
                             <option value="">Select Notice Period</option>
                             @foreach ($notice_period_list as $row)
@@ -884,7 +883,7 @@
                         <label for="Current Salary*" class="form-label d-block">Current Salary</label>
                         <div class="sallery_width1">
                         
-                        <select class="select2 form-select form-control is-invalid input_select"
+                        <select class="select2 form-select form-control is-invalid input_select old-select2"
                             aria-label="Default select example" id="current_salary_currency" name="current_salary_currency" required>
                             <option value="">Currency</option>
                             @foreach ($currencies as $row)
@@ -908,7 +907,7 @@
                         <label for="State" class="form-label d-block">Expected Salary*</label>
 <div class="sallery_width1">
                          
-                        <select class="select2 form-select form-control is-invalid input_select"
+                        <select class="select2 form-select form-control is-invalid input_select old-select2"
                             aria-label="Default select example" id="pref_salary_currency" name="pref_salary_currency" required>
                             <option value="">Currency</option>
                             @foreach ($currencies as $row)
@@ -1041,7 +1040,7 @@
                     <div class="position-relative form-group">
                         <label for="Legal Authorization to work status" class="form-label">Legal
                             Authorization to work status</label>
-                        <select class="select2 form-select form-control is-invalid input_select"
+                        <select class="select2 form-select form-control is-invalid input_select old-select2"
                             aria-label="Default select example" id="Legal Authorization to work status*"
                             name="work_authorization_status" required>
                             <option value="">Select work status</option>
@@ -1054,7 +1053,7 @@
                     <div class="position-relative form-group">
                         <label for="Availability" class="form-label">Availability
                         </label>
-                        <select class="select2 form-select form-control is-invalid input_select"
+                        <select class="select2 form-select form-control is-invalid input_select old-select2"
                             aria-label="Default select example" id="Availability" name="availability" required>
                             <option value="">Select Availability</option>
                             <option value="1" @if ($availability == 1) selected @endif>Yes</option>

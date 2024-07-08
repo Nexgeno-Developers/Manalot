@@ -33,6 +33,53 @@
 @section('component.scripts')
     <script>
 
+    $(document).ready(function() {
+        $('#skills-data').select2({
+            placeholder: 'Select skills',
+            minimumInputLength: 2,
+            tags: true,
+            ajax: {
+                url: '{{ url(route('get.skills')) }}',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        q: params.term // search term
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                text: item.name,
+                                id: item.name
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        }); 
+        
+        
+        $('#skills-data').on('change', function() {
+                var selectedSkill = $(this).val().pop();
+                console.log(selectedSkill); // Get the last selected value
+                $.ajax({
+                    url: '{{ url(route('get.RelatedSkills')) }}',
+                    data: { skill: selectedSkill },
+                    success: function(data) {
+                        var optionsHtml = '';
+                        data.forEach(function(skill) {
+                            optionsHtml += '<li>' + skill.name + '</li>';
+                        });
+                        $('#option-skills').html('<ul>' + optionsHtml + '</ul>').removeClass('d-none');
+                    }
+                });
+        });
+
+    });
+
     document.getElementById('Mobile').addEventListener('input', function (event) {
         this.value = this.value.replace(/[^0-9+ ]/g, '');
     });
@@ -115,7 +162,9 @@
                 break;
         }
 
-        initSelect2('.select2');
+        // initSelect2('.select21');
+
+        initSelect3('.old-select2');
         initSelect3('#industry');
         initSelect3('#pref_industry');
     }
@@ -128,7 +177,8 @@
 
 
     $(document).ready(function() {
-        initSelect2('.select2');
+        // initSelect2('.select21');
+        initSelect3('.old-select2');
         initSelect3('#industry');
         initSelect3('#pref_industry');
     });

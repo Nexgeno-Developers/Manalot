@@ -62,6 +62,10 @@ Route::get('/csrf-token', function () {
     return response()->json(['token' => csrf_token()]);
 });
 
+Route::get('/skills', [AccountController::class, 'getSkills'])->name('get.skills');
+Route::get('/related-skills', [AccountController::class, 'getRelatedSkills'])->name('get.RelatedSkills');
+
+
 Route::any('/get-previous-page', function () {
     $step = Session()->get('step');
     $step = $step - 1;

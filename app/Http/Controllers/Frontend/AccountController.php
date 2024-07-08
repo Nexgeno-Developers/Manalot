@@ -373,6 +373,20 @@ class AccountController extends Controller
         return response()->json(array('response_message' => $rsp_msg));
     }
 
+    public function getSkills(Request $request)
+    {
+        $search = $request->input('q');
+        $skills = DB::table('skills')->where('name', 'LIKE', "%{$search}%")->get(['name']);
+        return response()->json($skills);
+    }
+
+    public function getRelatedSkills(Request $request)
+    {
+        $skill = $request->input('skill');
+        $relatedSkills = DB::table('skills')->where('name', 'LIKE', "%{$skill}%")->get();
+        return response()->json($relatedSkills);
+    }
+
     public function create_user_detail($request){
 
         $validator = Validator::make($request->all(), [
@@ -752,7 +766,7 @@ class AccountController extends Controller
         $validator = Validator::make($request->all(), [
             'wrk_exp_company_name' => 'required|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
             // 'wrk_exp__title' => ['required', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:2', 'max:100'],
-            'wrk_exp__title' => 'required|regex:/^[A-Za-z0-9\s,.\/\'&]+$/i|min:3|max:100',
+            'wrk_exp__title' => 'required|regex:/^[A-Za-z0-9\s,.\/\'&]+$/i|min:2|max:100',
             // 'wrk_exp__title' => ['required', 'min:1', 'max:100'],
             'industry' => 'required',
             // 'job_title' => 'required',
@@ -842,7 +856,7 @@ class AccountController extends Controller
             'skill' => json_encode($skill),
             'wrk_exp_responsibilities' => $request->input('wrk_exp_responsibilities'),
             
-            'employed' => $request->has('Employed'),
+            'employed' => $request->input('Employed'),
             'experience_letter' => $path,
 
         ]);
