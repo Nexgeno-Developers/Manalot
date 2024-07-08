@@ -1305,6 +1305,16 @@ button.btn.btn-danger.remove-row {
     padding-right: 0px !important;
 }
 
+.education-row .col-md-6:nth-child(even) {
+    padding-left: 30px !important;
+    padding-right: 0px;
+}
+
+.education-row .col-md-6:nth-child(odd) {
+    padding-left: 12px;
+    padding-right: 30px !important;
+}
+
 .intl-tel-input {
     margin-top: 8px;
 }
@@ -1580,12 +1590,29 @@ button.btn.btn-success.add-edu-row {
     text-decoration: underline;
 }
 
+.select2-results__option.select2-results__option--highlighted {
+    background: #ccc;
+}
+
 button.btn.btn-danger.remove-edu-row {
     color: #0c3873;
     background: transparent;
     border: 0;
     padding: 0;
     text-decoration: underline;
+}
+
+.work_authorization .col-md-6:nth-child(odd) {
+    padding-right: 30px !important;
+}
+
+.work_authorization .col-md-6:nth-child(even) {
+    padding-left: 30px !important;
+    padding-right: 12px;
+}
+
+.work_authorization .col-md-6 span.select2.select2-container.select2-container--default {
+    width: 100% !important;
 }
 
 @media(max-width:767px) {
