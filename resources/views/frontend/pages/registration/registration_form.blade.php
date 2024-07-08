@@ -501,7 +501,7 @@
                     </div>
                 </div> 
 
-                <div class="col-md-12 mb-4">
+                <div class="col-md-12 mb-2">
                     <div class="position-relative form-group">
                         <label for="skills" class="form-label">Skills*</label>
                         <select name="skill[]" multiple="multiple"
@@ -520,7 +520,7 @@
 
                 <div class="d-none" id="option-skills"></div>
 
-                <div class="col-md-12">
+                <div class="col-md-12 pt-4">
                     <div class="form-group">
                         <label for="Responsibilities" class="form-label">Responsibilities/Achievements*</label>
                         <textarea class="form-control is-invalid" rows="4" cols="45" name="wrk_exp_responsibilities"
@@ -881,7 +881,7 @@
                         
                         <select class="select2 form-select form-control is-invalid input_select old-select2"
                             aria-label="Default select example" id="current_salary_currency" name="current_salary_currency" required>
-                            <option value="">Currency</option>
+                           
                             @foreach ($currencies as $row)
                                 <option value="{{ $row->id }}" @if ($current_salary_currency == $row->id || ($row->id == '28' && $current_salary_currency == null)) selected @endif>
                                     <b>{{ $row->symbol }}</b>
@@ -905,7 +905,7 @@
                          
                         <select class="select2 form-select form-control is-invalid input_select old-select2"
                             aria-label="Default select example" id="pref_salary_currency" name="pref_salary_currency" required>
-                            <option value="">Currency</option>
+                            
                             @foreach ($currencies as $row)
                                 <option value="{{ $row->id }}" @if ($pref_salary_currency == $row->id || ($row->id == '28' && $pref_salary_currency == null)) selected @endif>
                                     <b>{{ $row->symbol }}</b>
@@ -1057,6 +1057,7 @@
                         </select>
                     </div>
                 </div>
+                {{--
                 <!-- <div class="col-md-3">
                     <div class="position-relative form-group">
                         <label for="Notice Period" class="form-label">Notice Period
@@ -1073,6 +1074,7 @@
 
                     </div>
                 </div> -->
+                --}}
             </div>
             <div class="d-flex align-items-center gap-4 text-end justify-content-end">
                 <div class="blue_btn">

@@ -76,7 +76,7 @@
                         success: function(data) {
                             var optionsHtml = '';
                             data.forEach(function(skill) {
-                                optionsHtml += '<li class="list-group-item">' + skill.name + '</li>';
+                                optionsHtml += '<li class="list-group-item">' + skill.name + ' + </li>';
                             });
                             $('#option-skills').html('<ul class="list-group">' + optionsHtml + '</ul>').removeClass('d-none');
                         }

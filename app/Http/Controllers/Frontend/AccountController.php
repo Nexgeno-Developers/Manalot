@@ -1012,7 +1012,7 @@ class AccountController extends Controller
             ],
             'work_authorization_status' => 'required',
             'availability' => 'required',
-            'notice_period' => 'required',
+            // 'notice_period' => 'required',
             'pref_salary_currency' => 'required',
             'current_salary_currency' => 'required',
         ], [
@@ -1050,7 +1050,7 @@ class AccountController extends Controller
             
             'availability.required' => 'The Availability field is required.',
         
-            'notice_period.required' => 'The Notice Period is required.',
+            // 'notice_period.required' => 'The Notice Period is required.',
 
             'current_salary_currency.required' => 'The Currency is required.',
             'pref_salary_currency.required' => 'The Currency is required.',
@@ -1090,7 +1090,7 @@ class AccountController extends Controller
 
             'work_authorization_status' => $request->input('work_authorization_status'),
             'availability' => $request->input('availability'),
-            'notice_period' => $request->input('notice_period'),
+            // 'notice_period' => $request->input('notice_period'),
             'notice_period_duration' => $request->input('notice_period_duration'),
         ]);
 

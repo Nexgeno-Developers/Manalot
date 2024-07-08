@@ -1556,12 +1556,12 @@ body div#toast-container .toast-success {
 }
 
 .sallery_width1 {
-    width: 33%;
+    width: 20%;
     float: left;
 }
 
 .sallery_width2 {
-    width: 67%;
+    width: 80%;
     float: left;
     padding-top: 1px;
 }
@@ -1613,6 +1613,45 @@ button.btn.btn-danger.remove-edu-row {
 
 .work_authorization .col-md-6 span.select2.select2-container.select2-container--default {
     width: 100% !important;
+}
+
+div#option-skills ul {
+    float: left;
+    width: 100%;
+    display: block;
+    clear: both;
+}
+
+div#option-skills ul li {
+    float: left;
+    height: 36px;
+    text-align: center;
+    padding: 6px 19px;
+    margin-bottom: 11px;
+    border: 1px solid #aaaaaa52;
+    margin-right: 6px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 14px;
+    background: #fff;
+}
+
+
+#work-details-div .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    font-size: 20px !important;
+    left: 3px !important;
+}
+
+#work-details-div .select2-container--default .select2-selection--multiple .select2-selection__choice {
+
+    height: 34px !important;
+    padding: 5px 17px 5px 24px !important;
+    border-radius: 50px !important;
+    cursor: pointer;
+    margin-top: 7px;
+    font-weight: 600 !important;
+    background: #cccccc36 !important;
+    font-size: 14px;
 }
 
 @media(max-width:767px) {
