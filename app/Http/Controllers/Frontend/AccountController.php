@@ -376,14 +376,14 @@ class AccountController extends Controller
     public function getSkills(Request $request)
     {
         $search = $request->input('q');
-        $skills = DB::table('skills')->where('name', 'LIKE', "%{$search}%")->get(['name']);
+        $skills = DB::table('skills')->where('name', 'LIKE', "{$search}%")->groupBy('name')->get(['name']);
         return response()->json($skills);
     }
 
     public function getRelatedSkills(Request $request)
     {
         $skill = $request->input('skill');
-        $relatedSkills = DB::table('skills')->where('name', 'LIKE', "%{$skill}%")->get();
+        $relatedSkills = DB::table('skills')->where('name', 'LIKE', "{$skill}%")->get();
         return response()->json($relatedSkills);
     }
 
