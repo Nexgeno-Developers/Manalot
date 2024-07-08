@@ -1556,12 +1556,12 @@ body div#toast-container .toast-success {
 }
 
 .sallery_width1 {
-    width: 33%;
+    width: 20%;
     float: left;
 }
 
 .sallery_width2 {
-    width: 67%;
+    width: 80%;
     float: left;
     padding-top: 1px;
 }

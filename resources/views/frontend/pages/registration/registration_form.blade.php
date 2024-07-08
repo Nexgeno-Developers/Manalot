@@ -881,7 +881,7 @@
                         
                         <select class="select2 form-select form-control is-invalid input_select old-select2"
                             aria-label="Default select example" id="current_salary_currency" name="current_salary_currency" required>
-                            <option value="">Currency</option>
+                           
                             @foreach ($currencies as $row)
                                 <option value="{{ $row->id }}" @if ($current_salary_currency == $row->id || ($row->id == '28' && $current_salary_currency == null)) selected @endif>
                                     <b>{{ $row->symbol }}</b>
@@ -905,7 +905,7 @@
                          
                         <select class="select2 form-select form-control is-invalid input_select old-select2"
                             aria-label="Default select example" id="pref_salary_currency" name="pref_salary_currency" required>
-                            <option value="">Currency</option>
+                            
                             @foreach ($currencies as $row)
                                 <option value="{{ $row->id }}" @if ($pref_salary_currency == $row->id || ($row->id == '28' && $pref_salary_currency == null)) selected @endif>
                                     <b>{{ $row->symbol }}</b>
