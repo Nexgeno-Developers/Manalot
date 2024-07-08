@@ -656,6 +656,7 @@ class AccountController extends Controller
                     'user_id' => $userId,
                     'phone_number' => $user_info['phone_number'],
                     'skill' => '[]',
+                    'edu_data' => '[]',
                     'references' => '[]',
                     'resume_cv' => $user_info['resume_cv'],
                     'created_at' => now(),
@@ -664,7 +665,6 @@ class AccountController extends Controller
     
                 Session::put('temp_user_id', $userId);
             }
-
 
             Session::put('step', 2);
             session()->forget('user_info');

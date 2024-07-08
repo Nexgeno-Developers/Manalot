@@ -204,8 +204,8 @@
         // initSelect2('.select21');
 
         initSelect3('.old-select2');
-        initSelect3('#industry');
-        initSelect3('#pref_industry');
+        initSelect4('#industry');
+        initSelect4('#pref_industry');
     }
 
 

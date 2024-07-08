@@ -84,6 +84,12 @@ function initSelect3(selector) {
     $(selector).select2();
 }
 
+function initSelect4(selector) {
+    $(selector).select2({
+        sortResults: data => data.sort((a, b) => a.text.localeCompare(b.text)),
+    });
+}
+
 /*------------------- form submit ajax new --------------------*/
 
 function getCsrfToken() {
