@@ -38,6 +38,9 @@
     });
 
     $(document).ready(function() {
+        let selectedSkillsOrder = [];
+        let updating = false; // Flag to prevent recursive loop
+
         $('#skills-data').select2({
             placeholder: 'Select skills',
             minimumInputLength: 2,
@@ -46,14 +49,14 @@
                 url: '{{ url(route('get.skills')) }}',
                 dataType: 'json',
                 delay: 250,
-                data: function (params) {
+                data: function(params) {
                     return {
                         q: params.term // search term
                     };
                 },
-                processResults: function (data) {
+                processResults: function(data) {
                     return {
-                        results: $.map(data, function (item) {
+                        results: $.map(data, function(item) {
                             return {
                                 text: item.name,
                                 id: item.name
@@ -63,44 +66,57 @@
                 },
                 cache: true
             }
-        }); 
-        
-        $('#skills-data').on('change', function() {
-                selectedSkills = $(this).val();
-                console.log(selectedSkills);
-                if (selectedSkills && selectedSkills.length > 0) {
-                    var selectedSkill = selectedSkills.pop(); // Get the last selected value
-                    $.ajax({
-                        url: '/related-skills',
-                        data: { skill: selectedSkill },
-                        success: function(data) {
-                            var optionsHtml = '';
-                            data.forEach(function(skill) {
-                                optionsHtml += '<li class="list-group-item">' + skill.name + ' + </li>';
-                            });
-                            $('#option-skills').html('<ul class="list-group">' + optionsHtml + '</ul>').removeClass('d-none');
-                        }
-                    });
-                } else {
-                    $('#option-skills').addClass('d-none');
-                }
         });
 
+        $('#skills-data').on('change', function() {
+            if (updating) return; // Prevent recursive call
+            const selectedSkills = $(this).val() || [];
+            console.log(selectedSkills);
+            selectedSkillsOrder = selectedSkillsOrder.filter(skill => selectedSkills.includes(skill));
+            selectedSkills.forEach(skill => {
+                if (!selectedSkillsOrder.includes(skill)) {
+                    selectedSkillsOrder.push(skill);
+                }
+            });
+            console.log(selectedSkillsOrder);
+            renderSkills();
+            loadRelatedSkills(selectedSkillsOrder[selectedSkillsOrder.length - 1]);
+        });
+
+        function renderSkills() {
+            updating = true; // Set flag to prevent recursive call
+            const $select = $('#skills-data');
+            const options = selectedSkillsOrder.map(skill => `<option value="${skill}" selected>${skill}</option>`);
+            $select.html(options.join('')).trigger('change');
+            updating = false; // Reset flag
+        }
+
+        function loadRelatedSkills(skill) {
+            if (skill) {
+                $.ajax({
+                    url: '/related-skills',
+                    data: { skill: skill },
+                    success: function(data) {
+                        let optionsHtml = '';
+                        data.forEach(function(skill) {
+                            optionsHtml += '<li class="list-group-item">' + skill.name + '</li>';
+                        });
+                        $('#option-skills').html('<ul class="list-group">' + optionsHtml + '</ul>').removeClass('d-none');
+                    }
+                });
+            } else {
+                $('#option-skills').addClass('d-none');
+            }
+        }
 
         $('#option-skills').on('click', 'li', function() {
-                var skillText = $(this).text();
-                // Select the clicked skill in the select2 element
-                var optionExists = $('#skills-data option[value="' + skillText + '"]').length > 0;
-                if (optionExists) {
-                    var selectedValues = $('#skills-data').val() || [];
-                    selectedValues.push(skillText);
-                    $('#skills-data').val(selectedValues).trigger('change');
-                }
-                // Hide the #option-skills div
-                $('#option-skills').addClass('d-none');
+            const skillText = $(this).text();
+            if (!selectedSkillsOrder.includes(skillText)) {
+                selectedSkillsOrder.push(skillText);
+                renderSkills();
+            }
+            $('#option-skills').addClass('d-none');
         });
-        
-
     });
 
     document.getElementById('Mobile').addEventListener('input', function (event) {

@@ -376,14 +376,33 @@ class AccountController extends Controller
     public function getSkills(Request $request)
     {
         $search = $request->input('q');
-        $skills = DB::table('skills')->where('name', 'LIKE', "{$search}%")->groupBy('name')->get(['name']);
+        $searchTerms = explode(' ', $search);
+        
+        $skills = DB::table('skills')
+            ->where(function($query) use ($searchTerms) {
+                foreach ($searchTerms as $term) {
+                    $query->orWhere('name', 'LIKE', "$term%");
+                }
+            })
+            ->groupBy('name')
+            ->get(['name']);
+        
         return response()->json($skills);
     }
 
     public function getRelatedSkills(Request $request)
     {
         $skill = $request->input('skill');
-        $relatedSkills = DB::table('skills')->where('name', 'LIKE', "{$skill}%")->get();
+        $searchTerms = explode(' ', $skill);
+        
+        $relatedSkills = DB::table('skills')
+            ->where(function($query) use ($searchTerms) {
+                foreach ($searchTerms as $term) {
+                    $query->orWhere('name', 'LIKE', "$term%");
+                }
+            })
+            ->get();
+        
         return response()->json($relatedSkills);
     }
 
