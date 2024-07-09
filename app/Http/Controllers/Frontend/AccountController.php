@@ -1145,11 +1145,11 @@ class AccountController extends Controller
             'facebook' => ['nullable', 'regex:/^https?:\/\/(www\.)?facebook\.com\/.*$/i'],
             'other' => 'nullable|url',
         ], [
-            'linkedin.regex' => 'The LinkedIn URL must be a valid LinkedIn profile link.',
-            'twitter.regex' => 'The Twitter URL must be a valid X profile link.',
-            'instagram.regex' => 'The Instagram URL must be a valid Instagram profile link.',
-            'facebook.regex' => 'The Facebook URL must be a valid Facebook profile link.',
-            'other.url' => 'The Other URL must be a valid URL.',
+            'linkdin.regex' => 'The LinkedIn URL must be a valid LinkedIn profile link. Use URL this format https://www.linkedin.com/',
+            'twitter.regex' => 'The Twitter URL must be a valid X profile link. Use URL this format https://x.com/',
+            'instagram.regex' => 'The Instagram URL must be a valid Instagram profile link. Use URL this format https://www.instagram.com/',
+            'facebook.regex' => 'The Facebook URL must be a valid Facebook profile link. Use URL this format https://www.facebook.com/',
+            'other.url' => 'The Other URL must be a valid URL. Use URL this format https://www.com/',
         ]);
 
         if ($validator->fails()) {
