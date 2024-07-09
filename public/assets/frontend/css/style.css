@@ -1229,7 +1229,7 @@ div#personal-details {
 
 .currently_work {
     text-align: right;
-    padding-top: 37px;
+    padding-top: 43px;
 }
 
 button.btn.btn-success.add-row,
@@ -1503,6 +1503,7 @@ body div#toast-container .toast-success {
     cursor: pointer;
     padding-left: 25px;
     user-select: none;
+    margin-bottom: 0px;
 }
 
 /* Create the circle around the radio button */
@@ -1652,6 +1653,28 @@ div#option-skills ul li {
     font-weight: 600 !important;
     background: #cccccc36 !important;
     font-size: 14px;
+}
+
+
+#availibility_one .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    font-size: 20px !important;
+    left: 3px !important;
+}
+
+#availibility_one .select2-container--default .select2-selection--multiple .select2-selection__choice {
+
+    height: 34px !important;
+    padding: 5px 17px 5px 24px !important;
+    border-radius: 50px !important;
+    cursor: pointer;
+    margin-top: 7px;
+    font-weight: 600 !important;
+    background: #cccccc36 !important;
+    font-size: 14px;
+}
+
+#social_media_div input::placeholder {
+    color: #22222269 !important;
 }
 
 @media(max-width:767px) {
