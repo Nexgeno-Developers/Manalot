@@ -465,7 +465,7 @@
                 </div>  
 
 
-                <div class="col-md-12">
+                <div class="col-md-7 mb-4">
                     <div class="position-relative form-group">
                         <label for="industry" class="form-label">Industry*</label>
                         <select class="select2 form-select form-control is-invalid input_select" multiple="multiple"
@@ -482,7 +482,7 @@
                 </div>
 
 
-                <div class="col-md-12 mb-4 text-end">
+                <div class="col-md-5 mb-4 text-end">
                     <div class="option currently_work d-flex gap-3" style="float: right;">
                         <div>
                         <input class="custom-radio" type="radio" id="employed1" name="Employed" value="yes"
@@ -503,7 +503,7 @@
                         <select name="skill[]" multiple="multiple"
                             class="select2 form-select form-control is-invalid input_select"
                             aria-label="Default select example" id="skills-data" required>
-                            <option value="">select skills</option>
+                            <option value="">Select Skills</option>
                             @foreach ($skills as $row)
                                 <option value="{{ $row->name }}"
                                     @if (in_array($row->name, json_decode($skill_check, true))) selected @endif>
@@ -1103,7 +1103,7 @@
                         <label for="Linkdin" class="form-label">Linkdin</label>
                         <img src="/assets/images/linkedin_icon.svg" alt="" class="input_icon linkedin_icon">
                         <input type="url" class="form-control is-invalid input_text" id="Linkdin"
-                            name="linkdin" placeholder="Enter Your Linkdn URL" value="{{ $linkdin }}"
+                            name="linkdin" placeholder="https://www.linkedin.com/" value="{{ $linkdin }}"
                             name="linkdin" />
                         <!-- {{-- <img src="images/linkedin.png" alt="" class="input_icon" /> --}} -->
                     </div>
@@ -1113,7 +1113,7 @@
                         <label for="Twitter" class="form-label">X</label>
                         <img src="/assets/images/twitter_icon.svg" alt="" class="input_icon twitter_icon">
                         <input type="url" class="form-control is-invalid input_text" id="Twitter"
-                            name="twitter" placeholder="Enter Your Twitter URL" value="{{ $twitter }}"
+                            name="twitter" placeholder="https://x.com/" value="{{ $twitter }}"
                             name="twitter" />
                         <!-- {{-- <img src="images/x.png" alt="" class="input_icon" /> --}} -->
                     </div>
@@ -1123,7 +1123,7 @@
                         <label for="Instagram" class="form-label">Instagram</label>
                         <img src="/assets/images/instagram_icon.svg" alt="" class="input_icon insta_icon">
                         <input type="url" class="form-control is-invalid input_text" id="Instagram"
-                            placeholder="Enter Your Instagram URL" value="{{ $instagram }}"
+                            placeholder="https://www.instagram.com/" value="{{ $instagram }}"
                             name="instagram">
                         {{-- <img src="images/instagram.png" alt="" class="input_icon" /> --}}
                     </div>
@@ -1133,7 +1133,7 @@
                         <label for="Facebook" class="form-label">Facebook</label>
                         <img src="/assets/images/facebook_icon.svg" alt="" class="input_icon facebook_icon">
                         <input type="url" class="form-control is-invalid input_text" id="Facebook"
-                            placeholder="Enter Your Facebook URL" value="{{ $facebook }}"
+                            placeholder="https://www.facebook.com/" value="{{ $facebook }}"
                             name="facebook" />
                         {{-- <img src="images/facebook.png" alt="" class="input_icon" /> --}}
                     </div>
@@ -1142,7 +1142,7 @@
                     <div class="position-relative form-group">
                         <label for="others" class="form-label">Others</label>
                         <input type="url" class="form-control is-invalid input_text" id="others"
-                            placeholder="Enter Your Others URL" value="{{ $other }}"
+                            placeholder="https://www.com/" value="{{ $other }}"
                             name="other" />
                     </div>
                 </div>
