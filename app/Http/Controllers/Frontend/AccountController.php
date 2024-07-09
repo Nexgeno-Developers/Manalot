@@ -19,6 +19,7 @@ use App\Http\Controllers\Common\EsignAadharController;
 use Dompdf\Dompdf;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 use Auth;
 
@@ -1138,10 +1139,10 @@ class AccountController extends Controller
             // 'instagram' => 'required',
             // 'facebook' => 'required',
             // 'other' => 'required',
-            'linkedin' => 'nullable|regex:/^https?:\/\/(www\.)?linkedin\.com\/.*$/',
-            'twitter' => 'nullable|regex:/^https?:\/\/(www\.)?x\.com\/.*$/',
-            'instagram' => 'nullable|regex:/^https?:\/\/(www\.)?instagram\.com\/.*$/',
-            'facebook' => 'nullable|regex:/^https?:\/\/(www\.)?facebook\.com\/.*$/',
+            'linkdin' => ['nullable', 'regex:/^https?:\/\/(www\.)?linkedin\.com\/.*$/i'],
+            'twitter' => ['nullable', 'regex:/^https?:\/\/(www\.)?(x|twitter)\.com\/.*$/i'],
+            'instagram' => ['nullable', 'regex:/^https?:\/\/(www\.)?instagram\.com\/.*$/i'],
+            'facebook' => ['nullable', 'regex:/^https?:\/\/(www\.)?facebook\.com\/.*$/i'],
             'other' => 'nullable|url',
         ], [
             'linkedin.regex' => 'The LinkedIn URL must be a valid LinkedIn profile link.',
