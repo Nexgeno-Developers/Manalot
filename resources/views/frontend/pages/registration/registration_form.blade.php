@@ -606,7 +606,7 @@
                                     <input type="text" class="form-control is-invalid input_text certificate_name"
                                         name="edu_clg_name[]" placeholder="Enter Your School/University Name"
                                         pattern="[A-Za-z]+" minlength="1" maxlength="100"
-                                        value="{{ $education['edu_clg_name'] }}" />
+                                        value="{{ $education['edu_clg_name'] }}" required/>
                                 </div>
                             </div>
 
@@ -616,7 +616,7 @@
                                     <input type="text" class="form-control is-invalid input_text certificate_name"
                                         name="edu_degree[]" placeholder="Enter your Degree"
                                         pattern="[A-Za-z]+" minlength="1" maxlength="100"
-                                        value="{{ $education['edu_degree'] }}" />
+                                        value="{{ $education['edu_degree'] }}" required/>
                                 </div>
                             </div>
 
@@ -626,7 +626,7 @@
                                     <input type="text" class="form-control is-invalid input_text certificate_name"
                                         name="edu_graduation_year[]" placeholder="Enter Your Graduation Year"
                                         pattern="[0-9A-Za-z]+" minlength="1" maxlength="100"
-                                        value="{{ $education['edu_graduation_year'] }}" />
+                                        value="{{ $education['edu_graduation_year'] }}" required/>
                                 </div>
                             </div>
 
@@ -659,7 +659,7 @@
                                 <label for="School" class="form-label">School/University Name*</label>
                                 <input type="text" class="form-control is-invalid input_text certificate_name"
                                     name="edu_clg_name[]" placeholder="Enter Your School/University Name"
-                                    pattern="[A-Za-z]+" minlength="1" maxlength="100"
+                                    pattern="[A-Za-z]+" minlength="1" maxlength="100" required
                                 />
                             </div>
                         </div>
@@ -669,7 +669,7 @@
                                 <label for="Degree" class="form-label">Degree*</label>
                                 <input type="text" class="form-control is-invalid input_text certificate_name"
                                     name="edu_degree[]" placeholder="Enter your Degree"
-                                    pattern="[A-Za-z]+" minlength="1" maxlength="100"
+                                    pattern="[A-Za-z]+" minlength="1" maxlength="100" required
                                 />
                             </div>
                         </div>
@@ -679,7 +679,7 @@
                                 <label for="Certificate" class="form-label">Graduation Year*</label>
                                 <input type="text" class="form-control is-invalid input_text certificate_name"
                                     name="edu_graduation_year[]" placeholder="Enter Your Graduation Year"
-                                    pattern="[0-9A-Za-z]+" minlength="1" maxlength="100"
+                                    pattern="[0-9A-Za-z]+" minlength="1" maxlength="100" required
                                 />
                             </div>
                         </div>
@@ -690,7 +690,7 @@
                                 <label for="Certificate" class="form-label">Major/Field of Study*</label>
                                 <input type="text" class="form-control is-invalid input_text certificate_name"
                                     name="edu_field[]" placeholder="Enter your Major Field of Study"
-                                    pattern="[A-Za-z]+" minlength="1" maxlength="100"
+                                    pattern="[A-Za-z]+" minlength="1" maxlength="100" 
                                 />
                             </div>
                         </div>

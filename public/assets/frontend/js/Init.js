@@ -48,19 +48,43 @@ function closeConfirmModel() {
 }
 
 //jquery validator
+// function initValidate(selector) {
+//     $(selector).validate({
+//         errorElement: "div",
+//         errorPlacement: function (error, element) {
+//             error.addClass("invalid-feedback");
+//             element.closest(".form-group").append(error);
+//         },
+//         highlight: function (element, errorClass, validClass) {
+//             $(element).addClass("is-invalid");
+//         },
+//         unhighlight: function (element, errorClass, validClass) {
+//             $(element).removeClass("is-invalid");
+//         },
+//     });
+// }
+
 function initValidate(selector) {
     $(selector).validate({
         errorElement: "div",
         errorPlacement: function (error, element) {
+            // Remove any existing error messages within the form-group
+            element.closest(".form-group").find(".invalid-feedback").remove();
+
             error.addClass("invalid-feedback");
-            element.closest(".form-group").append(error);
+            // Append error message only if it doesn't already exist
+            if (element.closest(".form-group").find(".invalid-feedback").length === 0) {
+                element.closest(".form-group").append(error);
+            }
         },
         highlight: function (element, errorClass, validClass) {
             $(element).addClass("is-invalid");
+            $(element).closest(".form-group").addClass("has-error");
         },
         unhighlight: function (element, errorClass, validClass) {
-            $(element).removeClass("is-invalid");
-        },
+            $(element).removeClass('is-invalid');
+            $(element).closest(".form-group").removeClass("has-error");
+        }
     });
 }
 

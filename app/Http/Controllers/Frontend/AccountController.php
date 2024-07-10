@@ -907,10 +907,9 @@ class AccountController extends Controller
             'certificate_issuing' => ['required', 'min:1', 'max:50'],
             'certificate_obtn_date' => 'required',
 
-            'edu_degree' => 'required',
-            'edu_clg_name' => 'required',
-            'edu_graduation_year' => 'required',
-            'edu_field' => 'required',
+            'edu_degree.*' => 'required',
+            'edu_clg_name.*' => 'required',
+            'edu_graduation_year.*' => 'required',
 
         ], [
             'certificate_name.required' => 'The Certificate Name is required.',
@@ -923,10 +922,10 @@ class AccountController extends Controller
             
             'certificate_obtn_date.required' => 'The Certificate Obtain Date is required.',
         
-            'edu_degree.required' => 'The Education Degree field is required.',
-            'edu_clg_name.required' => 'The College Name field is required.',
-            'edu_graduation_year.required' => 'The Graduation Year field is required.',
-            'edu_field.required' => 'The Field of Education field is required.',
+            'edu_degree.*.required' => 'The Education Degree field is required.',
+            'edu_clg_name.*.required' => 'The College Name field is required.',
+            'edu_graduation_year.*.required' => 'The Graduation Year field is required.',
+            'edu_field.*.required' => 'The Field of Education field is required.',
         ]);
 
         if ($validator->fails()) {
