@@ -535,7 +535,7 @@
             </div>
             <div class="d-flex justify-content-end align-items-center gap-4">
                 <div class="blue_btn">
-                    <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
+                    <a class="text-decoration-none text-white" onclick="back_to_privious(this);">Back</a>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
@@ -786,7 +786,7 @@
 
             <div class="d-flex justify-content-end align-items-center gap-4">
                 <div class="blue_btn">
-                    <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
+                    <a class="text-decoration-none text-white" onclick="back_to_privious(this);">Back</a>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
@@ -1074,7 +1074,7 @@
             </div>
             <div class="d-flex align-items-center gap-4 text-end justify-content-end">
                 <div class="blue_btn">
-                    <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
+                    <a class="text-decoration-none text-white" onclick="back_to_privious(this);">Back</a>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
@@ -1149,7 +1149,7 @@
             </div>
             <div class="d-flex align-items-center gap-4 justify-content-end">
                 <div class="blue_btn">
-                    <a class="text-decoration-none text-white" onclick="back_to_privious();">Back</a>
+                    <a class="text-decoration-none text-white" onclick="back_to_privious(this);">Back</a>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>

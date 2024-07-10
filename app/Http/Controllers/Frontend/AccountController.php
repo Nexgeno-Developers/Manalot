@@ -402,6 +402,7 @@ class AccountController extends Controller
                     $query->orWhere('name', 'LIKE', "$term%");
                 }
             })
+            ->wherenot('name',$skill)
             ->limit('10')
             ->get();
         

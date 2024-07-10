@@ -240,12 +240,10 @@
         initSelect3('#pref_industry');
     });
 
-    function back_to_privious(){
-        var current_step = {{ Session::has('step') ? Session::get('step') : '0' }};
-
-        console.log('current_step');
-        console.log(current_step);
-
+    function back_to_privious(link){
+        
+        link.style.pointerEvents = 'none';
+        link.style.opacity = 0.5;
         // Create an XMLHttpRequest object
         var xhr = new XMLHttpRequest();
 
