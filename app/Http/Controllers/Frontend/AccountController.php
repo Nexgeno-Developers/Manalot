@@ -402,6 +402,7 @@ class AccountController extends Controller
                     $query->orWhere('name', 'LIKE', "$term%");
                 }
             })
+            ->limit('10')
             ->get();
         
         return response()->json($relatedSkills);

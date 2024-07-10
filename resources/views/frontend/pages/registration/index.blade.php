@@ -37,10 +37,7 @@
         $('#option-skills').addClass('d-none');
     });
 
-    $(document).ready(function() {
-        let selectedSkillsOrder = [];
-        let updating = false; // Flag to prevent recursive loop
-
+    function skill_dropdown(){
         $('#skills-data').select2({
             placeholder: 'Select skills',
             minimumInputLength: 2,
@@ -67,6 +64,13 @@
                 cache: true
             }
         });
+    }
+
+    $(document).ready(function() {
+        let selectedSkillsOrder = [];
+        let updating = false; // Flag to prevent recursive loop
+
+        skill_dropdown();
 
         $('#skills-data').on('change', function() {
             if (updating) return; // Prevent recursive call
@@ -116,8 +120,21 @@
                 renderSkills();
             }
             $('#option-skills').addClass('d-none');
+            loadRelatedSkills(skillText)
         });
     });
+
+    $(document).on('click', function(event) {
+        var $optionSkills = $('#option-skills');
+        if (!$optionSkills.is(event.target) && $optionSkills.has(event.target).length === 0) {
+            $optionSkills.addClass('d-none');
+        }
+    });
+
+    // // For demonstration purposes, remove the d-none class when the option-skills div is clicked
+    // $('#option-skills').on('click', function(event) {
+    //     $(this).removeClass('d-none');
+    // });
 
     document.getElementById('Mobile').addEventListener('input', function (event) {
         this.value = this.value.replace(/[^0-9+ ]/g, '');
@@ -206,6 +223,7 @@
         initSelect3('.old-select2');
         initSelect4('#industry');
         initSelect4('#pref_industry');
+
     }
 
 
@@ -347,6 +365,7 @@
             // }, 100);
 
             next_page_preview(3);
+            skill_dropdown();
         };
 
     /*---------------------  personal info ------------------*/ 
