@@ -633,7 +633,7 @@
 
                             <div class="col-md-6 mb-4">
                                 <div class="position-relative form-group">
-                                    <label for="Certificate" class="form-label">Major/Field of Study*</label>
+                                    <label for="Certificate" class="form-label">Major/Field of Study</label>
                                     <input type="text" class="form-control is-invalid input_text certificate_name"
                                         name="edu_field[]" placeholder="Enter your Major Field of Study"
                                         pattern="[A-Za-z]+" minlength="1" maxlength="100"
@@ -872,7 +872,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group sallery_width">
-                        <label for="Current Salary*" class="form-label d-block">Current Salary</label>
+                        <label for="Current Salary*" class="form-label d-block">Current Salary (Per Annum)</label>
                         <div class="sallery_width1">
                         
                         <select class="select2 form-select form-control is-invalid input_select old-select2"
@@ -896,7 +896,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="State" class="form-label d-block">Expected Salary*</label>
+                        <label for="State" class="form-label d-block">Expected Salary (Per Annum)*</label>
 <div class="sallery_width1">
                          
                         <select class="select2 form-select form-control is-invalid input_select old-select2"
@@ -948,7 +948,7 @@
                         <div class="row reference-row mt-4">
                             <div class="col-md-6 mb-3">
                                 <div class="position-relative form-group">
-                                    <label for="name" class="form-label">Name</label>
+                                    <label for="name" class="form-label">Name*</label>
                                     <input type="text" class="form-control is-invalid input_text reference_name"
                                         name="reference_name[]" placeholder="Enter Your Name" pattern="[A-Za-z]+"
                                         minlength="1" maxlength="20" value="{{ $reference['reference_name'] }}"
@@ -958,7 +958,7 @@
 
                             <div class="col-md-6 mb-3">
                                 <div class="position-relative form-group">
-                                    <label for="Phone{{ $index + 1 }}" class="form-label">Phone</label>
+                                    <label for="Phone{{ $index + 1 }}" class="form-label">Phone*</label>
                                     <input type="text" class="form-control is-invalid input_text reference_phone"
                                         name="reference_phone[]" id="Phone{{ $index + 1 }}"
                                         placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10"
@@ -983,7 +983,7 @@
                     <div class="row reference-row mt-4">
                         <div class="col-md-6 mb-3">
                             <div class="position-relative form-group">
-                                <label for="name" class="form-label">Name</label>
+                                <label for="name" class="form-label">Name*</label>
                                 <input type="text" class="form-control is-invalid input_text" id="name"
                                     name="reference_name[]" placeholder="Enter Your Name" pattern="[A-Za-z]+"
                                     minlength="1" maxlength="20" required />
@@ -992,7 +992,7 @@
 
                         <div class="col-md-6 mb-3">
                             <div class="position-relative form-group">
-                                <label for="Phone1" class="form-label">Phone</label>
+                                <label for="Phone1" class="form-label">Phone*</label>
                                 <input type="text" class="form-control is-invalid input_text reference_phone"
                                     id="Phone1" name="reference_phone[]" placeholder="Enter your Phone Number"
                                     pattern="[0-9]+" minlength="10" maxlength="16" required />
@@ -1110,7 +1110,7 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="Twitter" class="form-label">X</label>
+                        <label for="Twitter" class="form-label">X (Twitter)</label>
                         <img src="/assets/images/twitter_icon.svg" alt="" class="input_icon twitter_icon">
                         <input type="text" class="form-control is-invalid input_text" id="Twitter"
                             name="twitter" placeholder="Enter Your X URL" value="{{ $twitter }}"
