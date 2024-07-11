@@ -161,7 +161,7 @@
             </div>
 
             <div class="col-md-6 mb-3">
-                <div class="form-check checkbox_error ps-0">
+                <div class="form-check checkbox_error ps-0 terms_cdn">
                     <input class="form-check-input custom-checkbox" type="checkbox" value="1" name="term_check"
                         id="flexCheckDefault" required />
                     <label class="form-check-label terms_font " for="flexCheckDefault">

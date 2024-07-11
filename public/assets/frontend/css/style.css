@@ -1440,15 +1440,19 @@ body div#toast-container .toast-success {
 
 }
 
+.terms_cdn {
+    margin-left: 25px;
+}
+
 .custom-checkbox {
-    display: none;
+    display: block;
 }
 
 /* Create a custom checkbox */
 .custom-checkbox+label {
     position: relative;
     cursor: pointer;
-    padding-left: 25px;
+    padding-left: 0px;
     user-select: none;
 }
 
@@ -1456,8 +1460,8 @@ body div#toast-container .toast-success {
 .custom-checkbox+label:before {
     content: "";
     position: absolute;
-    left: -1px;
-    top: 2px;
+    left: -25px;
+    top: 1px;
     width: 18px;
     height: 18px;
     border: 2px solid #901D56;
@@ -1476,8 +1480,8 @@ body div#toast-container .toast-success {
 .custom-checkbox:checked+label:after {
     content: "";
     position: absolute;
-    left: 5px;
-    top: 5px;
+    left: -19px;
+    top: 4px;
     width: 5px;
     height: 10px;
     border: solid white;
