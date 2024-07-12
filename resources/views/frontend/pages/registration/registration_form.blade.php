@@ -103,7 +103,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
                         <label for="name" class="form-label">Username *</label>
-                        <input type="text" class="form-control is-invalid input_text" id="name" name="name"
+                        <input type="text" class="form-control is-invalid input_text" id="username" name="name"
                             placeholder="Enter Your Name" pattern="[A-Za-z]+" minlength="1" maxlength="20" required />
                     </div>
                 </div>
@@ -129,7 +129,7 @@
                     <div class="position-relative form-group">
                         <label for="formFile" class="form-label">Upload Resume* <span class="leble_size">(doc, docx, pdf -  up to 5MB)</span></label>
                         <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
-                        <input class="form-control is-invalid" type="file" id="formFile" name="resume_cv"
+                        <input class="form-control is-invalid" type="file" id="resume_cv" name="resume_cv"
                             accept=".pdf" required />
                         {{-- <img src="images/file.png" alt="" class="input_icon" /> --}}
                     </div>
@@ -284,7 +284,7 @@
                             </a> --}} -->
                         @endif
                         <img src="/assets/images/file.png" alt="" class="input_icon" />
-                        <input class="form-control is-invalid" type="file" id="formFile" name="profile_photo"
+                        <input class="form-control is-invalid" type="file" id="profile_photo" name="profile_photo"
                             accept=".jpg,.jpeg,.png,.webp" {{-- @if (empty($profile_photo) || $profile_photo == null) @endif --}} />
                     </div>
                 </div>
@@ -886,7 +886,7 @@
                         </select>
                         </div>
                          <div class="sallery_width2">
-                        <input type="text" class="form-control is-invalid input_text" id="Expected Salary*"
+                        <input type="text" class="form-control is-invalid input_text" id="Current Salary*"
                             name="current_salary" placeholder="Enter Your Current Salary" pattern="[A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $current_salary }}" />
                         </div>
