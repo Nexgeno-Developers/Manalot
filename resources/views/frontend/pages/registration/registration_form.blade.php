@@ -102,14 +102,14 @@
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="name" class="form-label">Username <span class="span_start">*</span></label>
+                        <label for="name" class="form-label">Username *</label>
                         <input type="text" class="form-control is-invalid input_text" id="username" name="name"
                             placeholder="Enter Your Name" pattern="[A-Za-z]+" minlength="1" maxlength="20" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="email" class="form-label">Email <span class="span_start">*</span></label>
+                        <label for="email" class="form-label">Email *</label>
                         <img src="/assets/images/email.png" alt="" class="input_icon" />
                         <input type="email" class="form-control is-invalid input_text" id="email" name="email"
                             placeholder="Enter Your email" required />
@@ -118,7 +118,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="Phone" class="form-label">Phone <span class="span_start">*</span></label>
+                        <label for="Phone" class="form-label">Phone *</label>
                         <input type="text" class="form-control is-invalid input_text" id="Mobile"
                             name="phone_number" placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10"
                             maxlength="16" required />
@@ -127,7 +127,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="formFile" class="form-label">Upload Resume <span class="span_start">*</span> <span class="leble_size">(doc, docx, pdf -  up to 5MB)</span></label>
+                        <label for="formFile" class="form-label">Upload Resume * <span class="leble_size">(doc, docx, pdf -  up to 5MB)</span></label>
                         <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
                         <input class="form-control is-invalid" type="file" id="resume_cv" name="resume_cv"
                             accept=".pdf" required />
@@ -138,7 +138,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="password" class="form-label">Password <span class="span_start">*</span></label>
+                        <label for="password" class="form-label">Password *</label>
                         <img src="/assets/images/key.png" alt="" class="input_icon" />
                         <input type="password" class="form-control is-invalid input_text" id="password" name="password"
                             placeholder="Enter your Password" minlength="6" maxlength="20" required />
@@ -150,7 +150,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="password" class="form-label">Confirm Password <span class="span_start">*</span></label>
+                        <label for="password" class="form-label">Confirm Password *</label>
                         <img src="/assets/images/key.png" alt="" class="input_icon" />
                         <input type="password" class="form-control is-invalid input_text" id="confirm_password"
                             name="confirm_password" placeholder="Enter your Password" minlength="6" maxlength="20"
