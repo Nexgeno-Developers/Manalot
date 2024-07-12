@@ -2087,3 +2087,62 @@ div#social_media_div {
         padding-bottom: 19px;
     }
 }
+
+.document_required {
+    padding-left: 20px;
+    margin-top: -10px;
+}
+
+.document_required p {
+    font-size: 15px;
+    font-weight: 600;
+    color: #6f6f6fe8 !important;
+    margin-bottom: 10px;
+}
+
+.span_start {
+    color: #ff7701;
+    position: relative;
+    top: 0;
+    font-size: 20px;
+}
+
+.document_required li {
+    color: #686868;
+    font-weight: 300;
+    list-style: none;
+}
+
+.document_required ul {
+    padding-left: 0;
+}
+
+.preview_name {
+    font-size: 22px;
+    color: #b24020 !important;
+    font-weight: 400;
+}
+
+.preview-content {
+    font-size: 32px;
+    text-shadow: -1px 0px 1px;
+    font-weight: 400;
+}
+
+.preview-sub-text {
+    font-weight: 300;
+    color: #000c;
+    padding-right: 2px;
+}
+
+.padd15 {
+    padding-left: 15px;
+}
+
+.mgright20 {
+    margin-right: -20px;
+}
+
+.mt51 {
+    margin-top: 50px;
+}

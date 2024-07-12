@@ -102,14 +102,14 @@
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="name" class="form-label">Username *</label>
+                        <label for="name" class="form-label">Username <span class="span_start">*</span></label>
                         <input type="text" class="form-control is-invalid input_text" id="username" name="name"
                             placeholder="Enter Your Name" pattern="[A-Za-z]+" minlength="1" maxlength="20" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="email" class="form-label">Email *</label>
+                        <label for="email" class="form-label">Email <span class="span_start">*</span></label>
                         <img src="/assets/images/email.png" alt="" class="input_icon" />
                         <input type="email" class="form-control is-invalid input_text" id="email" name="email"
                             placeholder="Enter Your email" required />
@@ -118,7 +118,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="Phone" class="form-label">Phone*</label>
+                        <label for="Phone" class="form-label">Phone <span class="span_start">*</span></label>
                         <input type="text" class="form-control is-invalid input_text" id="Mobile"
                             name="phone_number" placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10"
                             maxlength="16" required />
@@ -127,7 +127,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="formFile" class="form-label">Upload Resume* <span class="leble_size">(doc, docx, pdf -  up to 5MB)</span></label>
+                        <label for="formFile" class="form-label">Upload Resume <span class="span_start">*</span> <span class="leble_size">(doc, docx, pdf -  up to 5MB)</span></label>
                         <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
                         <input class="form-control is-invalid" type="file" id="resume_cv" name="resume_cv"
                             accept=".pdf" required />
@@ -138,7 +138,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="password" class="form-label">Password*</label>
+                        <label for="password" class="form-label">Password <span class="span_start">*</span></label>
                         <img src="/assets/images/key.png" alt="" class="input_icon" />
                         <input type="password" class="form-control is-invalid input_text" id="password" name="password"
                             placeholder="Enter your Password" minlength="6" maxlength="20" required />
@@ -150,7 +150,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="password" class="form-label">Confirm Password*</label>
+                        <label for="password" class="form-label">Confirm Password <span class="span_start">*</span></label>
                         <img src="/assets/images/key.png" alt="" class="input_icon" />
                         <input type="password" class="form-control is-invalid input_text" id="confirm_password"
                             name="confirm_password" placeholder="Enter your Password" minlength="6" maxlength="20"
@@ -158,9 +158,8 @@
                         {{-- <img src="images/key.png" alt="" class="input_icon" /> --}}
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-6 mb-3">
+                <div class="col-md-6 mb-3">
                 <div class="form-check checkbox_error ps-0 terms_cdn">
                     <input class="form-check-input custom-checkbox" type="checkbox" value="1" name="term_check"
                         id="flexCheckDefault" required />
@@ -169,19 +168,38 @@
                         <a href="#" class="purple"> <b>Terms & Condition</b></a>
                     </label>
                 </div>
-            </div>
-            <div>
-                <div class="purple_btn">
+                <div class="purple_btn mt-4">
                     <button type="submit" class="text-decoration-none text-white">Register as
                         Jobseeker</button>
+                        
                 </div>
-            </div>
-        </form>
-
-        <p class="mt-4">
+                <p class="mt-4">
             Already have an account?
             <a href="{{ url(route('login')) }}" class="text-decoration-none purple">Login</a>
         </p>
+                
+            </div>
+
+
+             <div class="col-md-6 mb-3">
+                 <div class="document_required">
+                    <p>Documents required: <span class="span_start">*</span></p>
+                    <ul>
+                        <li>Current Resume</li>
+                        <li>Experience Letter</li>
+                        <li>Profile Photo</li>
+                    </ul>
+                 </div>
+             </div>
+            </div>
+
+            
+            <div>
+                
+            </div>
+        </form>
+
+        
     </div>
 
     {{--- //------------------------------ email verify modal -----------------------// ----}}
@@ -256,7 +274,7 @@
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="first_name" class="form-label">Full Name*</label>
+                        <label for="first_name" class="form-label">Full Name *</label>
                         <input type="text" class="form-control is-invalid input_text" name="fullname"
                             id="fullname" placeholder="Enter First Name" pattern="[A-Za-z]+" minlength="1"
                             maxlength="255" value="{{ $fullname }}" required />
@@ -264,7 +282,7 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="Gender" class="form-label">Gender*</label>
+                        <label for="Gender" class="form-label">Gender *</label>
                         <select class="select2 form-select form-control is-invalid  input_select old-select2"
                             aria-label="Default select example" id="Gender" name="gender" required>
                             <option value="">Select Gender</option>
@@ -291,7 +309,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="Date" class="form-label">Date of Birth*</label>
+                        <label for="Date" class="form-label">Date of Birth *</label>
                         <!-- <img src="/assets/images/calender_icon.png" alt="" class="input_icon"> -->
                         <input type="date" class="form-control is-invalid input_text register_date_field" id="Date"
                             name="dob" placeholder="Date" value="{{ $dob }}" max="{{ date('Y-m-d') }}"
@@ -316,7 +334,7 @@
                 </div> --> --}}
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="zip_code" class="form-label">Zip/Pin Code*</label>
+                        <label for="zip_code" class="form-label">Zip/Pin Code *</label>
                         <input type="text" class="form-control is-invalid input_text" id="pincode"
                             name="pincode" pattern="[0-9A-Za-z]+" minlength="1" maxlength="10"
                             placeholder="Enter Your zipcode / Pincode" value="{{ $pincode }}" required />
@@ -325,7 +343,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="city" class="form-label">City*</label>
+                        <label for="city" class="form-label">City *</label>
                         <input type="text" class="form-control is-invalid input_text" id="city"
                             name="city" pattern="[A-Za-z]+" minlength="3" maxlength="50"
                             placeholder="Enter Your City" value="{{ $city }}" required />
@@ -333,7 +351,7 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="country_name" class="form-label">Country*</label>
+                        <label for="country_name" class="form-label">Country *</label>
                         <input type="text" value="{{ isset($country) ? $country : '' }}"
                             class="form-control is-invalid input_text" id="country_name" name="country"
                             placeholder="Enter Your country" required />
@@ -351,7 +369,7 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="State" class="form-label">State*</label>
+                        <label for="State" class="form-label">State *</label>
                         <input type="text" value="{{ isset($state) ? $state : '' }}"
                             class="form-control is-invalid input_text" id="state" name="state"
                             placeholder="Enter Your State" required />
@@ -417,7 +435,7 @@
  <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="job_title" class="form-label">Professional Title*</label>
+                        <label for="job_title" class="form-label">Professional Title *</label>
                         <input type="text" class="form-control is-invalid input_text" id="job_title"
                             name="wrk_exp__title" placeholder="Enter your Job Title" pattern="[A-Za-z]+"
                             minlength="2" maxlength="100" value="{{ $wrk_exp__title }}" required />
@@ -426,7 +444,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="company" class="form-label">Company Name*</label>
+                        <label for="company" class="form-label">Company Name *</label>
                         <input type="text" class="form-control is-invalid input_text" id="company"
                             name="wrk_exp_company_name" placeholder="Enter your Company Name" pattern="[A-Za-z]+"
                             minlength="1" maxlength="100" value="{{ $wrk_exp_company_name }}"
@@ -436,7 +454,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="State" class="form-label">Years of Experience*</label>
+                        <label for="State" class="form-label">Years of Experience *</label>
                         <select class="select2 form-select form-control is-invalid input_select old-select2"
                             aria-label="Default select example" id="wrk_exp_years" name="wrk_exp_years" required>
                             <option value="">Select Experience</option>
@@ -467,7 +485,7 @@
 
                 <div class="col-md-7 mb-4">
                     <div class="position-relative form-group">
-                        <label for="industry" class="form-label">Industry*</label>
+                        <label for="industry" class="form-label">Industry *</label>
                         <select class="select2 form-select form-control is-invalid input_select" multiple="multiple"
                             aria-label="Default select example" id="industry" name="industry[]" required>
                             <option value="">Select Industry</option>
@@ -499,7 +517,7 @@
 
                 <div class="col-md-12 mb-2">
                     <div class="position-relative form-group">
-                        <label for="skills" class="form-label">Skills*</label>
+                        <label for="skills" class="form-label">Skills *</label>
                         <select name="skill[]" multiple="multiple"
                             class="select2 form-select form-control is-invalid input_select"
                             aria-label="Default select example" id="skills-data" required>
@@ -564,7 +582,7 @@
             {{-- <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="School" class="form-label">School/University Name*</label>
+                        <label for="School" class="form-label">School/University Name *</label>
                         <input type="text" class="form-control is-invalid input_text" id="School"
                             name="edu_clg_name" placeholder="Enter your School / College Nmae" pattern="[A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $edu_clg_name }}" required />
@@ -580,7 +598,7 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="Graduation" class="form-label">Graduation Year*</label>
+                        <label for="Graduation" class="form-label">Graduation Year *</label>
                         <input type="text" class="form-control is-invalid input_text" id="Graduation"
                             name="edu_graduation_year" placeholder="Enter Your Graduation Year"
                             pattern="[0-9A-Za-z]+" minlength="1" maxlength="50"
@@ -589,7 +607,7 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="major" class="form-label">Major/Field of Study*</label>
+                        <label for="major" class="form-label">Major/Field of Study *</label>
                         <input type="text" class="form-control is-invalid input_text" id="major"
                             name="edu_field" placeholder="Enter your Major Field of Study" pattern="[A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $edu_field }}" required />
@@ -602,7 +620,7 @@
                         <div class="row education-row cirtificate_pdd">
                             <div class="col-md-6 mb-4">
                                 <div class="position-relative form-group">
-                                    <label for="School" class="form-label">School/University Name*</label>
+                                    <label for="School" class="form-label">School/University Name *</label>
                                     <input type="text" class="form-control is-invalid input_text certificate_name"
                                         name="edu_clg_name[]" placeholder="Enter Your School/University Name"
                                         pattern="[A-Za-z]+" minlength="1" maxlength="100"
@@ -612,7 +630,7 @@
 
                             <div class="col-md-6 mb-4">
                                 <div class="position-relative form-group">
-                                    <label for="Degree" class="form-label">Degree*</label>
+                                    <label for="Degree" class="form-label">Degree *</label>
                                     <input type="text" class="form-control is-invalid input_text certificate_name"
                                         name="edu_degree[]" placeholder="Enter your Degree"
                                         pattern="[A-Za-z]+" minlength="1" maxlength="100"
@@ -622,7 +640,7 @@
 
                             <div class="col-md-6 mb-4">
                                 <div class="position-relative form-group">
-                                    <label for="Certificate" class="form-label">Graduation Year*</label>
+                                    <label for="Certificate" class="form-label">Graduation Year *</label>
                                     <input type="text" class="form-control is-invalid input_text certificate_name"
                                         name="edu_graduation_year[]" placeholder="Enter Your Graduation Year"
                                         pattern="[0-9A-Za-z]+" minlength="1" maxlength="100"
@@ -656,7 +674,7 @@
                     <div class="row education-row cirtificate_pdd">
                         <div class="col-md-6 mb-4">
                             <div class="position-relative form-group">
-                                <label for="School" class="form-label">School/University Name*</label>
+                                <label for="School" class="form-label">School/University Name *</label>
                                 <input type="text" class="form-control is-invalid input_text certificate_name"
                                     name="edu_clg_name[]" placeholder="Enter Your School/University Name"
                                     pattern="[A-Za-z]+" minlength="1" maxlength="100" required
@@ -666,7 +684,7 @@
 
                         <div class="col-md-6 mb-4">
                             <div class="position-relative form-group">
-                                <label for="Degree" class="form-label">Degree*</label>
+                                <label for="Degree" class="form-label">Degree *</label>
                                 <input type="text" class="form-control is-invalid input_text certificate_name"
                                     name="edu_degree[]" placeholder="Enter your Degree"
                                     pattern="[A-Za-z]+" minlength="1" maxlength="100" required
@@ -676,7 +694,7 @@
 
                         <div class="col-md-6 mb-4">
                             <div class="position-relative form-group">
-                                <label for="Certificate" class="form-label">Graduation Year*</label>
+                                <label for="Certificate" class="form-label">Graduation Year *</label>
                                 <input type="text" class="form-control is-invalid input_text certificate_name"
                                     name="edu_graduation_year[]" placeholder="Enter Your Graduation Year"
                                     pattern="[0-9A-Za-z]+" minlength="1" maxlength="100" required
@@ -687,7 +705,7 @@
 
                         <div class="col-md-6 mb-4">
                             <div class="position-relative form-group">
-                                <label for="Certificate" class="form-label">Major/Field of Study*</label>
+                                <label for="Certificate" class="form-label">Major/Field of Study</label>
                                 <input type="text" class="form-control is-invalid input_text certificate_name"
                                     name="edu_field[]" placeholder="Enter your Major Field of Study"
                                     pattern="[A-Za-z]+" minlength="1" maxlength="100" 
@@ -814,7 +832,7 @@
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="Preferred Title/Role*" class="form-label">Preferred Title/Role*</label>
+                        <label for="Preferred Title/Role*" class="form-label">Preferred Title/Role *</label>
                         <input type="text" class="form-control is-invalid input_text" id="Preferred Title/Role*"
                             name="pref_title" placeholder="Enter Your Preferred Title" pattern="[0-9A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $pref_title }}" required />
@@ -822,7 +840,7 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="Employment Type*" class="form-label">Employment Type*</label>
+                        <label for="Employment Type*" class="form-label">Employment Type *</label>
                         {{-- <input type="text" class="form-control is-invalid input_text" id="Employment Type*"
                             name="pref_emp_type" placeholder="Enter your Employment Type" pattern="[A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $pref_emp_type }}" required /> --}}
@@ -845,7 +863,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="Desired Job Location*" class="form-label">Desired Job Location*</label>
+                        <label for="Desired Job Location*" class="form-label">Desired Job Location *</label>
                         <input type="text" class="form-control is-invalid input_text" id="Desired Job Location*"
                             name="pref_location" pattern="[A-Za-z]+" minlength="1" maxlength="50"
                             value="{{ $pref_location }}" placeholder="Enter your Desired Job Location"
@@ -855,7 +873,7 @@
 
                   <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="Employment Type*" class="form-label">Notice Period*</label>
+                        <label for="Employment Type*" class="form-label">Notice Period *</label>
                         <select class="select2 form-select form-control is-invalid input_select old-select2"
                             aria-label="Default select example" id="notice_period_duration" name="notice_period_duration" required>
                             <option value="">Select Notice Period</option>
@@ -896,7 +914,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="State" class="form-label d-block">Expected Salary (Per Annum)*</label>
+                        <label for="State" class="form-label d-block">Expected Salary (Per Annum) *</label>
 <div class="sallery_width1">
                          
                         <select class="select2 form-select form-control is-invalid input_select old-select2"
@@ -920,7 +938,7 @@
 
                 <div class="col-md-12 mb-4">
                     <div class="position-relative form-group">
-                        <label for="Preferred Industry*" class="form-label">Preferred Industry*</label>
+                        <label for="Preferred Industry*" class="form-label">Preferred Industry *</label>
                         {{-- <input type="text" class="form-control is-invalid input_text" id="Preferred Industry*"
                             name="pref_industry" placeholder="Enter Your Preferred Industry" pattern="[A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $pref_industry }}" required /> --}}
@@ -948,7 +966,7 @@
                         <div class="row reference-row mt-4">
                             <div class="col-md-6 mb-3">
                                 <div class="position-relative form-group">
-                                    <label for="name" class="form-label">Name*</label>
+                                    <label for="name" class="form-label">Name *</label>
                                     <input type="text" class="form-control is-invalid input_text reference_name"
                                         name="reference_name[]" placeholder="Enter Your Name" pattern="[A-Za-z]+"
                                         minlength="1" maxlength="20" value="{{ $reference['reference_name'] }}"
@@ -958,7 +976,7 @@
 
                             <div class="col-md-6 mb-3">
                                 <div class="position-relative form-group">
-                                    <label for="Phone{{ $index + 1 }}" class="form-label">Phone*</label>
+                                    <label for="Phone{{ $index + 1 }}" class="form-label">Phone *</label>
                                     <input type="text" class="form-control is-invalid input_text reference_phone"
                                         name="reference_phone[]" id="Phone{{ $index + 1 }}"
                                         placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10"
@@ -983,7 +1001,7 @@
                     <div class="row reference-row mt-4">
                         <div class="col-md-6 mb-3">
                             <div class="position-relative form-group">
-                                <label for="name" class="form-label">Name*</label>
+                                <label for="name" class="form-label">Name *</label>
                                 <input type="text" class="form-control is-invalid input_text" id="name"
                                     name="reference_name[]" placeholder="Enter Your Name" pattern="[A-Za-z]+"
                                     minlength="1" maxlength="20" required />
@@ -992,7 +1010,7 @@
 
                         <div class="col-md-6 mb-3">
                             <div class="position-relative form-group">
-                                <label for="Phone1" class="form-label">Phone*</label>
+                                <label for="Phone1" class="form-label">Phone *</label>
                                 <input type="text" class="form-control is-invalid input_text reference_phone"
                                     id="Phone1" name="reference_phone[]" placeholder="Enter your Phone Number"
                                     pattern="[0-9]+" minlength="10" maxlength="16" required />
@@ -1008,7 +1026,7 @@
                 {{--
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="References*" class="form-label">References*</label>
+                        <label for="References*" class="form-label">References *</label>
                         <select class="select2 form-select input_select" aria-label="Default select example" id="References*"
                         name="references[]" multiple required>
                         <option value="">Select References</option>
@@ -1025,7 +1043,7 @@
 
             </div>
             <div class="heading mt-4">
-                <h2>Work Authorization</h2>
+                <h2>Work Authorization <span class="span_start">*</span></h2>
             </div>
             <div class="row work_authorization">
                 <div class="col-md-6">
@@ -1072,13 +1090,17 @@
                 </div> -->
                 --}}
             </div>
-            <div class="d-flex align-items-center gap-4 text-end justify-content-end">
+            <div class="d-flex align-items-center gap-4 text-end justify-content-end mt-3">
                 <div class="blue_btn">
                     <a class="text-decoration-none text-white" onclick="back_to_privious(this);">Back</a>
                 </div>
                 <div class="purple_btn">
                     <button type="submit" class="text-decoration-none text-white">Next</button>
                 </div>
+            </div>
+
+            <div class="">
+                <p>Authorized for international employment <span class="span_start">*</span></p>
             </div>
         </form>
     </div>
@@ -1196,15 +1218,19 @@
             <h2 class="fonts36"><b>Thank You</b></h2>
         </div>
 
-        <p>You have successfully registered! We will provide an update within 48 hours.</p>
+        <p>You have successfully registered! We will provide an update within 48 hours. <span class="preview_name" style="">Preview how professional stories appear on 
+	<span class="purple preview-content padd15">M</span><b class="preview-sub-text">analot </b>
+	<span class="orange preview-content">L</span><b class="preview-sub-text">eadership </b>
+	<span class="aquamarine preview-content">N</span><b class="preview-sub-text">etwork</b>
+</span></p>
       
 
-                 <div class="mt-5 d-flex align-items-center gap-3 justify-content-start">
+                 <div class="d-flex align-items-center gap-5 justify-content-end mgright20 mt51">
                 <div class="blue_btn">
-                    <a href="/login" class="text-decoration-none text-white">Continue to Login</a>
+                    <a href="/login" class="text-decoration-none text-white padd22">Continue to Login</a>
                 </div>
                 <div class="purple_btn">
-                    <a target="_blank" href="/sample-profile" class="text-decoration-none text-white">View Sample Profile</button>
+                    <a target="_blank" href="/sample-profile" class="text-decoration-none text-white padd22">View Sample Profile</button>
                 </div>
             </div>
 
