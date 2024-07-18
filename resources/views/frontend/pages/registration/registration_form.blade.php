@@ -489,12 +489,12 @@
 
                 <div class="col-md-7 mb-4">
                     <div id="list-industry" class="d.none">
-                        
+
                     </div>
 
                     <div class="dropdown">
                         <select class="dropdown-select" name="industry[]" onclick="toggleDropdown()">
-                            <option id="industry-span" selected>Select Industry</option>
+                            <option selected>Select Industry</option>
                         </select>
                         <div class="dropdown-content">
 
@@ -1000,7 +1000,9 @@
                     </div>
                 </div> --}}
 
+                <div id="list-Preferred-industry" class="d.none">
 
+                </div>
                 <div class="custom-dropdown">
                     <select class="custom-dropdown-select" name="pref_industry[]" onclick="toggleCustomDropdown()">
                         <option selected>Select Preferred Industry</option>

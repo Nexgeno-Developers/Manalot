@@ -150,6 +150,33 @@
 
         const labelText = [];
 
+        function processIndustries(input) {
+            const industrialList = document.getElementById('list-industry');
+
+            // Clear the container
+            industrialList.innerHTML = '';
+
+            // Check if the input is empty or blank
+            if (!input.trim()) {
+                industrialList.classList.add('d-none');
+                return;
+            }
+
+            // Split and trim the input
+            const industries = input.split(',').map(industry => industry.trim());
+
+            // Create and append div elements
+            industries.forEach(industry => {
+                const div = document.createElement('div');
+                div.textContent = industry;
+                industrialList.appendChild(div);
+            });
+
+            // Remove d-none class
+            industrialList.classList.remove('d-none');
+        }
+
+
         function toggleDropdown() {
             const dropdownContent = document.querySelector('.dropdown-content');
             dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
@@ -199,14 +226,22 @@
             const option = document.createElement('option');
             if (selectedLanguages.length > 0) {
                 const optionText = `${Array.from(labelText).join(', ')}, ${selectedLanguages.join(', ')}`;
-                option.text = optionText;
+
+                option.text = 'Select Industry';
+
+                // option.text = optionText;
                 option.value = `${selectedLanguagesId.join(', ')}`;
                 option.selected = true;
             } else {
                 option.text = 'Select Industry';
             }
             select.add(option);
-            getSelectedIndustryText()
+
+
+            const listIndustryDiv = `${Array.from(labelText).join(', ')}, ${selectedLanguages.join(', ')}`;
+
+            console.log(listIndustryDiv);
+            processIndustries(listIndustryDiv);
         }
 
         // Hide dropdown if clicked outside
@@ -214,7 +249,6 @@
             const dropdown = document.querySelector('.dropdown');
             if (!dropdown.contains(event.target)) {
                 document.querySelector('.dropdown-content').style.display = 'none';
-                console.log('work2');
                 // document.querySelector('.dropdown-content1').style.display = 'none';
             }
         });
@@ -239,6 +273,33 @@
     <script>
         const customLabelText = [];
 
+        function processPreferredIndustries(input) {
+            const industrialList = document.getElementById('list-Preferred-industry');
+
+            // Clear the container
+            industrialList.innerHTML = '';
+
+            // Check if the input is empty or blank
+            if (!input.trim()) {
+                industrialList.classList.add('d-none');
+                return;
+            }
+
+            // Split and trim the input
+            const industries = input.split(',').map(industry => industry.trim());
+
+            // Create and append div elements
+            industries.forEach(industry => {
+                const div = document.createElement('div');
+                div.textContent = industry;
+                industrialList.appendChild(div);
+            });
+
+            // Remove d-none class
+            industrialList.classList.remove('d-none');
+        }
+
+
         function toggleCustomDropdown() {
             const dropdownContent = document.querySelector('.custom-dropdown-content');
             dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
@@ -252,7 +313,7 @@
         }
 
         function updateCustomLabel(label1 = '') {
-            console.log('updateCustomLabel');
+
             const select = document.querySelector('.custom-dropdown-select');
             const selectedLanguages = [];
             const selectedLanguagesId = [];
@@ -287,13 +348,20 @@
             const option = document.createElement('option');
             if (selectedLanguages.length > 0) {
                 const optionText = `${Array.from(customLabelText).join(', ')}, ${selectedLanguages.join(', ')}`;
-                option.text = optionText;
+                option.text = 'Select Preferred Industry';
+
+                // option.text = optionText;
                 option.value = `${selectedLanguagesId.join(', ')}`;
                 option.selected = true;
             } else {
                 option.text = 'Select Preferred Industry';
             }
             select.add(option);
+
+            const listPreIndustryDiv = `${Array.from(customLabelText).join(', ')}, ${selectedLanguages.join(', ')}`;
+
+            console.log(listPreIndustryDiv);
+            processIndustries(listPreIndustryDiv);
         }
 
         // Hide dropdown if clicked outside
@@ -363,14 +431,14 @@
         $('#skills-data').on('change', function() {
             if (updating) return; // Prevent recursive call
             const selectedSkills = $(this).val() || [];
-            console.log(selectedSkills);
+            // console.log(selectedSkills);
             selectedSkillsOrder = selectedSkillsOrder.filter(skill => selectedSkills.includes(skill));
             selectedSkills.forEach(skill => {
                 if (!selectedSkillsOrder.includes(skill)) {
                     selectedSkillsOrder.push(skill);
                 }
             });
-            console.log(selectedSkillsOrder);
+            // console.log(selectedSkillsOrder);
             renderSkills();
             loadRelatedSkills(selectedSkillsOrder[selectedSkillsOrder.length - 1]);
         });
