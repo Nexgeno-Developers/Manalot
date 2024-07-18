@@ -840,16 +840,24 @@ class AccountController extends Controller
 
         $industry = $request->input('industry');
 
-        foreach($industry as $row){
-            $industry_data = DB::table('industry')->where('name', $row)->get()->first();
+        $industry_elements = explode(',', $industry[0]);
 
-            if(!$industry_data){
-                 DB::table('industry')->insert([
-                    'name' => $row,
-                    'status' => 1,
-                ]);
-            } 
-        }
+        // Trim spaces from each element
+        $industry_elements = array_map('trim', $industry_elements);
+
+
+
+
+        // foreach($industry as $row){
+        //     $industry_data = DB::table('industry')->where('name', $row)->get()->first();
+
+        //     if(!$industry_data){
+        //          DB::table('industry')->insert([
+        //             'name' => $row,
+        //             'status' => 1,
+        //         ]);
+        //     } 
+        // }
 
 
         $userDetail = DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->first();
@@ -866,7 +874,7 @@ class AccountController extends Controller
             'wrk_exp_company_name' => $request->input('wrk_exp_company_name'),
             'wrk_exp_years' => $request->input('wrk_exp_years'),
             // 'job_title' => $request->input('job_title'),
-            'industry' => json_encode($industry),
+            'industry' => json_encode($industry_elements),
             'wrk_exp__title' => $request->input('wrk_exp__title'),
             // 'resume_cv' => $path,
             'skill' => json_encode($skill),
@@ -1090,12 +1098,19 @@ class AccountController extends Controller
             ];
         }
 
+        $pref_industry = $request->input('pref_industry');
+
+        $pref_industry_elements = explode(',', $pref_industry[0]);
+
+        // Trim spaces from each element
+        $pref_industry_elements = array_map('trim', $pref_industry_elements);
+
 
 
         $result =  DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
             'pref_title' => $request->input('pref_title'),
             'pref_emp_type' => $request->input('pref_emp_type'),
-            'pref_industry' => json_encode($request->input('pref_industry')),
+            'pref_industry' => json_encode($pref_industry_elements),
             'pref_location' => $request->input('pref_location'),
             'current_salary' => $request->input('current_salary'),
             'pref_salary' => $request->input('pref_salary'),

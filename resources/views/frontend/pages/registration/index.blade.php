@@ -3,6 +3,120 @@
 
 @section('page.content')
 
+
+<style>
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        width: 500px;
+    }
+    .dropdown-select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        background-color: #f9f9f9;
+        text-align: center;
+        width: 100%;
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding: 0px;
+        z-index: 1;
+        width: 100%;
+        max-height: 200px; /* max height for scroll */
+        overflow-y: auto;  /* enable vertical scroll */
+    }
+    .dropdown-content section {
+        margin-bottom: 20px;
+    }
+    .dropdown-content input[type="text"] {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+    .dropdown-content label {
+        display: block;
+        margin-bottom: 5px;
+        cursor: pointer;
+    }
+    .dropdown-content .select-all {
+        margin-bottom: 10px;
+        cursor: pointer;
+        color: blue;
+        padding: 10px 10px 0px 10px;
+    }
+    .dropdown-content .languages {
+        list-style: none;
+        padding: 0;
+        padding-left: 30px;
+        margin-top: 10px;
+    }
+    .dropdown-content .languages li {
+        margin-bottom: 5px;
+    }
+
+
+
+    .custom-dropdown {
+        position: relative;
+        display: inline-block;
+        width: 500px;
+    }
+    .custom-dropdown-select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        background-color: #f9f9f9;
+        text-align: center;
+        width: 100%;
+    }
+    .custom-dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding: 0px;
+        z-index: 1;
+        width: 100%;
+        max-height: 200px; /* max height for scroll */
+        overflow-y: auto;  /* enable vertical scroll */
+    }
+    .custom-dropdown-content section {
+        margin-bottom: 20px;
+    }
+    .custom-dropdown-content input[type="text"] {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+    .custom-dropdown-content label {
+        display: block;
+        margin-bottom: 5px;
+        cursor: pointer;
+    }
+    .custom-dropdown-content .select-all {
+        margin-bottom: 10px;
+        cursor: pointer;
+        color: blue;
+        padding: 10px 10px 0px 10px;
+    }
+    .custom-dropdown-content .languages {
+        list-style: none;
+        padding: 0;
+        padding-left: 30px;
+        margin-top: 10px;
+    }
+    .custom-dropdown-content .languages li {
+        margin-bottom: 5px;
+    }
+
+
+
+</style>
+
 <div class="login_logo">
     <a href="/"><img src="/assets/images/namalot_logo.png" /></a>
 </div>
@@ -31,6 +145,178 @@
 
 
 @section('component.scripts')
+
+    <script>
+
+        const labelText = [];
+
+        function toggleDropdown() {
+            const dropdownContent = document.querySelector('.dropdown-content');
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function toggleSelectAll(element, label) {
+            const section = element.closest('section');
+            const checkboxes = section.querySelectorAll('.language-option');
+            checkboxes.forEach(cb => cb.checked = element.checked);
+            updateLabel(label);
+        }
+
+        function updateLabel(label = '') {
+            const select = document.querySelector('.dropdown-select');
+            const selectedLanguages = [];
+            const selectedLanguagesId = [];
+            const selectedLabels = new Set();
+
+            // Check all programming language options
+            const programmingOptions = document.querySelectorAll(`.language-option.${label}`);
+            const allProgrammingChecked = Array.from(programmingOptions).every(cb => cb.checked);
+
+            if (allProgrammingChecked || Array.from(programmingOptions).some(cb => cb.checked)) {
+                document.getElementById(`select-all-${label}`).checked = true;
+                if (!labelText.includes(label)) {
+                    labelText.push(label);
+                }
+                selectedLabels.add(`${labelText.join(', ')}`);
+            } else {
+                const index = labelText.indexOf(label);
+                if (index > -1) {
+                    labelText.splice(index, 1);
+                }
+                document.getElementById(`select-all-${label}`).checked = false;
+            }
+
+            // console.log(labelText);
+
+            // Collect selected individual languages and their ids
+            document.querySelectorAll('.language-option:checked').forEach(cb => {
+                selectedLanguages.push(cb.value);
+                selectedLanguagesId.push(cb.getAttribute('dataid'));
+            });
+
+            // Update the dropdown label
+            select.innerHTML = '';
+            const option = document.createElement('option');
+            if (selectedLanguages.length > 0) {
+                const optionText = `${Array.from(labelText).join(', ')}, ${selectedLanguages.join(', ')}`;
+                option.text = optionText;
+                option.value = `${selectedLanguagesId.join(', ')}`;
+                option.selected = true;
+            } else {
+                option.text = 'Select Industry';
+            }
+            select.add(option);
+        }
+
+        // Hide dropdown if clicked outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.dropdown');
+            if (!dropdown.contains(event.target)) {
+                document.querySelector('.dropdown-content').style.display = 'none';
+                console.log('work2');
+                // document.querySelector('.dropdown-content1').style.display = 'none';
+            }
+        });
+
+
+        function check_option(){
+            const checkboxes = document.querySelectorAll('.language-option');
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    const dataparent = checkbox.getAttribute('dataparent');
+                    updateLabel(dataparent);
+                }
+            });
+
+        }
+
+        check_option();
+
+    </script>
+
+
+    <script>
+        const customLabelText = [];
+
+        function toggleCustomDropdown() {
+            const dropdownContent = document.querySelector('.custom-dropdown-content');
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function toggleCustomSelectAll(element, label) {
+            const section = element.closest('section');
+            const checkboxes = section.querySelectorAll('.custom-language-option');
+            checkboxes.forEach(cb => cb.checked = element.checked);
+            updateCustomLabel(label);
+        }
+
+        function updateCustomLabel(label = '') {
+            const select = document.querySelector('.custom-dropdown-select');
+            const selectedLanguages = [];
+            const selectedLanguagesId = [];
+            const selectedLabels = new Set();
+
+            // Check all programming language options
+            const programmingOptions = document.querySelectorAll(`.custom-language-option.${label}`);
+            const allProgrammingChecked = Array.from(programmingOptions).every(cb => cb.checked);
+
+            if (allProgrammingChecked || Array.from(programmingOptions).some(cb => cb.checked)) {
+                document.getElementById(`custom-select-all-${label}`).checked = true;
+                if (!customLabelText.includes(label)) {
+                    customLabelText.push(label);
+                }
+                selectedLabels.add(`${customLabelText.join(', ')}`);
+            } else {
+                const index = customLabelText.indexOf(label);
+                if (index > -1) {
+                    customLabelText.splice(index, 1);
+                }
+                document.getElementById(`custom-select-all1-${label}`).checked = false;
+            }
+
+            // Collect selected individual languages and their ids
+            document.querySelectorAll('.custom-language-option:checked').forEach(cb => {
+                selectedLanguages.push(cb.value);
+                selectedLanguagesId.push(cb.getAttribute('data-id'));
+            });
+
+            // Update the dropdown label
+            select.innerHTML = '';
+            const option = document.createElement('option');
+            if (selectedLanguages.length > 0) {
+                const optionText = `${Array.from(customLabelText).join(', ')}, ${selectedLanguages.join(', ')}`;
+                option.text = optionText;
+                option.value = `${selectedLanguagesId.join(', ')}`;
+                option.selected = true;
+            } else {
+                option.text = 'Select Industry';
+            }
+            select.add(option);
+        }
+
+        // Hide dropdown if clicked outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.custom-dropdown');
+            if (!dropdown.contains(event.target)) {
+                document.querySelector('.custom-dropdown-content').style.display = 'none';
+            }
+        });
+
+        function checkCustomOption(){
+            const checkboxes = document.querySelectorAll('.custom-language-option');
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    const dataParent = checkbox.getAttribute('data-parent');
+                    updateCustomLabel(dataParent);
+                }
+            });
+        }
+
+        checkCustomOption();
+    </script>
+
+
+
     <script>
 
     $('#skills-data').on('focusout', function() {
@@ -223,6 +509,9 @@
         initSelect3('.old-select2');
         initSelect4('#industry');
         initSelect4('#pref_industry');
+
+        check_option();
+        checkCustomOption();
 
     }
 
@@ -693,5 +982,23 @@
     // /*---------------------  Login info ------------------*/ 
 
      </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 @endsection
