@@ -206,6 +206,7 @@
                 option.text = 'Select Industry';
             }
             select.add(option);
+            getSelectedIndustryText()
         }
 
         // Hide dropdown if clicked outside

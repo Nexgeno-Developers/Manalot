@@ -488,9 +488,11 @@
 
 
                 <div class="col-md-7 mb-4">
-                    <div class="dropdown">
+                    <div class="dropdown select_industries">
+                        <label for="industry" class="form-label">Industry *</label>
+                        
                         <select class="dropdown-select" name="industry[]" onclick="toggleDropdown()">
-                            <option selected>Select Industry</option>
+                            <option id="industry-span" selected>Select Industry</option>
                         </select>
                         <div class="dropdown-content">
 
