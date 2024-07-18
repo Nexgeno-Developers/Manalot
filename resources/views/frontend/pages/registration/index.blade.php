@@ -361,7 +361,7 @@
             const listPreIndustryDiv = `${Array.from(customLabelText).join(', ')}, ${selectedLanguages.join(', ')}`;
 
             console.log(listPreIndustryDiv);
-            processIndustries(listPreIndustryDiv);
+            processPreferredIndustries(listPreIndustryDiv);
         }
 
         // Hide dropdown if clicked outside
