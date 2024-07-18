@@ -494,7 +494,7 @@
 
                     <div class="dropdown">
                         <select class="dropdown-select" name="industry[]" onclick="toggleDropdown()">
-                            <option selected>Select Industry</option>
+                            <option id="industry-span" selected>Select Industry</option>
                         </select>
                         <div class="dropdown-content">
 

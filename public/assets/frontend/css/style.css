@@ -2146,3 +2146,20 @@ div#social_media_div {
 .mt51 {
     margin-top: 50px;
 }
+
+.select_industries {
+    width: 100% !important;
+}
+
+
+.select_industries select.dropdown-select {
+    padding: 10px 0px;
+    border: 0;
+    border-bottom: 1px solid #aaa;
+    background: transparent;
+    text-align: left;
+    font-family: "Lato", sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 300;
+    color: #656565 !important;
+}
