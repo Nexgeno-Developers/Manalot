@@ -243,35 +243,36 @@
             dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
         }
 
-        function toggleCustomSelectAll(element, label) {
+        function toggleCustomSelectAll(element, label1) {
             const section = element.closest('section');
             const checkboxes = section.querySelectorAll('.custom-language-option');
             checkboxes.forEach(cb => cb.checked = element.checked);
-            updateCustomLabel(label);
+            updateCustomLabel(label1);
         }
 
-        function updateCustomLabel(label = '') {
+        function updateCustomLabel(label1 = '') {
+            console.log('updateCustomLabel');
             const select = document.querySelector('.custom-dropdown-select');
             const selectedLanguages = [];
             const selectedLanguagesId = [];
             const selectedLabels = new Set();
 
             // Check all programming language options
-            const programmingOptions = document.querySelectorAll(`.custom-language-option.${label}`);
+            const programmingOptions = document.querySelectorAll(`.custom-language-option.${label1}`);
             const allProgrammingChecked = Array.from(programmingOptions).every(cb => cb.checked);
 
             if (allProgrammingChecked || Array.from(programmingOptions).some(cb => cb.checked)) {
-                document.getElementById(`custom-select-all-${label}`).checked = true;
-                if (!customLabelText.includes(label)) {
-                    customLabelText.push(label);
+                document.getElementById(`custom-select-all-${label1}`).checked = true;
+                if (!customLabelText.includes(label1)) {
+                    customLabelText.push(label1);
                 }
                 selectedLabels.add(`${customLabelText.join(', ')}`);
             } else {
-                const index = customLabelText.indexOf(label);
-                if (index > -1) {
-                    customLabelText.splice(index, 1);
+                const index1 = customLabelText.indexOf(label1);
+                if (index1 > -1) {
+                    customLabelText.splice(index1, 1);
                 }
-                document.getElementById(`custom-select-all1-${label}`).checked = false;
+                document.getElementById(`custom-select-all-${label1}`).checked = false;
             }
 
             // Collect selected individual languages and their ids
@@ -289,7 +290,7 @@
                 option.value = `${selectedLanguagesId.join(', ')}`;
                 option.selected = true;
             } else {
-                option.text = 'Select Industry';
+                option.text = 'Select Preferred Industry';
             }
             select.add(option);
         }
