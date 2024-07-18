@@ -488,6 +488,10 @@
 
 
                 <div class="col-md-7 mb-4">
+                    <div id="list-industry" class="d.none">
+                        
+                    </div>
+
                     <div class="dropdown">
                         <select class="dropdown-select" name="industry[]" onclick="toggleDropdown()">
                             <option selected>Select Industry</option>
