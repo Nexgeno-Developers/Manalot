@@ -1,3 +1,4 @@
+
 <!--------------------------------------------- user info --------------------------------->
 
 @php
@@ -24,7 +25,10 @@
 
     $years_of_exp = DB::table('years_of_exp')->where('status', '1')->get();
     // $job_title = DB::table('job_title')->where('status', '1')->get();
+    
     $industry = DB::table('industry')->where('status', '1')->get();
+    $groupedIndustries = $industry->groupBy('parent_id');
+
     $skills = DB::table('skills')->where('status', '1')->get();
 
     $currencies = DB::table('currencies')->get(['id','symbol']);
@@ -484,10 +488,37 @@
 
 
                 <div class="col-md-7 mb-4">
+                    <div class="dropdown">
+                        <select class="dropdown-select" name="industry[]" onclick="toggleDropdown()">
+                            <option selected >Select Industry</option>
+                        </select>
+                        <div class="dropdown-content">
+                            <?php foreach ($groupedIndustries[null] as $mainIndustry): ?>
+                                <section>
+                                    <label style="background: #d5d5d5; padding: 10px; font-weight: 600"><?php echo $mainIndustry->name; ?></label>
+                                    <?php if (isset($groupedIndustries[$mainIndustry->id])): ?>
+                                        <label class="select-all">
+                                            <input type="checkbox" id="select-all-<?php echo $mainIndustry->id; ?>" onclick="toggleSelectAll(this, '<?php echo $mainIndustry->name; ?>')" />
+                                            <?php echo $mainIndustry->name; ?>
+                                        </label>
+                                        <ul class="languages">
+                                            <?php foreach ($groupedIndustries[$mainIndustry->id] as $subIndustry): ?>
+                                                <li>
+                                                    <input type="checkbox" class="language-option <?php echo str_replace(' ', '-', strtolower($mainIndustry->name)); ?>" value="<?php echo $subIndustry->name; ?>" onchange="updateLabel()" />
+                                                    <?php echo $subIndustry->name; ?>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    <?php endif; ?>
+                                </section>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                    {{-- 
                     <div class="position-relative form-group">
                         <label for="industry" class="form-label">Industry *</label>
                         <select class="select2 form-select form-control is-invalid input_select" multiple="multiple"
-                            aria-label="Default select example" id="industry" name="industry[]" required>
+                        aria-label="Default select example" id="industry" name="industry[]" required>
                             <option value="">Select Industry</option>
                             @foreach ($industry as $row)
                                 <option value="{{ $row->name }}"
@@ -497,6 +528,7 @@
                             @endforeach
                         </select>
                     </div>
+                    --}}
                 </div>
 
 
@@ -1238,7 +1270,139 @@
 
     </div>
 {{-- @endif --}}
+<style>
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 500px;
+}
+.dropdown-select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    text-align: center;
+    width: 100%;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 0px;
+    z-index: 1;
+    width: 100%;
+    max-height: 200px; /* max height for scroll */
+    overflow-y: auto;  /* enable vertical scroll */
+}
+.dropdown-content section {
+    margin-bottom: 20px;
+}
+.dropdown-content input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.dropdown-content label {
+    display: block;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+.dropdown-content .select-all {
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: blue;
+    padding: 10px 10px 0px 10px;
+}
+.dropdown-content .languages {
+    list-style: none;
+    padding: 0;
+    padding-left: 30px;
+    margin-top: 10px;
+}
+.dropdown-content .languages li {
+    margin-bottom: 5px;
+}
+</style>
+<script>
+   function toggleDropdown() {
+    const dropdownContent = document.querySelector('.dropdown-content');
+    dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+}
 
+function toggleSelectAll(element, label) {
+    const section = element.closest('section');
+    const checkboxes = section.querySelectorAll('.language-option');
+    checkboxes.forEach(cb => cb.checked = element.checked);
+    updateLabel();
+}
+
+function updateLabel() {
+    const select = document.querySelector('.dropdown-select');
+    const selectedLanguages = [];
+    const selectedLabels = new Set();
+
+    // Loop through all sections to update the labels correctly
+    document.querySelectorAll('.dropdown-content section').forEach(section => {
+        const sectionLabel = section.querySelector('label').innerText;
+        const checkboxes = section.querySelectorAll('.language-option');
+        const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+        const someChecked = Array.from(checkboxes).some(cb => cb.checked);
+
+        // If all checkboxes in a section are checked or some are checked, update the select-all checkbox
+        const selectAllCheckbox = section.querySelector('.select-all input[type="checkbox"]');
+        selectAllCheckbox.checked = allChecked;
+
+        if (allChecked || someChecked) {
+            selectedLabels.add(sectionLabel);
+        }
+
+        // Collect individual selected languages
+        checkboxes.forEach(cb => {
+            if (cb.checked) {
+                selectedLanguages.push(cb.value);
+            }
+        });
+    });
+
+    // Update the dropdown label
+    select.innerHTML = '';
+    if (selectedLanguages.length > 0) {
+        const option = document.createElement('option');
+        option.value = Array.from(selectedLabels).join(', ') + ', ' + selectedLanguages.join(', ');
+        option.text = Array.from(selectedLabels).join(', ') + ', ' + selectedLanguages.join(', ');
+        option.selected = true;
+        select.add(option);
+    } else {
+        const option = document.createElement('option');
+        option.text = 'Select Languages';
+        select.add(option);
+    }
+}
+
+// Check if a child's selection affects its parent's "select all" checkbox
+document.addEventListener('change', function(event) {
+    const clickedCheckbox = event.target;
+    if (clickedCheckbox.classList.contains('language-option')) {
+        const parentSection = clickedCheckbox.closest('section');
+        const parentSelectAll = parentSection.querySelector('.select-all input[type="checkbox"]');
+        if (parentSelectAll) {
+            const childCheckboxes = parentSection.querySelectorAll('.language-option');
+            parentSelectAll.checked = Array.from(childCheckboxes).every(cb => cb.checked);
+        }
+        updateLabel();
+    }
+});
+
+// Hide dropdown if clicked outside
+document.addEventListener('click', function(event) {
+    const dropdown = document.querySelector('.dropdown');
+    if (!dropdown.contains(event.target)) {
+        document.querySelector('.dropdown-content').style.display = 'none';
+    }
+});
+
+</script>
 <!--------------------------------------------- social-media-info --------------------------------->
 
 

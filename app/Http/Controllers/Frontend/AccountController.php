@@ -299,12 +299,6 @@ class AccountController extends Controller
 
         }
 
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Successfully forgot Password'
-        ], 200);
-
     }
 
 
