@@ -509,7 +509,7 @@
                                             {{ $mainIndustry->name }}
                                         </label>
 
-                                        <ul class="languages">
+                                        <ul class="languages industry-check-box">
                                             @foreach ($groupedIndustries[$mainIndustry->id] as $subIndustry)
                                                 <li>
                                                     <input type="checkbox" class="language-option {{ $mainIndustry->name }}" value="{{ $subIndustry->name }}"
