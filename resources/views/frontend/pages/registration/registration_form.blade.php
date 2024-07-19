@@ -947,7 +947,7 @@
                         </select>
                         </div>
                          <div class="sallery_width2">
-                        <input type="text" class="form-control is-invalid input_text" id="Current Salary*"
+                        <input type="text" class="form-control is-invalid input_text" id="Current-Salary"
                             name="current_salary" placeholder="Enter Your Current Salary" pattern="[A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $current_salary }}" />
                         </div>
@@ -971,7 +971,7 @@
                         </select>
                         </div> 
 <div class="sallery_width2">
-                        <input type="text" class="form-control is-invalid input_text" id="Expected Salary*"
+                        <input type="text" class="form-control is-invalid input_text" id="Expected-Salary"
                             name="pref_salary" placeholder="Enter Your Expected Salary" pattern="[A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $pref_salary }}" required />
                            </div> 

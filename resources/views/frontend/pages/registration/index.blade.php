@@ -496,6 +496,14 @@
         this.value = this.value.replace(/[^0-9+ ]/g, '');
     });
 
+    document.getElementById('Current-Salary').addEventListener('input', function (event) {
+        this.value = this.value.replace(/[^0-9 ]/g, '');
+    });
+
+    document.getElementById('Expected-Salary').addEventListener('input', function (event) {
+        this.value = this.value.replace(/[^0-9 ]/g, '');
+    });
+
     function next_page_preview(step_info){
         var step = {{ Session::has('step') ? Session::get('step') : '0' }};
         
