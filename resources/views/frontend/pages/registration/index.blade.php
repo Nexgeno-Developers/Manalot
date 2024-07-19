@@ -985,11 +985,11 @@
                                 var responseHtml = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
                                 $('#response').html(responseHtml);
                             } else {
-                                alert('Postal code not found');
+                                // alert('Postal code not found');
                             }
                         },
                         error: function () {
-                            alert('Error fetching data');
+                            // alert('Error fetching data');
                         }
                     });
                 }, typingDelay);
