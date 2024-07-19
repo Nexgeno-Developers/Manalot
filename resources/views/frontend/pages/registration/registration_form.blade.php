@@ -488,6 +488,7 @@
 
 
                 <div class="col-md-8 mb-4">
+                    <label for="industry" class="form-label">Industry *</label>
                     <div id="list-industry" class="d-none">
 
                     </div>
@@ -999,6 +1000,8 @@
                         
                     </div>
                 </div> --}}
+
+                <label for="Preferred Industry*" class="form-label">Preferred Industry *</label>
 
                 <div id="list-Preferred-industry" class="industry_cls d-none">
 
