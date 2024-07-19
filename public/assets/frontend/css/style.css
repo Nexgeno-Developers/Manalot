@@ -1227,9 +1227,13 @@ div#personal-details {
     margin-top: 120px;
 }
 
+.select_industries {
+    padding-right: 25px !important;
+}
+
 .currently_work {
     text-align: right;
-    padding-top: 43px;
+    padding-top: 20px;
 }
 
 button.btn.btn-success.add-row,
@@ -2155,11 +2159,85 @@ div#social_media_div {
 .select_industries select.dropdown-select {
     padding: 10px 0px;
     border: 0;
-    border-bottom: 1px solid #aaa;
+    border-bottom: 1px solid #ccc;
     background: transparent;
     text-align: left;
     font-family: "Lato", sans-serif !important;
     font-size: 16px !important;
     font-weight: 300;
     color: #656565 !important;
+}
+
+div#list-industry li {
+    height: 34px !important;
+    padding: 5px 17px 5px 24px !important;
+    border-radius: 50px !important;
+    cursor: pointer;
+    margin-top: 7px;
+    font-weight: 600 !important;
+    background: #cccccc36 !important;
+    font-size: 14px;
+    list-style: none;
+    float: left;
+    margin-right: 5px;
+    border: 1px solid #aaaaaa52 !important;
+}
+
+.dropdown-content .languages li input {
+    margin-right: 5px;
+}
+
+label.select-all input {
+    margin-right: 5px;
+}
+
+.dropdown.select_industries section:nth-child(5) {
+    display: none;
+}
+
+.select_industries section:nth-child(5) {
+    display: none;
+}
+
+.select_industries li {
+    list-style: none;
+}
+
+select.custom-dropdown-select {
+    padding: 10px 0px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
+    text-align: left;
+    font-family: "Lato", sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 300;
+    color: #656565 !important;
+}
+
+div#list-Preferred-industry li {
+    height: 34px !important;
+    padding: 5px 17px 5px 24px !important;
+    border-radius: 50px !important;
+    cursor: pointer;
+    margin-top: 7px;
+    font-weight: 600 !important;
+    background: #cccccc36 !important;
+    font-size: 14px;
+    list-style: none;
+    float: left;
+    margin-right: 5px;
+    border: 1px solid #aaaaaa52 !important;
+}
+
+label.custom-select-all {
+    margin-left: 12px;
+}
+
+ul.custom-languages li input {
+    margin-right: 5px;
+}
+
+label.custom-select-all input {
+    margin-right: 5px;
 }

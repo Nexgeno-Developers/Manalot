@@ -45,7 +45,6 @@
     .dropdown-content .select-all {
         margin-bottom: 10px;
         cursor: pointer;
-        color: blue;
         padding: 10px 10px 0px 10px;
     }
     .dropdown-content .languages {
@@ -100,7 +99,6 @@
     .custom-dropdown-content .select-all {
         margin-bottom: 10px;
         cursor: pointer;
-        color: blue;
         padding: 10px 10px 0px 10px;
     }
     .custom-dropdown-content .languages {
@@ -149,9 +147,8 @@
     <script>
 
         const labelText = [];
-
+        const industrialList = document.getElementById('list-industry');
         function processIndustries(input) {
-            const industrialList = document.getElementById('list-industry');
 
             // Clear the container
             industrialList.innerHTML = '';
@@ -167,7 +164,7 @@
 
             // Create and append div elements
             industries.forEach(industry => {
-                const div = document.createElement('div');
+                const div = document.createElement('li');
                 div.textContent = industry;
                 industrialList.appendChild(div);
             });
@@ -234,6 +231,8 @@
                 option.selected = true;
             } else {
                 option.text = 'Select Industry';
+                industrialList.classList.add('d-none');
+
             }
             select.add(option);
 
@@ -242,6 +241,12 @@
 
             console.log(listIndustryDiv);
             processIndustries(listIndustryDiv);
+
+
+
+            if (selectedLanguages.length <= 0) {
+                industrialList.classList.add('d-none');
+            }
         }
 
         // Hide dropdown if clicked outside
@@ -272,16 +277,16 @@
 
     <script>
         const customLabelText = [];
+        const custom_industrialList = document.getElementById('list-Preferred-industry');
 
         function processPreferredIndustries(input) {
-            const industrialList = document.getElementById('list-Preferred-industry');
-
+            
             // Clear the container
-            industrialList.innerHTML = '';
+            custom_industrialList.innerHTML = '';
 
             // Check if the input is empty or blank
             if (!input.trim()) {
-                industrialList.classList.add('d-none');
+                custom_industrialList.classList.add('d-none');
                 return;
             }
 
@@ -290,13 +295,13 @@
 
             // Create and append div elements
             industries.forEach(industry => {
-                const div = document.createElement('div');
+                const div = document.createElement('li');
                 div.textContent = industry;
-                industrialList.appendChild(div);
+                custom_industrialList.appendChild(div);
             });
 
             // Remove d-none class
-            industrialList.classList.remove('d-none');
+            custom_industrialList.classList.remove('d-none');
         }
 
 
@@ -362,6 +367,10 @@
 
             console.log(listPreIndustryDiv);
             processPreferredIndustries(listPreIndustryDiv);
+
+            if (selectedLanguages.length <= 0) {
+                custom_industrialList.classList.add('d-none');
+            }
         }
 
         // Hide dropdown if clicked outside
