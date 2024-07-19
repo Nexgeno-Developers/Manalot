@@ -487,20 +487,21 @@
                 </div>  
 
 
-                <div class="col-md-7 mb-4">
-                    <div id="list-industry" class="d.none">
+                <div class="col-md-8 mb-4">
+                    <label for="industry" class="form-label">Industry *</label>
+                    <div id="list-industry" class="d-none">
 
                     </div>
 
-                    <div class="dropdown">
+                    <div class="dropdown select_industries">
                         <select class="dropdown-select" name="industry[]" onclick="toggleDropdown()">
-                            <option selected>Select Industry</option>
+                            <option selected >Select Industry</option>
                         </select>
                         <div class="dropdown-content">
 
                             @foreach ($groupedIndustries[null] as $mainIndustry)
                                 <section>
-                                    <label style="background: #d5d5d5; padding: 10px; font-weight: 600">{{ $mainIndustry->name }}</label>
+                                    <label style="background: #d5d5d563; padding: 10px; font-weight: 600">{{ $mainIndustry->name }}</label>
 
                                     @if (isset($groupedIndustries[$mainIndustry->id]))
                                         <label class="select-all">
@@ -543,7 +544,7 @@
                 </div>
 
 
-                <div class="col-md-5 mb-4 text-end">
+                <div class="col-md-4 mb-4 text-end">
                     <div class="option currently_work d-flex gap-3" style="float: right;">
                         <div>
                         <input class="custom-radio" type="radio" id="employed1" name="Employed" value="yes"
@@ -1000,11 +1001,14 @@
                     </div>
                 </div> --}}
 
-                <div id="list-Preferred-industry" class="d.none">
+                <label for="Preferred Industry*" class="form-label">Preferred Industry *</label>
+
+                <div id="list-Preferred-industry" class="industry_cls d-none">
 
                 </div>
-                <div class="custom-dropdown">
-                    <select class="custom-dropdown-select" name="pref_industry[]" onclick="toggleCustomDropdown()">
+                <div class="custom-dropdown select_industries">
+                    
+                <select class="custom-dropdown-select" name="pref_industry[]" onclick="toggleCustomDropdown()">
                         <option selected>Select Preferred Industry</option>
                     </select>
                     <div class="custom-dropdown-content">
