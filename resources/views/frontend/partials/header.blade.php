@@ -1,6 +1,7 @@
 
 @if(auth()->user())
 
+
   <div class="header">
       <div class="container">
 
@@ -99,10 +100,12 @@
                   </a>
                   <a href="#"
                       class="d-flex flex-column gap-1 align-items-center text-decoration-none text-dark text-xs">
-                      <div>
-                          <img src="/assets/images/logout.png" alt="" />
-                      </div>
-                      <span>Logout</span>
+                      <a href="{{ route('customer.logout') }}">
+                        <div>
+                            <img src="/assets/images/logout.png" alt="" />
+                        </div>
+                        <span>Logout</span>
+                     </a>
                   </a>
               </div>
           </header>

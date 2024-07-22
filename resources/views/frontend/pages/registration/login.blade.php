@@ -13,7 +13,7 @@
     <div class="fluid-container">
         <div class="row align-items-center">
             <div class="col-md-6">
-                <img src="/assets/images/login_bg.png" style="width:100%">
+                <img src="/assets/images/login_bg.png" class="mobile_none" style="width:100%">
             </div>
             <div class="col-md-6 pddleft50">
                 <h1 class="main_heading mt50">
@@ -57,7 +57,7 @@
 
                                 <p>
                                     Forgot your password?
-                                    <a href="#" class="purple text-decoration-none">Reset</a>
+                                    <a onclick="open_reset_password_form();" class="purple text-decoration-none">Reset</a>
                                 </p>
                             </div>
                             <div>
@@ -71,7 +71,7 @@
                 <div class="text-center my-4">
                         <p class="divider">Or</p>
                     </div>
-                    <div class="d-flex align-items-center gap-4">
+                    <div class="d-flex align-items-center gap-4 mobile-d-block">
                         <button class="google_btn">
                             Continue with
                             <img src="/assets/images/google.svg" alt="google icon" class="google_icon" />
@@ -86,7 +86,7 @@
 
 
 
-<section class="pt-5">
+<section class="md-pt-5 pt-2">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6 width55">
@@ -119,6 +119,11 @@
         </div>
     </div>
 </section>
+
+<!-- forgot password modal popup open-->
+@include('frontend.component.forgot_password_modal_form')
+<!--- forgot password Modal Popup ------->
+
 <footer class="ms-footer">
 	<div class="ms-footer-wrap">
 		<div class="container">
@@ -194,6 +199,12 @@
 @section('component.scripts')
 <script>
 
+function open_reset_password_form(){
+
+    $('#forgot_password').modal('show');
+
+}
+
 /*--------------------- login form ------------------*/
 
 function ajax_form_submit_login(e, form, callBackFunction) {
@@ -224,9 +235,19 @@ function ajax_form_submit_login(e, form, callBackFunction) {
                         $.each(response.response_message.message, function (key, msg) {
                             errors += "<div>" + (key + 1) + ". " + msg + "</div>";
                         });
-                        Command: toastr.error(errors, "Alert");
+                        Command: toastr.error(errors, "Alert",
+                        {
+                            "closeButton": true,
+                            "progressBar": true,
+                            "tapToDismiss": false,
+                        });
                     } else {
-                        Command: toastr.error(response.response_message.message, "Alert");
+                        Command: toastr.error(response.response_message.message, "Alert",                        
+                        {
+                            "closeButton": true,
+                            "progressBar": true,
+                            "tapToDismiss": false,
+                        });
 
                         if(response.response_message.status === "incomplete"){
 
@@ -247,11 +268,21 @@ function ajax_form_submit_login(e, form, callBackFunction) {
             },
             error: function (xhr, status, error) {
                 resetButton(btn, btn_text);
-                Command: toastr.error("An error occurred: " + error, "Error");
+                Command: toastr.error("An error occurred: " + error, "Error",
+                {
+                    "closeButton": true,
+                    "progressBar": true,
+                    "tapToDismiss": false,
+                });
             }
         });
     } else {
-        toastr.error("Please make sure to fill all the necessary fields");
+        toastr.error("Please make sure to fill all the necessary fields", "Error",
+        {
+            "closeButton": true,
+            "progressBar": true,
+            "tapToDismiss": false,
+        });
         resetButton($(form).find('button[type="submit"]'), btn_text);
     }
 }

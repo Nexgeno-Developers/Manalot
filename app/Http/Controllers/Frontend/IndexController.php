@@ -200,6 +200,11 @@ class IndexController extends Controller
         return view('frontend.pages.terms.index');
     }
 
+     public function sample_profile(){
+        return view('frontend.pages.sample_profile.index');
+    }
+
+
     public function refund_policy(){
         return view('frontend.pages.refund_policy.index');
     }
@@ -215,6 +220,7 @@ class IndexController extends Controller
     public function admin(){
         return view('frontend.pages.registration.admin');
     }
+    
 
     // =====================--------------- dummy controller -------------====================
 

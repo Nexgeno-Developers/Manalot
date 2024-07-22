@@ -23,11 +23,6 @@ Route::middleware('auth.frontend')->group(function () {
 });
 
 
-
-
-
-
-
 Route::get('/about-us', [IndexController::class, 'about_us'])->name('about-us');
 Route::get('/help-center', [IndexController::class, 'help_center'])->name('help-center');
 
@@ -35,6 +30,7 @@ Route::get('/help-center', [IndexController::class, 'help_center'])->name('help-
 Route::get('/contact-us', [IndexController::class, 'contact_us'])->name('contact');
 Route::get('/privacy-policy', [IndexController::class, 'privacy_policy'])->name('privacy-policy');
 Route::get('/terms', [IndexController::class, 'terms_page'])->name('terms');
+Route::get('/sample-profile', [IndexController::class, 'sample_profile'])->name('sample_profile');
 Route::get('/refund-policy', [IndexController::class, 'refund_policy'])->name('refund-policy');
 // not allocated route
 
@@ -48,7 +44,7 @@ Route::post('/comment-save', [IndexController::class, 'comment_save'])->name('co
 Route::get('/search', [IndexController::class, 'search'])->name('search');
 // Home END
 
-//------------------------------ dummy controller ----------------------
+
 
 Route::get('/registration', [AccountController::class, 'registration_page'])->name('registration');
 
@@ -58,11 +54,25 @@ Route::get('/login', [AccountController::class, 'login'])->name('login');
 
 Route::post('/login', [AccountController::class, 'customer_login'])->name('customer.login');
 
-Route::any('/get-privious-page', function () {
+Route::any('/forgot-password/{param}', [AccountController::class, 'forgot_password'])->name('customer.forgot');
+
+Route::get('/logout', [AccountController::class, 'customer_logout'])->name('customer.logout');
+
+Route::get('/csrf-token', function () {
+    return response()->json(['token' => csrf_token()]);
+});
+
+Route::get('/skills', [AccountController::class, 'getSkills'])->name('get.skills');
+Route::get('/related-skills', [AccountController::class, 'getRelatedSkills'])->name('get.RelatedSkills');
+
+
+Route::any('/get-previous-page', function () {
     $step = Session()->get('step');
     $step = $step - 1;
     Session()->put('step', $step);
-})->name('get-privious-page');
+
+    // return response()->json(['step' => $step]);
+})->name('get-previous-page');
 
 
 Route::get('/update-session', function () {

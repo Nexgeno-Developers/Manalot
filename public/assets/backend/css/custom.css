@@ -71,3 +71,7 @@
 .auth-brand.text-center.text-lg-start span img {
     width: 200px;
 }
+
+.auth-brand.text-center.text-lg-start img {
+    width: 200px;
+}

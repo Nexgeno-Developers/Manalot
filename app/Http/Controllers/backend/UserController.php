@@ -84,7 +84,10 @@ class UserController extends Controller
         $newApprovalStatus = $approvalstatus ? 0 : 1; // Assuming approval is a boolean or binary flag
     
         // Update the user record with the new approval status
-        $affected = User::where('id', $id)->update(['approval' => $newApprovalStatus]);
+        $affected = User::where('id', $id)->update([
+            'approval' => $newApprovalStatus,
+            'status' => $newApprovalStatus,
+        ]);
     
         if ($affected) {
             $response = [
