@@ -1179,6 +1179,19 @@ input.h_input::placeholder {
     background-color: #0077b5;
 }
 
+.footer_app p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.android_app img {
+    width: 106%;
+}
+
+.ios_app img {
+    width: 98%;
+}
+
 .ms-footer-wrap .col-12 {
     margin-bottom: 0;
 }
@@ -2149,6 +2162,10 @@ div#social_media_div {
 
 .mt51 {
     margin-top: 50px;
+}
+
+.mt70 {
+    margin-top: 70px;
 }
 
 .select_industries {
