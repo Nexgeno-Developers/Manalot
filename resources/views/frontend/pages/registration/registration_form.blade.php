@@ -1415,7 +1415,7 @@
 </span></p>
       
 
-                 <div class="d-flex align-items-center gap-5 justify-content-end mgright20 mt51">
+                 <div class="d-flex align-items-center gap-5 justify-content-end mgright20 mt70">
                 <div class="blue_btn">
                     <a href="/login" class="text-decoration-none text-white padd22">Continue to Login</a>
                 </div>
