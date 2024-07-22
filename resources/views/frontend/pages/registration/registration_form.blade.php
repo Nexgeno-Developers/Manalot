@@ -27,7 +27,8 @@
     // $job_title = DB::table('job_title')->where('status', '1')->get();
     
     $industry = DB::table('industry')->where('status', '1')->get();
-    $groupedIndustries = $industry->groupBy('parent_id');
+    // $groupedIndustries = $industry->groupBy('parent_id');
+    $groupedIndustries = $industry->where('main', 1);
 
     $skills = DB::table('skills')->where('status', '1')->get();
 
@@ -488,7 +489,7 @@
 
 
                 <div class="col-md-8 mb-4">
-                    <label for="industry" class="form-label">Industry *</label>
+                    {{-- <label for="industry" class="form-label">Industry *</label>
                     <div id="list-industry" class="d-none">
 
                     </div>
@@ -525,7 +526,7 @@
                             @endforeach
 
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- 
                     <div class="position-relative form-group">
                         <label for="industry" class="form-label">Industry *</label>
@@ -541,6 +542,59 @@
                         </select>
                     </div>
                     --}}
+
+
+                    <label for="industry" class="form-label">Industry *</label>
+                    <div id="list-industry" class="d-none">
+    
+                    </div>
+                    
+                    <div id="dropdown-container">
+                        {{-- <div id="selected-values">Selected values will be shown here.</div> --}}
+                        <input type="hidden" id="selected-values-ids" name="industry[]" value="">
+
+
+                        <div class="dropdown">
+                            <a class="dropdown-toggle">Select Options</a>
+                            <div class="dropdown-menu">
+                                @foreach ($groupedIndustries as $mainIndustry)
+                                    <div class="title" style="background: #d5d5d563; padding: 10px; font-weight: 600">
+                                        {{ $mainIndustry->name }}
+                                    </div>
+
+                                    @php
+                                        $sub_Catg = $industry->where('main_partent_id', $mainIndustry->id);
+                                    @endphp
+
+                                    @if (count($sub_Catg) != 0)
+                                        @foreach ($sub_Catg as $subIndustry)
+                                            <div class="option">
+
+                                                <input type="checkbox" id="{{ $subIndustry->id }}" 
+                                                data-id="{{ $subIndustry->id }}" @if (in_array($subIndustry->id, json_decode($industry_check, true))) checked @endif>
+                                                <label for="{{ $subIndustry->id }}">{{ $subIndustry->name }}</label>
+
+                                                @php
+                                                    $child_Catg = $industry->where('sub_parent_id', $subIndustry->id);
+                                                @endphp
+
+                                                @if (count($child_Catg) != 0)
+                                                    <div class="child-options">
+                                                        @foreach ($child_Catg as $childIndustry)
+                                                            <input type="checkbox" id="{{ $childIndustry->id }}" data-id="{{ $childIndustry->id }}" @if (in_array($childIndustry->id, json_decode($industry_check, true))) checked @endif>
+                                                            <label for="{{ $childIndustry->id }}">{{ $childIndustry->name }}</label>
+                                                        @endforeach
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
 
 
@@ -1001,7 +1055,11 @@
                     </div>
                 </div> --}}
 
-                <label for="Preferred Industry*" class="form-label">Preferred Industry *</label>
+
+                {{-------------------------- Preferred Industry -------------}}
+
+
+                {{-- <label for="Preferred Industry*" class="form-label">Preferred Industry *</label>
 
                 <div id="list-Preferred-industry" class="industry_cls d-none">
 
@@ -1038,6 +1096,53 @@
                             </section>
                         @endforeach
                 
+                    </div>
+                </div> --}}
+
+
+                <label for="preferred-industry" class="form-label-new">Preferred Industry *</label>
+                <div id="list-preferred-industry" class=" industry_cls d-none-new">
+                </div>
+                
+                <div id="dropdown-container-new">
+                    <input type="hidden" id="selected-values-ids-new" name="pref_industry[]" value="">
+                
+                    <div class="dropdown-new">
+                        <a class="dropdown-toggle-new">Select Options</a>
+                        <div class="dropdown-menu-new">
+                            @foreach ($groupedIndustries as $mainIndustry)
+                                <div class="title-new" style="background: #d5d5d563; padding: 10px; font-weight: 600">
+                                    {{ $mainIndustry->name }}
+                                </div>
+                
+                                @php
+                                    $sub_Catg = $industry->where('main_partent_id', $mainIndustry->id);
+                                @endphp
+                
+                                @if (count($sub_Catg) != 0)
+                                    @foreach ($sub_Catg as $subIndustry)
+                                        <div class="option-new">
+                                            <input type="checkbox" id="sub-industry-{{ $subIndustry->id }}" 
+                                            data-id="{{ $subIndustry->id }}" @if (in_array($subIndustry->id, json_decode($pref_industry_check, true))) checked @endif>
+                                            <label for="sub-industry-{{ $subIndustry->id }}">{{ $subIndustry->name }}</label>
+                
+                                            @php
+                                                $child_Catg = $industry->where('sub_parent_id', $subIndustry->id);
+                                            @endphp
+                
+                                            @if (count($child_Catg) != 0)
+                                                <div class="child-options-new">
+                                                    @foreach ($child_Catg as $childIndustry)
+                                                        <input type="checkbox" id="child-industry-{{ $childIndustry->id }}" data-id="{{ $childIndustry->id }}" @if (in_array($childIndustry->id, json_decode($pref_industry_check, true))) checked @endif>
+                                                        <label for="child-industry-{{ $childIndustry->id }}">{{ $childIndustry->name }}</label>
+                                                    @endforeach
+                                                </div>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                @endif
+                            @endforeach
+                        </div>
                     </div>
                 </div>
                 
