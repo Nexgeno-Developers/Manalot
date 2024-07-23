@@ -827,16 +827,16 @@ class AccountController extends Controller
 
         $skill = $request->input('skill');
 
-        foreach($skill as $row){
-            $skill_data = DB::table('skills')->where('name', $row)->get()->first();
+        // foreach($skill as $row){
+        //     $skill_data = DB::table('skills')->where('name', $row)->get()->first();
 
-            if(!$skill_data){
-                 DB::table('skills')->insert([
-                    'name' => $row,
-                    'status' => 1,
-                ]);
-            } 
-        }
+        //     if(!$skill_data){
+        //          DB::table('skills')->insert([
+        //             'name' => $row,
+        //             'status' => 1,
+        //         ]);
+        //     } 
+        // }
 
         $industry = $request->input('industry');
 
