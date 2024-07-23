@@ -554,9 +554,9 @@
                         <input type="hidden" id="selected-values-ids" name="industry[]" value="">
 
 
-                        <div class="dropdown">
-                            <a class="dropdown-toggle">Select Options</a>
-                            <div class="dropdown-menu">
+                        <div class="dropdown industry_option_dropdown">
+                            <a class="dropdown-toggle industry_option">Select Industries</a>
+                            <div class="dropdown-menu industry-check-box industry_option_dropdown_box">
                                 @foreach ($groupedIndustries as $mainIndustry)
                                     <div class="title" style="background: #d5d5d563; padding: 10px; font-weight: 600">
                                         {{ $mainIndustry->name }}
@@ -568,7 +568,7 @@
 
                                     @if (count($sub_Catg) != 0)
                                         @foreach ($sub_Catg as $subIndustry)
-                                            <div class="option">
+                                            <div class="option custom-languages pt-1">
 
                                                 <input type="checkbox" id="{{ $subIndustry->id }}" 
                                                 data-id="{{ $subIndustry->id }}" @if (in_array($subIndustry->id, json_decode($industry_check, true))) checked @endif>
@@ -581,8 +581,10 @@
                                                 @if (count($child_Catg) != 0)
                                                     <div class="child-options">
                                                         @foreach ($child_Catg as $childIndustry)
+                                                        <div class="field_option pt-1">
                                                             <input type="checkbox" id="{{ $childIndustry->id }}" data-id="{{ $childIndustry->id }}" @if (in_array($childIndustry->id, json_decode($industry_check, true))) checked @endif>
                                                             <label for="{{ $childIndustry->id }}">{{ $childIndustry->name }}</label>
+                                                        </div>
                                                         @endforeach
                                                     </div>
                                                 @endif
@@ -1100,16 +1102,16 @@
                 </div> --}}
 
 
-                <label for="preferred-industry" class="form-label-new">Preferred Industry *</label>
+                <label for="preferred-industry" class="form-label-new form-label">Preferred Industry *</label>
                 <div id="list-preferred-industry" class=" industry_cls d-none-new">
                 </div>
                 
                 <div id="dropdown-container-new">
                     <input type="hidden" id="selected-values-ids-new" name="pref_industry[]" value="">
                 
-                    <div class="dropdown-new">
-                        <a class="dropdown-toggle-new">Select Options</a>
-                        <div class="dropdown-menu-new">
+                    <div class="dropdown-new industry_option_dropdown">
+                        <a class="dropdown-toggle-new industry_option">Select Options</a>
+                        <div class="dropdown-menu-new industry-check-box industry_option_dropdown_box">
                             @foreach ($groupedIndustries as $mainIndustry)
                                 <div class="title-new" style="background: #d5d5d563; padding: 10px; font-weight: 600">
                                     {{ $mainIndustry->name }}
@@ -1121,7 +1123,7 @@
                 
                                 @if (count($sub_Catg) != 0)
                                     @foreach ($sub_Catg as $subIndustry)
-                                        <div class="option-new">
+                                        <div class="option-new custom-languages pt-1">
                                             <input type="checkbox" id="sub-industry-{{ $subIndustry->id }}" 
                                             data-id="{{ $subIndustry->id }}" @if (in_array($subIndustry->id, json_decode($pref_industry_check, true))) checked @endif>
                                             <label for="sub-industry-{{ $subIndustry->id }}">{{ $subIndustry->name }}</label>
@@ -1133,8 +1135,10 @@
                                             @if (count($child_Catg) != 0)
                                                 <div class="child-options-new">
                                                     @foreach ($child_Catg as $childIndustry)
+                                                    <div class="field_option pt-1">
                                                         <input type="checkbox" id="child-industry-{{ $childIndustry->id }}" data-id="{{ $childIndustry->id }}" @if (in_array($childIndustry->id, json_decode($pref_industry_check, true))) checked @endif>
                                                         <label for="child-industry-{{ $childIndustry->id }}">{{ $childIndustry->name }}</label>
+                                                    </div>
                                                     @endforeach
                                                 </div>
                                             @endif

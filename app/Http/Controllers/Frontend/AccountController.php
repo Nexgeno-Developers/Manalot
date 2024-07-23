@@ -784,7 +784,7 @@ class AccountController extends Controller
             // 'wrk_exp__title' => ['required', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:2', 'max:100'],
             'wrk_exp__title' => 'required|regex:/^[A-Za-z0-9\s,.\/\'&]+$/i|min:2|max:100',
             // 'wrk_exp__title' => ['required', 'min:1', 'max:100'],
-            'industry' => 'required',
+            'industry.*' => 'required',
             // 'job_title' => 'required',
             'wrk_exp_years' => 'required',
             // 'wrk_exp_responsibilities' => ['required', 'string','regex:/^[A-Za-z0-9\s,.\/\'&\-\(\)\[\]_?+]+$/i', 'min:2'],
@@ -804,7 +804,7 @@ class AccountController extends Controller
             'wrk_exp__title.min' => 'The Professional Title must be at least 1 character.',
             'wrk_exp__title.max' => 'The Professional Title may not be greater than 100 characters.',
             
-            'industry.required' => 'The Industry field is required.',
+            'industry.*.required' => 'The Industry field is required.',
             'Employed.required' => 'The Employed Status is required.',
             
             'wrk_exp_years.required' => 'The Years of Experience field is required.',
@@ -1006,7 +1006,7 @@ class AccountController extends Controller
             // 'pref_salary' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:1', 'max:50'],
             'pref_title' => ['required', 'min:1', 'max:50'],
             'pref_emp_type' => ['required', 'min:1', 'max:50'],
-            'pref_industry' => 'required',
+            'pref_industry.*' => 'required',
             'pref_location' => ['required', 'min:1', 'max:50'],
             'pref_salary' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:1', 'max:100'],
             'current_salary' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:1', 'max:100'],
@@ -1049,7 +1049,7 @@ class AccountController extends Controller
 
             'notice_period_duration.required' => 'The Notice Period Duration is required.',
         
-            'pref_industry.required' => 'The Preferred Industry field is required.',
+            'pref_industry.*.required' => 'The Preferred Industry field is required.',
         
             'pref_location.required' => 'The Preferred Location is required.',
             'pref_location.min' => 'The Preferred Location must be at least 1 character.',
