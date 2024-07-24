@@ -1110,7 +1110,7 @@
                     <input type="hidden" id="selected-values-ids-new" name="pref_industry[]" value="">
                 
                     <div class="dropdown-new industry_option_dropdown">
-                        <a class="dropdown-toggle-new industry_option">Select Options</a>
+                        <a class="dropdown-toggle-new dropdown-toggle industry_option">Select Options</a>
                         <div class="dropdown-menu-new industry-check-box industry_option_dropdown_box">
                             @foreach ($groupedIndustries as $mainIndustry)
                                 <div class="title-new" style="background: #d5d5d563; padding: 10px; font-weight: 600">

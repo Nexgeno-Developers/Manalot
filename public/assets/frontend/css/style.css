@@ -2349,7 +2349,7 @@ label.select-all input,
     border-radius: 3px;
     position: relative;
     cursor: pointer;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 /* Style the checkbox when checked */
@@ -2360,6 +2360,17 @@ label.custom-select-all input:checked,
     border-color: #901D56;
     background: linear-gradient(34.89deg, #4B2779 8%, #BE2475 83.76%);
     border: 0px solid #901D56;
+}
+
+.form-check-input:focus {
+    border-color: transparent !important;
+    outline: 0;
+    box-shadow: none !important;
+}
+
+.form-check-input.custom-checkbox:checked {
+    background-color: transparent;
+    border-color: transparent;
 }
 
 /* Add a checkmark */

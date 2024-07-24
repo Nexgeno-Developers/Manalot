@@ -48,7 +48,7 @@
                             </div>
                             <div class="d-flex align-items-center justify-content-between mb-2">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
+                                    <input class="form-check-input custom-checkbox" type="checkbox" value=""
                                         id="flexCheckDefault" />
                                     <label class="form-check-label" for="flexCheckDefault">
                                         Remember me
