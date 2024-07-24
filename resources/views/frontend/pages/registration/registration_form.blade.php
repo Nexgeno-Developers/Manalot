@@ -395,7 +395,7 @@
 
                 <div class="col-md-12 mb-12">
                     <div class="position-relative form-group">
-                        <label for="address" class="form-label">Address</label>
+                        <label for="address" class="form-label">Address*</label>
                         {{-- <input type="text" class="form-control is-invalid input_text" id="address" pattern="[0-9A-Za-z]+"
                             minlength="5" maxlength="250" name="address" placeholder="Enter your Address"
                             value="{{ $address }}" required /> --}}
@@ -1320,7 +1320,7 @@
                         <img src="/assets/images/linkedin_icon.svg" alt="" class="input_icon linkedin_icon">
                         <input type="text" class="form-control is-invalid input_text" id="Linkdin"
                             name="linkdin" placeholder="Enter Your Linkedin URL" value="{{ $linkdin }}"
-                            name="linkdin" />
+                            name="linkdin" pattern="https://www.linkedin.com/[a-zA-Z0-9_.]+"/>
                         <!-- {{-- <img src="images/linkedin.png" alt="" class="input_icon" /> --}} -->
                     </div>
                 </div>
@@ -1330,7 +1330,7 @@
                         <img src="/assets/images/twitter_icon.svg" alt="" class="input_icon twitter_icon">
                         <input type="text" class="form-control is-invalid input_text" id="Twitter"
                             name="twitter" placeholder="Enter Your X URL" value="{{ $twitter }}"
-                            name="twitter" />
+                            name="twitter" pattern="https://twitter.com/[a-zA-Z0-9_]+"/>
                         <!-- {{-- <img src="images/x.png" alt="" class="input_icon" /> --}} -->
                     </div>
                 </div>
@@ -1340,7 +1340,7 @@
                         <img src="/assets/images/instagram_icon.svg" alt="" class="input_icon insta_icon">
                         <input type="text" class="form-control is-invalid input_text" id="Instagram"
                             placeholder="Enter Your Instagram URL" value="{{ $instagram }}"
-                            name="instagram">
+                            name="instagram" pattern="https://www.instagram.com/[a-zA-Z0-9_.]+">
                         {{-- <img src="images/instagram.png" alt="" class="input_icon" /> --}}
                     </div>
                 </div>
@@ -1350,7 +1350,7 @@
                         <img src="/assets/images/facebook_icon.svg" alt="" class="input_icon facebook_icon">
                         <input type="text" class="form-control is-invalid input_text" id="Facebook"
                             placeholder="Enter Your Facebook URL" value="{{ $facebook }}"
-                            name="facebook" />
+                            name="facebook" pattern="https://www.facebook.com/[a-zA-Z0-9.]+"/>
                         {{-- <img src="images/facebook.png" alt="" class="input_icon" /> --}}
                     </div>
                 </div>
