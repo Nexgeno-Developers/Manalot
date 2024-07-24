@@ -1616,6 +1616,12 @@ button.btn.btn-success.add-edu-row {
     background: #ccc;
 }
 
+input#resume_cv, input#formFile {
+    position: relative;
+    z-index: 2;
+    background-color: transparent;
+}
+
 button.btn.btn-danger.remove-edu-row {
     color: #0c3873;
     background: transparent;

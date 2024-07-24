@@ -13,7 +13,7 @@
     <div class="fluid-container">
         <div class="row align-items-center">
             <div class="col-md-6">
-                <img src="/assets/images/login_bg.png" class="mobile_none" style="width:100%">
+                <img src="/assets/images/login_bg.jpg" class="mobile_none" style="width:100%">
             </div>
             <div class="col-md-6 pddleft50">
                 <h1 class="main_heading mt50">
@@ -33,27 +33,21 @@
                         <form id="login-form" action="{{ url(route('customer.login')) }}"  method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
                             @csrf
                             <div class="position-relative">
-                                <label for="email" class="form-label">Email</label>
+                                <label for="email" class="form-label">Email *</label>
                                 <img src="/assets/images/email.png" alt="" class="input_icon" />
                                 <input type="email" class="form-control input_text" id="email" name="email"
                                     placeholder="Enter Your Email ID" required/>
                                 
                             </div>
                             <div class="position-relative">
-                                <label for="password" class="form-label">Password</label>
+                                <label for="password" class="form-label">Password *</label>
                                 <img src="/assets/images/key.png" alt="" class="input_icon" />
                                 <input type="password" class="form-control input_text" id="password" name="password"
                                     placeholder="***********" required/>
                                 
                             </div>
                             <div class="d-flex align-items-center justify-content-between mb-2">
-                                <div class="form-check">
-                                    <input class="form-check-input custom-checkbox" type="checkbox" value=""
-                                        id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Remember me
-                                    </label>
-                                </div>
+                                
 
                                 <p>
                                     Forgot your password?
