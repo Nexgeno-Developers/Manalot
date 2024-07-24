@@ -27,6 +27,10 @@ form#login-form a {
 .modal-header {
     border: 0;
 }
+
+.send_vrfy_code .purple_btn button {
+    padding: 2px 20px 3px 20px;
+}
 </style>
 
 
@@ -45,9 +49,9 @@ form#login-form a {
                 <label for="email" class="col-form-label form-label">Email ID*</label>
               <input type="email" class="form-control" name="email" placeholder="Enter Your Email" required/>
             </div>
-            <div class="form-group">
+            <div class="form-group send_vrfy_code">
               <div class="buttonclass1 mt-4 mb-3 purple_btn">
-                <button type="submit">Send OTP <i class="las la-arrow-right"></i>
+                <button type="submit" class="">Send Verification Code <i class="las la-arrow-right"></i>
                 </button>
               </div>
             </div>
