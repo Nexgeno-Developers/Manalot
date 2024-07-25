@@ -2,25 +2,25 @@
     @csrf
     <input type="hidden" name="id" value="{{ $author->id }}">
     <h3>Rest Password</h3>
-    <div class="row mb-3">
-        <label for="password" class="col-md-4 col-form-label text-md-end">New Password <span class="red">*</span></label>
+    <div class="row mb-2 col-md-6">
+        <label for="password" class="col-md-4 col-form-label text-md-start">New Password <span class="red">*</span></label>
 
         <div class="col-md-6">
-            <input id="password" type="text" class="form-control" name="password" minlength="6" required autocomplete="new-password">
+            <input id="password" type="text" class="form-control py-1 px-2" name="password" minlength="6" required autocomplete="new-password">
         </div>
     </div>
 
-    <div class="row mb-3">
-        <label for="password-confirm" class="col-md-4 col-form-label text-md-end">Confirm Password <span class="red">*</span></label>
+    <div class="row mb-2 col-md-6">
+        <label for="password-confirm" class="col-md-4 col-form-label text-md-start">Confirm Password <span class="red">*</span></label>
 
         <div class="col-md-6">
-            <input id="confirm_password" type="text" class="form-control" name="password_confirmation" required autocomplete="new-password">
+            <input id="confirm_password" type="text" class="form-control py-1 px-2" name="password_confirmation" required autocomplete="new-password">
             <span id='message'></span>
         </div>
     </div>
 
-    <div class="row mb-0">
-        <div class="col-md-6 offset-md-4">
+    <div class="row mb-0 col-md-6 justify-content-start">
+        <div class="col-md-6 offset-md-0">
             <button type="submit" class="btn btn-primary main_button">
                 Reset Password
             </button>

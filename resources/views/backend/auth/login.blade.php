@@ -60,12 +60,12 @@
                             <label for="password" class="form-label">Password</label>
                             <input class="form-control" type="password" required="" id="password" name="password" placeholder="Enter your password">
                         </div>
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="checkbox-signin">
                                 <label class="form-check-label" for="checkbox-signin">Remember me</label>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="d-grid mb-0 text-center">
                             <button class="btn btn-primary" type="submit"><i class="mdi mdi-login"></i> Log In </button>
                         </div>
@@ -103,7 +103,8 @@
         <!-- end auth-fluid-form-box-->
 
         <!-- Auth fluid right content -->
-        <div class="auth-fluid-right text-center">
+        <div class="auth-fluid-right text-center" style="background-image: url(/assets/images/login_bg.jpg);
+                    background-size: cover; background-position: center center;">
             <!--<div class="auth-user-testimonial">
                 <h2 class="mb-3">I love the color!</h2>
                 <p class="lead"><i class="mdi mdi-format-quote-open"></i> It's a elegent templete. I love it very much! . <i class="mdi mdi-format-quote-close"></i>
