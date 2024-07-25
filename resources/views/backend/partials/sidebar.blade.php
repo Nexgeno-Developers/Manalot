@@ -60,13 +60,22 @@
                     <span> Manage Users </span>
                 </a>
             </li>
-            <li class="side-nav-item">
+
+            {{------------------Manage Post----------------}}
+
+            {{-- <li class="side-nav-item">
                 <a href="{{ route('post.index_post') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                     <i class="ri-edit-line"></i>                             
                     <span>Manage Post </span>
                 </a>
-            </li>
-            <li class="side-nav-item">
+            </li> --}}
+
+            {{------------------Manage Post----------------}}
+
+
+            {{------------------ Reports----------------}}
+
+            {{-- <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="{{ url('#sidebarEmail') }}" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
                     <i class="ri-article-line"></i>
                     <span> Reports </span>
@@ -79,7 +88,10 @@
                         </li>
                     </ul>
                 </div>
-            </li> 
+            </li>  --}}
+
+            {{------------------ Reports----------------}}
+
 
             {{-- <li class="side-nav-item">
                 <a href="{{ route('contact.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">

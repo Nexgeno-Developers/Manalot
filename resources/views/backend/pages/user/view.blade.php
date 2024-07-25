@@ -1,7 +1,7 @@
 @php
     $job_title= DB::table('job_title')->where('id', $usersdetails->job_title)->first();
 
-    $industry= DB::table('industry')->where('id', $usersdetails->industry)->first();
+    // $industry= DB::table('industry')->where('id', $usersdetails->industry)->first();
 
     $years_of_exp= DB::table('years_of_exp')->where('id', $usersdetails->wrk_exp_years)->first();
 
@@ -124,13 +124,32 @@
                     <b>Work Exp In Year : </b> <p>{{ $years_of_exp->year_range }}</p>
                 </div>
             </div>
+
             <div class="col-sm-4">
                 <div class="form-group mb-3">
                     <b>Industry : </b>
-                    @php $industry = json_decode($usersdetails->industry, true); @endphp
-                    @foreach ($industry as $row)
-                        <p>{{ $row }}</p>
-                    @endforeach
+                    @php 
+                        $industry =  json_decode($usersdetails->industry, true); 
+                    @endphp
+                    @if(count($industry) != 0)
+                        @foreach ($industry as $row)
+
+                            @php 
+                                $industry_name =  DB::table('industry')->where('id', $row)->first(['name', 'sub_parent_id', 'main_partent_id', 'main']);
+                            @endphp
+
+                            @if($industry_name->main_partent_id != 0)
+                                @php 
+                                    $main_industry_name =  DB::table('industry')->where('id', $industry_name->main_partent_id)->value('name');
+                                @endphp
+                                <p class="text-primary">{{ $main_industry_name }}</p>
+                                <p class="text-warning"><b>{{ $industry_name->name }}</b></p>
+                            @elseif($industry_name->sub_parent_id != 0)
+                                <p>{{ $industry_name->name }}</p>
+                            @endif
+
+                        @endforeach
+                    @endif
                 </div>
             </div>  
             
@@ -147,7 +166,7 @@
                     </div>
                 </div>    
 
- <div class="col-sm-4">
+            <div class="col-sm-4">
                 <div class="form-group mb-3">
                     <b>Work Responsibility : </b> <p>{{ $usersdetails->wrk_exp_responsibilities }}</p>
                 </div>
@@ -235,9 +254,25 @@
                     <div class="form-group mb-3">
                         <b>Prefer Industry : </b>
                         @php $pref_industry = json_decode($usersdetails->pref_industry, true); @endphp
-                        @foreach ($pref_industry as $row)
-                            <p>{{ $row }}</p>
-                        @endforeach
+                        @if(count($pref_industry) != 0)
+                            @foreach ($pref_industry as $row)
+
+                                @php 
+                                    $industry_name =  DB::table('industry')->where('id', $row)->first(['name', 'sub_parent_id', 'main_partent_id', 'main']);
+                                @endphp
+
+                                @if($industry_name->main_partent_id != 0)
+                                    @php 
+                                        $main_industry_name =  DB::table('industry')->where('id', $industry_name->main_partent_id)->value('name');
+                                    @endphp
+                                    <p class="text-primary">{{ $main_industry_name }}</p>
+                                    <p class="text-warning"><b>{{ $industry_name->name }}</b></p>
+                                @elseif($industry_name->sub_parent_id != 0)
+                                    <p>{{ $industry_name->name }}</p>
+                                @endif
+
+                            @endforeach
+                        @endif
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -328,5 +363,5 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
     @endif

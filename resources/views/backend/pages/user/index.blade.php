@@ -28,7 +28,7 @@
                 </div>
             </div>
 
-            <div class="col">
+            {{-- <div class="col">
                 <div class="form-group mb-3">
                     <select name="status" class="text-muted form-control">
                         <option value="">Select Ban Status</option>
@@ -36,7 +36,7 @@
                         <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Suspended</option>
                     </select>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="col-md-auto d-flex justify-content-end">
                 <div class="input-group-append mx-md-2">
@@ -57,7 +57,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Account Status</th>
-                <th>Ban Status</th>
+                {{-- <th>Ban Status</th> --}}
                 <th>Date</th>
                 <th>Action</th>
             </tr>
@@ -78,13 +78,13 @@
                     <span class="badge bg-danger" title="Not Approved">Not Approved</span>
                     @endif
                 </td>
-                <td>
+                {{-- <td>
                     @if($row->status == 1)
                     <span class="badge bg-success" title="Active">Active</span>
                     @else
                     <span class="badge bg-danger" title="Suspended">Suspended</span>
                     @endif
-                </td>
+                </td> --}}
                 <td>{{ $row->created_at }}</td>
                 <td>
                     <a href="javascript:void(0);" class="btn @if($row->approval == 0) btn-success @else btn-warning @endif approveBtn text-white action-icon" onclick="confirmModal('{{ url(route('user.approvestatus', $row->id )) }}', responseHandler)">

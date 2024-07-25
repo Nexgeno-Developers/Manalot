@@ -46,7 +46,7 @@
                 <input type="email" class="form-control" name="email" value="{{ $author->email }}" required>
             </div>
         </div>
-        <div class="col-sm-12">
+        {{-- <div class="col-sm-12">
             <div class="form-group mb-3">
                 <label>User Status <span class="red">*</span></label>
                 <select name="status" class="form-control">
@@ -54,7 +54,7 @@
                     <option value="0" {{ $author->status == 0 ? 'selected' : '' }}>Suspend</option>
                 </select>
             </div>
-        </div>
+        </div> --}}
  
         <div class="col-sm-12">
             <div class="form-group mb-3 text-end">

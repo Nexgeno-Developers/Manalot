@@ -41,7 +41,9 @@ class UserController extends Controller
     }
 
     public function userslist(Request $request) {
-        $query = User::where('role_id', '<>', 1)->where('completed_status', 1);
+        // $query = User::where('role_id', '<>', 1)->where('completed_status', 1);
+
+        $query = User::where('role_id', '<>', 1);
     
         // Apply filters if present
         if ($request->filled('user_name')) {
@@ -123,7 +125,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'username' => 'required',
             'email' => 'required|email',
-            'status' => 'required|in:0,1', // Assuming status can only be 0 or 1
+            // 'status' => 'required|in:0,1', // Assuming status can only be 0 or 1
         ]);
 
         if ($validator->fails()) {
@@ -140,7 +142,7 @@ class UserController extends Controller
         ->update([
             'username' => $request->input('username'),
             'email' => $request->input('email'),
-            'status' => $request->input('status'),
+            // 'status' => $request->input('status'),
         ]);
 
         if ($affected) {

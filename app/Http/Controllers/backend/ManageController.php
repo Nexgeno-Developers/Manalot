@@ -127,34 +127,53 @@ class ManageController extends Controller
     // Industry 
     public function index_industry()
     {
-        $industry = DB::table('industry')->get();
+        $industry = DB::table('industry')->orderBy('id','DESC')->get();
         return view('backend.pages.industry.index', compact('industry'));
     }
 
     // Show the form for adding a new Industry
     public function add_industry()
     {
-        return view('backend.pages.industry.add');
+        $industry = DB::table('industry')->get();
+        return view('backend.pages.industry.add', compact('industry'));
     }
+
     public function create_industry(Request $request) {
 
-             // Validate form data
-             $validator = Validator::make($request->all(), [
-                'name' => 'required|string|max:255',
-                'status' => 'required|string|max:5'
-            ]);
-    
-            if ($validator->fails()) {
-                return response()->json([
-                    'status' => false,
-                    'notification' => $validator->errors()->all()
-                ], 200);
-            } 
-    
+        // Validate form data
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'type' => 'required',
+            // 'status' => 'required|string|max:5'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'notification' => $validator->errors()->all()
+            ], 200);
+        }
+
+        if($request->input('type') == 1){
             $industry = DB::table('industry')->insert([
                 'name' => $request->input('name'),
-                'status' => $request->input('status')
+                'main' => 1,
+                // 'status' => $request->input('status')
             ]);
+        } elseif($request->input('type') == 2) {
+            $industry = DB::table('industry')->insert([
+                'name' => $request->input('name'),
+                'main_partent_id' => $request->input('sub'),
+                // 'status' => $request->input('status')
+            ]);
+        } elseif($request->input('type') == 3) {
+            $industry = DB::table('industry')->insert([
+                'name' => $request->input('name'),
+                'sub_parent_id' => $request->input('child'),
+                // 'status' => $request->input('status')
+            ]);
+        }
+
         if($industry){
             $response = [
                 'status' => true,
@@ -174,7 +193,8 @@ class ManageController extends Controller
     public function edit_industry($id)
     {
         $industry = DB::table('industry')->where('id', $id)->first();
-        return view('backend.pages.industry.edit', compact('industry'));
+        $all_industry = DB::table('industry')->get();
+        return view('backend.pages.industry.edit', compact('industry','all_industry'));
     }
 
     // Update an existing Industry
@@ -184,7 +204,8 @@ class ManageController extends Controller
            // Validate form data
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'status' => 'required|in:0,1', // Assuming status can only be 0 or 1
+            'type' => 'required',
+            //'status' => 'required|in:0,1', // Assuming status can only be 0 or 1
         ]);
 
         if ($validator->fails()) {
@@ -196,13 +217,31 @@ class ManageController extends Controller
 
         $id = $request->input('id');
 
-        // Update the user record using DB facade
-        $affected = DB::table('industry')
-        ->where('id', $id)
-        ->update([
-            'name' => $request->input('name'),
-            'status' => $request->input('status')
-        ]);
+        if($request->input('type') == 1){
+            $affected = DB::table('industry')
+            ->where('id', $id)
+            ->update([
+                'name' => $request->input('name'),
+                // 'status' => $request->input('status')
+                'main' => 1,
+            ]);
+        } elseif($request->input('type') == 2) {
+            $affected = DB::table('industry')
+            ->where('id', $id)
+            ->update([
+                'name' => $request->input('name'),
+                // 'status' => $request->input('status')
+                'main_partent_id' => $request->input('sub'),
+            ]);
+        } elseif($request->input('type') == 3) {
+            $affected = DB::table('industry')
+            ->where('id', $id)
+            ->update([
+                'name' => $request->input('name'),
+                // 'status' => $request->input('status')
+                'sub_parent_id' => $request->input('child'),
+            ]);
+        }
 
         if ($affected) {
             $response = [
