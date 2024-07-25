@@ -16,31 +16,41 @@
     $certificate_data = json_decode($usersdetails->certificate_data, true);  
 @endphp
 
+<style>
+    p {
+        margin-bottom: 10px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+</style>
+
     <div class="row">
         <h3>User Register Form Step 1</h3>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <div class="form-group mb-3">
                 <b>Username : </b> <p>{{ $viewuser->username }}</p>
             </div>
         </div>        
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <div class="form-group mb-3">
                 <b>Email : </b> <p>{{ $viewuser->email }}</p>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
                 <div class="form-group mb-3">
                     <b>Phone Number : </b> <p>{{ $usersdetails->phone_number }}</p>
                 </div>
         </div> 
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <div class="form-group mb-3">
                 <b>Uploaded Resume CV : </b> 
                 <a target="_blank" href="{{ asset('storage/' . $usersdetails->resume_cv) }}" class="btn btn-success main_button">View CV</a>
                 
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <div class="form-group mb-3">
                 <b>Status : </b><p>{{ $viewuser->status == 1 ? 'Active' : 'Suspended' }}</p>
             </div>
@@ -49,63 +59,64 @@
 
     @if(!empty($usersdetails))
 
-    <hr class="mb-4">
+    <hr class="mb-3">
 
         <div class="row">
             <h3>Personal Information</h3>
  
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="form-group mb-3">
                     <b>Full name : </b> <p>{{ $usersdetails->fullname }}</p>
                 </div>
             </div>   
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="form-group mb-3">
                     <b>Gender : </b> 
                     
                     <p>@if($usersdetails->gender == 1) Male  @elseif($usersdetails->gender == 2) Female @elseif($usersdetails->gender == 3) Other @endif </p>
                 </div>
-            </div>   
-            <div class="col-sm-4">
-                <div class="form-group mb-3">
-                    <b>Profile Photo : </b> <img style="width:20vw;" src="{{ asset('storage/' . $usersdetails->profile_photo) }}">
-                </div>
-            </div>        
-            <div class="col-sm-4">
+            </div>     
+            <div class="col-sm-3">
                 <div class="form-group mb-3">
                     <b>DOB : </b> <p>{{ $usersdetails->dob }}</p>              
                 </div>
             </div>       
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="form-group mb-3">
                     <b>Pincode : </b> <p>{{ $usersdetails->pincode }}</p>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="form-group mb-3">
                     <b>City : </b> <p>{{ $usersdetails->city }}</p>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="form-group mb-3">
                     <b>Country : </b> <p>{{ $usersdetails->country }}</p>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="form-group mb-3">
                     <b>State : </b> 
                     <p>{{ $usersdetails->state }}</p>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="form-group mb-3">
                     <b>Address : </b> <p>{{ $usersdetails->address }}</p>                
                 </div>
             </div>
+              
+            <div class="col-sm-3">
+                <div class="form-group mb-3">
+                    <b>Profile Photo : </b> <img style="width:20vw;" src="{{ asset('storage/' . $usersdetails->profile_photo) }}">
+                </div>
+            </div>    
    
         </div>
 
-        <hr class="mb-4">
+        <hr class="mb-3">
 
         <div class="row">
         <h3>Work Experience</h3>
@@ -142,8 +153,8 @@
                                 @php 
                                     $main_industry_name =  DB::table('industry')->where('id', $industry_name->main_partent_id)->value('name');
                                 @endphp
-                                <p class="text-primary">{{ $main_industry_name }}</p>
-                                <p class="text-warning"><b>{{ $industry_name->name }}</b></p>
+                                <p class="" style="color: #024487;">{{ $main_industry_name }}</p>
+                                <p class="" style="color: #bb47a3 ;"><b>{{ $industry_name->name }}</b></p>
                             @elseif($industry_name->sub_parent_id != 0)
                                 <p>{{ $industry_name->name }}</p>
                             @endif
@@ -184,26 +195,26 @@
             </div>
         </div>
 
-        <hr class="mb-4">
+        <hr class="mb-3">
 
         <div class="row">
         <h3>Education</h3>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="form-group mb-3">
                     <b>School/University Name : </b> <p>{{ $usersdetails->edu_clg_name }}</p>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="form-group mb-3">
                     <b>Education Degree : </b> <p>{{ $usersdetails->edu_degree }}</p>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="form-group mb-3">
                     <b>Graduation Year : </b> <p>{{ $usersdetails->edu_graduation_year }}</p>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="form-group mb-3">
                     <b>Education Field : </b> <p>{{ $usersdetails->edu_field }}</p>
                 </div>
@@ -236,9 +247,9 @@
                 </div>
             @endif
 
-            <hr class="mb-4">
+            <hr class="mb-3">
 
-            <div class="row mb-4">
+            <div class="row mb-3">
                 <h3>Availability and Preferences</h3>
                 <div class="col-sm-4">
                     <div class="form-group mb-3">
@@ -288,7 +299,7 @@
 
             </div>
 
-            <div class="row mb-4">
+            <div class="row mb-3">
                 @if (!empty($references_data))
                     <h3>Reference</h3>
                     @foreach($references_data as $index => $reference)
@@ -311,7 +322,7 @@
                 @endif
             </div>
 
-            <div class="row mb-4">
+            <div class="row mb-3">
                 <h3>Work Authorization</h3>
                 <div class="col-sm-4">
                     <div class="form-group mb-3">
@@ -333,32 +344,32 @@
                 </div>
             </div>
 
-            <hr class="mb-4">
+            <hr class="mb-3">
             
             <div class="row">
                 <h3>Social Media Links</h3>            
-                <div class="col-sm-4">
-                    <div class="form-group mb-3">
+                <div class="col-sm-3">
+                    <div class="d-flex form-group gap-2">
                         <b>Linkdin : </b> <p>{{ $usersdetails->linkdin }}</p>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="form-group mb-3">
+                <div class="col-sm-3">
+                    <div class="d-flex form-group gap-2">
                         <b>Twitter : </b> <p>{{ $usersdetails->twitter }}</p>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="form-group mb-3">
+                <div class="col-sm-3">
+                    <div class="d-flex form-group gap-2">
                         <b>Instagram: </b> <p>{{ $usersdetails->instagram }}</p>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="form-group mb-3">
+                <div class="col-sm-3">
+                    <div class="d-flex form-group gap-2">
                         <b>Facebook : </b> <p>{{ $usersdetails->facebook }}</p>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="form-group mb-3">
+                <div class="col-sm-3">
+                    <div class="d-flex form-group gap-2">
                         <b>Other : </b> <p>{{ $usersdetails->other }}</p>
                     </div>
                 </div>
