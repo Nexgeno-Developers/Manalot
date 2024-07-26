@@ -1,18 +1,18 @@
 <form id="edit_job_title_form" action="{{ route('manage.update_job_title') }}" method="POST">
     @csrf
-    <input type="hidden" name="id" value="{{ $job_title->id }}">
+    <input type="hidden" name="id" value="{{ $currencies->id }}">
     <div class="col-sm-12">
         <div class="form-group mb-3">
-            <label>Name <span class="red">*</span></label>
-            <input type="text" class="form-control" name="name" value="{{ $job_title->name  }}" required>
+            <label>Symbol <span class="red">*</span></label>
+            <input type="text" class="form-control" name="symbol" value="{{ $currencies->symbol  }}" required>
         </div>
     </div>
     <div class="col-sm-12">
         <div class="form-group mb-3">
             <label>Status <span class="red">*</span></label>
             <select name="status" class="form-control" required>
-                <option value="1" {{ $job_title->status == 1 ? 'selected' : '' }}>Active</option>
-                <option value="0" {{ $job_title->status == 0 ? 'selected' : '' }}>Inactive</option>
+                <option value="1" {{ $currencies->status == 1 ? 'selected' : '' }}>Active</option>
+                <option value="0" {{ $currencies->status == 0 ? 'selected' : '' }}>Inactive</option>
             </select>
         </div>
     </div>

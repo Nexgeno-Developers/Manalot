@@ -120,7 +120,7 @@ Route::group(['prefix' => 'post'], function () {
 });
 
 Route::group(['prefix' => 'manage'], function () {
-    Route::get('/experience_status/view', [ManageController::class, 'index_experience_status'])->name('manage.index_experience_status');
+    Route::get('/notice-period/view', [ManageController::class, 'index_experience_status'])->name('manage.index_experience_status');
     Route::get('/experience_status/add', [ManageController::class, 'add_experience_status'])->name('manage.add_experience_status');
     Route::get('/experience_status/edit{id}', [ManageController::class, 'edit_experience_status'])->name('manage.edit_experience_status');
     Route::post('/experience_status/create', [ManageController::class, 'create_experience_status'])->name('manage.create_experience_status');
@@ -134,19 +134,19 @@ Route::group(['prefix' => 'manage'], function () {
     Route::post('/industry/update', [ManageController::class, 'update_industry'])->name('manage.update_industry');
     Route::post('/industry/delete/{id}', [ManageController::class, 'delete_industry'])->name('manage.delete_industry');
     
-    Route::get('/job_title/view', [ManageController::class, 'index_job_title'])->name('manage.index_job_title');
-    Route::get('/job_title/add', [ManageController::class, 'add_job_title'])->name('manage.add_job_title');
-    Route::get('/job_title/edit{id}', [ManageController::class, 'edit_job_title'])->name('manage.edit_job_title');
-    Route::post('/job_title/create', [ManageController::class, 'create_job_title'])->name('manage.create_job_title');
-    Route::post('/job_title/update', [ManageController::class, 'update_job_title'])->name('manage.update_job_title');
-    Route::post('/job_title/delete/{id}', [ManageController::class, 'delete_job_title'])->name('manage.delete_job_title');
+    Route::get('/currencies/view', [ManageController::class, 'index_job_title'])->name('manage.index_job_title');
+    Route::get('/currencies/add', [ManageController::class, 'add_job_title'])->name('manage.add_job_title');
+    Route::get('/currencies/edit{id}', [ManageController::class, 'edit_job_title'])->name('manage.edit_job_title');
+    Route::post('/currencies/create', [ManageController::class, 'create_job_title'])->name('manage.create_job_title');
+    Route::post('/currencies/update', [ManageController::class, 'update_job_title'])->name('manage.update_job_title');
+    Route::post('/currencies/delete/{id}', [ManageController::class, 'delete_job_title'])->name('manage.delete_job_title');
     
-    Route::get('/references_from/view', [ManageController::class, 'index_references_from'])->name('manage.index_references_from');
-    Route::get('/references_from/add', [ManageController::class, 'add_references_from'])->name('manage.add_references_from');
-    Route::get('/references_from/edit{id}', [ManageController::class, 'edit_references_from'])->name('manage.edit_references_from');
-    Route::post('/references_from/create', [ManageController::class, 'create_references_from'])->name('manage.create_references_from');
-    Route::post('/references_from/update', [ManageController::class, 'update_references_from'])->name('manage.update_references_from');
-    Route::post('/references_from/delete/{id}', [ManageController::class, 'delete_references_from'])->name('manage.delete_references_from');
+    Route::get('/employment_type/view', [ManageController::class, 'index_references_from'])->name('manage.index_references_from');
+    Route::get('/employment_type/add', [ManageController::class, 'add_references_from'])->name('manage.add_references_from');
+    Route::get('/employment_type/edit{id}', [ManageController::class, 'edit_references_from'])->name('manage.edit_references_from');
+    Route::post('/employment_type/create', [ManageController::class, 'create_references_from'])->name('manage.create_references_from');
+    Route::post('/employment_type/update', [ManageController::class, 'update_references_from'])->name('manage.update_references_from');
+    Route::post('/employment_type/delete/{id}', [ManageController::class, 'delete_references_from'])->name('manage.delete_references_from');
     
     Route::get('/skills/view', [ManageController::class, 'index_skills'])->name('manage.index_skills');
     Route::get('/skills/add', [ManageController::class, 'add_skills'])->name('manage.add_skills');

@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('page.name', 'Job Title')
+@section('page.name', 'Currencies')
 
 @section('page.content')
 <div class="card">
@@ -12,8 +12,8 @@
             <div class="col-sm-7">
                 <div class="text-sm-end">
                     <a href="javascript:void(0);" class="btn btn-danger mb-2 main_button"
-                        onclick="smallModal('{{ url(route('manage.add_job_title')) }}', 'Add Job Title')"><i
-                            class="mdi mdi-plus-circle"></i> Add Job Title</a>
+                        onclick="smallModal('{{ url(route('manage.add_job_title')) }}', 'Add Currencie')"><i
+                            class="mdi mdi-plus-circle"></i> Add Currencie</a>
                 </div>
             </div>
         </div>
@@ -22,17 +22,17 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th>Symbol</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php $i = 1; @endphp  
-                    @foreach ($job_title as $status)
+                    @foreach ($currencies as $status)
                     <tr>
                         <td>{{$i++}}</td>
-                        <td>{{ $status->name }}</td>
+                        <td>{{ $status->symbol }}</td>
                         <td>
                             @if( $status->status == 1)
                                 <span class="badge bg-success" title="Active">Active</span>
@@ -42,7 +42,7 @@
                         </td>
                         <td>
                             <a href="javascript:void(0);" class="btn btn-info text-white action-icon"
-                                onclick="smallModal('{{ url(route('manage.edit_job_title',['id' => $status->id])) }}', 'Edit user')">
+                                onclick="smallModal('{{ url(route('manage.edit_job_title',['id' => $status->id])) }}', 'Edit Currencie')">
                                 <i class="mdi mdi-square-edit-outline" title="Edit"></i>
                             </a>
                             {{-- <a href="javascript:void(0);" class="btn btn-danger text-white action-icon"
@@ -58,6 +58,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div>
+                {{ $currencies->links('pagination::newbootstrap-6') }}
+            </div>
         </div>
     </div>
 </div>
@@ -66,7 +69,10 @@
 @section("page.scripts")
 <script>
 $(document).ready(function() {
-    var table = $('#basic-datatable5').DataTable();
+    var table = $('#basic-datatable5').DataTable({
+        paging: false,
+        info: false
+    });
 });
 </script>
 

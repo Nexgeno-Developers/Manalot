@@ -192,10 +192,10 @@
                             <a href="{{ route('manage.index_industry') }}">Industry</a>
                         </li>
                         <li>
-                            <a href="{{ route('manage.index_job_title') }}">Job Title</a>
+                            <a href="{{ route('manage.index_job_title') }}">Currencies</a>
                         </li>
                         <li>
-                            <a href="{{ route('manage.index_references_from') }}">References</a>
+                            <a href="{{ route('manage.index_references_from') }}">Employment Type</a>
                         </li>
                         <li>
                             <a href="{{ route('manage.index_skills') }}">Skills</a>

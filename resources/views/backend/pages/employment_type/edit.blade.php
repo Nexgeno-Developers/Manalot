@@ -1,18 +1,18 @@
 <form id="edit_references_from_form" action="{{ route('manage.update_references_from') }}" method="POST">
     @csrf
-    <input type="hidden" name="id" value="{{ $references_from->id }}">
+    <input type="hidden" name="id" value="{{ $employ_types->id }}">
     <div class="col-sm-12">
         <div class="form-group mb-3">
             <label>Name <span class="red">*</span></label>
-            <input type="text" class="form-control" name="name" value="{{ $references_from->name  }}" required>
+            <input type="text" class="form-control" name="name" value="{{ $employ_types->name  }}" required>
         </div>
     </div>
     <div class="col-sm-12">
         <div class="form-group mb-3">
             <label>Status <span class="red">*</span></label>
             <select name="status" class="form-control" required>
-                <option value="1" {{ $references_from->status == 1 ? 'selected' : '' }}>Active</option>
-                <option value="0" {{ $references_from->status == 0 ? 'selected' : '' }}>Inactive</option>
+                <option value="1" {{ $employ_types->status == 1 ? 'selected' : '' }}>Active</option>
+                <option value="0" {{ $employ_types->status == 0 ? 'selected' : '' }}>Inactive</option>
             </select>
         </div>
     </div>

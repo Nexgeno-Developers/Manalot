@@ -2,8 +2,8 @@
     @csrf
     <div class="col-sm-12">
         <div class="form-group mb-3">
-            <label>Name <span class="red">*</span></label>
-            <input type="text" class="form-control" name="name" required>
+            <label>symbol <span class="red">*</span></label>
+            <input type="text" class="form-control" name="symbol" required>
         </div>
     </div>
     <div class="col-sm-12">
