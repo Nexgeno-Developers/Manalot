@@ -1017,7 +1017,7 @@ class AccountController extends Controller
                     foreach ($value as $name) {
                         // Allow numbers and the plus sign (+)
                         if (!preg_match('/^[A-Za-z+\s]+$/', $name)) {
-                            $fail("The Reference Name must contain only Alphabetical values only.");
+                            $fail("The Reference Name are Rquired and must contain only Alphabetical values only.");
                         }
                     }
                 }
@@ -1028,7 +1028,7 @@ class AccountController extends Controller
                     foreach ($value as $phone) {
                         // Allow numbers, plus sign (+), and spaces
                         if (!preg_match('/^[0-9+\s]+$/', $phone)) {
-                            $fail("The Reference Phone must contain only numeric values, spaces, and the plus sign (+).");
+                            $fail("The Reference Phone are Rquired must contain only numeric values, spaces, and the plus sign (+).");
                         }
                     }
                 }
