@@ -411,7 +411,7 @@ class AccountController extends Controller
             'password' => 'required',
             'confirm_password' => 'required|same:password',
             //'experience_Status' => 'required',
-            'phone_number' => 'required|regex:/^[\d\s\-\+]+$/|min:10',
+            'phone_number' => 'required|regex:/^[\d\s\-\+]+$/|min:5',
             'resume_cv' => 'required|mimes:pdf,doc,docx|max:5120',
         ], [
             'name.required' => 'The Name field is required.',
@@ -430,7 +430,7 @@ class AccountController extends Controller
         
             'phone_number.required' => 'The Phone Number field is required.',
             'phone_number.regex' => 'The Phone Number format is invalid.',
-            'phone_number.min' => 'The Phone Number must be at least 10 characters.',
+            'phone_number.min' => 'The Phone Number must be at least 5 characters.',
             
             'resume_cv.required' => 'The Resume file is required.',
             'resume_cv.mimes' => 'The Resume must be a PDF, DOC, or DOCX file.',
@@ -572,7 +572,7 @@ class AccountController extends Controller
         Session::put('user_info', $user_info);
 
         $rsp_msg['response'] = 'success';
-        $rsp_msg['message']  = "User Detail Added successfully. Please verify Your Email ID";
+        $rsp_msg['message'] = "Please Enter your Verification Code Sent To " . $user_info['email'];
 
         // session()->flash('success', 'User Detail Added successfully. Please Proceed');
 
@@ -667,7 +667,7 @@ class AccountController extends Controller
             session()->forget('user_info');
 
             $rsp_msg['response'] = 'success';
-            $rsp_msg['message']  = "Email ID has been Verified";
+            $rsp_msg['message']  = "Email Verified Successfully";
 
         } else {
             $rsp_msg['response'] = 'error';
@@ -718,7 +718,7 @@ class AccountController extends Controller
             //'email' => 'required|email',
             //'phone_number' => 'required|regex:/^[\d\s-]+$/|min:10',
             //'address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&-]+$/i', 'min:3', 'max:250'],
-            'address' => ['required','min:1', 'max:250'],
+            // 'address' => ['required','min:1', 'max:250'],
             'city' => 'required',
             'state' => 'required',
             'pincode' => 'required',

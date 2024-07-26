@@ -125,7 +125,7 @@
                     <div class="position-relative form-group">
                         <label for="Phone" class="form-label">Phone *</label>
                         <input type="text" class="form-control is-invalid input_text" id="Mobile"
-                            name="phone_number" placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10"
+                            name="phone_number" placeholder="Enter your Phone Number" title="This Field is required" pattern="[0-9]+" minlength="5"
                             maxlength="16" required />
                     </div>
                 </div>
@@ -395,13 +395,12 @@
 
                 <div class="col-md-12 mb-12">
                     <div class="position-relative form-group">
-                        <label for="address" class="form-label">Address*</label>
+                        <label for="address" class="form-label">Address</label>
                         {{-- <input type="text" class="form-control is-invalid input_text" id="address" pattern="[0-9A-Za-z]+"
                             minlength="5" maxlength="250" name="address" placeholder="Enter your Address"
                             value="{{ $address }}" required /> --}}
 
-                        <textarea class="form-control is-invalid" rows="3" cols="45" name="address" id="address" pattern="[0-9A-Za-z]+"
-                            placeholder="Address">{{ $address }}</textarea>
+                        <textarea class="form-control is-invalid" rows="3" cols="45" name="address" id="address" pattern="[0-9A-Za-z]+" placeholder="Address">{{ $address }}</textarea>
 
                     </div>
                 </div>
@@ -1173,7 +1172,7 @@
                                     <label for="Phone{{ $index + 1 }}" class="form-label">Phone *</label>
                                     <input type="text" class="form-control is-invalid input_text reference_phone"
                                         name="reference_phone[]" id="Phone{{ $index + 1 }}"
-                                        placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10"
+                                        placeholder="Enter your Phone Number" title="This Field is required" pattern="[0-9]+" minlength="10"
                                         maxlength="16" value="{{ $reference['reference_phone'] }}" required />
                                 </div>
                             </div>
