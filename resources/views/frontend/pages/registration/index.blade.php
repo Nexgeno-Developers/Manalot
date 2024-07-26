@@ -921,8 +921,9 @@
         xhr.open('GET', url, true);
         xhr.send();
 
-
-        //location.reload();
+        setTimeout(function () {
+            location.reload();
+        }, 5000);
     }
 
     /*--------------------- user info ------------------*/
