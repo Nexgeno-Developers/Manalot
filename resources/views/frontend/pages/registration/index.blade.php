@@ -923,7 +923,7 @@
 
         setTimeout(function () {
             location.reload();
-        }, 10);
+        }, 60);
     }
 
     /*--------------------- user info ------------------*/
