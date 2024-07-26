@@ -12,8 +12,8 @@ class ManageController extends Controller
     // View all experience statuses
     public function index_experience_status()
     {
-        $experience_statuses = DB::table('experience_status')->get();
-        return view('backend.pages.experience_status.index', compact('experience_statuses'));
+        $notice_period = DB::table('notice_period')->get();
+        return view('backend.pages.experience_status.index', compact('notice_period'));
     }
 
     // Show the form for adding a new experience status
@@ -36,14 +36,14 @@ class ManageController extends Controller
                 ], 200);
             } 
     
-            $experience = DB::table('experience_status')->insert([
+            $experience = DB::table('notice_period')->insert([
                 'name' => $request->input('name'),
                 'status' => $request->input('status')
             ]);
         if($experience){
             $response = [
                 'status' => true,
-                'notification' => 'Experience added successfully!',
+                'notification' => 'Notice Period added successfully!',
             ];
         }
         else{
@@ -58,8 +58,8 @@ class ManageController extends Controller
     // Show the form for editing an existing experience status
     public function edit_experience_status($id)
     {
-        $experience_status = DB::table('experience_status')->where('id', $id)->first();
-        return view('backend.pages.experience_status.edit', compact('experience_status'));
+        $notice_period = DB::table('notice_period')->where('id', $id)->first();
+        return view('backend.pages.experience_status.edit', compact('notice_period'));
     }
 
     // Update an existing experience status
@@ -82,7 +82,7 @@ class ManageController extends Controller
         $id = $request->input('id');
 
         // Update the user record using DB facade
-        $affected = DB::table('experience_status')
+        $affected = DB::table('notice_period')
         ->where('id', $id)
         ->update([
             'name' => $request->input('name'),
@@ -92,12 +92,12 @@ class ManageController extends Controller
         if ($affected) {
             $response = [
                 'status' => true,
-                'notification' => 'Experience updated successfully!',
+                'notification' => 'Notice Period updated successfully!',
             ];
         } else {
             $response = [
                 'status' => false,
-                'notification' => 'Nothing to update in Experience.',
+                'notification' => 'Nothing to update in Notice Period.',
             ];
         }
 
@@ -107,7 +107,7 @@ class ManageController extends Controller
     // Delete an existing experience status
     public function delete_experience_status($id)
     {
-        $experience = DB::table('experience_status')->where('id', $id);
+        $experience = DB::table('notice_period')->where('id', $id);
         if (!$experience) {
             $response = [
                 'status' => false,
@@ -119,7 +119,7 @@ class ManageController extends Controller
 
         $response = [
             'status' => true,
-            'notification' => 'Experience Deleted successfully!',
+            'notification' => 'Notice Period Deleted successfully!',
         ];
 
         return response()->json($response);

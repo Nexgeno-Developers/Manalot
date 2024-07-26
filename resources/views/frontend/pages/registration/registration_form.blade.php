@@ -17,7 +17,7 @@
         ->get(['email'])
         ->first();
         
-    $experience_status = DB::table('experience_status')->where('status', 1)->get();
+    // $experience_status = DB::table('experience_status')->where('status', 1)->get();
 
     $employ_types = DB::table('employ_types')->where('status', 1)->get();
 

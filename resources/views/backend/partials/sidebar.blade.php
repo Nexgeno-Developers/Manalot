@@ -186,7 +186,7 @@
                 <div class="collapse" id="sidebarEmail2">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{ route('manage.index_experience_status') }}">Experience</a>
+                            <a href="{{ route('manage.index_experience_status') }}">Notice Period</a>
                         </li>
                         <li>
                             <a href="{{ route('manage.index_industry') }}">Industry</a>
