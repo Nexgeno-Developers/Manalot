@@ -894,6 +894,23 @@
     }
 
 
+
+
+    $(document).ready(function() {
+        // Set up an event listener for changes on the .select2 element
+        $('.select2').on('change', function() {
+            // Check if the .select2 element has a value
+            if ($(this).val()) {
+                // Hide the nearest #pref_emp_type-error element
+                $(this).closest('.form-group').find('.invalid-feedback').addClass('d-none');
+            } else {
+                // Optionally, show the error element if no value is selected
+                $(this).closest('.form-group').find('.invalid-feedback').removeClass('d-none');
+            }
+        });
+    });
+
+
     // $(document).ready(function() {
     //     initSelect2('.select2');
     //     initTrumbowyg('.trumbowyg');

@@ -1172,7 +1172,7 @@
                                     <label for="Phone{{ $index + 1 }}" class="form-label">Phone *</label>
                                     <input type="text" class="form-control is-invalid input_text reference_phone"
                                         name="reference_phone[]" id="Phone{{ $index + 1 }}"
-                                        placeholder="Enter your Phone Number" title="This Field is required" pattern="[0-9]+" minlength="10"
+                                        placeholder="Enter your Phone Number" title="This Field is required" pattern="[0-9]+" minlength="5"
                                         maxlength="16" value="{{ $reference['reference_phone'] }}" required />
                                 </div>
                             </div>

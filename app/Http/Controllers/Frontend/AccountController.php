@@ -925,10 +925,10 @@ class AccountController extends Controller
             
             'certificate_obtn_date.required' => 'The Certificate Obtain Date is required.',
         
-            'edu_degree.*.required' => 'The Education Degree field is required.',
-            'edu_clg_name.*.required' => 'The College Name field is required.',
+            'edu_degree.*.required' => 'The Degree field is required.',
+            'edu_clg_name.*.required' => 'The School/University Name field is required.',
             'edu_graduation_year.*.required' => 'The Graduation Year field is required.',
-            'edu_field.*.required' => 'The Field of Education field is required.',
+            'edu_field.*.required' => 'The Major/Field of Study field is required.',
         ]);
 
         if ($validator->fails()) {
@@ -1017,7 +1017,7 @@ class AccountController extends Controller
                     foreach ($value as $name) {
                         // Allow numbers and the plus sign (+)
                         if (!preg_match('/^[A-Za-z+\s]+$/', $name)) {
-                            $fail("The $attribute must contain only Alphabetical values only.");
+                            $fail("The Reference Name must contain only Alphabetical values only.");
                         }
                     }
                 }
@@ -1028,7 +1028,7 @@ class AccountController extends Controller
                     foreach ($value as $phone) {
                         // Allow numbers, plus sign (+), and spaces
                         if (!preg_match('/^[0-9+\s]+$/', $phone)) {
-                            $fail("The $attribute must contain only numeric values, spaces, and the plus sign (+).");
+                            $fail("The Reference Phone must contain only numeric values, spaces, and the plus sign (+).");
                         }
                     }
                 }
