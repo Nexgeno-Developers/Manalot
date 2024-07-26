@@ -34,7 +34,7 @@
 
     $currencies = DB::table('currencies')->get(['id','symbol']);
 
-    $references_from = DB::table('references_from')->where('status', '1')->get();
+    // $references_from = DB::table('references_from')->where('status', '1')->get();
 
     $fullname = isset($user_detail->fullname) ? $user_detail->fullname : null;
     $gender = isset($user_detail->gender) ? $user_detail->gender : null;
