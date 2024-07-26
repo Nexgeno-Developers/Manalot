@@ -179,17 +179,17 @@
 					<div class="ms-footer-social">
 						<a href="https://www.linkedin.com/company/manalot/" target="_blank" class="ms-social-link linkdin" aria-label="Linkdin"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
 					</div>	
-                    <div class="col-md-12 p-2 mt-3 row footer_app">
+                    <div class="col-md-12 p-2 mt-md-5 row footer_app">
                         <b class="text-light px-0">Apply on the go</b>
                         <p class="text-light px-0">Get real-time job updates on our App</p>
                         <div class="android_app col-md-6 ps-0">
                             <a href="" rel="noreferrer" class="download" target="_blank">
-                                <img loading="lazy" alt="manalot app download" src="/assets/images/android_app.png" >
+                                <img loading="lazy" alt="manalot app download" src="/assets/images/google_play_white_bg.png" >
                             </a>
                         </div>
                         <div class="ios_app col-md-6 px-0">
                             <a href="" rel="noreferrer" class="download" target="_blank">
-                                <img loading="lazy" alt="manlot app download" src="/assets/images/ios_app.png" >
+                                <img loading="lazy" alt="manlot app download" src="/assets/images/app_store_white_bg.png" >
                             </a>
                         </div>
                     </div>			

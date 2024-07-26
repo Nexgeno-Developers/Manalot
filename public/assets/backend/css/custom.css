@@ -75,3 +75,18 @@
 .auth-brand.text-center.text-lg-start img {
     width: 200px;
 }
+
+div#list-industry li{
+    height: 34px !important;
+    padding: 5px 17px 5px 24px !important;
+    border-radius: 50px !important;
+    cursor: pointer;
+    margin-top: 7px;
+    font-weight: 600 !important;
+    background: #cccccc36 !important;
+    font-size: 14px;
+    list-style: none;
+    float: left;
+    margin-right: 10px;
+    border: 1px solid #aaaaaa52 !important;
+}
