@@ -252,17 +252,17 @@
             <div class="row mb-3">
                 <h3>Availability and Preferences</h3>
                 <div class="col-sm-4">
-                    <div class="form-group mb-3">
+                    <div class="d-flex form-group gap-2">
                         <b>Preferred Title/Role : </b> <p>{{ $usersdetails->pref_title }}</p>
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="form-group mb-3">
+                    <div class="d-flex form-group gap-2">
                         <b>Employment Type : </b> <p>{{ $usersdetails->pref_emp_type }}</p>
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="form-group mb-3">
+                    <div class="d-flex form-group gap-2">
                         <b>Prefer Industry : </b>
                         @php $pref_industry = json_decode($usersdetails->pref_industry, true); @endphp
                         @if(count($pref_industry) != 0)
