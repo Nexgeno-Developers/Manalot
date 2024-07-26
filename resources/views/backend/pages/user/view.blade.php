@@ -29,30 +29,30 @@
     <div class="row">
         <h3>User Register Form Step 1</h3>
         <div class="col-sm-3">
-            <div class="form-group mb-3">
+            <div class="d-flex form-group gap-2">
                 <b>Username : </b> <p>{{ $viewuser->username }}</p>
             </div>
         </div>        
         <div class="col-sm-3">
-            <div class="form-group mb-3">
+            <div class="d-flex form-group gap-2">
                 <b>Email : </b> <p>{{ $viewuser->email }}</p>
             </div>
         </div>
         <div class="col-sm-3">
-                <div class="form-group mb-3">
-                    <b>Phone Number : </b> <p>{{ $usersdetails->phone_number }}</p>
-                </div>
+            <div class="d-flex form-group gap-2">
+                <b>Phone Number : </b> <p>{{ $usersdetails->phone_number }}</p>
+            </div>
         </div> 
         <div class="col-sm-3">
-            <div class="form-group mb-3">
-                <b>Uploaded Resume CV : </b> 
-                <a target="_blank" href="{{ asset('storage/' . $usersdetails->resume_cv) }}" class="btn btn-success main_button">View CV</a>
-                
+            <div class="d-flex form-group gap-2">
+                <b>Status : </b><p>{{ $viewuser->status == 1 ? 'Active' : 'Suspended' }}</p>
             </div>
         </div>
         <div class="col-sm-3">
-            <div class="form-group mb-3">
-                <b>Status : </b><p>{{ $viewuser->status == 1 ? 'Active' : 'Suspended' }}</p>
+            <div class="d-flex form-group gap-2">
+                <b>Uploaded Resume CV : </b> 
+                <a target="_blank" href="{{ asset('storage/' . $usersdetails->resume_cv) }}" class="btn btn-success main_button">View CV</a>
+                
             </div>
         </div>
     </div>
@@ -64,47 +64,47 @@
         <div class="row">
             <h3>Personal Information</h3>
  
-            <div class="col-sm-3">
-                <div class="form-group mb-3">
+            <div class="col-sm-5">
+                <div class="d-flex form-group gap-2">
                     <b>Full name : </b> <p>{{ $usersdetails->fullname }}</p>
                 </div>
             </div>   
-            <div class="col-sm-3">
-                <div class="form-group mb-3">
+            <div class="col-sm-2">
+                <div class="d-flex form-group gap-2">
                     <b>Gender : </b> 
                     
                     <p>@if($usersdetails->gender == 1) Male  @elseif($usersdetails->gender == 2) Female @elseif($usersdetails->gender == 3) Other @endif </p>
                 </div>
             </div>     
-            <div class="col-sm-3">
-                <div class="form-group mb-3">
+            <div class="col-sm-2">
+                <div class="d-flex form-group gap-2">
                     <b>DOB : </b> <p>{{ $usersdetails->dob }}</p>              
                 </div>
-            </div>       
+            </div> 
             <div class="col-sm-3">
-                <div class="form-group mb-3">
+                <div class="d-flex form-group gap-2">
                     <b>Pincode : </b> <p>{{ $usersdetails->pincode }}</p>
                 </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group mb-3">
+            </div>   
+            <div class="col-sm-5">
+                <div class="d-flex form-group gap-2">
+                    <b>Address&nbsp;: </b> <p>{{ $usersdetails->address }}</p>                
+                </div>
+            </div>   
+            <div class="col-sm-2">
+                <div class="d-flex form-group gap-2">
                     <b>City : </b> <p>{{ $usersdetails->city }}</p>
                 </div>
             </div>
-            <div class="col-sm-3">
-                <div class="form-group mb-3">
+            <div class="col-sm-2">
+                <div class="d-flex form-group gap-2">
                     <b>Country : </b> <p>{{ $usersdetails->country }}</p>
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class="form-group mb-3">
+                <div class="d-flex form-group gap-2">
                     <b>State : </b> 
                     <p>{{ $usersdetails->state }}</p>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group mb-3">
-                    <b>Address : </b> <p>{{ $usersdetails->address }}</p>                
                 </div>
             </div>
               
@@ -121,17 +121,17 @@
         <div class="row">
         <h3>Work Experience</h3>
             <div class="col-sm-4">
-                <div class="form-group mb-3">
+                <div class="d-flex form-group gap-2">
                     <b>Profesional Title : </b> <p>{{ $usersdetails->wrk_exp__title }}</p>
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="form-group mb-3">
+                <div class="d-flex form-group gap-2">
                     <b>Company Name : </b> <p>{{ $usersdetails->wrk_exp_company_name }}</p>
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="form-group mb-3">
+                <div class="d-flex form-group gap-2">
                     <b>Work Exp In Year : </b> <p>{{ $years_of_exp->year_range }}</p>
                 </div>
             </div>
@@ -166,24 +166,24 @@
             
                 <div class="row">
                 <h3>Skills and Competencies</h3>
-                    <div class="col-sm-4">
-                        <div class="form-group mb-3">
-                            <b>Skill : </b> 
+                    <div class="col-12 mb-3">
+                        <div id="list-industry" class="form-group mb-3">
+                            <b>Skill : </b> <br>
                                 @php $skills = json_decode($usersdetails->skill, true); @endphp
                                 @foreach ($skills as $row)
-                                    <p>{{ $row }}</p>
+                                    <li>{{ $row }}</li>
                                 @endforeach
                         </div>
                     </div>
                 </div>    
 
             <div class="col-sm-4">
-                <div class="form-group mb-3">
+                <div class="d-flex form-group gap-2">
                     <b>Work Responsibility : </b> <p>{{ $usersdetails->wrk_exp_responsibilities }}</p>
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="form-group mb-3">
+                <div class="d-flex form-group gap-2">
                     <b>Currently Employed : </b> <p>{{ $usersdetails->employed }}</p>
                 </div>
             </div>
@@ -233,14 +233,14 @@
                                 <b>Certificate Name : </b> <p>{{ $certificate['certificate_name'] }}</p>
                             </div>
                         </div>
-                        <div class="col-sm-3">
-                            <div class="form-group mb-3">
-                                <b>Certificate Obtain Date : </b> <p>{{ $certificate['certificate_obtn_date'] }}</p>
-                            </div>
-                        </div>
                         <div class="col-sm-4">
                             <div class="form-group mb-3">
                                 <b>Certificate Issuing : </b> <p>{{ $certificate['certificate_issuing'] }}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group mb-3">
+                                <b>Certificate Obtain Date : </b> <p>{{ $certificate['certificate_obtn_date'] }}</p>
                             </div>
                         </div>
                     @endforeach
@@ -252,17 +252,17 @@
             <div class="row mb-3">
                 <h3>Availability and Preferences</h3>
                 <div class="col-sm-4">
-                    <div class="form-group mb-3">
+                    <div class="d-flex form-group gap-2">
                         <b>Preferred Title/Role : </b> <p>{{ $usersdetails->pref_title }}</p>
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="form-group mb-3">
+                    <div class="d-flex form-group gap-2">
                         <b>Employment Type : </b> <p>{{ $usersdetails->pref_emp_type }}</p>
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="form-group mb-3">
+                    <div class="d-flex form-group gap-2">
                         <b>Prefer Industry : </b>
                         @php $pref_industry = json_decode($usersdetails->pref_industry, true); @endphp
                         @if(count($pref_industry) != 0)
@@ -287,12 +287,12 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="form-group mb-3">
+                    <div class="d-flex form-group gap-2">
                         <b>Desired Job Location : </b> <p>{{ $usersdetails->pref_location }}</p>
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="form-group mb-3">
+                    <div class="d-flex form-group gap-2">
                         <b>Expected Salary : </b> <p>{{ $usersdetails->pref_salary }}</p>
                     </div>
                 </div>
@@ -308,12 +308,12 @@
                                 <h5>{{ $index + 1 }}</h5>
                             </div>
                             <div class="col-sm-4">
-                                <div class="form-group mb-3">
+                                <div class="d-flex form-group gap-2">
                                     <b>Reference Name : </b> <p>{{ $reference['reference_name'] }}</p>
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                <div class="form-group mb-3">
+                                <div class="d-flex form-group gap-2">
                                     <b>Reference Phone : </b> <p>{{ $reference['reference_phone'] }}</p>
                                 </div>
                             </div>
@@ -325,19 +325,19 @@
             <div class="row mb-3">
                 <h3>Work Authorization</h3>
                 <div class="col-sm-4">
-                    <div class="form-group mb-3">
+                    <div class="d-flex form-group gap-2">
                         <b>Legal Authorization to work status : </b> 
                         <p>@if($usersdetails->work_authorization_status == 1) Yes  @elseif($usersdetails->work_authorization_status == 0) No @endif </p>
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="form-group mb-3">
+                    <div class="d-flex form-group gap-2">
                         <b>Availability : </b> 
                         <p>@if($usersdetails->availability == 1) Yes  @elseif($usersdetails->availability == 0) No @endif</p>
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="form-group mb-3">
+                    <div class="d-flex form-group gap-2">
                         <b>Notice Period : </b>
                         <p>@if($usersdetails->notice_period == 1) Yes  @elseif($usersdetails->notice_period == 0) No @endif </p>
                     </div>
