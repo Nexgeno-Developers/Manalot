@@ -922,7 +922,7 @@
         xhr.send();
 
 
-        location.reload();
+        //location.reload();
     }
 
     /*--------------------- user info ------------------*/
