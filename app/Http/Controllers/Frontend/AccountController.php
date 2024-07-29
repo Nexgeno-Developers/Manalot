@@ -1030,12 +1030,6 @@ class AccountController extends Controller
                         if (!preg_match('/^[0-9+\s]+$/', $phone)) {
                             $fail("The Reference Phone are Rquired must contain only numeric values, spaces, and the plus sign (+).");
                         }
-
-                        $digitCount = $phone;
-                        if ($digitCount < 5) {
-                            $fail("The Reference Phone are Rquired.");
-                        }
-
                     }
                 }
             ],
