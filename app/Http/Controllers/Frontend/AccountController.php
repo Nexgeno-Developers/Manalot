@@ -1034,7 +1034,6 @@ class AccountController extends Controller
                         $digitCount = $phone;
                         if ($digitCount < 5) {
                             $fail("The Reference Phone are Rquired.");
-                            return; // Exit on first failure
                         }
 
                     }
