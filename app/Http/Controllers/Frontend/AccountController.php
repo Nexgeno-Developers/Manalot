@@ -1031,7 +1031,7 @@ class AccountController extends Controller
                             $fail("The Reference Phone are Rquired must contain only numeric values, spaces, and the plus sign (+).");
                         }
 
-                        $digitCount = preg_match_all('/^[0-9+\s]+$/', $phone);
+                        $digitCount = $phone;
                         if ($digitCount < 5) {
                             $fail("The Reference Phone are Rquired.");
                             return; // Exit on first failure
