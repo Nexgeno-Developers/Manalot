@@ -202,8 +202,8 @@ p.divider {
     background: linear-gradient(2.17deg, #327192 30.94%, #0C3873 69.79%);
     color: #fff;
     border: 0;
-    padding: 4px 33px 4.5px 33px;
-    line-height: 32px;
+    padding: 4px 33px 5px 33px;
+    line-height:  24px;
 }
 
 .input_select {
@@ -511,7 +511,7 @@ p.divider {
 }
 
 .login_width {
-    width: 300px;
+    width: 360px;
 }
 
 span.color_pink {
