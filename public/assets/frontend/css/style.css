@@ -1626,7 +1626,7 @@ button.btn.btn-success.add-edu-row {
     background: #ccc;
 }
 
-input#resume_cv, input#formFile {
+input#resume_cv, input#formFile, input#profile_photo {
     position: relative;
     z-index: 2;
     background-color: transparent;
