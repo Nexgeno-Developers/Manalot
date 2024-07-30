@@ -56,7 +56,7 @@
                             </div>
                             <div class="d-flex justify-content-between">
                                 <div class="purple_btn">
-                                    <button type="submit" class="text-decoration-none text-white" >Login</button>
+                                    <button type="submit" class="text-decoration-none text-white width140" >Login</button>
                                 </div>
                                 <a href="{{ url(route('registration')) }}"><button class="google_btn bluegradian_bg">New to MLN? <b>Join Now</b></button></a>
                             </div>
@@ -184,12 +184,12 @@
 					<div class="ms-footer-social">
 						<a href="https://www.linkedin.com/company/manalot/" target="_blank" class="ms-social-link linkdin" aria-label="Linkdin"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
 					</div>	
-                    <div class="col-md-12 p-2 ps-md-3 mt-md-5 row footer_app">
+                    <div class="col-md-12 p-2 ps-md-3 ms-md-0 mt-md-5 row footer_app">
                         <b class="text-light px-0">Apply on the go</b>
                         <p class="text-light px-0">Get real-time job updates on our App</p>
                         <div class="android_app col-md-6 ps-0">
                             <a href="" rel="noreferrer" class="download" target="_blank">
-                                <img loading="lazy" alt="manalot app download" src="/assets/images/google_play_white_bg.png" >
+                                <img loading="lazy" alt="manalot app download" src="/assets/images/google_play_white_bg_2.png" >
                             </a>
                         </div>
                         <div class="ios_app col-md-6 px-0">
@@ -202,7 +202,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="ms-footer-copyright"><p>© Copyright - Manalot.</p></div>
+	<div class="ms-footer-copyright"><p>© Copyright - Maple Consulting & Services</p></div>
 </footer>
 
 <!----------========================== login ============----------->
