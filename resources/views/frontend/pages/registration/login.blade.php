@@ -58,7 +58,7 @@
                                 <div class="purple_btn">
                                     <button type="submit" class="text-decoration-none text-white width140" >Login</button>
                                 </div>
-                                <a href="{{ url(route('registration')) }}"><button class="google_btn bluegradian_bg">New to MLN? <b>Join Now</b></button></a>
+                                <a href="{{ url(route('registration')) }}" class="google_btn bluegradian_bg text-light">New to MLN? <b>Join Now</b></a>
                             </div>
                         </form>
                 </div>
