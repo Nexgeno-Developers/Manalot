@@ -6,20 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-
-use App\Models\User;
-use Illuminate\Support\Facades\Mail;
-
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Common\AadharController;
 
-use App\Http\Controllers\Common\EsignAadharController;
-use Dompdf\Dompdf;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rule;
 
 use Auth;
 

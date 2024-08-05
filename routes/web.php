@@ -5,6 +5,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Frontend\AccountController;
+use App\Http\Controllers\Frontend\SocialloginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,16 +48,18 @@ Route::get('/search', [IndexController::class, 'search'])->name('search');
 
 
 Route::get('/registration', [AccountController::class, 'registration_page'])->name('registration');
-
 Route::any('/create-account/{param}', [AccountController::class, 'create_account'])->name('account.create');
 
 Route::get('/login', [AccountController::class, 'login'])->name('login');
-
 Route::post('/login', [AccountController::class, 'customer_login'])->name('customer.login');
+
+Route::get('auth/google', [SocialloginController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('auth/google/callback', [SocialloginController::class, 'handleGoogleCallback']);
 
 Route::any('/forgot-password/{param}', [AccountController::class, 'forgot_password'])->name('customer.forgot');
 
 Route::get('/logout', [AccountController::class, 'customer_logout'])->name('customer.logout');
+
 
 Route::get('/csrf-token', function () {
     return response()->json(['token' => csrf_token()]);
