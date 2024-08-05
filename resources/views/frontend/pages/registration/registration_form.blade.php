@@ -299,7 +299,7 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="formFile" class="form-label">Profile Photo <span class="leble_size">(png, jpg)</span></label>
+                        <label for="formFile" class="form-label" id="profile_photo">Profile Photo <span class="leble_size">(png, jpg)</span></label>
                         @if (!empty($profile_photo) && $profile_photo != null)
                             <!-- {{--<a class="pdf_view" target="_blank"
                                 href="{{ asset('storage/' . $profile_photo) }}">
