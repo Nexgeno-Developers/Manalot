@@ -1,5 +1,5 @@
 
-@if(auth()->user() && auth()->user()->role_id != 1)
+@if(auth()->user())
 
 
   <div class="header">

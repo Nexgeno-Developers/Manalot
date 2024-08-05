@@ -117,7 +117,8 @@
                         <label for="email" class="form-label">Email *</label>
                         <img src="/assets/images/email.png" alt="" class="input_icon" />
                         <input type="email" class="form-control is-invalid input_text" id="email" name="email"
-                            placeholder="Enter Your email" required />
+                            placeholder="Enter Your email" required @if (Session::has('google_email') && Session::get('google_login') == 1) 
+                            value="{{ Session::get('google_email') }}" readonly @endif />
                     </div>
                 </div>
 
@@ -282,7 +283,7 @@
                         <label for="first_name" class="form-label">Full Name *</label>
                         <input type="text" class="form-control is-invalid input_text" name="fullname"
                             id="fullname" placeholder="Enter First Name" pattern="[A-Za-z]+" minlength="1"
-                            maxlength="255" value="{{ $fullname }}" required />
+                            maxlength="255" value="{{ isset($fullname) ? $fullname : (Session::has('google_name') ? Session::get('google_name') : '') }}" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">

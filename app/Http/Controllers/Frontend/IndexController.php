@@ -26,10 +26,10 @@ class IndexController extends Controller
         return view('frontend.pages.thankyou.index');
     }
 
-    public function cookie_policy(){
+    // public function cookie_policy(){
 
-        return view('frontend.pages.cookiePolicy.index');
-    }
+    //     return view('frontend.pages.cookiePolicy.index');
+    // }
 
     public function about_us(){
 
@@ -160,39 +160,39 @@ class IndexController extends Controller
    
 //--------------=============================== other feature ====================================---------------------
 
-    public function search(Request $request){
+    // public function search(Request $request){
 
-        $query = $request->input('query');
+    //     $query = $request->input('query');
 
-        $blogs = Blog::where(function ($queryBuilder) use ($query) {
-            $queryBuilder->where('title', 'like', "%$query%")
-                ->orWhere('short_description', 'like', "%$query%")
-                ->orWhere('content', 'like', "%$query%");
-        })->where('status', 1)->get();
+    //     $blogs = Blog::where(function ($queryBuilder) use ($query) {
+    //         $queryBuilder->where('title', 'like', "%$query%")
+    //             ->orWhere('short_description', 'like', "%$query%")
+    //             ->orWhere('content', 'like', "%$query%");
+    //     })->where('status', 1)->get();
         
-        $practiceAreas = PracticeArea::where(function ($queryBuilder) use ($query) {
-            $queryBuilder->where('title', 'like', "%$query%")
-                ->orWhere('short_description', 'like', "%$query%")
-                ->orWhere('content', 'like', "%$query%");
-        })->where('status', 1)->get();
+    //     $practiceAreas = PracticeArea::where(function ($queryBuilder) use ($query) {
+    //         $queryBuilder->where('title', 'like', "%$query%")
+    //             ->orWhere('short_description', 'like', "%$query%")
+    //             ->orWhere('content', 'like', "%$query%");
+    //     })->where('status', 1)->get();
 
-        return view('frontend.pages.search.index', compact('blogs','practiceAreas'));
-    }
+    //     return view('frontend.pages.search.index', compact('blogs','practiceAreas'));
+    // }
 
-    public function comment_save(Request $request)
-    {
-        $commentData = $request->all();
+    // public function comment_save(Request $request)
+    // {
+    //     $commentData = $request->all();
     
-        // Create the contact record
-        BlogComment::create($commentData);
+    //     // Create the contact record
+    //     BlogComment::create($commentData);
     
-        $response = [
-            'status' => true,
-            'notification' => 'Comment added successfully!',
-        ];
+    //     $response = [
+    //         'status' => true,
+    //         'notification' => 'Comment added successfully!',
+    //     ];
     
-        return response()->json($response);
-    }
+    //     return response()->json($response);
+    // }
 
 // =====================--------------- Privacy Policy -------------====================
 
@@ -217,9 +217,9 @@ class IndexController extends Controller
         return view('frontend.pages.registration.edit_profile');
     }
 
-    public function admin(){
-        return view('frontend.pages.registration.admin');
-    }
+    // public function admin(){
+    //     return view('frontend.pages.registration.admin');
+    // }
     
 
     // =====================--------------- dummy controller -------------====================

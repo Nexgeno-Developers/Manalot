@@ -957,10 +957,17 @@
             
             form.find("input[type=text], input[type=email], input[type=password], textarea").val("");
             form.find("select").prop("selectedIndex", 0); */
-            setTimeout(function () {
-                // location.reload();
-                $('#email_otp_model').modal('show');
-            }, 100);
+
+            @if(Session::has('google_email') && Session::get('google_login') == 1)
+                setTimeout(function () {
+                    location.reload();
+                }, 100);
+            @else
+                setTimeout(function () {
+                    // location.reload();
+                    $('#email_otp_model').modal('show');
+                }, 100);
+            @endif
 
             // Show resend OTP button after 30 seconds
             setTimeout(function() {

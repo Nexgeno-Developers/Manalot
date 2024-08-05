@@ -465,21 +465,7 @@ class AccountController extends Controller
 
 
 
-
         if($users_email_temp){
-
-            // DB::table('users')->where('id',$users_email_temp->id)->update([
-            //     'username' => $request->input('name'),
-            //     'email' => strtolower($request->input('email')),
-            //     'password' => bcrypt($request->input('password')),
-            //     'approval' => '0',
-            //     'status' => '0',
-            //     'completed_status' => '0',
-            //     'step' => 1,
-            //     'role_id'  => '2',
-            //     'created_at' => now(),
-            //     'updated_at' => now(),
-            // ]);
 
             $resume_path = DB::table('userdetails')->where('user_id', $users_email_temp->id)->value('resume_cv');
 
@@ -489,48 +475,87 @@ class AccountController extends Controller
                 }
             } 
 
-            // DB::table('userdetails')->where('user_id',$users_email_temp->id)->update([
-            //     'phone_number' => $request->input('phone_number'),
-            //     //'experience_Status' => $request->input('experience_Status'),
-            //     'resume_cv' => $path,
-            //     'created_at' => now(),
-            //     'updated_at' => now(),
-            // ]);
 
-            // Session::put('temp_user_id', $users_email_temp->id);
+            if(Session::has('google_email') && Session::get('google_login') == 1){
+
+                DB::table('users')->where('id',$users_email_temp->id)->update([
+                    'username' => $request->input('name'),
+                    'email' => strtolower($request->input('email')),
+                    'password' => bcrypt($request->input('password')),
+                    'approval' => '0',
+                    'status' => '0',
+                    'completed_status' => '0',
+                    'step' => 1,
+                    'role_id'  => '2',
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+
+                DB::table('userdetails')->where('user_id',$users_email_temp->id)->update([
+                    'phone_number' => $request->input('phone_number'),
+                    'resume_cv' => $path,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+
+                Session::put('temp_user_id', $users_email_temp->id);
+
+                Session::put('step', 2);
+
+                
+                $rsp_msg['response'] = 'success';
+                $rsp_msg['message'] = "User Detail Added successfully. Please Proceed";
+
+                // session()->flash('success', 'User Detail Added successfully. Please Proceed');
+
+                return $rsp_msg;
+
+            }
+
 
         } else {
 
-            // $userId = DB::table('users')->insertGetId([
-            //     'username' => $request->input('name'),
-            //     'email' => strtolower($request->input('email')),
-            //     'password' => bcrypt($request->input('password')),
-            //     'approval' => '0',
-            //     'role_id'  => '2',
-            //     'completed_status' => '0',
-            //     'status' => '0',
-            //     'step' => 1,
-            //     'created_at' => now(),
-            //     'updated_at' => now(),
-            // ]);
+            if(Session::has('google_email') && Session::get('google_login') == 1){
 
-            // DB::table('userdetails')->insert([
-            //     'user_id' => $userId,
-            //     'phone_number' => $request->input('phone_number'),
-            //     //'experience_Status' => $request->input('experience_Status'),
-            //     'skill' => '[]',
-            //     'references' => '[]',
-            //     'resume_cv' => $path,
-            //     'created_at' => now(),
-            //     'updated_at' => now(),
-            // ]);
+                $userId = DB::table('users')->insertGetId([
+                    'username' => $request->input('name'),
+                    'email' => strtolower($request->input('email')),
+                    'password' => bcrypt($request->input('password')),
+                    'approval' => '0',
+                    'role_id'  => '2',
+                    'completed_status' => '0',
+                    'status' => '0',
+                    'step' => 1,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
 
-            // Session::put('temp_user_id', $userId);
+                DB::table('userdetails')->insert([
+                    'user_id' => $userId,
+                    'phone_number' => $request->input('phone_number'),
+                    //'experience_Status' => $request->input('experience_Status'),
+                    'skill' => '[]',
+                    'references' => '[]',
+                    'resume_cv' => $path,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+
+                Session::put('temp_user_id', $userId);
+
+                Session::put('step', 2);
+
+                $rsp_msg['response'] = 'success';
+                $rsp_msg['message'] = "User Detail Added successfully. Please Proceed";
+
+                // session()->flash('success', 'User Detail Added successfully. Please Proceed');
+
+                return $rsp_msg;
+
+            }
         }
 
         // Session::put('password', $request->input('password'));
-
-
         // Session::put('step', 2);
 
 

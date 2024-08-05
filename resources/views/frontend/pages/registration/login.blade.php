@@ -67,10 +67,12 @@
                         <p class="divider">Or</p>
                     </div>
                     <div class="d-flex align-items-center gap-4 mobile-d-block">
-                        <button class="google_btn">
-                            Login with
-                            <img src="/assets/images/google.svg" alt="google icon" class="google_icon" />
-                        </button>  
+                        <a href="{{ route('auth.google') }}">
+                            <button class="google_btn">
+                                Login with
+                                <img src="/assets/images/google.svg" alt="google icon" class="google_icon" />
+                            </button>
+                        </a>  
 
                         <button class="google_btn">
                             Login with

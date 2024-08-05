@@ -21,6 +21,22 @@ use App\Http\Controllers\Frontend\SocialloginController;
 // Home START
 Route::middleware('auth.frontend')->group(function () {
     Route::get('/', [IndexController::class, 'index'])->name('index');
+    Route::get('/logout', [AccountController::class, 'customer_logout'])->name('customer.logout');
+    Route::get('/edit-profile', [IndexController::class, 'edit_profile'])->name('user.edit-profile');
+});
+
+Route::middleware('guest')->group(function () {
+
+    Route::get('auth/google', [SocialloginController::class, 'redirectToGoogle'])->name('auth.google');
+    Route::get('auth/google/callback', [SocialloginController::class, 'handleGoogleCallback']);
+
+    Route::get('/registration', [AccountController::class, 'registration_page'])->name('registration');
+    Route::any('/create-account/{param}', [AccountController::class, 'create_account'])->name('account.create');
+    
+    Route::get('/login', [AccountController::class, 'login'])->name('login');
+    Route::post('/login', [AccountController::class, 'customer_login'])->name('customer.login');
+    
+    Route::any('/forgot-password/{param}', [AccountController::class, 'forgot_password'])->name('customer.forgot');
 });
 
 
@@ -46,21 +62,6 @@ Route::get('/search', [IndexController::class, 'search'])->name('search');
 // Home END
 
 
-
-Route::get('/registration', [AccountController::class, 'registration_page'])->name('registration');
-Route::any('/create-account/{param}', [AccountController::class, 'create_account'])->name('account.create');
-
-Route::get('/login', [AccountController::class, 'login'])->name('login');
-Route::post('/login', [AccountController::class, 'customer_login'])->name('customer.login');
-
-Route::get('auth/google', [SocialloginController::class, 'redirectToGoogle'])->name('auth.google');
-Route::get('auth/google/callback', [SocialloginController::class, 'handleGoogleCallback']);
-
-Route::any('/forgot-password/{param}', [AccountController::class, 'forgot_password'])->name('customer.forgot');
-
-Route::get('/logout', [AccountController::class, 'customer_logout'])->name('customer.logout');
-
-
 Route::get('/csrf-token', function () {
     return response()->json(['token' => csrf_token()]);
 });
@@ -84,8 +85,10 @@ Route::get('/update-session', function () {
 })->name('update-session');
 
 
-Route::get('/admin', [IndexController::class, 'admin'])->name('admin');
-Route::get('/edit-profile', [IndexController::class, 'edit_profile'])->name('edit-profile');
+// Route::get('/admin', [IndexController::class, 'admin'])->name('admin');
+
+
+
 //------------------------------ dummy controller ----------------------
 
 
