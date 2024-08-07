@@ -5,11 +5,11 @@
 
     $years_of_exp= DB::table('years_of_exp')->where('id', $usersdetails->wrk_exp_years)->first();
 
-    $experience_status= DB::table('experience_status')->where('id', $usersdetails->experience_Status)->first();
+    // $experience_status= DB::table('experience_status')->where('id', $usersdetails->experience_Status)->first();
 
     $skills= DB::table('skills')->get();
 
-    $references_from= DB::table('references_from')->where('id', $usersdetails->references)->first();
+    // $references_from= DB::table('references_from')->where('id', $usersdetails->references)->first();
 
     $references_data = json_decode($usersdetails->references, true);
     
