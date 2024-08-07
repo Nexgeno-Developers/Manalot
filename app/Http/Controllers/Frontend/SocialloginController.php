@@ -118,7 +118,7 @@ class SocialloginController extends Controller
                 // Session::flash('info', 'Please complete your registration.');
 
                 Session::put('toastr', [
-                    'type' => 'info',
+                    'type' => 'success',
                     'message' => 'Please complete your registration.',
                     'title' => 'Registration Incomplete'
                 ]);
