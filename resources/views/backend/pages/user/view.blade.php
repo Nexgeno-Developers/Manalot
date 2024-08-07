@@ -1,5 +1,5 @@
 @php
-    $job_title= DB::table('job_title')->where('id', $usersdetails->job_title)->first();
+    // $job_title= DB::table('job_title')->where('id', $usersdetails->job_title)->first();
 
     // $industry= DB::table('industry')->where('id', $usersdetails->industry)->first();
 
