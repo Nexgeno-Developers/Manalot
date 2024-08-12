@@ -1278,6 +1278,13 @@
             clearTimeout(typingTimer);
             var postalCode = $(this).val();
 
+            if (postalCode.length === 0) {
+                $('#country_name').val('');
+                $('#city').val(''); 
+                $('#state').val('');
+            }
+
+
             if (postalCode.length > 0) {
                 typingTimer = setTimeout(function () {
                     $.ajax({
