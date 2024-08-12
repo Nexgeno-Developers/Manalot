@@ -66,20 +66,13 @@ class UserController extends Controller
             ->leftJoin('userdetails', 'users.id', '=', 'userdetails.user_id')
             ->select('users.*', 'userdetails.experience_letter', 'userdetails.resume_cv');
 
-        // Define searchable columns
-        $searchableColumns = [
-            'users.username',
-            'users.email',
-        ];
-
         // Apply filters if present
         if ($request->filled('user_name')) {
-            $query->where(function ($q) use ($request, $searchableColumns) {
-                foreach ($searchableColumns as $column) {
-                    $q->orWhere($column, 'LIKE', '%' . $request->user_name . '%');
-                }
+            $query->where(function ($q) use ($request) {
+                $q->where('users.username', 'LIKE', '%' . $request->user_name . '%')
+                  ->orWhere('users.email', 'LIKE', '%' . $request->user_name . '%');
             });
-}
+        }
 
         if ($request->filled('approval_status')) {
             $query->where('users.approval', $request->approval_status);
