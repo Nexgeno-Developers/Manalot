@@ -75,17 +75,17 @@
                 <td>
                     @if(!is_null($row->resume_cv) && !empty($row->resume_cv))
                         @if (strpos($row->resume_cv, 'my.sharepoint.com') !== false)
-                            <a href="{{ $row->resume_cv }}">Resume</a>
+                            <a href="{{ $row->resume_cv }}" target="_blank">Resume</a>
                         @else
-                            <a href="{{ asset('storage/' . $row->resume_cv) }}">Resume</a>
+                            <a href="{{ asset('storage/' . $row->resume_cv) }}" target="_blank">Resume</a>
                         @endif
                     @endif
                     <br>
                     @if(!is_null($row->experience_letter) && !empty($row->experience_letter))
                         @if (strpos($row->experience_letter, 'my.sharepoint.com') !== false)
-                            <a href="{{ $row->experience_letter }}">Experience Letter</a>
+                            <a href="{{ $row->experience_letter }}" target="_blank">Experience Letter</a>
                         @else
-                            <a href="{{ asset('storage/' . $row->experience_letter) }}">Experience Letter</a>
+                            <a href="{{ asset('storage/' . $row->experience_letter) }}" target="_blank">Experience Letter</a>
                         @endif
                     @endif
                 </td>           

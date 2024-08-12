@@ -53,9 +53,9 @@
                 <b>Uploaded Resume CV : </b>
                 @if(!is_null($usersdetails->resume_cv) && !empty($usersdetails->resume_cv))
                     @if (strpos($usersdetails->resume_cv, 'my.sharepoint.com') !== false)
-                        <a target="_blank" href="{{ $usersdetails->resume_cv }}" class="btn btn-success main_button">View CV</a>
+                        <a target="_blank" href="{{ $usersdetails->resume_cv }}" class="btn btn-success main_button" target="_blank">View CV</a>
                     @else
-                        <a target="_blank" href="{{ asset('storage/' . $usersdetails->resume_cv) }}" class="btn btn-success main_button">View CV</a>
+                        <a target="_blank" href="{{ asset('storage/' . $usersdetails->resume_cv) }}" class="btn btn-success main_button" target="_blank">View CV</a>
                     @endif
                 @endif
             </div>
@@ -201,9 +201,9 @@
                     <b>Uploaded Experience Letter : </b> 
                     @if(!is_null($usersdetails->experience_letter) && !empty($usersdetails->experience_letter))
                         @if (strpos($usersdetails->experience_letter, 'my.sharepoint.com') !== false)
-                            <a target="_blank" href="{{ $usersdetails->experience_letter }}" class="btn btn-success main_button">View Experience Letter</a>
+                            <a target="_blank" href="{{ $usersdetails->experience_letter }}" class="btn btn-success main_button" target="_blank">View Experience Letter</a>
                         @else
-                            <a target="_blank" href="{{ asset('storage/' . $usersdetails->experience_letter) }}" class="btn btn-success main_button">View Experience Letter</a>
+                            <a target="_blank" href="{{ asset('storage/' . $usersdetails->experience_letter) }}" class="btn btn-success main_button" target="_blank">View Experience Letter</a>
                         @endif
 
                     @endif
