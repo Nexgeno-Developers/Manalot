@@ -40,83 +40,62 @@ class UserController extends Controller
         }
     }
 
-    // public function userslist(Request $request) {
-    //     // $query = User::where('role_id', '<>', 1)->where('completed_status', 1);
-
-    //     // $query = User::where('role_id', '<>', 1);
-    
-    //     // // Apply filters if present
-    //     // if ($request->filled('user_name')) {
-    //     //     $query->where('username', 'LIKE', '%' . $request->user_name . '%');
-    //     // }
-    
-    //     // if ($request->filled('approval_status')) {
-    //     //     $query->where('approval', $request->approval_status);
-    //     // }
-        
-    //     // if ($request->filled('status')) {
-    //     //     $query->where('status', $request->status);
-    //     // }
-    
-    
-    //     // // Paginate the results
-    //     // $users = $query->paginate(10); // Adjust the number per page as needed
-
-    //     $query = User::where('role_id', '<>', 1)
-    //         ->leftJoin('userdetails', 'users.id', '=', 'userdetails.user_id')
-    //         ->select('users.*', 'userdetails.experience_letter', 'userdetails.resume_cv');
-
-    //     // Apply filters if present
-    //     if ($request->filled('user_name')) {
-    //         $query->where(function ($q) use ($request) {
-    //             $q->where('users.username', 'LIKE', '%' . $request->user_name . '%')
-    //               ->orWhere('users.email', $request->user_name);
-    //         });
-    //     }
-
-    //     if ($request->filled('approval_status')) {
-    //         $query->where('users.approval', $request->approval_status);
-    //     }
-
-    //     if ($request->filled('status')) {
-    //         $query->where('users.status', $request->status);
-    //     }
-
-    //     // Paginate the results
-    //     $users = $query->paginate(10); // Adjust the number per page as needed
-    
-    //     return view('backend.pages.user.index', compact('users'));
-    // }
-    
     public function userslist(Request $request) {
+        // $query = User::where('role_id', '<>', 1)->where('completed_status', 1);
+
+        // $query = User::where('role_id', '<>', 1);
+    
+        // // Apply filters if present
+        // if ($request->filled('user_name')) {
+        //     $query->where('username', 'LIKE', '%' . $request->user_name . '%');
+        // }
+    
+        // if ($request->filled('approval_status')) {
+        //     $query->where('approval', $request->approval_status);
+        // }
+        
+        // if ($request->filled('status')) {
+        //     $query->where('status', $request->status);
+        // }
+    
+    
+        // // Paginate the results
+        // $users = $query->paginate(10); // Adjust the number per page as needed
 
         $query = User::where('role_id', '<>', 1)
             ->leftJoin('userdetails', 'users.id', '=', 'userdetails.user_id')
-            ->select('users.id', 'users.username', 'users.email', 'users.approval', 'users.status', 'userdetails.experience_letter', 'userdetails.resume_cv');
-    
-        // Apply search filter
+            ->select('users.*', 'userdetails.experience_letter', 'userdetails.resume_cv');
+
+        // Define searchable columns
+        $searchableColumns = [
+            'users.username',
+            'users.email',
+        ];
+
+        // Apply filters if present
         if ($request->filled('user_name')) {
-            $searchTerm = $request->user_name;
-            $query->where(function ($q) use ($searchTerm) {
-                $q->where('users.username', 'LIKE', '%' . $searchTerm . '%')
-                  ->orWhere('users.email', 'LIKE', '%' . $searchTerm . '%');
+            $query->where(function ($q) use ($request, $searchableColumns) {
+                foreach ($searchableColumns as $column) {
+                    $q->orWhere($column, 'LIKE', '%' . $request->user_name . '%');
+                }
             });
-        }
-    
+}
+
         if ($request->filled('approval_status')) {
             $query->where('users.approval', $request->approval_status);
         }
-    
+
         if ($request->filled('status')) {
             $query->where('users.status', $request->status);
         }
-    
+
         // Paginate the results
         $users = $query->paginate(10); // Adjust the number per page as needed
     
         return view('backend.pages.user.index', compact('users'));
     }
     
+
     public function approvestatus(Request $request, $id) {
         // Find the user by ID
         $user = User::find($id);
