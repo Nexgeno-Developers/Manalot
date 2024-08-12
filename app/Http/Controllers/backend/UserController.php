@@ -68,15 +68,18 @@ class UserController extends Controller
 
         // Apply filters if present
         if ($request->filled('user_name')) {
-            $query->where('username', 'LIKE', '%' . $request->user_name . '%');
+            $query->where(function ($q) use ($request) {
+                $q->where('users.username', 'LIKE', '%' . $request->user_name . '%')
+                  ->orWhere('users.email', 'LIKE', '%' . $request->user_name . '%');
+            });
         }
 
         if ($request->filled('approval_status')) {
-            $query->where('approval', $request->approval_status);
+            $query->where('users.approval', $request->approval_status);
         }
 
         if ($request->filled('status')) {
-            $query->where('status', $request->status);
+            $query->where('users.status', $request->status);
         }
 
         // Paginate the results
