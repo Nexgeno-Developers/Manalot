@@ -1207,7 +1207,7 @@ input.h_input::placeholder {
 }
 
 .ms-footer {
-    background-image: url(https://manalot.com/public/gfx/footer-bg.png);
+    background-image: url(/assets/frontend/images/footer-bg.png);
     background-size: cover;
     margin-top: 60px;
 }

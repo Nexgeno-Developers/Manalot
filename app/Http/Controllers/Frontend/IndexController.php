@@ -220,6 +220,10 @@ class IndexController extends Controller
     // public function admin(){
     //     return view('frontend.pages.registration.admin');
     // }
+
+    public function testing_code(){
+        return get_access_token_od();
+    }
     
 
     // =====================--------------- dummy controller -------------====================

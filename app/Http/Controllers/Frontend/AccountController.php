@@ -405,11 +405,11 @@ class AccountController extends Controller
             'phone_number' => 'required|regex:/^[\d\s\-\+]+$/|min:5',
             'resume_cv' => 'required|mimes:pdf,doc,docx|max:5120',
         ], [
-            'name.required' => 'The Name field is required.',
-            'name.string' => 'The Name must be a string.',
-            'name.regex' => 'The Name format is invalid. Only letters, numbers, dots, underscores are allowed, and spacing is not allowed.',
-            'name.min' => 'The Name must be at least 1 character.',
-            'name.max' => 'The Name may not be greater than 50 characters.',
+            'name.required' => 'The Username field is required.',
+            'name.string' => 'The Username must be a string.',
+            'name.regex' => 'The Username format is invalid. Only letters, numbers, dots, underscores are allowed, and spacing is not allowed.',
+            'name.min' => 'The Username must be at least 1 character.',
+            'name.max' => 'The Username may not be greater than 50 characters.',
             
             'email.required' => 'The Email field is required.',
             'email.email' => 'The Email must be a valid email address.',
@@ -458,7 +458,17 @@ class AccountController extends Controller
         $users_email_temp = DB::table('users')->where('email', $request->input('email'))->get()->first();
 
         if($request->has('resume_cv')){
-            $path = $request->file('resume_cv')->store('user_data/resume_cv', 'public');
+
+            $newFileName = 'resume_' . $request->input('email') . '_' . now()->format('YmdHis') . '.' . $request->file('resume_cv')->getClientOriginalExtension();
+            $path = $request->file('resume_cv')->storeAs('user_data/resume_cv', $newFileName, 'public');
+            
+            // $result = file_upload_od($newFileName, $path);
+            // if($result != 'error'){
+            //     $path = $result;
+            // }
+
+            // $path = $request->file('resume_cv')->store('user_data/resume_cv', 'public');
+
         } else {
             $path = null;
         }
@@ -490,6 +500,14 @@ class AccountController extends Controller
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
+
+                $result = file_upload_od($newFileName, $path);
+                if($result != 'error on uploding'){
+                    if (Storage::disk('public')->exists($path)) {
+                        Storage::disk('public')->delete($path);
+                    }
+                    $path = $result;
+                }
 
                 DB::table('userdetails')->where('user_id',$users_email_temp->id)->update([
                     'phone_number' => $request->input('phone_number'),
@@ -530,6 +548,14 @@ class AccountController extends Controller
                     'updated_at' => now(),
                 ]);
 
+                $result = file_upload_od($newFileName, $path);
+                if($result != 'error on uploding'){
+                    if (Storage::disk('public')->exists($path)) {
+                        Storage::disk('public')->delete($path);
+                    }
+                    $path = $result;
+                }
+
                 DB::table('userdetails')->insert([
                     'user_id' => $userId,
                     'phone_number' => $request->input('phone_number'),
@@ -565,6 +591,7 @@ class AccountController extends Controller
             'password' => bcrypt($request->input('password')),
             'phone_number' => $request->input('phone_number'),
             'resume_cv' => $path,
+            'newFileName' => $newFileName,
         ];
 
 
@@ -640,10 +667,20 @@ class AccountController extends Controller
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
+
+                $result = file_upload_od($user_info['newFileName'], $user_info['resume_cv']);
+                if($result != 'error on uploding'){
+                    if (Storage::disk('public')->exists($user_info['resume_cv'])) {
+                        Storage::disk('public')->delete($user_info['resume_cv']);
+                    }
+                    $path = $result;
+                } else{
+                    $path = $user_info['resume_cv'];
+                }
     
                 DB::table('userdetails')->where('user_id',$users_email_temp->id)->update([
                     'phone_number' => $user_info['phone_number'],
-                    'resume_cv' => $user_info['resume_cv'],
+                    'resume_cv' => $path,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
@@ -664,6 +701,16 @@ class AccountController extends Controller
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
+
+                $result = file_upload_od($user_info['newFileName'], $user_info['resume_cv']);
+                if($result != 'error on uploding'){
+                    if (Storage::disk('public')->exists($user_info['resume_cv'])) {
+                        Storage::disk('public')->delete($user_info['resume_cv']);
+                    }
+                    $path = $result;
+                } else{
+                    $path = $user_info['resume_cv'];
+                }
     
                 DB::table('userdetails')->insert([
                     'user_id' => $userId,
@@ -671,7 +718,7 @@ class AccountController extends Controller
                     'skill' => '[]',
                     'edu_data' => '[]',
                     'references' => '[]',
-                    'resume_cv' => $user_info['resume_cv'],
+                    'resume_cv' => $path,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
@@ -880,7 +927,22 @@ class AccountController extends Controller
 
         // Handle file upload for experience letter
         if ($request->hasFile('experience_letter') && $request->file('experience_letter')->isValid()) {
-            $path = $request->file('experience_letter')->store('user_data/experience_letters', 'public');
+
+            $users_email_temp = DB::table('users')->where('id', Session::get('temp_user_id'))->value('email');
+
+            $newFileName = 'experience_letter_' . $users_email_temp . '_' . now()->format('YmdHis') . '.' . $request->file('experience_letter')->getClientOriginalExtension();
+            $path = $request->file('experience_letter')->storeAs('user_data/experience_letters', $newFileName, 'public');
+
+            // $path = $request->file('experience_letter')->store('user_data/experience_letters', 'public');
+
+            $result = file_upload_od($newFileName, $path);
+            if($result != 'error on uploding'){
+                if (Storage::disk('public')->exists($path)) {
+                    Storage::disk('public')->delete($path);
+                }
+                $path = $result;
+            }
+
         } else {
             // Check if existing path should be retained or set to null
             $path = $userDetail ? $userDetail->experience_letter : null;
@@ -889,10 +951,8 @@ class AccountController extends Controller
         DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
             'wrk_exp_company_name' => $request->input('wrk_exp_company_name'),
             'wrk_exp_years' => $request->input('wrk_exp_years'),
-            // 'job_title' => $request->input('job_title'),
             'industry' => json_encode($industry_elements),
             'wrk_exp__title' => $request->input('wrk_exp__title'),
-            // 'resume_cv' => $path,
             'skill' => json_encode($skill),
             'wrk_exp_responsibilities' => $request->input('wrk_exp_responsibilities'),
             

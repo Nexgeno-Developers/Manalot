@@ -1293,7 +1293,7 @@
                                 $('#country_name').val(data.postalCodes[0].countryCode).focus();
                                 $('#city').val(data.postalCodes[0].adminName2).focus();
                                 $('#state').val(data.postalCodes[0].adminName1).focus();
-                                $('#address').focus();
+                                $('#pincode').focus();
 
                                 // $('#placeName').val(data.postalCodes[0].placeName);
 

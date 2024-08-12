@@ -56,6 +56,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Documents</th>
                 <th>Account Status</th>
                 {{-- <th>Ban Status</th> --}}
                 <th>Date</th>
@@ -70,7 +71,24 @@
             <tr>
                 <td>{{ ($key+1) + ($users->currentPage() - 1)*$users->perPage() }}</td>
                 <td>{{ $row->username }}</td>
-                <td>{{ $row->email }}</td>           
+                <td>{{ $row->email }}</td>
+                <td>
+                    @if(!is_null($row->resume_cv) && !empty($row->resume_cv))
+                        @if (strpos($row->resume_cv, 'my.sharepoint.com') !== false)
+                            <a href="{{ $row->resume_cv }}">Resume</a>
+                        @else
+                            <a href="{{ asset('storage/' . $row->resume_cv) }}">Resume</a>
+                        @endif
+                    @endif
+                    <br>
+                    @if(!is_null($row->experience_letter) && !empty($row->experience_letter))
+                        @if (strpos($row->experience_letter, 'my.sharepoint.com') !== false)
+                            <a href="{{ $row->experience_letter }}">Experience Letter</a>
+                        @else
+                            <a href="{{ asset('storage/' . $row->experience_letter) }}">Experience Letter</a>
+                        @endif
+                    @endif
+                </td>           
                 <td>
                     @if($row->approval == 1)
                     <span class="badge bg-success" title="Approved">Approved</span>

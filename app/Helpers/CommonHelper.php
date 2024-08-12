@@ -1,20 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Cache;
-//use App\Models\Award;
-//use App\Models\Blog;
-//use App\Models\BlogCategory;
-//use App\Models\BlogComment;
 use App\Models\BusinessSetting;
-use App\Models\ContactSetting;
-//use App\Models\Contact;
-//use App\Models\Faq;
-//use App\Models\MediaCoverage;
-//use App\Models\PracticeArea;
-//use App\Models\Publication;
-//use App\Models\Team;
-use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
     if (!function_exists('datetimeFormatter')) {
         function datetimeFormatter($value)
@@ -130,6 +119,87 @@ use Illuminate\Support\Facades\Mail;
                 $info = '{ "ip": "none", "city": "none", "region": "none", "country": "none", "loc": "none", "postal": "none", "timezone": "none", "readme": "none" }';
                 return $info; //return in json
             }
+        }
+    }
+
+
+    if (!function_exists('get_access_token_od')) {
+        function get_access_token_od()
+        {
+
+            $cacheKey = "get_token_onedrive";
+        
+            // Check if the value is already in the cache
+            if (Cache::has($cacheKey)) {
+                return Cache::get($cacheKey);
+            }
+        
+            $response = Http::asForm()->withHeaders([
+                'Content-Type' => 'application/x-www-form-urlencoded',
+                'Cookie' => 'fpc=Asd-JK-swIJNtxld0wW0ljT4as7VAQAAAF6US94OAAAA; stsservicecookie=estsfd; x-ms-gateway-slice=estsfd',
+            ])->post('https://login.microsoftonline.com/'.env('TENANT_ID').'/oauth2/v2.0/token', [
+                'client_id' => env('MICROSOFT_CLIENT_ID'),
+                'scope' => 'https://graph.microsoft.com/.default',
+                'client_secret' => env('MICROSOFT_CLIENT_SECRET'),
+                'grant_type' => 'client_credentials',
+            ]);
+            
+            // Handle the response
+            if ($response->successful()) {
+                
+                $data = $response->json('access_token');
+
+                Cache::put($cacheKey, $data, now()->addMinutes(40));
+
+                return $data;
+
+            } else {
+
+                $error = $response->body();
+                return $error;
+            }
+            
+            return null;
+        }
+    }
+
+
+
+    if (!function_exists('file_upload_od')) {
+        function file_upload_od($file_name, $path)
+        {
+
+            // Retrieve the access token from your method or configuration
+            $accessToken = get_access_token_od();
+
+            // Get the full path to the file
+            $fullPath = storage_path('app/public/' . $path);
+
+            // Check if file exists
+            if (!file_exists($fullPath)) {
+                return response()->json(['error' => 'File does not exist at ' . $fullPath], 404);
+            }
+
+            // Get the file contents
+            $fileContents = $fullPath;
+
+            // Build the request URL
+            $url = 'https://graph.microsoft.com/v1.0/users/' . env('MICROSOFT_USER_ID') . '/drive/root:/Global Portal/' . $file_name . ':/content';
+
+            // Make the HTTP request using Laravel's HTTP client
+            $response = Http::withToken($accessToken)
+                ->withHeaders([
+                    'Content-Type' => 'application/octet-stream',
+                ])
+                ->put($url, $fileContents);
+
+            // Check for errors and handle the response
+            if ($response->failed()) {
+                return "error on uploding";
+            }
+            
+            // Return the decoded response
+            return $response->json('webUrl');
         }
     }
 
