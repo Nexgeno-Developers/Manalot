@@ -458,8 +458,9 @@ class AccountController extends Controller
         $users_email_temp = DB::table('users')->where('email', $request->input('email'))->get()->first();
 
         if($request->has('resume_cv')){
-
-            $newFileName = 'resume_' . $request->input('email') . '_' . now()->format('YmdHis') . '.' . $request->file('resume_cv')->getClientOriginalExtension();
+               
+            $users_email_temp = str_replace('@', '_', $request->input('email'));
+            $newFileName = 'resume_' . $users_email_temp . '_' . now()->format('YmdHis') . '.' . $request->file('resume_cv')->getClientOriginalExtension();
             $path = $request->file('resume_cv')->storeAs('user_data/resume_cv', $newFileName, 'public');
             
             // $result = file_upload_od($newFileName, $path);
@@ -929,6 +930,8 @@ class AccountController extends Controller
         if ($request->hasFile('experience_letter') && $request->file('experience_letter')->isValid()) {
 
             $users_email_temp = DB::table('users')->where('id', Session::get('temp_user_id'))->value('email');
+
+            $users_email_temp = str_replace('@', '_', $users_email_temp);
 
             $newFileName = 'experience_letter_' . $users_email_temp . '_' . now()->format('YmdHis') . '.' . $request->file('experience_letter')->getClientOriginalExtension();
             $path = $request->file('experience_letter')->storeAs('user_data/experience_letters', $newFileName, 'public');
