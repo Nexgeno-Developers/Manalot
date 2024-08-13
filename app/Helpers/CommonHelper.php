@@ -231,8 +231,10 @@ use Illuminate\Support\Facades\Storage;
                 return "error on uploding";
             }
 
+            $weburl = $responseDecoded['webUrl'];
+
             // Return the web URL of the uploaded file or other response data
-            return response()->json(['webUrl' => $responseDecoded['webUrl'] ?? 'Unknown']);
+            return $weburl;
         }
     }
 
