@@ -168,38 +168,71 @@ use Illuminate\Support\Facades\Storage;
     if (!function_exists('file_upload_od')) {
         function file_upload_od($file_name, $path)
         {
-
             // Retrieve the access token from your method or configuration
             $accessToken = get_access_token_od();
 
             // Get the full path to the file
             $fullPath = storage_path('app/public/' . $path);
 
-            // Check if file exists
+            // Check if the file exists
             if (!file_exists($fullPath)) {
-                return response()->json(['error' => 'File does not exist at ' . $fullPath], 404);
-            }
-
-            // Get the file contents
-            $fileContents = $fullPath;
-
-            // Build the request URL
-            $url = 'https://graph.microsoft.com/v1.0/users/' . env('MICROSOFT_USER_ID') . '/drive/root:/Global Portal/' . $file_name . ':/content';
-
-            // Make the HTTP request using Laravel's HTTP client
-            $response = Http::withToken($accessToken)
-                ->withHeaders([
-                    'Content-Type' => 'application/octet-stream',
-                ])
-                ->put($url, $fileContents);
-
-            // Check for errors and handle the response
-            if ($response->failed()) {
+                // return response()->json(['error' => 'File does not exist at ' . $fullPath], 404);
                 return "error on uploding";
             }
-            
-            // Return the decoded response
-            return $response->json('webUrl');
+
+            // Read the file contents
+            $fileContents = file_get_contents($fullPath);
+
+            // Encode the file name and path components to be URL-safe
+            $encodedFileName = rawurlencode($file_name);
+            $encodedFolderPath = rawurlencode('Global Portal');
+
+            // Build the encoded request URL
+            $url = 'https://graph.microsoft.com/v1.0/users/' . env('MICROSOFT_USER_ID') . '/drive/root:/' . $encodedFolderPath . '/' . $encodedFileName . ':/content';
+
+            // Initialize cURL session
+            $curl = curl_init();
+
+            // Set cURL options
+            curl_setopt_array($curl, [
+                CURLOPT_URL => $url,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'PUT',
+                CURLOPT_POSTFIELDS => $fileContents,
+                CURLOPT_HTTPHEADER => [
+                    'Authorization: Bearer ' . $accessToken,
+                    'Content-Type: application/octet-stream'
+                ],
+            ]);
+
+            // Execute cURL request
+            $response = curl_exec($curl);
+
+            // Check for cURL errors
+            if (curl_errno($curl)) {
+                // return response()->json(['error' => 'cURL error: ' . curl_error($curl)], 500);
+                return "error on uploding";
+            }
+
+            // Close cURL session
+            curl_close($curl);
+
+            // Decode and return the response
+            $responseDecoded = json_decode($response, true);
+
+            // Check if the response is successful
+            if (isset($responseDecoded['error'])) {
+                // return response()->json(['error' => 'Error uploading file to Microsoft Drive', 'details' => $responseDecoded['error']], 500);
+                return "error on uploding";
+            }
+
+            // Return the web URL of the uploaded file or other response data
+            return response()->json(['webUrl' => $responseDecoded['webUrl'] ?? 'Unknown']);
         }
     }
 

@@ -505,7 +505,7 @@ class AccountController extends Controller
                 $result = file_upload_od($newFileName, $path);
                 if($result != 'error on uploding'){
                     if (Storage::disk('public')->exists($path)) {
-                        Storage::disk('public')->delete($path);
+                        // Storage::disk('public')->delete($path);
                     }
                     $path = $result;
                 }
@@ -552,7 +552,7 @@ class AccountController extends Controller
                 $result = file_upload_od($newFileName, $path);
                 if($result != 'error on uploding'){
                     if (Storage::disk('public')->exists($path)) {
-                        Storage::disk('public')->delete($path);
+                        // Storage::disk('public')->delete($path);
                     }
                     $path = $result;
                 }
@@ -672,7 +672,7 @@ class AccountController extends Controller
                 $result = file_upload_od($user_info['newFileName'], $user_info['resume_cv']);
                 if($result != 'error on uploding'){
                     if (Storage::disk('public')->exists($user_info['resume_cv'])) {
-                        Storage::disk('public')->delete($user_info['resume_cv']);
+                        // Storage::disk('public')->delete($user_info['resume_cv']);
                     }
                     $path = $result;
                 } else{
@@ -706,7 +706,7 @@ class AccountController extends Controller
                 $result = file_upload_od($user_info['newFileName'], $user_info['resume_cv']);
                 if($result != 'error on uploding'){
                     if (Storage::disk('public')->exists($user_info['resume_cv'])) {
-                        Storage::disk('public')->delete($user_info['resume_cv']);
+                        // Storage::disk('public')->delete($user_info['resume_cv']);
                     }
                     $path = $result;
                 } else{
@@ -936,12 +936,14 @@ class AccountController extends Controller
             $newFileName = 'experience_letter_' . $users_email_temp . '_' . now()->format('YmdHis') . '.' . $request->file('experience_letter')->getClientOriginalExtension();
             $path = $request->file('experience_letter')->storeAs('user_data/experience_letters', $newFileName, 'public');
 
+            
+
             // $path = $request->file('experience_letter')->store('user_data/experience_letters', 'public');
 
             $result = file_upload_od($newFileName, $path);
             if($result != 'error on uploding'){
                 if (Storage::disk('public')->exists($path)) {
-                    Storage::disk('public')->delete($path);
+                    // Storage::disk('public')->delete($path);
                 }
                 $path = $result;
             }
