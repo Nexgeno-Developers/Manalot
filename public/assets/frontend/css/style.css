@@ -145,6 +145,11 @@ button.purple_btn {
     margin-right: 10px;
 }
 
+.minalgn_button button {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .divider::after {
     left: 54%;
     margin-left: 10px;
@@ -203,7 +208,7 @@ p.divider {
     color: #fff;
     border: 0;
     padding: 4px 33px 5px 33px;
-    line-height:  24px;
+    line-height: 24px;
 }
 
 .input_select {
@@ -1626,7 +1631,9 @@ button.btn.btn-success.add-edu-row {
     background: #ccc;
 }
 
-input#resume_cv, input#formFile, input#profile_photo {
+input#resume_cv,
+input#formFile,
+input#profile_photo {
     position: relative;
     z-index: 2;
     background-color: transparent;
@@ -2185,7 +2192,8 @@ div#social_media_div {
 }
 
 
-#dropdown-container, #dropdown-container-new {
+#dropdown-container,
+#dropdown-container-new {
     margin: 20px;
     margin-left: 0px !important;
     margin-top: 6px !important;
@@ -2201,14 +2209,14 @@ div#social_media_div {
     padding-left: 0px;
 }
 
-.industry_option { 
+.industry_option {
     color: #6f6f6fe8 !important;
     background-color: transparent !important;
     padding: 0px !important;
     font-weight: 300;
 }
 
-.industry_option:hover { 
+.industry_option:hover {
     color: #6f6f6fe8;
 }
 
@@ -2223,14 +2231,16 @@ div#social_media_div {
     padding: 0px !important;
 }
 
-.industry_option_dropdown .title, .industry_option_dropdown .title-new {
+.industry_option_dropdown .title,
+.industry_option_dropdown .title-new {
     margin-top: 5px !important;
     margin-bottom: 5px;
     padding: 5px 10px 5px !important;
 
 }
 
-.industry_option_dropdown .title:nth-child(1), .industry_option_dropdown .title-new:nth-child(1) {
+.industry_option_dropdown .title:nth-child(1),
+.industry_option_dropdown .title-new:nth-child(1) {
     margin-top: 0px !important;
 }
 
@@ -2261,7 +2271,8 @@ div#social_media_div {
     color: #656565 !important;
 }
 
-div#list-industry li, div#list-preferred-industry li {
+div#list-industry li,
+div#list-preferred-industry li {
     height: 34px !important;
     padding: 5px 17px 5px 24px !important;
     border-radius: 50px !important;

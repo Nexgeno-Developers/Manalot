@@ -459,8 +459,8 @@ class AccountController extends Controller
 
         if($request->has('resume_cv')){
                
-            $users_email_temp = str_replace(['@', '.'], '_', $request->input('email'));
-            $newFileName = 'resume_' . $users_email_temp . '_' . now()->format('YmdHis') . '.' . $request->file('resume_cv')->getClientOriginalExtension();
+            $users_email_temp_email = str_replace(['@', '.'], '_', $request->input('email'));
+            $newFileName = 'resume_' . $users_email_temp_email . '_' . now()->format('YmdHis') . '.' . $request->file('resume_cv')->getClientOriginalExtension();
             $path = $request->file('resume_cv')->storeAs('user_data/resume_cv', $newFileName, 'public');
             
             // $result = file_upload_od($newFileName, $path);

@@ -66,7 +66,7 @@
                                 </p>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <div class="purple_btn">
+                                <div class="purple_btn minalgn_button">
                                     <button type="submit" class="text-decoration-none text-white width140" >Login</button>
                                 </div>
                                 <a href="{{ url(route('registration')) }}" class="google_btn bluegradian_bg text-light">New to MLN? <b>Join Now</b></a>

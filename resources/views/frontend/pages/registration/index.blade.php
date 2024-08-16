@@ -696,7 +696,7 @@
 
     function skill_dropdown(){
         $('#skills-data').select2({
-            placeholder: 'Select skills',
+            placeholder: 'Select Key Relevant Skills',
             minimumInputLength: 2,
             // tags: true,
             ajax: {
