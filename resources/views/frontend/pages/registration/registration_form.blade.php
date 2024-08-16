@@ -315,7 +315,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="Date" class="form-label">Date of Birth *</label>
+                        <label for="Date" class="form-label">Date of Birth (dd/mm/yyyy) *</label>
                         <!-- <img src="/assets/images/calender_icon.png" alt="" class="input_icon"> -->
                         <input type="date" class="form-control is-invalid input_text register_date_field" id="Date"
                             name="dob" placeholder="Date" value="{{ $dob }}" max="{{ date('Y-m-d') }}"
@@ -841,7 +841,7 @@
 
                         <div class="col-md-6 mb-4">
                             <div class="position-relative form-group">
-                                <label for="Date Obtained*" class="form-label">Date Obtained</label>
+                                <label for="Date Obtained*" class="form-label">Date Obtained (dd/mm/yyyy)</label>
 
                                 <input type="date" class="form-control is-invalid input_text certificate_obtn_date register_date_field" max="{{ date('Y-m-d') }}"
                                     name="certificate_obtn_date[]" placeholder="Date"
