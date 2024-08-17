@@ -18,7 +18,7 @@ class FrontendAuthenticate
         
         if (!auth()->check()) {
             return redirect(route('login')); // Redirect to login page
-        }
+        } 
 
         return $next($request);
     }

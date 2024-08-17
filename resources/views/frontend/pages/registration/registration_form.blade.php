@@ -117,7 +117,8 @@
                         <label for="email" class="form-label">Email *</label>
                         <img src="/assets/images/email.png" alt="" class="input_icon" />
                         <input type="email" class="form-control is-invalid input_text" id="email" name="email"
-                            placeholder="Enter Your email" required />
+                            placeholder="Enter Your email" required @if (Session::has('google_email') && Session::get('google_login') == 1) 
+                            value="{{ Session::get('google_email') }}" readonly @endif />
                     </div>
                 </div>
 
@@ -191,8 +192,8 @@
                     <p>Documents required: <span class="span_start">*</span></p>
                     <ul>
                         <li>Current Resume</li>
-                        <li>Experience Letter</li>
-                        <li>Profile Photo</li>
+                        <li>Last Experience | Relieving letter</li>
+                        <li>Recent Photo</li>
                     </ul>
                  </div>
              </div>
@@ -282,7 +283,7 @@
                         <label for="first_name" class="form-label">Full Name *</label>
                         <input type="text" class="form-control is-invalid input_text" name="fullname"
                             id="fullname" placeholder="Enter First Name" pattern="[A-Za-z]+" minlength="1"
-                            maxlength="255" value="{{ $fullname }}" required />
+                            maxlength="255" value="{{ isset($fullname) ? $fullname : (Session::has('google_name') ? Session::get('google_name') : '') }}" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
@@ -299,7 +300,7 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="formFile" class="form-label" id="profile_photo">Profile Photo <span class="leble_size">(png, jpg)</span></label>
+                        <label for="formFile" class="form-label" id="profile_photo">Recent Photo <span class="leble_size">(png, jpg)</span></label>
                         @if (!empty($profile_photo) && $profile_photo != null)
                             <!-- {{--<a class="pdf_view" target="_blank"
                                 href="{{ asset('storage/' . $profile_photo) }}">
@@ -314,7 +315,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="Date" class="form-label">Date of Birth *</label>
+                        <label for="Date" class="form-label">Date of Birth (dd/mm/yyyy) *</label>
                         <!-- <img src="/assets/images/calender_icon.png" alt="" class="input_icon"> -->
                         <input type="date" class="form-control is-invalid input_text register_date_field" id="Date"
                             name="dob" placeholder="Date" value="{{ $dob }}" max="{{ date('Y-m-d') }}"
@@ -439,7 +440,7 @@
  <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="job_title" class="form-label">Professional Title *</label>
+                        <label for="job_title" class="form-label">Current Designation / Title *</label>
                         <input type="text" class="form-control is-invalid input_text" id="job_title"
                             name="wrk_exp__title" placeholder="Enter your Job Title" pattern="[A-Za-z]+"
                             minlength="2" maxlength="100" value="{{ $wrk_exp__title }}" required />
@@ -458,7 +459,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="State" class="form-label">Years of Experience *</label>
+                        <label for="State" class="form-label">Total Years of Experience *</label>
                         <select class="select2 form-select form-control is-invalid input_select old-select2"
                             aria-label="Default select example" id="wrk_exp_years" name="wrk_exp_years" required>
                             <option value="">Select Experience</option>
@@ -473,22 +474,24 @@
 
                  <div class="col-md-6 mb-4">
                     <div class="position-relative">
-                        <label for="experience_letter" class="form-label">Upload Experience Letter <span class="leble_size">(docx, pdf -  up to 5MB)</span></label>
+                        <label for="experience_letter" class="form-label">Upload Last Experience | Relieving letter <span class="leble_size">(docx, pdf -  up to 5MB)</span></label>
                         <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
                         <input class="form-control" type="file" id="formFile" name="experience_letter"
                             accept=".pdf,.doc,.docx,application/msword,image/*,.webp" />
                         {{-- <img src="images/file.png" alt="" class="input_icon" /> --}}
                     </div>
-                    @if ($experience_letter)
+                    {{--
+                        @if ($experience_letter)
                         <div class="mt-2">
-                            <a href="{{ asset('storage/' . $experience_letter) }}" class="btn btn-success add-row" target="_blank">View Experience Letter</a>
+                            <a href="{{ asset('storage/' . $experience_letter) }}" class="btn btn-success add-row" target="_blank">View Last Experience | Relieving letter</a>
                         </div>
                     @endif
+                    --}}
                 </div>  
 
 
                 <div class="col-md-8 mb-4">
-                    {{-- <label for="industry" class="form-label">Industry *</label>
+                    {{-- <label for="industry" class="form-label">Industries Served *</label>
                     <div id="list-industry" class="d-none">
 
                     </div>
@@ -528,7 +531,7 @@
                     </div> --}}
                     {{-- 
                     <div class="position-relative form-group">
-                        <label for="industry" class="form-label">Industry *</label>
+                        <label for="industry" class="form-label">Industries Served *</label>
                         <select class="select2 form-select form-control is-invalid input_select" multiple="multiple"
                         aria-label="Default select example" id="industry" name="industry[]" required>
                             <option value="">Select Industry</option>
@@ -543,7 +546,7 @@
                     --}}
 
 
-                    <label for="industry" class="form-label">Industry *</label>
+                    <label for="industry" class="form-label">Industries Served *</label>
                     <div id="list-industry" class="d-none">
     
                     </div>
@@ -554,7 +557,7 @@
 
 
                         <div class="dropdown industry_option_dropdown">
-                            <a class="dropdown-toggle industry_option">Select Industries</a>
+                            <a class="dropdown-toggle industry_option">Select Industries Served </a>
                             <div class="dropdown-menu industry-check-box industry_option_dropdown_box">
                                 @foreach ($groupedIndustries as $mainIndustry)
                                     <div class="title" style="background: #d5d5d563; padding: 10px; font-weight: 600">
@@ -616,11 +619,11 @@
 
                 <div class="col-md-12 mb-2">
                     <div class="position-relative form-group">
-                        <label for="skills" class="form-label">Skills *</label>
+                        <label for="skills" class="form-label">Key Relevant Skills *</label>
                         <select name="skill[]" multiple="multiple"
                             class="select2 form-select form-control is-invalid input_select"
                             aria-label="Default select example" id="skills-data" required>
-                            <option value="">Select Skills</option>
+                            <option value="">Select Key Relevant Skills</option>
                             @foreach ($skills as $row)
                                 <option value="{{ $row->name }}"
                                     @if (in_array($row->name, json_decode($skill_check, true))) selected @endif>
@@ -838,7 +841,7 @@
 
                         <div class="col-md-6 mb-4">
                             <div class="position-relative form-group">
-                                <label for="Date Obtained*" class="form-label">Date Obtained</label>
+                                <label for="Date Obtained*" class="form-label">Date Obtained (dd/mm/yyyy)</label>
 
                                 <input type="date" class="form-control is-invalid input_text certificate_obtn_date register_date_field" max="{{ date('Y-m-d') }}"
                                     name="certificate_obtn_date[]" placeholder="Date"
@@ -931,9 +934,9 @@
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="Preferred Title/Role*" class="form-label">Preferred Title/Role *</label>
-                        <input type="text" class="form-control is-invalid input_text" id="Preferred Title/Role*"
-                            name="pref_title" placeholder="Enter Your Preferred Title" pattern="[0-9A-Za-z]+"
+                        <label for="Preferred Title/Role*" class="form-label">Preferred Designation / Title / Role *</label>
+                        <input type="text" class="form-control is-invalid input_text" id="Preferred Designation / Title / Role*"
+                            name="pref_title" placeholder="Enter Your Preferred Des / Title / Role" pattern="[0-9A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $pref_title }}" required />
                     </div>
                 </div>
@@ -1037,7 +1040,7 @@
 
                 {{-- <div class="col-md-12 mb-4">
                     <div class="position-relative form-group">
-                        <label for="Preferred Industry*" class="form-label">Preferred Industry *</label>
+                        <label for="Preferred Industry*" class="form-label">Preferred Industries Served *</label>
                         {{-- <input type="text" class="form-control is-invalid input_text" id="Preferred Industry*"
                             name="pref_industry" placeholder="Enter Your Preferred Industry" pattern="[A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $pref_industry }}" required /> --}}
@@ -1060,7 +1063,7 @@
                 {{-------------------------- Preferred Industry -------------}}
 
 
-                {{-- <label for="Preferred Industry*" class="form-label">Preferred Industry *</label>
+                {{-- <label for="Preferred Industry*" class="form-label">Preferred Industries Served *</label>
 
                 <div id="list-Preferred-industry" class="industry_cls d-none">
 
@@ -1101,7 +1104,7 @@
                 </div> --}}
 
 
-                <label for="preferred-industry" class="form-label-new form-label">Preferred Industry *</label>
+                <label for="preferred-industry" class="form-label-new form-label">Preferred Industries Served *</label>
                 <div id="list-preferred-industry" class=" industry_cls d-none-new">
                 </div>
                 
@@ -1109,7 +1112,7 @@
                     <input type="hidden" id="selected-values-ids-new" name="pref_industry[]" value="">
                 
                     <div class="dropdown-new industry_option_dropdown">
-                        <a class="dropdown-toggle-new dropdown-toggle industry_option">Select Options</a>
+                        <a class="dropdown-toggle-new dropdown-toggle industry_option">Select Preferred Industries Served</a>
                         <div class="dropdown-menu-new industry-check-box industry_option_dropdown_box">
                             @foreach ($groupedIndustries as $mainIndustry)
                                 <div class="title-new" style="background: #d5d5d563; padding: 10px; font-weight: 600">

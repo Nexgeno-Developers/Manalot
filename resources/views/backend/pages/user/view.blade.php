@@ -1,15 +1,15 @@
 @php
-    $job_title= DB::table('job_title')->where('id', $usersdetails->job_title)->first();
+    // $job_title= DB::table('job_title')->where('id', $usersdetails->job_title)->first();
 
     // $industry= DB::table('industry')->where('id', $usersdetails->industry)->first();
 
     $years_of_exp= DB::table('years_of_exp')->where('id', $usersdetails->wrk_exp_years)->first();
 
-    $experience_status= DB::table('experience_status')->where('id', $usersdetails->experience_Status)->first();
+    // $experience_status= DB::table('experience_status')->where('id', $usersdetails->experience_Status)->first();
 
     $skills= DB::table('skills')->get();
 
-    $references_from= DB::table('references_from')->where('id', $usersdetails->references)->first();
+    // $references_from= DB::table('references_from')->where('id', $usersdetails->references)->first();
 
     $references_data = json_decode($usersdetails->references, true);
     
@@ -50,9 +50,14 @@
         </div>
         <div class="col-sm-3">
             <div class="d-flex form-group gap-2">
-                <b>Uploaded Resume CV : </b> 
-                <a target="_blank" href="{{ asset('storage/' . $usersdetails->resume_cv) }}" class="btn btn-success main_button">View CV</a>
-                
+                <b>Uploaded Resume CV : </b>
+                @if(!is_null($usersdetails->resume_cv) && !empty($usersdetails->resume_cv))
+                    @if (strpos($usersdetails->resume_cv, 'my.sharepoint.com') !== false)
+                        <a target="_blank" href="{{ $usersdetails->resume_cv }}" class="btn btn-success main_button" target="_blank">View CV</a>
+                    @else
+                        <a target="_blank" href="{{ asset('storage/' . $usersdetails->resume_cv) }}" class="btn btn-success main_button" target="_blank">View CV</a>
+                    @endif
+                @endif
             </div>
         </div>
     </div>
@@ -139,27 +144,29 @@
             <div class="col-sm-4">
                 <div class="form-group mb-3">
                     <b>Industry : </b>
-                    @php 
-                        $industry =  json_decode($usersdetails->industry, true); 
-                    @endphp
-                    @if(count($industry) != 0)
-                        @foreach ($industry as $row)
+                    @if(!is_null($usersdetails->industry) && !empty($usersdetails->industry))
+                        @php 
+                            $industry =  json_decode($usersdetails->industry, true); 
+                        @endphp
+                        @if(count($industry) != 0)
+                            @foreach ($industry as $row)
 
-                            @php 
-                                $industry_name =  DB::table('industry')->where('id', $row)->first(['name', 'sub_parent_id', 'main_partent_id', 'main']);
-                            @endphp
-
-                            @if($industry_name->main_partent_id != 0)
                                 @php 
-                                    $main_industry_name =  DB::table('industry')->where('id', $industry_name->main_partent_id)->value('name');
+                                    $industry_name =  DB::table('industry')->where('id', $row)->first(['name', 'sub_parent_id', 'main_partent_id', 'main']);
                                 @endphp
-                                <p class="" style="color: #024487;">{{ $main_industry_name }}</p>
-                                <p class="" style="color: #bb47a3 ;"><b>{{ $industry_name->name }}</b></p>
-                            @elseif($industry_name->sub_parent_id != 0)
-                                <p>{{ $industry_name->name }}</p>
-                            @endif
 
-                        @endforeach
+                                @if($industry_name->main_partent_id != 0)
+                                    @php 
+                                        $main_industry_name =  DB::table('industry')->where('id', $industry_name->main_partent_id)->value('name');
+                                    @endphp
+                                    <p class="" style="color: #024487;">{{ $main_industry_name }}</p>
+                                    <p class="" style="color: #bb47a3 ;"><b>{{ $industry_name->name }}</b></p>
+                                @elseif($industry_name->sub_parent_id != 0)
+                                    <p>{{ $industry_name->name }}</p>
+                                @endif
+
+                            @endforeach
+                        @endif
                     @endif
                 </div>
             </div>  
@@ -169,10 +176,12 @@
                     <div class="col-12 mb-3">
                         <div id="list-industry" class="form-group mb-3">
                             <b>Skill : </b> <br>
+                            @if(!is_null($usersdetails->skill) && !empty($usersdetails->skill))
                                 @php $skills = json_decode($usersdetails->skill, true); @endphp
                                 @foreach ($skills as $row)
                                     <li>{{ $row }}</li>
                                 @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>    
@@ -190,7 +199,14 @@
             <div class="col-sm-4">
                 <div class="form-group mb-3">
                     <b>Uploaded Experience Letter : </b> 
-                    <a target="_blank" href="{{ asset('storage/' . $usersdetails->experience_letter) }}" class="btn btn-success main_button">View Experience Letter</a>
+                    @if(!is_null($usersdetails->experience_letter) && !empty($usersdetails->experience_letter))
+                        @if (strpos($usersdetails->experience_letter, 'my.sharepoint.com') !== false)
+                            <a target="_blank" href="{{ $usersdetails->experience_letter }}" class="btn btn-success main_button" target="_blank">View Experience Letter</a>
+                        @else
+                            <a target="_blank" href="{{ asset('storage/' . $usersdetails->experience_letter) }}" class="btn btn-success main_button" target="_blank">View Experience Letter</a>
+                        @endif
+
+                    @endif
                 </div>
             </div>
         </div>
@@ -264,25 +280,27 @@
                 <div class="col-sm-4">
                     <div class="d-flex form-group gap-2">
                         <b>Prefer Industry : </b>
-                        @php $pref_industry = json_decode($usersdetails->pref_industry, true); @endphp
-                        @if(count($pref_industry) != 0)
-                            @foreach ($pref_industry as $row)
+                        @if(!is_null($usersdetails->pref_industry) && !empty($usersdetails->pref_industry))
+                            @php $pref_industry = json_decode($usersdetails->pref_industry, true); @endphp
+                            @if(count($pref_industry) != 0)
+                                @foreach ($pref_industry as $row)
 
-                                @php 
-                                    $industry_name =  DB::table('industry')->where('id', $row)->first(['name', 'sub_parent_id', 'main_partent_id', 'main']);
-                                @endphp
-
-                                @if($industry_name->main_partent_id != 0)
                                     @php 
-                                        $main_industry_name =  DB::table('industry')->where('id', $industry_name->main_partent_id)->value('name');
+                                        $industry_name =  DB::table('industry')->where('id', $row)->first(['name', 'sub_parent_id', 'main_partent_id', 'main']);
                                     @endphp
-                                    <p class="text-primary">{{ $main_industry_name }}</p>
-                                    <p class="text-warning"><b>{{ $industry_name->name }}</b></p>
-                                @elseif($industry_name->sub_parent_id != 0)
-                                    <p>{{ $industry_name->name }}</p>
-                                @endif
 
-                            @endforeach
+                                    @if($industry_name->main_partent_id != 0)
+                                        @php 
+                                            $main_industry_name =  DB::table('industry')->where('id', $industry_name->main_partent_id)->value('name');
+                                        @endphp
+                                        <p class="text-primary">{{ $main_industry_name }}</p>
+                                        <p class="text-warning"><b>{{ $industry_name->name }}</b></p>
+                                    @elseif($industry_name->sub_parent_id != 0)
+                                        <p>{{ $industry_name->name }}</p>
+                                    @endif
+
+                                @endforeach
+                            @endif
                         @endif
                     </div>
                 </div>

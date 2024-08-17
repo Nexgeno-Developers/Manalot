@@ -5,6 +5,17 @@
 @section('page.content')
 <!----------========================== login ============----------->
 
+<style>
+    .login-button-width
+    {
+        display: ruby-text;
+        text-align: center;
+    }
+    p.divider {
+    width: 360px !important;
+}
+</style>
+
 <div class="login_logo">
     <a href="/"><img src="/assets/images/namalot_logo.png" /></a>
 </div>
@@ -55,28 +66,32 @@
                                 </p>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <div class="purple_btn">
+                                <div class="purple_btn minalgn_button">
                                     <button type="submit" class="text-decoration-none text-white width140" >Login</button>
                                 </div>
                                 <a href="{{ url(route('registration')) }}" class="google_btn bluegradian_bg text-light">New to MLN? <b>Join Now</b></a>
                             </div>
                         </form>
+
+                        <div class="text-center my-4">
+                            <p class="divider">Or</p>
+                        </div>
+                        <div class="login-button-width">
+                            <a href="{{ route('auth.google') }}">
+                                <button class="google_btn">
+                                    Login with
+                                    <img src="/assets/images/google.svg" alt="google icon" class="google_icon" />
+                                </button>
+                            </a>  
+    
+                            {{-- <button class="google_btn">
+                                Login with
+                                <img src="/assets/images/apple.svg" alt="google icon" class="google_icon" />
+                            </button>                       --}}
+                        </div>
                 </div>
 
-                <div class="text-center my-4">
-                        <p class="divider">Or</p>
-                    </div>
-                    <div class="d-flex align-items-center gap-4 mobile-d-block">
-                        <button class="google_btn">
-                            Login with
-                            <img src="/assets/images/google.svg" alt="google icon" class="google_icon" />
-                        </button>  
-
-                        <button class="google_btn">
-                            Login with
-                            <img src="/assets/images/apple.svg" alt="google icon" class="google_icon" />
-                        </button>                      
-                    </div>
+               
 
             </div>
         </div>

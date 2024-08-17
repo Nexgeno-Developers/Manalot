@@ -6,20 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-
-use App\Models\User;
-use Illuminate\Support\Facades\Mail;
-
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Common\AadharController;
 
-use App\Http\Controllers\Common\EsignAadharController;
-use Dompdf\Dompdf;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rule;
 
 use Auth;
 
@@ -414,11 +405,11 @@ class AccountController extends Controller
             'phone_number' => 'required|regex:/^[\d\s\-\+]+$/|min:5',
             'resume_cv' => 'required|mimes:pdf,doc,docx|max:5120',
         ], [
-            'name.required' => 'The Name field is required.',
-            'name.string' => 'The Name must be a string.',
-            'name.regex' => 'The Name format is invalid. Only letters, numbers, dots, underscores are allowed, and spacing is not allowed.',
-            'name.min' => 'The Name must be at least 1 character.',
-            'name.max' => 'The Name may not be greater than 50 characters.',
+            'name.required' => 'The Username field is required.',
+            'name.string' => 'The Username must be a string.',
+            'name.regex' => 'The Username format is invalid. Only letters, numbers, dots, underscores are allowed, and spacing is not allowed.',
+            'name.min' => 'The Username must be at least 1 character.',
+            'name.max' => 'The Username may not be greater than 50 characters.',
             
             'email.required' => 'The Email field is required.',
             'email.email' => 'The Email must be a valid email address.',
@@ -467,28 +458,25 @@ class AccountController extends Controller
         $users_email_temp = DB::table('users')->where('email', $request->input('email'))->get()->first();
 
         if($request->has('resume_cv')){
-            $path = $request->file('resume_cv')->store('user_data/resume_cv', 'public');
+               
+            $users_email_temp_email = str_replace(['@', '.'], '_', $request->input('email'));
+            $newFileName = 'resume_' . $users_email_temp_email . '_' . now()->format('YmdHis') . '.' . $request->file('resume_cv')->getClientOriginalExtension();
+            $path = $request->file('resume_cv')->storeAs('user_data/resume_cv', $newFileName, 'public');
+            
+            // $result = file_upload_od($newFileName, $path);
+            // if($result != 'error'){
+            //     $path = $result;
+            // }
+
+            // $path = $request->file('resume_cv')->store('user_data/resume_cv', 'public');
+
         } else {
             $path = null;
         }
 
 
 
-
         if($users_email_temp){
-
-            // DB::table('users')->where('id',$users_email_temp->id)->update([
-            //     'username' => $request->input('name'),
-            //     'email' => strtolower($request->input('email')),
-            //     'password' => bcrypt($request->input('password')),
-            //     'approval' => '0',
-            //     'status' => '0',
-            //     'completed_status' => '0',
-            //     'step' => 1,
-            //     'role_id'  => '2',
-            //     'created_at' => now(),
-            //     'updated_at' => now(),
-            // ]);
 
             $resume_path = DB::table('userdetails')->where('user_id', $users_email_temp->id)->value('resume_cv');
 
@@ -498,48 +486,103 @@ class AccountController extends Controller
                 }
             } 
 
-            // DB::table('userdetails')->where('user_id',$users_email_temp->id)->update([
-            //     'phone_number' => $request->input('phone_number'),
-            //     //'experience_Status' => $request->input('experience_Status'),
-            //     'resume_cv' => $path,
-            //     'created_at' => now(),
-            //     'updated_at' => now(),
-            // ]);
 
-            // Session::put('temp_user_id', $users_email_temp->id);
+            if(Session::has('google_email') && Session::get('google_login') == 1){
+
+                DB::table('users')->where('id',$users_email_temp->id)->update([
+                    'username' => $request->input('name'),
+                    'email' => strtolower($request->input('email')),
+                    'password' => bcrypt($request->input('password')),
+                    'approval' => '0',
+                    'status' => '0',
+                    'completed_status' => '0',
+                    'step' => 1,
+                    'role_id'  => '2',
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+
+                $result = file_upload_od($newFileName, $path);
+                if($result != 'error on uploding'){
+                    if (Storage::disk('public')->exists($path)) {
+                        // Storage::disk('public')->delete($path);
+                    }
+                    $path = $result;
+                }
+
+                DB::table('userdetails')->where('user_id',$users_email_temp->id)->update([
+                    'phone_number' => $request->input('phone_number'),
+                    'resume_cv' => $path,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+
+                Session::put('temp_user_id', $users_email_temp->id);
+
+                Session::put('step', 2);
+
+                
+                $rsp_msg['response'] = 'success';
+                $rsp_msg['message'] = "User Detail Added successfully. Please Proceed";
+
+                // session()->flash('success', 'User Detail Added successfully. Please Proceed');
+
+                return $rsp_msg;
+
+            }
+
 
         } else {
 
-            // $userId = DB::table('users')->insertGetId([
-            //     'username' => $request->input('name'),
-            //     'email' => strtolower($request->input('email')),
-            //     'password' => bcrypt($request->input('password')),
-            //     'approval' => '0',
-            //     'role_id'  => '2',
-            //     'completed_status' => '0',
-            //     'status' => '0',
-            //     'step' => 1,
-            //     'created_at' => now(),
-            //     'updated_at' => now(),
-            // ]);
+            if(Session::has('google_email') && Session::get('google_login') == 1){
 
-            // DB::table('userdetails')->insert([
-            //     'user_id' => $userId,
-            //     'phone_number' => $request->input('phone_number'),
-            //     //'experience_Status' => $request->input('experience_Status'),
-            //     'skill' => '[]',
-            //     'references' => '[]',
-            //     'resume_cv' => $path,
-            //     'created_at' => now(),
-            //     'updated_at' => now(),
-            // ]);
+                $userId = DB::table('users')->insertGetId([
+                    'username' => $request->input('name'),
+                    'email' => strtolower($request->input('email')),
+                    'password' => bcrypt($request->input('password')),
+                    'approval' => '0',
+                    'role_id'  => '2',
+                    'completed_status' => '0',
+                    'status' => '0',
+                    'step' => 1,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
 
-            // Session::put('temp_user_id', $userId);
+                $result = file_upload_od($newFileName, $path);
+                if($result != 'error on uploding'){
+                    if (Storage::disk('public')->exists($path)) {
+                        // Storage::disk('public')->delete($path);
+                    }
+                    $path = $result;
+                }
+
+                DB::table('userdetails')->insert([
+                    'user_id' => $userId,
+                    'phone_number' => $request->input('phone_number'),
+                    //'experience_Status' => $request->input('experience_Status'),
+                    'skill' => '[]',
+                    'references' => '[]',
+                    'resume_cv' => $path,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+
+                Session::put('temp_user_id', $userId);
+
+                Session::put('step', 2);
+
+                $rsp_msg['response'] = 'success';
+                $rsp_msg['message'] = "User Detail Added successfully. Please Proceed";
+
+                // session()->flash('success', 'User Detail Added successfully. Please Proceed');
+
+                return $rsp_msg;
+
+            }
         }
 
         // Session::put('password', $request->input('password'));
-
-
         // Session::put('step', 2);
 
 
@@ -549,6 +592,7 @@ class AccountController extends Controller
             'password' => bcrypt($request->input('password')),
             'phone_number' => $request->input('phone_number'),
             'resume_cv' => $path,
+            'newFileName' => $newFileName,
         ];
 
 
@@ -624,10 +668,20 @@ class AccountController extends Controller
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
+
+                $result = file_upload_od($user_info['newFileName'], $user_info['resume_cv']);
+                if($result != 'error on uploding'){
+                    if (Storage::disk('public')->exists($user_info['resume_cv'])) {
+                        // Storage::disk('public')->delete($user_info['resume_cv']);
+                    }
+                    $path = $result;
+                } else{
+                    $path = $user_info['resume_cv'];
+                }
     
                 DB::table('userdetails')->where('user_id',$users_email_temp->id)->update([
                     'phone_number' => $user_info['phone_number'],
-                    'resume_cv' => $user_info['resume_cv'],
+                    'resume_cv' => $path,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
@@ -648,6 +702,16 @@ class AccountController extends Controller
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
+
+                $result = file_upload_od($user_info['newFileName'], $user_info['resume_cv']);
+                if($result != 'error on uploding'){
+                    if (Storage::disk('public')->exists($user_info['resume_cv'])) {
+                        // Storage::disk('public')->delete($user_info['resume_cv']);
+                    }
+                    $path = $result;
+                } else{
+                    $path = $user_info['resume_cv'];
+                }
     
                 DB::table('userdetails')->insert([
                     'user_id' => $userId,
@@ -655,7 +719,7 @@ class AccountController extends Controller
                     'skill' => '[]',
                     'edu_data' => '[]',
                     'references' => '[]',
-                    'resume_cv' => $user_info['resume_cv'],
+                    'resume_cv' => $path,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
@@ -864,7 +928,26 @@ class AccountController extends Controller
 
         // Handle file upload for experience letter
         if ($request->hasFile('experience_letter') && $request->file('experience_letter')->isValid()) {
-            $path = $request->file('experience_letter')->store('user_data/experience_letters', 'public');
+
+            $users_email_temp = DB::table('users')->where('id', Session::get('temp_user_id'))->value('email');
+
+            $users_email_temp = str_replace(['@', '.'], '_', $users_email_temp);
+
+            $newFileName = 'experience_letter_' . $users_email_temp . '_' . now()->format('YmdHis') . '.' . $request->file('experience_letter')->getClientOriginalExtension();
+            $path = $request->file('experience_letter')->storeAs('user_data/experience_letters', $newFileName, 'public');
+
+            
+
+            // $path = $request->file('experience_letter')->store('user_data/experience_letters', 'public');
+
+            $result = file_upload_od($newFileName, $path);
+            if($result != 'error on uploding'){
+                if (Storage::disk('public')->exists($path)) {
+                    // Storage::disk('public')->delete($path);
+                }
+                $path = $result;
+            }
+
         } else {
             // Check if existing path should be retained or set to null
             $path = $userDetail ? $userDetail->experience_letter : null;
@@ -873,10 +956,8 @@ class AccountController extends Controller
         DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
             'wrk_exp_company_name' => $request->input('wrk_exp_company_name'),
             'wrk_exp_years' => $request->input('wrk_exp_years'),
-            // 'job_title' => $request->input('job_title'),
             'industry' => json_encode($industry_elements),
             'wrk_exp__title' => $request->input('wrk_exp__title'),
-            // 'resume_cv' => $path,
             'skill' => json_encode($skill),
             'wrk_exp_responsibilities' => $request->input('wrk_exp_responsibilities'),
             

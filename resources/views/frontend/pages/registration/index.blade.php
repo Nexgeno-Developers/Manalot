@@ -696,7 +696,7 @@
 
     function skill_dropdown(){
         $('#skills-data').select2({
-            placeholder: 'Select skills',
+            placeholder: 'Select Key Relevant Skills',
             minimumInputLength: 2,
             // tags: true,
             ajax: {
@@ -957,10 +957,17 @@
             
             form.find("input[type=text], input[type=email], input[type=password], textarea").val("");
             form.find("select").prop("selectedIndex", 0); */
-            setTimeout(function () {
-                // location.reload();
-                $('#email_otp_model').modal('show');
-            }, 100);
+
+            @if(Session::has('google_email') && Session::get('google_login') == 1)
+                setTimeout(function () {
+                    location.reload();
+                }, 100);
+            @else
+                setTimeout(function () {
+                    // location.reload();
+                    $('#email_otp_model').modal('show');
+                }, 100);
+            @endif
 
             // Show resend OTP button after 30 seconds
             setTimeout(function() {
@@ -1271,6 +1278,13 @@
             clearTimeout(typingTimer);
             var postalCode = $(this).val();
 
+            if (postalCode.length === 0) {
+                $('#country_name').val('');
+                $('#city').val(''); 
+                $('#state').val('');
+            }
+
+
             if (postalCode.length > 0) {
                 typingTimer = setTimeout(function () {
                     $.ajax({
@@ -1286,7 +1300,7 @@
                                 $('#country_name').val(data.postalCodes[0].countryCode).focus();
                                 $('#city').val(data.postalCodes[0].adminName2).focus();
                                 $('#state').val(data.postalCodes[0].adminName1).focus();
-                                $('#address').focus();
+                                $('#pincode').focus();
 
                                 // $('#placeName').val(data.postalCodes[0].placeName);
 

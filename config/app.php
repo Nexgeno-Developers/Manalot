@@ -170,6 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -187,6 +188,7 @@ return [
         // 'Example' => App\Facades\Example::class,
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
         'Debugbar' => 'BarryvdhDebugbarFacade',
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ])->toArray(),
 
 ];
