@@ -8,7 +8,7 @@
 <style>
     .login-button-width
     {
-        display: ruby-text;
+        /* display: ruby-text; */
         text-align: center;
     }
     p.divider {
@@ -17,7 +17,7 @@
 </style>
 
 <div class="login_logo">
-    <a href="/"><img src="/assets/images/namalot_logo.png" /></a>
+    <a href="/"><img src="/assets/images/manalot_header_logo.png" /></a>
 </div>
 
 <section class="auth_form">
@@ -34,13 +34,17 @@
                 </h1>
 
 
-                <div class="heading mb-4">
-                        <h2>Login Account</h2>
-                        
+                <div class="heading mb-md-4 mb-0">
+                    <h2>Login Account</h2>
+                    <div class="d-flex justify-content-center d-md-none">
+                        <p class="stay_in_touch_text">
+                            To stay in touch with us, please log in to your manalot account.
+                        </p>
                     </div>
+                </div>
 
 
-                <div class="login_width">
+                <div class="login_width d-md-block d-none">
                         <form id="login-form" action="{{ url(route('customer.login')) }}"  method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
                             @csrf
                             <div class="position-relative">
@@ -91,6 +95,52 @@
                         </div>
                 </div>
 
+                <div class="bg_cut_img_div d-md-none d-block">
+                    <img class="bg_cut_img" src="/assets/images/login_bg_purple_img.png">
+                </div>
+
+                <div class="login_width d-md-none d-block">
+                    <form id="login-form" action="{{ url(route('customer.login')) }}" method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
+                        @csrf
+                        <div class="position-relative">
+                            <label for="email" class="form-label">Email</label>
+                            <img src="/assets/images/email.png" alt="" class="input_icon">
+                            <input type="email" class="form-control input_text" id="email" name="email" placeholder="Enter Your Email ID" required="">
+                        </div>
+                        <div class="position-relative">
+                            <label for="password" class="form-label">Password</label>
+                            <img src="/assets/images/key.png" alt="" class="input_icon">
+                            <input type="password" class="form-control input_text" id="password" name="password" placeholder="***********" required="">
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <p> 
+                                Forgot your password? 
+                                <a onclick="open_reset_password_form();" class="purple text-decoration-none">Reset</a>
+                            </p>
+                        </div>
+                        <div class="d-flex justify-content-between b_20">
+                            <div class="purple_btn minalgn_button">
+                                <button type="submit" class="text-decoration-none text-bg-light text-dark width140">Log in <i class="fa fa-angle-right purple_btn"></i> </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="text-center my-4 mb-3">
+                        <p class="divider">Or</p>
+                    </div>
+                    <div class="row login-button-width">
+                        <div class="col-6">
+                            <a href="{{ route('auth.google') }}">
+                                <button class="google_btn">continue with <img src="/assets/images/google.svg" alt="google icon" class="google_icon ms-1">
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="{{ url(route('registration')) }}" class="google_btn bluegradian_bg text-light border-0">New to MLN? <b>Join Now</b>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
                
 
             </div>
@@ -100,16 +150,16 @@
 
 
 
-<section class="md-pt-5 pt-2">
+<section class="md-pt-5 pt-3">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6 width55">
-                <div class="d-flex flex-column gap-3">
+                <div class="d-flex flex-column gap-2">
                     <h3 class="font-size40 purple expt_button">
                         <strong>Unemployed OR over 45?</strong> 
                     </h3>
 
-                    <p class="font-size18 mb-0 last_chance">This could be your last chance.</p>
+                    <p class="font-size18 mb-2 last_chance">This could be your last chance.</p>
                     <p class="font-size18 mb-0">Are you a seasoned professional with valuable skills and more than 5 years of experience, <strong>seeking your next challenge?</strong> Perhaps you're over 45 and ready to leverage your wisdom in a new role.
 
 </p>
@@ -122,8 +172,8 @@
 <p class="font-size18 mb-0 font26">The Manalot Leadership Network reboots careers.
 </p>
 
-<p class="font-size18 mb-0 font28">Get back into the game<span class="color_pink">.....</spam> <span class="cls_now"><strong>Now</strong></sapn>
-</p>
+<strong class="font-size18 mb-0 font28 fw-bold">Get back into the game<span class="color_pink">.....</span> <span class="cls_now">Now</span>
+</strong>
 
                 </div>
             </div>
