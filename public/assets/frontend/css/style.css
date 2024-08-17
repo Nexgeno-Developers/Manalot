@@ -1807,7 +1807,7 @@ div#social_media_div {
         top: 20px;
     }
 
-    .auth_form .pddleft50 {
+    .no_padding .pddleft50 {
         padding-left: 0px !important;
         padding-top: 10px;
         padding-bottom: 10px;
@@ -1832,7 +1832,7 @@ div#social_media_div {
         top: 30px;
     }
 
-    label.form-label {
+    .no_padding label.form-label {
         font-weight: 500;
         color: #ffffffe8;
     }
@@ -1903,6 +1903,16 @@ div#social_media_div {
     .bluegradian_bg {
         padding: 8px 13px 8px 13px;
         line-height: 20px;
+    }
+
+    .document_required {
+        padding-left: 0px;
+    }
+
+    .work_authorization .col-md-6:nth-child(even) {
+        padding-left: 10px !important;
+        padding-right: 32px;
+        padding-top: 20px;
     }
 
     .mt50 {

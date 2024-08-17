@@ -1309,7 +1309,7 @@
 {{-- @if (!Session::has('step') || Session::get('step') == 6) --}}
 
     <div id="social_media_div" class="register_width d-none">
-        <div class="heading mb-4">
+        <div class="heading mb-4 col-6">
             <h2>Social Media Links</h2>
         </div>
         <form id="social-media-info" action="{{ url(route('account.create', ['param' => 'social-media-info'])) }}"
