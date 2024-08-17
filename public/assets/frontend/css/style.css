@@ -145,11 +145,6 @@ button.purple_btn {
     margin-right: 10px;
 }
 
-.minalgn_button button {
-    padding-left: 0;
-    padding-right: 0;
-}
-
 .divider::after {
     left: 54%;
     margin-left: 10px;
@@ -208,7 +203,7 @@ p.divider {
     color: #fff;
     border: 0;
     padding: 4px 33px 5px 33px;
-    line-height: 24px;
+    line-height:  24px;
 }
 
 .input_select {
@@ -1212,7 +1207,7 @@ input.h_input::placeholder {
 }
 
 .ms-footer {
-    background-image: url(/assets/frontend/images/footer-bg.png);
+    background-image: url(https://manalot.com/public/gfx/footer-bg.png);
     background-size: cover;
     margin-top: 60px;
 }
@@ -1631,9 +1626,7 @@ button.btn.btn-success.add-edu-row {
     background: #ccc;
 }
 
-input#resume_cv,
-input#formFile,
-input#profile_photo {
+input#resume_cv, input#formFile, input#profile_photo {
     position: relative;
     z-index: 2;
     background-color: transparent;
@@ -1761,12 +1754,29 @@ div#social_media_div {
         overflow-x: hidden;
     }
 
-    .login_logo img {
+    .login_logo {
+        height: 320px;
         position: relative;
-        margin-left: 10px;
-        right: 10px;
-        width: 130px;
-        top: 9px;
+        display: flex;
+        justify-content: center;
+        align-items: end;
+    }
+
+    .login_logo {
+        background: url(/assets/images/background_rounded_lines.png) no-repeat top center;
+        width: 100%;
+        background-size: contain;
+    }
+
+    .login_logo a {
+        position: absolute;
+        bottom: 30px;
+    }   
+
+    .login_logo img {
+        position: relative; 
+        width: 300px;
+        right: 0;
     }
 
     .font-size70 {
@@ -1774,13 +1784,125 @@ div#social_media_div {
 
     }
 
+    .heading h2 { 
+        font-weight: 400; 
+        text-align: center;
+    }
+
+    .heading p {
+        text-align: center;
+        width: 60%;
+    }
+
     .main_heading {
         font-size: 22px;
         line-height: 50px;
+        display: none;
     }
 
     .login_width {
         width: 100%;
+        padding: 35px 30px 20px;
+        position: relative;
+        top: 20px;
+    }
+
+    .auth_form .pddleft50 {
+        padding-left: 0px !important;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-right: 0px !important;
+        position: relative;
+        z-index: 1;
+    }
+
+    .auth_form .bg_cut_img {
+        /* background: url(/assets/images/login_bg_purple_img.png) no-repeat center bottom;
+        width: 100%;
+        background-size: 96%;
+        top: 0px;
+        padding: 60px 30px 30px; */
+        position: absolute;
+        width: 100%;
+        height: 80vh;
+    }
+
+    form#login-form {
+        position: relative;
+        top: 30px;
+    }
+
+    label.form-label {
+        font-weight: 500;
+        color: #ffffffe8;
+    }
+
+    #login-form .form-control {
+        font-weight: 400 !important;
+        color: #ffffff !important;
+        background-color: transparent !important;
+    }
+
+    #login-form .form-control::placeholder {
+        color: #ffff !important;
+    }
+
+    .input_icon {
+        display: none;
+    }
+
+    form#login-form p {
+        color: #9c98a9 !important; 
+        top: 0px;
+        margin-bottom: 0px;
+    }
+
+    .b_20 {
+        position: relative;
+        bottom: 18px;
+    }
+
+    .minalgn_button {
+        width: 100%;
+    }
+    
+    #login-form .purple_btn button {
+        font-size: 17px;
+        background: #fff;
+        font-weight: 700;
+        padding: 15px 33px 15px 33px;
+        width: 100% !important;
+        box-shadow: 0px 4px 11px #ffffff6e;
+    }    
+
+    .minalgn_button .fa-angle-right.purple_btn {
+        float: inline-end;
+        background: linear-gradient(34.89deg, #4B2779 8%, #BE2475 83.76%);
+        color: #fff;
+        padding: 7px;
+        border-radius: 50px;
+        width: 30px;
+        height: 30px;
+    }
+
+    #login-form .purple {
+        color: #ffffff;
+    }
+
+    p.divider {
+        font-size: 10px;
+    }
+
+    .google_btn {
+        padding: 8px 9px;
+        font-size: 11px;
+        border: 1px solid #ffffff;
+        color: #fff;
+    }
+
+    .bluegradian_bg {
+        padding: 8px 13px 8px 13px;
+        line-height: 20px;
     }
 
     .mt50 {
@@ -1795,7 +1917,7 @@ div#social_media_div {
     .google_btn {
         display: block;
         width: 100%;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
     }
 
     p.divider {
@@ -1809,9 +1931,9 @@ div#social_media_div {
     .last_chance {
         padding-left: 0;
         margin-top: -15px;
-        font-size: 35px;
+        font-size: 18px !important;
         position: relative;
-        left: 0;
+        right: 0px;
     }
 
     .width45 img {
@@ -1828,9 +1950,9 @@ div#social_media_div {
     }
 
     .font-size18 {
-        font-size: 20px;
-        line-height: 29px;
-        font-weight: 300;
+        font-size: 14px;
+        line-height: 18px;
+        font-weight: 400;
         padding-bottom: 10px;
     }
 
@@ -1839,7 +1961,7 @@ div#social_media_div {
     }
 
     .expt_button {
-        font-size: 36px;
+        font-size: 24px;
     }
 
     .ms-footer {
@@ -1884,9 +2006,9 @@ div#social_media_div {
         width: 100%;
     }
 
-    .login_logo img {
+    /* .login_logo img {
         float: right;
-    }
+    } */
 
     #email_otp_model .modal-content {
         margin: 0px auto;
@@ -2192,8 +2314,7 @@ div#social_media_div {
 }
 
 
-#dropdown-container,
-#dropdown-container-new {
+#dropdown-container, #dropdown-container-new {
     margin: 20px;
     margin-left: 0px !important;
     margin-top: 6px !important;
@@ -2209,14 +2330,14 @@ div#social_media_div {
     padding-left: 0px;
 }
 
-.industry_option {
+.industry_option { 
     color: #6f6f6fe8 !important;
     background-color: transparent !important;
     padding: 0px !important;
     font-weight: 300;
 }
 
-.industry_option:hover {
+.industry_option:hover { 
     color: #6f6f6fe8;
 }
 
@@ -2231,16 +2352,14 @@ div#social_media_div {
     padding: 0px !important;
 }
 
-.industry_option_dropdown .title,
-.industry_option_dropdown .title-new {
+.industry_option_dropdown .title, .industry_option_dropdown .title-new {
     margin-top: 5px !important;
     margin-bottom: 5px;
     padding: 5px 10px 5px !important;
 
 }
 
-.industry_option_dropdown .title:nth-child(1),
-.industry_option_dropdown .title-new:nth-child(1) {
+.industry_option_dropdown .title:nth-child(1), .industry_option_dropdown .title-new:nth-child(1) {
     margin-top: 0px !important;
 }
 
@@ -2271,8 +2390,7 @@ div#social_media_div {
     color: #656565 !important;
 }
 
-div#list-industry li,
-div#list-preferred-industry li {
+div#list-industry li, div#list-preferred-industry li {
     height: 34px !important;
     padding: 5px 17px 5px 24px !important;
     border-radius: 50px !important;
