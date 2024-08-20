@@ -133,7 +133,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="formFile" class="form-label">Upload Resume * <span class="leble_size">(doc, docx, pdf -  up to 5MB)</span></label>
+                        <label for="formFile" class="form-label mb-2">Upload Resume * <span class="leble_size">(doc, docx, pdf -  up to 5MB)</span></label>
                         <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
                         <input class="form-control is-invalid" type="file" id="resume_cv" name="resume_cv"
                             accept=".pdf" required />
@@ -165,7 +165,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 mb-3">
+                <div class="col-md-6 mb-md-3 mb-1">
                 <div class="form-check checkbox_error ps-0 terms_cdn">
                     <input class="form-check-input custom-checkbox" type="checkbox" value="1" name="term_check"
                         id="flexCheckDefault" required />
@@ -300,7 +300,7 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="formFile" class="form-label" id="profile_photo">Recent Photo <span class="leble_size">(png, jpg)</span></label>
+                        <label for="formFile" class="form-label mb-2" id="profile_photo">Recent Photo <span class="leble_size">(png, jpg)</span></label>
                         @if (!empty($profile_photo) && $profile_photo != null)
                             <!-- {{--<a class="pdf_view" target="_blank"
                                 href="{{ asset('storage/' . $profile_photo) }}">
@@ -603,7 +603,7 @@
 
 
                 <div class="col-md-4 mb-4 text-end">
-                    <div class="option currently_work d-flex gap-3" style="float: right;">
+                    <div class="option currently_work d-flex flex-lg-row flex-md-column gap-3" style="float: right;">
                         <div>
                         <input class="custom-radio" type="radio" id="employed1" name="Employed" value="yes"
                             @if ($employed == 'yes') checked @endif required>
@@ -1309,7 +1309,7 @@
 {{-- @if (!Session::has('step') || Session::get('step') == 6) --}}
 
     <div id="social_media_div" class="register_width d-none">
-        <div class="heading mb-4">
+        <div class="heading mb-4 col-6">
             <h2>Social Media Links</h2>
         </div>
         <form id="social-media-info" action="{{ url(route('account.create', ['param' => 'social-media-info'])) }}"
@@ -1356,7 +1356,7 @@
                         {{-- <img src="images/facebook.png" alt="" class="input_icon" /> --}}
                     </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-lg-12 col-8">
                     <div class="position-relative form-group">
                         <label for="others" class="form-label">Others</label>
                         <input type="text" class="form-control is-invalid input_text" id="others"
@@ -1365,7 +1365,7 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex align-items-center gap-4 justify-content-end">
+            <div class="d-flex align-items-center gap-4 justify-content-lg-end justify-content-center">
                 <div class="blue_btn">
                     <a class="text-decoration-none text-white" onclick="back_to_privious(this);">Back</a>
                 </div>

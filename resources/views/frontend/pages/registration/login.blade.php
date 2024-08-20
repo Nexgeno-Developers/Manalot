@@ -20,7 +20,7 @@
     <a href="/"><img src="/assets/images/manalot_header_logo.png" /></a>
 </div>
 
-<section class="auth_form">
+<section class="auth_form no_padding">
     <div class="fluid-container">
         <div class="row align-items-center">
             <div class="col-md-6">
