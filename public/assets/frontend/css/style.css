@@ -1829,6 +1829,8 @@ div#social_media_div {
         padding-top: 10px;
         padding-bottom: 20px;
         padding-right: 30px !important;
+        position: relative;
+        /* z-index: 0; */
     }
 
     html {
@@ -1836,27 +1838,33 @@ div#social_media_div {
     }
 
     .login_logo {
-        height: 320px;
+        height: 70px;
         position: relative;
         display: flex;
         justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        background: url(/assets/images/background_rounded_lines2.png) no-repeat 30px 0px;
+        width: 100%;
+    }
+
+    .login_logo:before {
+        content: "";
+        background: url(/assets/images/background_rounded_lines2.png) no-repeat right;
         width: 100%;
         background-size: cover;
-        z-index: 0;
+        height: 26vh;
+        position: absolute;
+        z-index: 3;
+        display: block;
     }
 
     .login_logo a {
         position: relative;
-        top: 30px;
+        top: 0px;
         text-align: center;
     }   
 
     .login_logo a img {
         position: relative;
-        width: 65%;
+        width: 70%;
         /* right: -40px; */
         right: 0px;
     }
