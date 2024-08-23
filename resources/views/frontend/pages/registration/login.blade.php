@@ -11,6 +11,20 @@
         /* display: ruby-text; */
         text-align: center;
     }
+    .login_logo a img {
+        width: 65%;
+    }
+
+    @media(max-width: 767px) {
+
+        .login_logo {
+            height: 320px;
+        }
+        .login_logo a {
+            position: relative;
+            top: 0px;
+        }
+    }
 </style>
 
 <div class="login_logo">
