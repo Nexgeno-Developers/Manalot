@@ -1356,7 +1356,7 @@
                         {{-- <img src="images/facebook.png" alt="" class="input_icon" /> --}}
                     </div>
                 </div>
-                <div class="col-lg-12 col-8">
+                <div class="col-lg-12 col-12">
                     <div class="position-relative form-group">
                         <label for="others" class="form-label">Others</label>
                         <input type="text" class="form-control is-invalid input_text" id="others"

@@ -272,12 +272,12 @@
                     <div class="col-md-12 p-2 ps-md-3 ms-md-0 mt-md-5 row footer_app">
                         <b class="text-light px-0">Apply on the go</b>
                         <p class="text-light px-0">Get real-time job updates on our App</p>
-                        <div class="android_app col-md-6 ps-0">
+                        <div class="android_app col-6 ps-0 text-center">
                             <a href="" rel="noreferrer" class="download" target="_blank">
                                 <img loading="lazy" alt="manalot app download" src="/assets/images/google_play_white_bg_2.png" >
                             </a>
                         </div>
-                        <div class="ios_app col-md-6 px-0">
+                        <div class="ios_app col-6 px-0 text-center">
                             <a href="" rel="noreferrer" class="download" target="_blank">
                                 <img loading="lazy" alt="manlot app download" src="/assets/images/app_store_white_bg.png" >
                             </a>
