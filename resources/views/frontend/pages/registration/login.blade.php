@@ -11,11 +11,13 @@
         /* display: ruby-text; */
         text-align: center;
     }
-    .login_logo a img {
-        width: 65%;
-    }
 
-    @media(max-width: 767px) {
+    @media screen and (max-width: 767px) {
+
+        
+        .login_logo a img {
+            width: 65%;
+        }
 
         .login_logo {
             height: 300px;
