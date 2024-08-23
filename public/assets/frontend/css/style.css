@@ -214,7 +214,7 @@ p.divider {
     background: linear-gradient(2.17deg, #327192 30.94%, #0C3873 69.79%);
     color: #fff;
     border: 0;
-    padding: 4px 33px 5px 33px;
+    padding: 4px 30px 5px 30px;
     line-height:  24px;
 }
 
@@ -790,7 +790,7 @@ button.btn-close {
     padding-top: 6px !important;
     padding-bottom: 6px !important;
     color: #656565 !important;
-    padding-left: 0px !important;
+    padding-left: 5px !important;
 }
 
 .cls_now {
@@ -1916,12 +1916,20 @@ div#social_media_div {
         height: 80vh;
     }
 
-    form#login-form {
+    form#login-form-mob {
         position: relative;
         top: 30px;
     }
 
-    form#login-form div:not(:last-child) {
+    form#login-form-mob p {
+        color: #656565 !important;
+        font-weight: 500;
+        position: relative;
+        top: 6px;
+        font-size: 12px;
+    }
+
+    form#login-form-mob div:not(:last-child) {
         width: 95%;
     }
 
@@ -1930,13 +1938,13 @@ div#social_media_div {
         color: #ffffffe8;
     }
 
-    #login-form .form-control {
+    #login-form-mob .form-control {
         font-weight: 400 !important;
         color: #ffffff !important;
         background-color: transparent !important;
     }
 
-    #login-form .form-control::placeholder {
+    #login-form-mob .form-control::placeholder {
         color: #ffff !important;
     }
 
@@ -1944,7 +1952,7 @@ div#social_media_div {
         display: none;
     }
 
-    form#login-form p {
+    form#login-form-mob p {
         color: #9c98a9 !important; 
         top: 0px;
         margin-bottom: 0px;
@@ -1962,7 +1970,7 @@ div#social_media_div {
         justify-content: center;
     }
     
-    #login-form .purple_btn button {
+    #login-form-mob .purple_btn button {
         font-size: 17px;
         background: #fff;
         font-weight: 700;
@@ -1976,6 +1984,10 @@ div#social_media_div {
         flex-direction: row-reverse;
         position: relative;
     }    
+
+    #login-form-mob .form-control {
+        padding-left: 0px !important;
+    }
 
     .minalgn_button button:before {
         float: inline-end;
@@ -1991,7 +2003,7 @@ div#social_media_div {
         right: 10px;
     }
 
-    #login-form .purple {
+    #login-form-mob .purple {
         color: #ffffff;
     }
 
