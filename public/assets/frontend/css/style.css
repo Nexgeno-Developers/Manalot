@@ -1849,7 +1849,7 @@ div#social_media_div {
 
     .login_logo:before {
         content: "";
-        background: url(/assets/images/background_rounded_lines2.png) no-repeat right;
+        background: url(/assets/images/background_rounded_lines2.svg) no-repeat right;
         width: 100%;
         background-size: cover;
         height: 26vh;
@@ -1874,7 +1874,7 @@ div#social_media_div {
     }
 
     img.mobile_login_image {
-        width: 50%;
+        width: 60%;
         position: relative;
         right: 0px;
         top: 40px;
@@ -1925,7 +1925,8 @@ div#social_media_div {
         padding: 60px 30px 30px; */
         position: absolute;
         width: 100%;
-        height: 80vh;
+        height: 72vh;
+        object-fit: cover;
     }
 
     form#login-form-mob {
@@ -2028,6 +2029,7 @@ div#social_media_div {
         font-size: 11px;
         border: 1px solid #ffffff;
         color: #fff;
+        text-transform: capitalize;
     }
 
     .bluegradian_bg {
