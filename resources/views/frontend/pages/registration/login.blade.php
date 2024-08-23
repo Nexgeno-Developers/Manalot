@@ -18,11 +18,18 @@
     @media(max-width: 767px) {
 
         .login_logo {
-            height: 320px;
+            height: 300px;
         }
         .login_logo a {
             position: relative;
             top: 0px;
+        }
+        img.mobile_login_image { 
+            top: 10px;
+        }
+
+        .login_logo:before { 
+            height: 50vh;
         }
     }
 </style>
