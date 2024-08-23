@@ -16,7 +16,7 @@
 
         
         .login_logo a img {
-            width: 65%;
+            width: 90%;
         }
 
         .login_logo {
@@ -37,8 +37,8 @@
 </style>
 
 <div class="login_logo">
-    <a href="/"><img src="/assets/images/manalot_header_logo.png" /></a>
-    <img class="mobile_login_image d-md-none d-block" src="/assets/images/mobile_login_unemployed_img.png">
+    <a href="/"><img src="/assets/images/manalot_header_logo.svg" /></a>
+    <img class="mobile_login_image d-md-none d-block" src="/assets/images/mobile_login_unemployed_img.svg">
 </div>
 
 <section class="auth_form no_padding">
@@ -106,7 +106,7 @@
                 </div>
 
                 <div class="bg_cut_img_div d-md-none d-block">
-                    <img class="bg_cut_img" src="/assets/images/login_bg_purple_img.png">
+                    <img class="bg_cut_img" src="/assets/images/login_bg_purple_img.svg">
                 </div>
 
                 <div class="login_width d-md-none d-block">
@@ -231,7 +231,7 @@
 @include('frontend.component.forgot_password_modal_form')
 <!--- forgot password Modal Popup ------->
 
-<footer class="ms-footer">
+<footer class="ms-footer d-md-block d-none">
 	<div class="ms-footer-wrap">
 		<div class="container">
 			<div class="row">
