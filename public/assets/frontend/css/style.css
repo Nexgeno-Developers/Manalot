@@ -601,7 +601,7 @@ p.divider {
 .download img {
     width: 100%;
     height: 33px;
-    object-fit: scale-down;
+    /* object-fit: scale-down; */
 }
 
 .color_golden {
@@ -1275,13 +1275,13 @@ input.h_input::placeholder {
     margin-bottom: 10px;
 }
 
-.android_app img {
+/* .android_app img {
     width: 106%;
-}
+} */
 
-.ios_app img {
+/* .ios_app img {
     width: 93%;
-}
+} */
 
 .ms-footer-wrap .col-12 {
     margin-bottom: 0;
@@ -1844,7 +1844,7 @@ div#social_media_div {
         flex-direction: column;
         background: url(/assets/images/background_rounded_lines2.png) no-repeat 30px 0px;
         width: 100%;
-        background-size: contain;
+        background-size: cover;
         z-index: 0;
     }
 
@@ -1899,7 +1899,7 @@ div#social_media_div {
     .no_padding .pddleft50 {
         padding-left: 0px !important;
         padding-top: 10px;
-        padding-bottom: 10px;
+        padding-bottom: 20px;
         padding-right: 0px !important;
         position: relative;
         z-index: 1;
@@ -2128,7 +2128,7 @@ div#social_media_div {
     }
 
     .register_width {
-        width: 100%;
+        width: 100% !important;
     }
 
     .register_width .col-md-6.mb-4:nth-child(even) {
@@ -2137,6 +2137,21 @@ div#social_media_div {
 
     .register_width .col-md-6.mb-4:nth-child(odd) {
         padding-right: 10px;
+    }
+
+    .register_width form#social-media-info .col-md-6.mb-4:nth-child(odd) {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+    
+    .register_width form#social-media-info .col-md-6.mb-4:nth-child(even) {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .register_width form#social-media-info .col-lg-12 {
+        padding-left: 5px;
+        padding-right: 5px;
     }
 
     .auth_form {
@@ -2200,6 +2215,23 @@ div#social_media_div {
     #availibility_one {
         margin-top: -12px;
         padding-bottom: 19px;
+    }
+
+    .ms-address-row { 
+        padding-top: 10px;
+    }
+
+    .download img {
+        width: 90%;
+        height: auto !important;
+    }
+
+    .ms-footer-copyright {
+        padding: 0.7rem 1rem .7rem;
+    }
+
+    .ms-footer-copyright p { 
+        font-size: 14px;
     }
 }
 
@@ -2405,6 +2437,23 @@ div#social_media_div {
     #social-media-info .row {
         display: flex;
         flex-direction: column;
+    }
+
+    .ms-address-row { 
+        padding-top: 10px;
+    }
+    
+    .download img {
+        width: 90%;
+        height: auto;
+    }
+
+    .ms-footer-copyright {
+        padding: 0.7rem 1rem .7rem;
+    }
+
+    .ms-footer-copyright p { 
+        font-size: 14px;
     }
 }
 
