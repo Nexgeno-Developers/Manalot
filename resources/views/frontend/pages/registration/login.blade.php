@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="login_width d-md-none d-block">
-                    <form id="login-form" action="{{ url(route('customer.login')) }}" method="post" enctype="multipart/form-data" class="d-flex gap-md-4 gap-3 flex-column">
+                    <form id="login-form-mob" action="{{ url(route('customer.login')) }}" method="post" enctype="multipart/form-data" class="d-flex gap-md-4 gap-3 flex-column">
                         @csrf
                         <div class="position-relative">
                             <label for="email" class="form-label">Email</label>
@@ -390,6 +390,13 @@ function ajax_form_submit_login(e, form, callBackFunction) {
 initValidate('#login-form');
 
 $('#login-form').on('submit', function(e){
+    var form = $(this);
+    ajax_form_submit_login(e, form, responseHandler);
+});
+
+initValidate('#login-form-mob');
+
+$('#login-form-mob').on('submit', function(e){
     var form = $(this);
     ajax_form_submit_login(e, form, responseHandler);
 });
