@@ -11,13 +11,11 @@
         /* display: ruby-text; */
         text-align: center;
     }
-    p.divider {
-    width: 360px !important;
-}
 </style>
 
 <div class="login_logo">
     <a href="/"><img src="/assets/images/manalot_header_logo.png" /></a>
+    <img class="mobile_login_image d-md-none d-block" src="/assets/images/mobile_login_unemployed_img.png">
 </div>
 
 <section class="auth_form no_padding">
@@ -33,19 +31,8 @@
                     <span class="aquamarine font-size70">N</span>etwork
                 </h1>
 
-
-                <div class="heading mb-md-4 mb-0">
-                    <h2>Login Account</h2>
-                    <div class="d-flex justify-content-center d-md-none">
-                        <p class="stay_in_touch_text">
-                            To stay in touch with us, please log in to your manalot account.
-                        </p>
-                    </div>
-                </div>
-
-
                 <div class="login_width d-md-block d-none">
-                        <form id="login-form" action="{{ url(route('customer.login')) }}"  method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
+                        <form id="login-form" action="{{ url(route('customer.login')) }}"  method="post" enctype="multipart/form-data" class="d-flex gap-md-4 gap-3 flex-column">
                             @csrf
                             <div class="position-relative">
                                 <label for="email" class="form-label">Email *</label>
@@ -100,7 +87,7 @@
                 </div>
 
                 <div class="login_width d-md-none d-block">
-                    <form id="login-form" action="{{ url(route('customer.login')) }}" method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
+                    <form id="login-form" action="{{ url(route('customer.login')) }}" method="post" enctype="multipart/form-data" class="d-flex gap-md-4 gap-3 flex-column">
                         @csrf
                         <div class="position-relative">
                             <label for="email" class="form-label">Email</label>
@@ -120,7 +107,7 @@
                         </div>
                         <div class="d-flex justify-content-between b_20">
                             <div class="purple_btn minalgn_button">
-                                <button type="submit" class="text-decoration-none text-bg-light text-dark width140">Log in <i class="fa fa-angle-right purple_btn"></i> </button>
+                                <button type="submit" class="text-decoration-none text-bg-light text-dark width140">Log in </button>
                             </div>
                         </div>
                     </form>
@@ -150,7 +137,7 @@
 
 
 
-<section class="md-pt-5 pt-3">
+<section class="md-pt-5 pt-3 d-md-block d-none">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6 width55">
@@ -162,23 +149,56 @@
                     <p class="font-size18 mb-2 last_chance">This could be your last chance.</p>
                     <p class="font-size18 mb-0">Are you a seasoned professional with valuable skills and more than 5 years of experience, <strong>seeking your next challenge?</strong> Perhaps you're over 45 and ready to leverage your wisdom in a new role.
 
-</p>
+                    </p>
 
-<p class="font-size18 mb-0">The Manalot Leadership Network empowers experienced individuals to redefine their career journeys and unlock exciting possibilities.
-</p>
-<p class="font-size18 mb-0 font24">Don’t settle for the sidelines.
-</p>
+                    <p class="font-size18 mb-0">The Manalot Leadership Network empowers experienced individuals to redefine their career journeys and unlock exciting possibilities.
+                    </p>
+                    <p class="font-size18 mb-0 font24">Don’t settle for the sidelines.
+                    </p>
 
-<p class="font-size18 mb-0 font26">The Manalot Leadership Network reboots careers.
-</p>
+                    <p class="font-size18 mb-0 font26">The Manalot Leadership Network reboots careers.
+                    </p>
 
-<strong class="font-size18 mb-0 font28 fw-bold">Get back into the game<span class="color_pink">.....</span> <span class="cls_now">Now</span>
-</strong>
+                    <strong class="font-size18 mb-0 font28 fw-bold color_golden get_back_into_text">Get back into the game.....<span class="cls_now">Now</span></strong>
 
                 </div>
             </div>
             <div class="col-md-6 width45">
                 <img src="/assets/images/team.jpg" alt="" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="md-pt-5 pt-3 d-md-none d-block">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="d-flex flex-column gap-2 px-0">
+                <div class="are_u_seasoned p-3">
+                    <p class="font-size18 mb-0">
+                        Are you a seasoned professional with valuable skills and more than 5 years of experience, 
+                        seeking your next challenge? Perhaps you're over 45 and ready to leverage your wisdom in a new role.
+                    </p>
+                </div>                
+
+                <div class="bg_cream p-3">                    
+                    <h4 class="manalot_leadership_heading">
+                        The Manalot Leadership Network 
+                    </h4>
+                    <p class="font-size18 mb-0">
+                        empowers experienced individuals to redefine their career journeys and unlock 
+                        exciting possibilities.
+                    </p>
+                </div>
+
+                <div class="p-3">
+                    <p class="dont_settle">Don't settle for the sidelines.
+                        <strong class="d-block"> The Manalot Leadership Network reboots careers.</strong>
+                    </p>
+                    <strong class="mb-0 fw-bold color_golden get_back_into_text">
+                        Get back into the game.....<span class="cls_now">Now</span>
+                    </strong>
+                </div>
             </div>
         </div>
     </div>
