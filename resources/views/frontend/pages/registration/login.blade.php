@@ -56,7 +56,7 @@
                                     <a onclick="open_reset_password_form();" class="purple text-decoration-none">Reset</a>
                                 </p>
                             </div>
-                            <div class="d-flex justify-content-between">
+                            <div class="d-flex justify-content-between gap-2">
                                 <div class="purple_btn minalgn_button">
                                     <button type="submit" class="text-decoration-none text-white width140" >Login</button>
                                 </div>
