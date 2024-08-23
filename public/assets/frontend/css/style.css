@@ -1856,6 +1856,8 @@ div#social_media_div {
         position: absolute;
         z-index: 0;
         display: block;
+        top: -12px;
+        right: -9px;
     }
 
     .login_logo a {
