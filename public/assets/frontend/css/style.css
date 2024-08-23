@@ -1843,6 +1843,8 @@ div#social_media_div {
         display: flex;
         justify-content: center;
         width: 100%;
+        flex-direction: column;
+        align-items: center;
     }
 
     .login_logo:before {
