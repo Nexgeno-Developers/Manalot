@@ -1286,7 +1286,7 @@
                 </div> -->
                 --}}
             </div>
-            <div class="d-flex align-items-center gap-4 text-end justify-content-end mt-3">
+            <div class="d-flex align-items-center lg-gap-4 gap-2 text-end justify-content-end mt-3">
                 <div class="blue_btn">
                     <a class="text-decoration-none text-white" onclick="back_to_privious(this);">Back</a>
                 </div>
@@ -1365,7 +1365,7 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex align-items-center gap-4 justify-content-lg-end justify-content-center">
+            <div class="d-flex align-items-center lg-gap-4 gap-2 justify-content-lg-end justify-content-center">
                 <div class="blue_btn">
                     <a class="text-decoration-none text-white" onclick="back_to_privious(this);">Back</a>
                 </div>
