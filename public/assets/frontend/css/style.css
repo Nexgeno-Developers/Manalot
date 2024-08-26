@@ -1833,6 +1833,24 @@ div#social_media_div {
         display: block;
     }
 
+    .purple_btn button,
+    button.purple_btn {
+        font-size: 14px;
+        padding: 4px 15px 5px 15px;
+    }
+
+
+
+    .blue_btn button {
+        font-size: 14px;
+        padding: 4px 15px 5px 15px;
+    }
+
+    .blue_btn a {
+        font-size: 14px;
+        padding: 7px 15px 8px 15px;
+    }
+
     .padd15 {
         padding-left: 0 !important;
     }
