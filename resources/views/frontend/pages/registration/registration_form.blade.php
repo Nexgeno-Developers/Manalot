@@ -653,7 +653,7 @@
                 </div>
 
             </div>
-            <div class="d-flex justify-content-end align-items-center gap-4">
+            <div class="d-flex justify-content-end align-items-center lg-gap-4 gap-2">
                 <div class="blue_btn">
                     <a class="text-decoration-none text-white" onclick="back_to_privious(this);">Back</a>
                 </div>
@@ -904,7 +904,7 @@
                 </div>
             @endif
 
-            <div class="d-flex justify-content-end align-items-center gap-4">
+            <div class="d-flex justify-content-end align-items-center lg-gap-4 gap-2">
                 <div class="blue_btn">
                     <a class="text-decoration-none text-white" onclick="back_to_privious(this);">Back</a>
                 </div>
