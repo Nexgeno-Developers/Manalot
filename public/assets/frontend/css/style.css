@@ -122,7 +122,8 @@ body::-webkit-scrollbar-track {
     background: #fff;
 }
 
-.purple_btn button, button.purple_btn {
+.purple_btn button,
+button.purple_btn {
     border: none;
     color: white;
     border-radius: 40px;
@@ -166,7 +167,7 @@ button.purple_btn {
     background: transparent;
     padding: 8px 39px;
     border-radius: 50px;
-    display: flex;
+    display: unset;
     align-items: center;
     gap: 5px;
     font-size: 14px;
@@ -215,7 +216,7 @@ p.divider {
     color: #fff;
     border: 0;
     padding: 4px 30px 5px 30px;
-    line-height:  24px;
+    line-height: 24px;
 }
 
 .input_select {
@@ -316,7 +317,8 @@ p.divider {
     font-size: 12px;
 }
 
-.home_copyight, .post_form .media button span {
+.home_copyight,
+.post_form .media button span {
     font-size: 12px;
     color: #4d4b4b;
     padding-left: 3px;
@@ -350,7 +352,8 @@ p.divider {
     border: none;
 }
 
-.post_form input::placeholder, .post input::placeholder{
+.post_form input::placeholder,
+.post input::placeholder {
     font-size: 12px !important;
     font-weight: 400 !important;
     color: #AEAEAE !important;
@@ -821,7 +824,7 @@ section.auth_form a {
 }
 
 p.divider {
-    width: 425px;
+    width: 360px;
 }
 
 form#login-form label.form-check-label {
@@ -1707,7 +1710,9 @@ button.btn.btn-success.add-edu-row {
     background: #ccc;
 }
 
-input#resume_cv, input#formFile, input#profile_photo {
+input#resume_cv,
+input#formFile,
+input#profile_photo {
     position: relative;
     z-index: 2;
     background-color: transparent;
@@ -1824,6 +1829,42 @@ div#social_media_div {
         display: none;
     }
 
+    div#thankyou-page .purple_btn a {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        font-size: 14px !important;
+    }
+
+    div#thankyou-page .blue_btn a {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        font-size: 14px !important;
+    }
+
+    div#thankyou-page .mgright20 {
+        margin: 0px !important;
+        margin-top: 30px !important;
+        gap: 1rem !important;
+    }
+
+    .heading h2 {
+        text-align: left !important;
+    }
+
+    .login_width {
+        background-image: url(/assets/images/login_bg_purple_img.svg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    div#thankyou-page {
+        margin-top: 20px;
+    }
+
+    img.prroceed_icons {
+        width: 54px;
+    }
+
     .pddleft50 {
         padding-left: 30px !important;
         padding-top: 10px;
@@ -1838,7 +1879,7 @@ div#social_media_div {
     }
 
     .login_logo {
-        height: 70px;
+        height: 100px;
         position: relative;
         display: flex;
         justify-content: center;
@@ -1864,7 +1905,7 @@ div#social_media_div {
         position: relative;
         top: 0px;
         text-align: center;
-    }   
+    }
 
     .login_logo a img {
         position: relative;
@@ -1885,8 +1926,8 @@ div#social_media_div {
 
     }
 
-    .heading h2 { 
-        font-weight: 400; 
+    .heading h2 {
+        font-weight: 400;
         text-align: center;
     }
 
@@ -1966,7 +2007,7 @@ div#social_media_div {
     }
 
     form#login-form-mob p {
-        color: #9c98a9 !important; 
+        color: #9c98a9 !important;
         top: 0px;
         margin-bottom: 0px;
     }
@@ -1982,7 +2023,7 @@ div#social_media_div {
         display: flex;
         justify-content: center;
     }
-    
+
     #login-form-mob .purple_btn button {
         font-size: 17px;
         background: #fff;
@@ -1996,7 +2037,7 @@ div#social_media_div {
         justify-content: center;
         flex-direction: row-reverse;
         position: relative;
-    }    
+    }
 
     #login-form-mob .form-control {
         padding-left: 0px !important;
@@ -2038,7 +2079,7 @@ div#social_media_div {
     }
 
     .document_required {
-        padding-left: 0px !important; 
+        padding-left: 0px !important;
     }
 
     .work_authorization .col-md-6:nth-child(even) {
@@ -2110,7 +2151,7 @@ div#social_media_div {
         font-size: 24px;
     }
 
-    
+
     .get_back_into_text {
         font-size: 20px;
     }
@@ -2157,7 +2198,7 @@ div#social_media_div {
         padding-right: 5px;
         padding-left: 5px;
     }
-    
+
     .register_width form#social-media-info .col-md-6.mb-4:nth-child(even) {
         padding-left: 5px;
         padding-right: 5px;
@@ -2222,7 +2263,8 @@ div#social_media_div {
         margin-top: 0px !important;
     }
 
-    #dropdown-container, #dropdown-container-new {
+    #dropdown-container,
+    #dropdown-container-new {
         margin-bottom: 0px !important;
     }
 
@@ -2231,7 +2273,7 @@ div#social_media_div {
         padding-bottom: 19px;
     }
 
-    .ms-address-row { 
+    .ms-address-row {
         padding-top: 10px;
     }
 
@@ -2244,7 +2286,7 @@ div#social_media_div {
         padding: 0.7rem 1rem .7rem;
     }
 
-    .ms-footer-copyright p { 
+    .ms-footer-copyright p {
         font-size: 14px;
     }
 }
@@ -2402,10 +2444,10 @@ div#social_media_div {
         font-size: 14px !important;
     }
 
-    .select2-container .select2-selection--single .select2-selection__rendered { 
+    .select2-container .select2-selection--single .select2-selection__rendered {
         padding-right: 0px !important;
     }
-        
+
     .currently_work {
         text-align: left;
         padding-top: 0px;
@@ -2453,10 +2495,10 @@ div#social_media_div {
         flex-direction: column;
     }
 
-    .ms-address-row { 
+    .ms-address-row {
         padding-top: 10px;
     }
-    
+
     .download img {
         width: 90%;
         height: auto;
@@ -2466,7 +2508,7 @@ div#social_media_div {
         padding: 0.7rem 1rem .7rem;
     }
 
-    .ms-footer-copyright p { 
+    .ms-footer-copyright p {
         font-size: 14px;
     }
 }
@@ -2535,7 +2577,8 @@ div#social_media_div {
 }
 
 
-#dropdown-container, #dropdown-container-new {
+#dropdown-container,
+#dropdown-container-new {
     margin: 20px;
     margin-left: 0px !important;
     margin-top: 6px !important;
@@ -2551,14 +2594,14 @@ div#social_media_div {
     padding-left: 0px;
 }
 
-.industry_option { 
+.industry_option {
     color: #6f6f6fe8 !important;
     background-color: transparent !important;
     padding: 0px !important;
     font-weight: 300;
 }
 
-.industry_option:hover { 
+.industry_option:hover {
     color: #6f6f6fe8;
 }
 
@@ -2573,14 +2616,16 @@ div#social_media_div {
     padding: 0px !important;
 }
 
-.industry_option_dropdown .title, .industry_option_dropdown .title-new {
+.industry_option_dropdown .title,
+.industry_option_dropdown .title-new {
     margin-top: 5px !important;
     margin-bottom: 5px;
     padding: 5px 10px 5px !important;
 
 }
 
-.industry_option_dropdown .title:nth-child(1), .industry_option_dropdown .title-new:nth-child(1) {
+.industry_option_dropdown .title:nth-child(1),
+.industry_option_dropdown .title-new:nth-child(1) {
     margin-top: 0px !important;
 }
 
@@ -2611,7 +2656,8 @@ div#social_media_div {
     color: #656565 !important;
 }
 
-div#list-industry li, div#list-preferred-industry li {
+div#list-industry li,
+div#list-preferred-industry li {
     height: 34px !important;
     padding: 5px 17px 5px 24px !important;
     border-radius: 50px !important;

@@ -16,7 +16,7 @@
 
         
         .login_logo a img {
-            width: 90%;
+            width: 230px;
         }
 
         .login_logo {
@@ -103,10 +103,6 @@
                                 <img src="/assets/images/apple.svg" alt="google icon" class="google_icon" />
                             </button>                       --}}
                         </div>
-                </div>
-
-                <div class="bg_cut_img_div d-md-none d-block">
-                    <img class="bg_cut_img" src="/assets/images/login_bg_purple_img.svg">
                 </div>
 
                 <div class="login_width d-md-none d-block">
@@ -205,7 +201,7 @@
                 </div>                
 
                 <div class="bg_cream p-3">                    
-                    <h4 class="manalot_leadership_heading">
+                    <h4 class="manalot_leadership_heading lg-mt-0 mt-2">
                         The Manalot Leadership Network 
                     </h4>
                     <p class="font-size18 mb-0">

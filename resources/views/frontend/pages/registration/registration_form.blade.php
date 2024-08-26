@@ -1410,7 +1410,7 @@
     <div id="thankyou-page" class="register_width d-none">
        
         <img class="prroceed_icons" src="/assets/images/thankyou_icon.svg" alt="file check" />
-         <div class="heading mb-2 mt-5">
+         <div class="heading mb-2 lg-mt-5 mt-3">
             <h2 class="fonts36"><b>Thank You</b></h2>
         </div>
 
