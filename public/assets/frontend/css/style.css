@@ -1829,10 +1829,19 @@ div#social_media_div {
         display: none;
     }
 
+    .display_blck1 {
+        display: block;
+    }
+
+    .padd15 {
+        padding-left: 0 !important;
+    }
+
     div#thankyou-page .purple_btn a {
         padding-left: 10px !important;
         padding-right: 10px !important;
         font-size: 14px !important;
+        margin-left: 10px;
     }
 
     div#thankyou-page .blue_btn a {
@@ -1844,7 +1853,7 @@ div#social_media_div {
     div#thankyou-page .mgright20 {
         margin: 0px !important;
         margin-top: 30px !important;
-        gap: 1rem !important;
+        gap: 0rem !important;
     }
 
     .heading h2 {

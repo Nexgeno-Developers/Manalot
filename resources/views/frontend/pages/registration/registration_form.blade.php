@@ -1414,7 +1414,7 @@
             <h2 class="fonts36"><b>Thank You</b></h2>
         </div>
 
-        <p>You have successfully registered! We will provide an update within 48 hours. <span class="preview_name" style="">Preview how professional stories appear on 
+        <p>You have successfully registered! We will provide an update within 48 hours. <span class="preview_name" style=""><span class="display_blck1">Preview how professional stories appear on </span>
 	<span class="purple preview-content padd15">M</span><b class="preview-sub-text">analot </b>
 	<span class="orange preview-content">L</span><b class="preview-sub-text">eadership </b>
 	<span class="aquamarine preview-content">N</span><b class="preview-sub-text">etwork</b>
