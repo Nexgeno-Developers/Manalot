@@ -30,9 +30,6 @@
             top: 10px;
         }
 
-        .login_logo:before { 
-            height: 50vh;
-        }
     }
 </style>
 
