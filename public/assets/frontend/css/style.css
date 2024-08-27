@@ -1829,6 +1829,18 @@ div#social_media_div {
         display: none;
     }
 
+    body {
+        background-image: url(/assets/images/login-bg-main.svg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .form-control {
+        background-color: transparent !important;
+    }
+
+
+
     .display_blck1 {
         display: block;
     }
@@ -1972,12 +1984,12 @@ div#social_media_div {
         width: 100%;
         padding: 35px 30px 20px;
         position: relative;
-        top: 20px;
+        top: 0px;
     }
 
     .no_padding .pddleft50 {
         padding-left: 0px !important;
-        padding-top: 10px;
+        padding-top: 0px;
         padding-bottom: 20px;
         padding-right: 0px !important;
         position: relative;
