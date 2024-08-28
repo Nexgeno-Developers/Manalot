@@ -1829,6 +1829,22 @@ div#social_media_div {
         display: none;
     }
 
+    .select2-container--default .select2-selection--single {
+        background-color: transparent !important;
+    }
+
+    .select2-container--default .select2-selection--multiple {
+        background-color: transparent !important;
+    }
+
+    .form-control {
+        padding-left: 0px !important;
+    }
+
+    body .custom-checkbox+label:before {
+        background-color: #f1f1f1 !important;
+    }
+
     body {
         background-image: url(/assets/images/login-bg-main.svg);
         background-repeat: no-repeat;
@@ -1990,7 +2006,7 @@ div#social_media_div {
     .no_padding .pddleft50 {
         padding-left: 0px !important;
         padding-top: 0px;
-        padding-bottom: 20px;
+        padding-bottom: 10px;
         padding-right: 0px !important;
         position: relative;
         z-index: 1;

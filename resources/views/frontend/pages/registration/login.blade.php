@@ -186,10 +186,10 @@
     </div>
 </section>
 
-<section class="md-pt-5 pt-3 d-md-none d-block">
+<section class="md-pt-5 d-md-none d-block">
     <div class="container-fluid">
         <div class="row align-items-center">
-            <div class="d-flex flex-column gap-2 px-0">
+            <div class="d-flex flex-column px-0">
                 <div class="are_u_seasoned p-3">
                     <p class="font-size18 mb-0">
                         Are you a seasoned professional with valuable skills and more than 5 years of experience, 
@@ -207,7 +207,7 @@
                     </p>
                 </div>
 
-                <div class="p-3">
+                <div class="p-3 pt-4">
                     <p class="dont_settle">Don't settle for the sidelines.
                         <strong class="d-block"> The Manalot Leadership Network reboots careers.</strong>
                     </p>
