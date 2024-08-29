@@ -1943,17 +1943,21 @@ div#social_media_div {
         align-items: center;
     }
 
+    .form-control {
+        font-weight: 400 !important;
+    }
+
     .login_logo:before {
         content: "";
         background: url(/assets/images/background_rounded_lines2.svg) no-repeat right;
         width: 100%;
         background-size: cover;
-        height: 26vh;
+        height: 280px;
         position: absolute;
         z-index: 0;
         display: block;
-        top: -12px;
-        right: -9px;
+        top: -30px;
+        right: -10px;
     }
 
     .login_logo a {
