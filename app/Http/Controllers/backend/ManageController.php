@@ -124,10 +124,15 @@ class ManageController extends Controller
 
         return response()->json($response);
     }
-    // Industry 
-    public function index_industry()
+
+
+
+//------------------------ Industry ---------------------------------------
+
+    public function index_industry(Request $request)
     {
-        $industry = DB::table('industry')->orderBy('id','DESC')->get();
+        $perPage = $request->input('per_page', 10);
+        $industry = DB::table('industry')->orderBy('id','DESC')->paginate($perPage);
         return view('backend.pages.industry.index', compact('industry'));
     }
 
@@ -280,10 +285,12 @@ class ManageController extends Controller
     }
 
 
-    // Job Title 
-    public function index_job_title()
+//------------------------------ currencies ----------------------------------------//
+
+    public function index_job_title(Request $request)
     {
-        $currencies = DB::table('currencies')->paginate(10);
+        $perPage = $request->input('per_page', 10);
+        $currencies = DB::table('currencies')->orderBy('id','DESC')->paginate($perPage);
         return view('backend.pages.currencies.index', compact('currencies'));
     }
 
@@ -397,9 +404,8 @@ class ManageController extends Controller
     }
 
 
+ //--------------------------------- Employ types ---------------------------------//
 
-    
-    // References From
     public function index_references_from()
     {
         $employ_types = DB::table('employ_types')->get();
@@ -517,10 +523,12 @@ class ManageController extends Controller
 
 
 
-    // Skills
-    public function index_skills()
+//----------------------------- Skills -------------------------------------//
+
+    public function index_skills(Request $request)
     {
-        $skills = DB::table('skills')->paginate(10);
+        $perPage = $request->input('per_page', 10);
+        $skills = DB::table('skills')->orderBy('id','DESC')->paginate($perPage);
         return view('backend.pages.skills.index', compact('skills'));
     }
 
@@ -634,7 +642,8 @@ class ManageController extends Controller
     }
 
 
-    // years_of_exp
+//------------------------------ years_of_exp ---------------------------------------//
+
     public function index_years_of_exp()
     {
         $years_of_exp = DB::table('years_of_exp')->get();

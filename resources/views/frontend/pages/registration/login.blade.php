@@ -16,7 +16,7 @@
 
         
         .login_logo a img {
-            width: 90%;
+            width: 230px;
         }
 
         .login_logo {
@@ -30,9 +30,6 @@
             top: 10px;
         }
 
-        .login_logo:before { 
-            height: 50vh;
-        }
     }
 </style>
 
@@ -103,10 +100,6 @@
                                 <img src="/assets/images/apple.svg" alt="google icon" class="google_icon" />
                             </button>                       --}}
                         </div>
-                </div>
-
-                <div class="bg_cut_img_div d-md-none d-block">
-                    <img class="bg_cut_img" src="/assets/images/login_bg_purple_img.svg">
                 </div>
 
                 <div class="login_width d-md-none d-block">
@@ -193,10 +186,10 @@
     </div>
 </section>
 
-<section class="md-pt-5 pt-3 d-md-none d-block">
+<section class="md-pt-5 d-md-none d-block">
     <div class="container-fluid">
         <div class="row align-items-center">
-            <div class="d-flex flex-column gap-2 px-0">
+            <div class="d-flex flex-column px-0">
                 <div class="are_u_seasoned p-3">
                     <p class="font-size18 mb-0">
                         Are you a seasoned professional with valuable skills and more than 5 years of experience, 
@@ -205,7 +198,7 @@
                 </div>                
 
                 <div class="bg_cream p-3">                    
-                    <h4 class="manalot_leadership_heading">
+                    <h4 class="manalot_leadership_heading lg-mt-0 mt-2">
                         The Manalot Leadership Network 
                     </h4>
                     <p class="font-size18 mb-0">
@@ -214,7 +207,7 @@
                     </p>
                 </div>
 
-                <div class="p-3">
+                <div class="p-3 pt-4">
                     <p class="dont_settle">Don't settle for the sidelines.
                         <strong class="d-block"> The Manalot Leadership Network reboots careers.</strong>
                     </p>

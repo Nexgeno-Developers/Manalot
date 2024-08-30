@@ -404,14 +404,14 @@
                                 </a>
                             --}}
                                 <!-- item-->
-                                <a onclick="smallModal('{{ url(route('user.edit',['id' => auth()->user()->id])) }}', 'Edit Profile')" class="dropdown-item">
+                                <a onclick="largeModal('{{ url(route('user.edit',['id' => auth()->user()->id])) }}', 'Edit Profile')" class="dropdown-item">
                                     <i class="mdi mdi-square-edit-outline"></i>
                                     <span>Profile</span>
                                 </a>
-                                <a onclick="smallModal('{{ url(route('user.password',['id' => auth()->user()->id])) }}', 'Reset Password')" class="dropdown-item">
+                                {{-- <a onclick="smallModal('{{ url(route('user.password',['id' => auth()->user()->id])) }}', 'Reset Password')" class="dropdown-item">
                                     <i class="mdi mdi-square-edit-outline"></i>
                                     <span>Reset Password</span>
-                                </a>
+                                </a> --}}
                                 <a href="{{ route('backend.logout') }}" class="dropdown-item">
                                     <i class="mdi mdi-logout me-1"></i>
                                     <span>Logout</span>

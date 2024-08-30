@@ -34,7 +34,7 @@
         <form method="POST" class="ajaxDeleteForm" action="" id ="delete_form">
           @csrf
           <i class="fa-solid fa-circle-info" style="font-size: 50px;color: #dc3545;"></i>
-          <p class="mt-3">Are you sure?</p>
+          <p class="mt-3">Are you sure <span id="message"></span> ?</p>
           <button type="button" class="btn btn-sm btn-info" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i> Cancel</button>
           <button type="submit" class="btn btn-sm btn-secondary" onclick=""><i class="fa-solid fa-arrow-right-from-bracket"></i> Continue</button>
         </form>

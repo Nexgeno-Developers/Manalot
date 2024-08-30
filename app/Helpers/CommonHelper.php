@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Storage;
         }
     }
 
+    if (!function_exists('datetimeFormatter_2')) {
+        function datetimeFormatter_2($value)
+        {
+            return date('d M Y', strtotime($value));
+        }
+    }
+
     //sensSMS function for OTP
     if (!function_exists('get_settings')) {
         function get_settings($type)
@@ -40,32 +47,32 @@ use Illuminate\Support\Facades\Storage;
         }
     }
 
-    if (!function_exists('get_contactpage')) {
-        function get_contactpage($type)
-        {
-            $cacheKey = "contact_page_setting_{$type}";
+    // if (!function_exists('get_contactpage')) {
+    //     function get_contactpage($type)
+    //     {
+    //         $cacheKey = "contact_page_setting_{$type}";
         
-            // Check if the value is already in the cache
-            if (Cache::has($cacheKey)) {
-                return Cache::get($cacheKey);
-            }
+    //         // Check if the value is already in the cache
+    //         if (Cache::has($cacheKey)) {
+    //             return Cache::get($cacheKey);
+    //         }
         
-            // If not in the cache, retrieve the value from the database
-            $ContactSetting = ContactSetting::where('type', $type)->first();
+    //         // If not in the cache, retrieve the value from the database
+    //         $ContactSetting = ContactSetting::where('type', $type)->first();
         
-            if ($ContactSetting) {
-                $value = $ContactSetting->value;
+    //         if ($ContactSetting) {
+    //             $value = $ContactSetting->value;
         
-                // Store the value in the cache with a specific lifetime (e.g., 60 minutes)
-                Cache::put($cacheKey, $value, now()->addMinutes(60));
+    //             // Store the value in the cache with a specific lifetime (e.g., 60 minutes)
+    //             Cache::put($cacheKey, $value, now()->addMinutes(60));
         
-                return $value;
-            }
+    //             return $value;
+    //         }
         
-            // Handle the case where no record is found
-            return null; // or any default value or error handling you prefer
-        }
-    }
+    //         // Handle the case where no record is found
+    //         return null; // or any default value or error handling you prefer
+    //     }
+    // }
 
     if(!function_exists('sendEmail')){
         function sendEmail($to, $subject, $body, $attachments = [])

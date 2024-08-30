@@ -653,7 +653,7 @@
                 </div>
 
             </div>
-            <div class="d-flex justify-content-end align-items-center gap-4">
+            <div class="d-flex justify-content-end align-items-center lg-gap-4 gap-2">
                 <div class="blue_btn">
                     <a class="text-decoration-none text-white" onclick="back_to_privious(this);">Back</a>
                 </div>
@@ -904,7 +904,7 @@
                 </div>
             @endif
 
-            <div class="d-flex justify-content-end align-items-center gap-4">
+            <div class="d-flex justify-content-end align-items-center lg-gap-4 gap-2">
                 <div class="blue_btn">
                     <a class="text-decoration-none text-white" onclick="back_to_privious(this);">Back</a>
                 </div>
@@ -1286,7 +1286,7 @@
                 </div> -->
                 --}}
             </div>
-            <div class="d-flex align-items-center gap-4 text-end justify-content-end mt-3">
+            <div class="d-flex align-items-center lg-gap-4 gap-2 text-end justify-content-end mt-3">
                 <div class="blue_btn">
                     <a class="text-decoration-none text-white" onclick="back_to_privious(this);">Back</a>
                 </div>
@@ -1365,7 +1365,7 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex align-items-center gap-4 justify-content-lg-end justify-content-center">
+            <div class="d-flex align-items-center lg-gap-4 gap-2 justify-content-lg-end justify-content-center">
                 <div class="blue_btn">
                     <a class="text-decoration-none text-white" onclick="back_to_privious(this);">Back</a>
                 </div>
@@ -1410,11 +1410,11 @@
     <div id="thankyou-page" class="register_width d-none">
        
         <img class="prroceed_icons" src="/assets/images/thankyou_icon.svg" alt="file check" />
-         <div class="heading mb-2 mt-5">
+         <div class="heading mb-2 lg-mt-5 mt-3">
             <h2 class="fonts36"><b>Thank You</b></h2>
         </div>
 
-        <p>You have successfully registered! We will provide an update within 48 hours. <span class="preview_name" style="">Preview how professional stories appear on 
+        <p>You have successfully registered! We will provide an update within 48 hours. <span class="preview_name" style=""><span class="display_blck1">Preview how professional stories appear on </span>
 	<span class="purple preview-content padd15">M</span><b class="preview-sub-text">analot </b>
 	<span class="orange preview-content">L</span><b class="preview-sub-text">eadership </b>
 	<span class="aquamarine preview-content">N</span><b class="preview-sub-text">etwork</b>
