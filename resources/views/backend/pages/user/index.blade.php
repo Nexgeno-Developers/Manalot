@@ -130,7 +130,7 @@
                     <a href="javascript:void(0);" class="btn btn-danger text-white action-icon" onclick="confirmModal('{{ url(route('user.delete', $row->id)) }}', responseHandler,'to Delete User')">
                         <i class="mdi mdi-delete" title="Delete"></i>
                     </a>
-                    <a href="javascript:void(0);" title="View" class="btn btn-info text-white action-icon" onclick="largeModal('{{ url(route('user.view',['id' => $row->id])) }}', 'View User ID : {{$row->id}} - {!! \Illuminate\Support\Str::words($row->username, $words = 3, $end = '...') !!}')">View</a>
+                    <a href="javascript:void(0);" title="View" class="btn btn-info text-white action-icon" onclick="largeModal('{{ url(route('user.view',['id' => $row->id])) }}', 'View - {!! \Illuminate\Support\Str::words($row->username, $words = 3, $end = '...') !!}')">View</a>
                 </td>
             </tr>
             @endforeach
