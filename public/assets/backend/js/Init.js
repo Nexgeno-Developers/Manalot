@@ -45,10 +45,11 @@ function smallModal(url, header) {
     });
 }
 
-function confirmModal(delete_url, param) {
+function confirmModal(delete_url, param, message = null) {
+    $("#message").html(message ? message : ''); // Set the message if provided
     $("#confirmModal").modal("show");
-    callBackFunction = param;
-    document.getElementById("delete_form").setAttribute("action", delete_url);
+    callBackFunction = param; // Assign the callback function
+    document.getElementById("delete_form").setAttribute("action", delete_url); // Set form action
 }
 
 $(".ajaxDeleteForm").submit(function (e) {

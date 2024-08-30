@@ -83,7 +83,7 @@
             </div>     
             <div class="col-sm-2">
                 <div class="d-flex form-group gap-2">
-                    <b>DOB : </b> <p>{{ $usersdetails->dob }}</p>              
+                    <b>DOB : </b> <p>{{ datetimeFormatter_2($usersdetails->dob) }}</p>              
                 </div>
             </div> 
             <div class="col-sm-3">

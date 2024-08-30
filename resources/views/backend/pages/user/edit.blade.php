@@ -62,46 +62,53 @@
 </form>
 
 <script>
-    $(document).ready(function() {
-        $('#password, #confirm_password').on('keyup', function () {
-            if ($('#password').val().length > 0) {
-                if ($('#password').val() == $('#confirm_password').val()) {
-                    $('#message').html('Matching').css('color', 'green');
-                } else {
-                    $('#message').html('Not Matching').css('color', 'red');
-                }
-            } else {
-                $('#message').html('');
-            }
-        });
-    });
-    $('form#resetpassword').on('submit', function(event) {
-                event.preventDefault();
+    // $(document).ready(function() {
+    //     $('#password, #confirm_password').on('keyup', function () {
+    //         if ($('#password').val().length > 0) {
+    //             if ($('#password').val() == $('#confirm_password').val()) {
+    //                 $('#message').html('Matching').css('color', 'green');
+    //             } else {
+    //                 $('#message').html('Not Matching').css('color', 'red');
+    //             }
+    //         } else {
+    //             $('#message').html('');
+    //         }
+    //     });
+    // });
+
+    // $('form#resetpassword').on('submit', function(event) {
+    //             event.preventDefault();
                 
-                $.ajax({
-                    url: $(this).attr('action'),
-                    type: $(this).attr('method'),
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        if (response.status) {
-                            toastr.success(response.notification);
-                            $('form')[0].reset();
-                            $('#message').html('');
-                        } else {
-                            toastr.error(response.notification);
-                        }
-                    },
-                    error: function(response) {
-                        toastr.error('An error occurred. Please try again.');
-                    }
-                });
-            });
+    //             $.ajax({
+    //                 url: $(this).attr('action'),
+    //                 type: $(this).attr('method'),
+    //                 data: $(this).serialize(),
+    //                 success: function(response) {
+    //                     if (response.status) {
+    //                         toastr.success(response.notification);
+    //                         $('form')[0].reset();
+    //                         $('#message').html('');
+    //                     } else {
+    //                         toastr.error(response.notification);
+    //                     }
+    //                 },
+    //                 error: function(response) {
+    //                     toastr.error('An error occurred. Please try again.');
+    //                 }
+    //             });
+    //         });
 
     $(document).ready(function() {
         initValidate('#edit_author_form');
+        initValidate('#resetpassword');
     });
 
     $("#edit_author_form").submit(function(e) {
+        var form = $(this);
+        ajaxSubmit(e, form, responseHandler);
+    });
+
+    $("#resetpassword").submit(function(e) {
         var form = $(this);
         ajaxSubmit(e, form, responseHandler);
     });

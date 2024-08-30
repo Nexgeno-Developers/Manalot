@@ -19,17 +19,31 @@
         </div>
         
         <div class="table-responsive">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <label for="rowsPerPage">Show</label>
+                    <select id="rowsPerPage" onchange="updateRowsPerPage()">
+                        <option value="10" {{ request()->get('per_page') == 10 ? 'selected' : '' }}>10</option>
+                        <option value="25" {{ request()->get('per_page') == 25 ? 'selected' : '' }}>25</option>
+                        <option value="50" {{ request()->get('per_page') == 50 ? 'selected' : '' }}>50</option>
+                        <option value="100" {{ request()->get('per_page') == 100 ? 'selected' : '' }}>100</option>
+                    </select>
+                    <span>entries</span>
+                </div>
+            </div>
             <table id="basic-datatable5" class="table dt-responsive nowrap w-100">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Sr No</th>
                         <th>Name</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @php $i = 1; @endphp  
+                    @php
+                        $i = ($skills->currentPage() - 1) * $skills->perPage() + 1;
+                    @endphp
                     @foreach ($skills as $status)
                     <tr>
                         <td>{{$i++}}</td>
@@ -43,7 +57,7 @@
                         </td>
                         <td>
                             <a href="javascript:void(0);" class="btn btn-info text-white action-icon"
-                                onclick="smallModal('{{ url(route('manage.edit_skills',['id' => $status->id])) }}', 'Edit user')">
+                                onclick="smallModal('{{ url(route('manage.edit_skills',['id' => $status->id])) }}', 'Edit Skills')">
                                 <i class="mdi mdi-square-edit-outline" title="Edit"></i>
                             </a>
                             {{-- <a href="javascript:void(0);" class="btn btn-danger text-white action-icon"
@@ -60,7 +74,7 @@
                 </tbody>
             </table>
             <div>
-                {{ $skills->links('pagination::newbootstrap-6') }}
+                {{ $skills->appends(['per_page' => request()->get('per_page')])->links('pagination::newbootstrap-6') }}
             </div>
         </div>
     </div>
@@ -78,6 +92,14 @@ $(document).ready(function() {
 </script>
 
 <script>
+
+function updateRowsPerPage() {
+    var rowsPerPage = document.getElementById('rowsPerPage').value;
+    var url = new URL(window.location.href);
+    url.searchParams.set('per_page', rowsPerPage);
+    window.location.href = url.href;
+}
+
 var responseHandler = function(response) {
     location.reload();
 }

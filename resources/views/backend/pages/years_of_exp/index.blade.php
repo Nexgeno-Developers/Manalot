@@ -42,7 +42,7 @@
                         </td>
                         <td>
                             <a href="javascript:void(0);" class="btn btn-info text-white action-icon"
-                                onclick="smallModal('{{ url(route('manage.edit_years_of_exp',['id' => $status->id])) }}', 'Edit user')">
+                                onclick="smallModal('{{ url(route('manage.edit_years_of_exp',['id' => $status->id])) }}', 'Edit Year Of Experience')">
                                 <i class="mdi mdi-square-edit-outline" title="Edit"></i>
                             </a>
                             {{-- <a href="javascript:void(0);" class="btn btn-danger text-white action-icon"

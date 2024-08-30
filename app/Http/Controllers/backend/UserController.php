@@ -20,15 +20,15 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['status' => false, 'notification' => 'Password reset Failed!']);
+            return response()->json([
+                'status' => false,
+                'notification' => $validator->errors()->all()
+            ], 200);
         }
-
         // Update the user's password
         $id = $request->id;
         $password = Hash::make($request->password);
-        $user = User::where('role_id', '<>', 1)
-                    ->where('id', '<>', 1)
-                    ->where('id', $id)
+        $user = User::where('id', $id)
                     ->first();
 
         if ($user) {
@@ -40,10 +40,15 @@ class UserController extends Controller
         }
     }
 
+
+
+
     public function userslist(Request $request) {
         $query = User::where('role_id', '<>', 1)
             ->leftJoin('userdetails', 'users.id', '=', 'userdetails.user_id')
             ->select('users.*', 'userdetails.experience_letter', 'userdetails.resume_cv');
+
+        $perPage = $request->input('per_page', 10);
 
         // Apply filters if present
         if ($request->filled('user_name')) {
@@ -62,11 +67,12 @@ class UserController extends Controller
         }
 
         // Paginate the results
-        $users = $query->paginate(10); // Adjust the number per page as needed
+        $users = $query->paginate($perPage); // Adjust the number per page as needed
     
         return view('backend.pages.user.index', compact('users'));
     }
     
+
 
     public function approvestatus(Request $request, $id) {
         // Find the user by ID
@@ -109,7 +115,6 @@ class UserController extends Controller
         return response()->json($response);
     }
     
-       
 
     public function view($id) {
         $viewuser = User::find($id);
@@ -117,34 +122,34 @@ class UserController extends Controller
         return view('backend.pages.user.view', compact('viewuser', 'usersdetails'));
     }
 
+
     public function edit($id) {
         $author = User::find($id);
         return view('backend.pages.user.edit', compact('author'));
     }
 
+
     public function update(Request $request) {
         // Validate form data
         $validator = Validator::make($request->all(), [
-            'username' => 'required',
-            'email' => 'required|email',
-            // 'status' => 'required|in:0,1', // Assuming status can only be 0 or 1
+            'username' => 'required|unique:Users,username,'. $request->input('id'),
+            'email' => 'required|email|unique:Users,email,'. $request->input('id'),
         ]);
 
         if ($validator->fails()) {
             return response()->json([
                 'status' => false,
                 'notification' => $validator->errors()->all()
-            ], 422); // Use 422 for validation errors
-        } 
+            ], 200);
+        }
 
         $id = $request->input('id');
 
         // Update the user record using DB facade
         $affected = User::where('id', $id)
         ->update([
-            'username' => $request->input('username'),
+            'username' => strtolower($request->input('username')),
             'email' => $request->input('email'),
-            // 'status' => $request->input('status'),
         ]);
 
         if ($affected) {
@@ -161,6 +166,7 @@ class UserController extends Controller
 
         return response()->json($response);
     }
+
 
     public function delete($id) {
         $user = User::find($id);
@@ -182,11 +188,13 @@ class UserController extends Controller
     }
     
 
+
     public function password($id) {
         $author = User::find($id);
         return view('backend.pages.user.password_edit', compact('author'));
     } 
     
+
     public function reset(Request $request) {
 
         // Validate form data

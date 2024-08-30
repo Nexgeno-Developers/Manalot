@@ -18,6 +18,18 @@
             </div>
         </div>
         <div class="table-responsive">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <label for="rowsPerPage">Show</label>
+                    <select id="rowsPerPage" onchange="updateRowsPerPage()">
+                        <option value="10" {{ request()->get('per_page') == 10 ? 'selected' : '' }}>10</option>
+                        <option value="25" {{ request()->get('per_page') == 25 ? 'selected' : '' }}>25</option>
+                        <option value="50" {{ request()->get('per_page') == 50 ? 'selected' : '' }}>50</option>
+                        <option value="100" {{ request()->get('per_page') == 100 ? 'selected' : '' }}>100</option>
+                    </select>
+                    <span>entries</span>
+                </div>
+            </div>
             <table id="basic-datatable5" class="table dt-responsive nowrap w-100">
                 <thead>
                     <tr>
@@ -59,7 +71,7 @@
                 </tbody>
             </table>
             <div>
-                {{ $currencies->links('pagination::newbootstrap-6') }}
+                {{ $currencies->appends(['per_page' => request()->get('per_page')])->links('pagination::newbootstrap-6') }}
             </div>
         </div>
     </div>
@@ -77,6 +89,14 @@ $(document).ready(function() {
 </script>
 
 <script>
+
+function updateRowsPerPage() {
+    var rowsPerPage = document.getElementById('rowsPerPage').value;
+    var url = new URL(window.location.href);
+    url.searchParams.set('per_page', rowsPerPage);
+    window.location.href = url.href;
+}
+
 var responseHandler = function(response) {
     location.reload();
 }
