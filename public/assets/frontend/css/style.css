@@ -1844,7 +1844,7 @@ div#social_media_div {
         justify-content: center;
         width: 100%;
         flex-direction: column;
-        align-items: center;
+        align-items: center; 
     }
 
     .login_logo:before {
