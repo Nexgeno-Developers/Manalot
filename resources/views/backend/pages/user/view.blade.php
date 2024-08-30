@@ -27,7 +27,7 @@
 </style>
 
     <div class="row">
-        <h3>User Register Form Step 1</h3>
+        <h3>User Register</h3>
         <div class="col-sm-3">
             <div class="d-flex form-group gap-2">
                 <b>Username : </b> <p>{{ $viewuser->username }}</p>
