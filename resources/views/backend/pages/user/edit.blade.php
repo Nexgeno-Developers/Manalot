@@ -1,7 +1,7 @@
 <form id="resetpassword" method="POST" action="{{url(route('password.update'))}}">
     @csrf
     <input type="hidden" name="id" value="{{ $author->id }}">
-    <h3>Rest Password</h3>
+    <h3 class="mt-0 mb-3">Rest Password</h3>
     <div class="row">
         <div class="row mb-2 col-md-5 pe-md-0">
             <label for="password" class="col-md-4 col-form-label text-md-start">New Password <span class="red">*</span></label>
@@ -31,6 +31,7 @@
 
 <form id="edit_author_form" action="{{url(route('user.update'))}}" method="post" enctype="multipart/form-data">
     @csrf
+    <h3 class="mt-0 mb-3">User Details</h3>
     <div class="row col-12">
         <div class="d-flex col-md-5 col-12">
         <input type="hidden" name="id" value="{{ $author->id }}">
