@@ -27,15 +27,16 @@
             top: 0px;
         }
         img.mobile_login_image { 
-            top: 10px;
+            top: 0px;
         }
 
     }
 </style>
 
 <div class="login_logo">
-    <a href="/"><img src="/assets/images/manalot_header_logo.svg" /></a>
-    <img class="mobile_login_image d-md-none d-block" src="/assets/images/mobile_login_unemployed_img.svg">
+    <a class="d-md-block d-none" href="/"><img src="/assets/images/manalot_header_logo.svg" /></a>
+    <a class="position-absolute d-md-none d-block" href="/"><img src="/assets/images/manalot_header_logo.svg" /></a>
+    <img class="mobile_login_image d-md-none d-block" src="/assets/images/Login-(1).png">
 </div>
 
 <section class="auth_form no_padding">

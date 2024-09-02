@@ -1948,7 +1948,7 @@ div#social_media_div {
     }
 
     .login_logo:before {
-        content: "";
+        /* content: ""; */
         background: url(/assets/images/background_rounded_lines2.svg) no-repeat right;
         width: 100%;
         background-size: cover;
@@ -1974,7 +1974,7 @@ div#social_media_div {
     }
 
     img.mobile_login_image {
-        width: 60%;
+        width: 100%;
         position: relative;
         right: 0px;
         top: 40px;
