@@ -51,9 +51,9 @@
 <div class="card">
 <div class="card-body">
     <div class="d-flex justify-content-between">
-        <div>
+        <div class="d-flex align-items-center gap-2">
             <label for="rowsPerPage">Show</label>
-            <select id="rowsPerPage" onchange="updateRowsPerPage()">
+            <select id="rowsPerPage" onchange="updateRowsPerPage()" class="form-select form-select-sm">
                 <option value="10" {{ request()->get('per_page') == 10 ? 'selected' : '' }}>10</option>
                 <option value="25" {{ request()->get('per_page') == 25 ? 'selected' : '' }}>25</option>
                 <option value="50" {{ request()->get('per_page') == 50 ? 'selected' : '' }}>50</option>
