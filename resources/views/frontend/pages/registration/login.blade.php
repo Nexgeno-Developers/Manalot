@@ -24,10 +24,10 @@
         }
         .login_logo a {
             position: relative;
-            top: 0px;
+            top: 5px;
         }
         img.mobile_login_image { 
-            top: 0px;
+            top: 11px;
         }
 
     }
