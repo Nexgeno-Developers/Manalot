@@ -93,3 +93,8 @@ div#list-industry li{
     margin-right: 10px;
     border: 1px solid #aaaaaa52 !important;
 }
+
+
+h5.mt5 {
+    margin-top: 2px;
+}
