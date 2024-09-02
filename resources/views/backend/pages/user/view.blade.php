@@ -242,7 +242,7 @@
 
                     @foreach($certificate_data as $index => $certificate)
                         <div class="col-sm-1">
-                            <h5>{{ $index + 1 }}</h5>
+                            <h5 class="mt5">{{ $index + 1 }}</h5>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group mb-3">
