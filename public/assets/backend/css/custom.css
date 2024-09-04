@@ -98,3 +98,10 @@ div#list-industry li{
 h5.mt5 {
     margin-top: 2px;
 }
+
+/* to solve hidden text when manage master's industry's drop-down opening */
+
+.select2-container--default .select2-results__option[aria-selected=true], .select2-results__option .select2-results__option--highlighted[aria-selected=true] {
+    background-color: #536de6;
+    color: #fff;
+}
