@@ -221,7 +221,7 @@ p.divider {
 
 
 strong.get_back_into_text {
-    font-weight: 400 !important;
+    font-weight: 300 !important;
 }
 
 
@@ -2218,6 +2218,10 @@ div#social_media_div {
 
     .get_back_into_text {
         font-size: 20px;
+    }
+
+    strong.get_back_into_text {
+        font-weight: 600 !important;
     }
 
     .ms-footer {
