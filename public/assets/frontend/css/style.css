@@ -219,6 +219,12 @@ p.divider {
     line-height: 24px;
 }
 
+
+strong.get_back_into_text {
+    font-weight: 400 !important;
+}
+
+
 .input_select {
     border: none;
     border-bottom: 1px solid lightgray;
