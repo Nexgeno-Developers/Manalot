@@ -1905,16 +1905,16 @@ div#social_media_div {
     }
 
     div#thankyou-page .purple_btn a {
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        font-size: 14px !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        font-size: 13px !important;
         margin-left: 10px;
     }
 
     div#thankyou-page .blue_btn a {
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        font-size: 14px !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        font-size: 13px !important;
     }
 
     .thankyou_page_login_btn a, .thankyou_page_view_btn a {
