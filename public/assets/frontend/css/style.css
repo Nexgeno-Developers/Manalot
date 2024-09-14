@@ -67,9 +67,9 @@ body::-webkit-scrollbar-track {
 }
 
 .main_heading {
-    font-size: 36px;
+    font-size: 26px;
     line-height: 50px;
-    font-weight: 300;
+    font-weight: 600;
     color: #000c;
 }
 
@@ -766,7 +766,7 @@ height: 100vh;
 }
 
 img.prroceed_icons {
-    width: 85px;
+    width: 65px;
 }
 
 button.btn-close {
@@ -805,6 +805,7 @@ button.btn-close {
 .cls_now {
     font-size: 44px;
     color: #b24020;
+    text-transform: uppercase;
 }
 
 label.form-label {
@@ -860,8 +861,7 @@ form#login-form p {
     font-weight: 300;
     position: relative;
     top: 6px;
-    font-size: 16px;
-
+    font-size: 20px
 }
 
 .register_width p a {
@@ -2623,7 +2623,7 @@ div#social_media_div {
 }
 
 .preview-sub-text {
-    font-weight: 300;
+    font-weight: 500;
     color: #000c;
     padding-right: 2px;
 }

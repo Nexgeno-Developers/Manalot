@@ -1414,11 +1414,11 @@
             <h2 class="fonts36"><b>Thank You</b></h2>
         </div>
 
-        <p>You have successfully registered! We will provide an update within 48 hours. <span class="preview_name" style=""><span class="display_blck1">Preview how professional stories appear on </span>
-	<span class="purple preview-content padd15">M</span><b class="preview-sub-text">analot </b>
-	<span class="orange preview-content">L</span><b class="preview-sub-text">eadership </b>
-	<span class="aquamarine preview-content">N</span><b class="preview-sub-text">etwork</b>
-</span></p>
+        <p>You have successfully registered! We will provide an update within 48 hours. Preview how professional stories appear on 
+            <b class="preview-sub-text">Manalot </b>
+            <b class="preview-sub-text">Leadership </b>
+            <b class="preview-sub-text">Network</b>
+        </p>
       
 
                  <div class="d-flex align-items-center gap-5 justify-content-end mgright20 mt70">
