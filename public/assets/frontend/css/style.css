@@ -1872,6 +1872,10 @@ div#social_media_div {
         background-color: transparent !important;
     }
 
+    p.dont_settle {
+        margin-bottom: 0px;
+    }
+
 
 
     .display_blck1 {
@@ -2234,6 +2238,8 @@ div#social_media_div {
 
     .cls_now {
         font-size: 30px;
+        position: relative;
+        top: 5px;
     }
 
     .manalot_leadership_heading {
@@ -2251,6 +2257,7 @@ div#social_media_div {
 
     strong.get_back_into_text {
         font-weight: 600 !important;
+        line-height: 34px;
     }
 
     .ms-footer {
