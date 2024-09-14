@@ -210,7 +210,7 @@
 
                 <div class="p-3 pt-4">
                     <p class="dont_settle">Don't settle for the sidelines.
-                        <strong class="d-block"> The Manalot Leadership Network reboots careers.</strong>
+                        <span class="d-block"> The Manalot Leadership Network reboots careers.</span>
                     </p>
                     <strong class="mb-0 fw-bold color_golden get_back_into_text">
                         Get back into the game.....<span class="cls_now">Now</span>
