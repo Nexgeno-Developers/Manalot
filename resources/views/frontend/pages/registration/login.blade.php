@@ -47,9 +47,9 @@
             </div>
             <div class="col-md-6 pddleft50">
                 <h1 class="main_heading mt50">
-                    <span class="purple font-size70">M</span>analot
-                    <span class="orange font-size70">L</span>eadership
-                    <span class="aquamarine font-size70">N</span>etwork
+                    <!-- <span class="purple font-size70">M</span> -->Manalot
+                    <!-- <span class="orange font-size70">L</span>--> Leadership 
+                    <!-- <span class="aquamarine font-size70">N</span>-->Network 
                 </h1>
 
                 <div class="login_width d-md-block d-none">
