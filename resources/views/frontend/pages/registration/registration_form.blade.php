@@ -1415,17 +1415,19 @@
         </div>
 
         <p>You have successfully registered! We will provide an update within 48 hours. Preview how professional stories appear on 
-            <b class="preview-sub-text">Manalot </b>
-            <b class="preview-sub-text">Leadership </b>
-            <b class="preview-sub-text">Network</b>
+            <span class="d_block">
+                <b class="preview-sub-text">Manalot </b>
+                <b class="preview-sub-text">Leadership </b>
+                <b class="preview-sub-text">Network</b>
+            </span>
         </p>
       
 
-                 <div class="d-flex align-items-center gap-5 justify-content-end mgright20 mt70">
-                <div class="blue_btn">
+                 <div class="d-flex align-items-center gap-5 justify-content-md-end justify-content-center mgright20 mt70">
+                <div class="blue_btn thankyou_page_login_btn">
                     <a href="/login" class="text-decoration-none text-white padd22">Continue to Login</a>
                 </div>
-                <div class="purple_btn">
+                <div class="purple_btn thankyou_page_view_btn">
                     <a target="_blank" href="/sample-profile" class="text-decoration-none text-white padd22">View Sample Profile</button>
                 </div>
             </div>

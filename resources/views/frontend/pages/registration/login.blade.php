@@ -46,7 +46,7 @@
                 <img src="/assets/images/login_bg.jpg" class="mobile_none" style="width:100%">
             </div>
             <div class="col-md-6 pddleft50">
-                <h1 class="main_heading mt50">
+                <h1 class="main_heading mt50 w360">
                     <!-- <span class="purple font-size70">M</span> -->Manalot
                     <!-- <span class="orange font-size70">L</span>--> Leadership 
                     <!-- <span class="aquamarine font-size70">N</span>-->Network 
