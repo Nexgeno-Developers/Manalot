@@ -14,6 +14,9 @@
                     <a href="javascript:void(0);" class="btn btn-danger mb-2 main_button"
                         onclick="smallModal('{{ url(route('manage.add_skills')) }}', 'Add Skills')"><i
                             class="mdi mdi-plus-circle"></i> Add Skills</a>
+                    <a href="javascript:void(0);" class="btn btn-danger mb-2 ml-2 main_button"
+                    onclick="smallModal('{{ url(route('manage.add_skills_import')) }}', 'Import Skills')"><i
+                        class="mdi mdi-plus-circle"></i> Import Skills</a>
                 </div>
             </div>
         </div>
