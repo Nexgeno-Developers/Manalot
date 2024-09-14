@@ -1945,6 +1945,10 @@ div#social_media_div {
 
     div#thankyou-page {
         margin-top: 20px;
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     img.prroceed_icons {
