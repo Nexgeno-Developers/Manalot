@@ -11,6 +11,7 @@ use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\ReportController;
 use App\Http\Controllers\backend\ManageController;
 use App\Http\Controllers\backend\PostController;
+use App\Http\Controllers\backend\ExcelImportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,11 @@ Route::group(['prefix' => 'trumbowyg'], function () {
     Route::post('/upload', [TrumbowygController::class, 'upload'])->name('trumbowyg.upload');
 });
 
+
+//Excel
+Route::group(['prefix' => 'excel'], function () {
+    Route::post('/skills/import', [ExcelImportController::class, 'skills_import'])->name('skills.import');
+});
 
 //Contact
 Route::group(['prefix' => 'contact'], function () {
@@ -154,6 +160,8 @@ Route::group(['prefix' => 'manage'], function () {
     Route::post('/skills/create', [ManageController::class, 'create_skills'])->name('manage.create_skills');
     Route::post('/skills/update', [ManageController::class, 'update_skills'])->name('manage.update_skills');
     Route::post('/skills/delete/{id}', [ManageController::class, 'delete_skills'])->name('manage.delete_skills');
+
+    Route::get('/skills/excel-import', [ManageController::class, 'skills_import_form'])->name('manage.add_skills_import');
     
     Route::get('/years_of_exp/view', [ManageController::class, 'index_years_of_exp'])->name('manage.index_years_of_exp');
     Route::get('/years_of_exp/add', [ManageController::class, 'add_years_of_exp'])->name('manage.add_years_of_exp');

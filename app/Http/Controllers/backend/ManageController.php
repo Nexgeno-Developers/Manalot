@@ -532,6 +532,11 @@ class ManageController extends Controller
         return view('backend.pages.skills.index', compact('skills'));
     }
 
+    public function skills_import_form(Request $request)
+    {
+        return view('backend.pages.skills.import');
+    }
+
     // Show the form for adding a new Skills
     public function add_skills()
     {
