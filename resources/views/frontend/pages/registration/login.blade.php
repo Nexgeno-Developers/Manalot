@@ -160,7 +160,7 @@
             <div class="col-md-6 width55">
                 <div class="d-flex flex-column gap-2">
                     <h3 class="font-size40 purple expt_button">
-                        <strong>Unemployed OR over 45?</strong> 
+                        <strong>Unemployed OR over 47?</strong> 
                     </h3>
 
                     <p class="font-size18 mb-2 last_chance">This could be your last chance.</p>
