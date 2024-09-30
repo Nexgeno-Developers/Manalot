@@ -164,7 +164,7 @@
                     </h3>
 
                     <p class="font-size18 mb-2 last_chance">This could be your last chance.</p>
-                    <p class="font-size18 mb-0">Are you a seasoned professional with valuable skills and more than 5 years of experience, <strong>seeking your next challenge?</strong> Perhaps you're over 45 and ready to leverage your wisdom in a new role.
+                    <p class="font-size18 mb-0">Are you a seasoned professional with valuable skills and more than 5 years of experience, <strong>seeking your next challenge?</strong> Perhaps you're over 47 and ready to leverage your wisdom in a new role.
 
                     </p>
 
@@ -194,7 +194,7 @@
                 <div class="are_u_seasoned p-3">
                     <p class="font-size18 mb-0">
                         Are you a seasoned professional with valuable skills and more than 5 years of experience, 
-                        seeking your next challenge? Perhaps you're over 45 and ready to leverage your wisdom in a new role.
+                        seeking your next challenge? Perhaps you're over 47 and ready to leverage your wisdom in a new role.
                     </p>
                 </div>                
 
