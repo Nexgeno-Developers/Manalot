@@ -12,8 +12,8 @@ class ManageController extends Controller
     // View all experience statuses
     public function index_experience_status()
     {
-        $experience_statuses = DB::table('experience_status')->get();
-        return view('backend.pages.experience_status.index', compact('experience_statuses'));
+        $notice_period = DB::table('notice_period')->get();
+        return view('backend.pages.experience_status.index', compact('notice_period'));
     }
 
     // Show the form for adding a new experience status
@@ -36,14 +36,14 @@ class ManageController extends Controller
                 ], 200);
             } 
     
-            $experience = DB::table('experience_status')->insert([
+            $experience = DB::table('notice_period')->insert([
                 'name' => $request->input('name'),
                 'status' => $request->input('status')
             ]);
         if($experience){
             $response = [
                 'status' => true,
-                'notification' => 'Experience added successfully!',
+                'notification' => 'Notice Period added successfully!',
             ];
         }
         else{
@@ -58,8 +58,8 @@ class ManageController extends Controller
     // Show the form for editing an existing experience status
     public function edit_experience_status($id)
     {
-        $experience_status = DB::table('experience_status')->where('id', $id)->first();
-        return view('backend.pages.experience_status.edit', compact('experience_status'));
+        $notice_period = DB::table('notice_period')->where('id', $id)->first();
+        return view('backend.pages.experience_status.edit', compact('notice_period'));
     }
 
     // Update an existing experience status
@@ -82,7 +82,7 @@ class ManageController extends Controller
         $id = $request->input('id');
 
         // Update the user record using DB facade
-        $affected = DB::table('experience_status')
+        $affected = DB::table('notice_period')
         ->where('id', $id)
         ->update([
             'name' => $request->input('name'),
@@ -92,12 +92,12 @@ class ManageController extends Controller
         if ($affected) {
             $response = [
                 'status' => true,
-                'notification' => 'Experience updated successfully!',
+                'notification' => 'Notice Period updated successfully!',
             ];
         } else {
             $response = [
                 'status' => false,
-                'notification' => 'Nothing to update in Experience.',
+                'notification' => 'Nothing to update in Notice Period.',
             ];
         }
 
@@ -107,7 +107,7 @@ class ManageController extends Controller
     // Delete an existing experience status
     public function delete_experience_status($id)
     {
-        $experience = DB::table('experience_status')->where('id', $id);
+        $experience = DB::table('notice_period')->where('id', $id);
         if (!$experience) {
             $response = [
                 'status' => false,
@@ -119,7 +119,7 @@ class ManageController extends Controller
 
         $response = [
             'status' => true,
-            'notification' => 'Experience Deleted successfully!',
+            'notification' => 'Notice Period Deleted successfully!',
         ];
 
         return response()->json($response);
@@ -127,34 +127,53 @@ class ManageController extends Controller
     // Industry 
     public function index_industry()
     {
-        $industry = DB::table('industry')->get();
+        $industry = DB::table('industry')->orderBy('id','DESC')->get();
         return view('backend.pages.industry.index', compact('industry'));
     }
 
     // Show the form for adding a new Industry
     public function add_industry()
     {
-        return view('backend.pages.industry.add');
+        $industry = DB::table('industry')->get();
+        return view('backend.pages.industry.add', compact('industry'));
     }
+
     public function create_industry(Request $request) {
 
-             // Validate form data
-             $validator = Validator::make($request->all(), [
-                'name' => 'required|string|max:255',
-                'status' => 'required|string|max:5'
-            ]);
-    
-            if ($validator->fails()) {
-                return response()->json([
-                    'status' => false,
-                    'notification' => $validator->errors()->all()
-                ], 200);
-            } 
-    
+        // Validate form data
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'type' => 'required',
+            // 'status' => 'required|string|max:5'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'notification' => $validator->errors()->all()
+            ], 200);
+        }
+
+        if($request->input('type') == 1){
             $industry = DB::table('industry')->insert([
                 'name' => $request->input('name'),
-                'status' => $request->input('status')
+                'main' => 1,
+                // 'status' => $request->input('status')
             ]);
+        } elseif($request->input('type') == 2) {
+            $industry = DB::table('industry')->insert([
+                'name' => $request->input('name'),
+                'main_partent_id' => $request->input('sub'),
+                // 'status' => $request->input('status')
+            ]);
+        } elseif($request->input('type') == 3) {
+            $industry = DB::table('industry')->insert([
+                'name' => $request->input('name'),
+                'sub_parent_id' => $request->input('child'),
+                // 'status' => $request->input('status')
+            ]);
+        }
+
         if($industry){
             $response = [
                 'status' => true,
@@ -174,7 +193,8 @@ class ManageController extends Controller
     public function edit_industry($id)
     {
         $industry = DB::table('industry')->where('id', $id)->first();
-        return view('backend.pages.industry.edit', compact('industry'));
+        $all_industry = DB::table('industry')->get();
+        return view('backend.pages.industry.edit', compact('industry','all_industry'));
     }
 
     // Update an existing Industry
@@ -184,7 +204,8 @@ class ManageController extends Controller
            // Validate form data
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'status' => 'required|in:0,1', // Assuming status can only be 0 or 1
+            'type' => 'required',
+            //'status' => 'required|in:0,1', // Assuming status can only be 0 or 1
         ]);
 
         if ($validator->fails()) {
@@ -196,13 +217,31 @@ class ManageController extends Controller
 
         $id = $request->input('id');
 
-        // Update the user record using DB facade
-        $affected = DB::table('industry')
-        ->where('id', $id)
-        ->update([
-            'name' => $request->input('name'),
-            'status' => $request->input('status')
-        ]);
+        if($request->input('type') == 1){
+            $affected = DB::table('industry')
+            ->where('id', $id)
+            ->update([
+                'name' => $request->input('name'),
+                // 'status' => $request->input('status')
+                'main' => 1,
+            ]);
+        } elseif($request->input('type') == 2) {
+            $affected = DB::table('industry')
+            ->where('id', $id)
+            ->update([
+                'name' => $request->input('name'),
+                // 'status' => $request->input('status')
+                'main_partent_id' => $request->input('sub'),
+            ]);
+        } elseif($request->input('type') == 3) {
+            $affected = DB::table('industry')
+            ->where('id', $id)
+            ->update([
+                'name' => $request->input('name'),
+                // 'status' => $request->input('status')
+                'sub_parent_id' => $request->input('child'),
+            ]);
+        }
 
         if ($affected) {
             $response = [
@@ -244,20 +283,20 @@ class ManageController extends Controller
     // Job Title 
     public function index_job_title()
     {
-        $job_title = DB::table('job_title')->get();
-        return view('backend.pages.job_title.index', compact('job_title'));
+        $currencies = DB::table('currencies')->paginate(10);
+        return view('backend.pages.currencies.index', compact('currencies'));
     }
 
     // Show the form for adding a new Job Title
     public function add_job_title()
     {
-        return view('backend.pages.job_title.add');
+        return view('backend.pages.currencies.add');
     }
     public function create_job_title(Request $request) {
 
              // Validate form data
              $validator = Validator::make($request->all(), [
-                'name' => 'required|string|max:255',
+                'symbol' => 'required|max:255',
                 'status' => 'required|string|max:5'
             ]);
     
@@ -268,14 +307,14 @@ class ManageController extends Controller
                 ], 200);
             } 
     
-            $job_title = DB::table('job_title')->insert([
-                'name' => $request->input('name'),
+            $job_title = DB::table('currencies')->insert([
+                'symbol' => $request->input('symbol'),
                 'status' => $request->input('status')
             ]);
         if($job_title){
             $response = [
                 'status' => true,
-                'notification' => 'Job Title added successfully!',
+                'notification' => 'Currencie added successfully!',
             ];
         }
         else{
@@ -290,8 +329,8 @@ class ManageController extends Controller
     // Show the form for editing an existing experience status
     public function edit_job_title($id)
     {
-        $job_title = DB::table('job_title')->where('id', $id)->first();
-        return view('backend.pages.job_title.edit', compact('job_title'));
+        $currencies = DB::table('currencies')->where('id', $id)->first();
+        return view('backend.pages.currencies.edit', compact('currencies'));
     }
 
     // Update an existing experience status
@@ -300,7 +339,7 @@ class ManageController extends Controller
 
            // Validate form data
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'symbol' => 'required',
             'status' => 'required|in:0,1', // Assuming status can only be 0 or 1
         ]);
 
@@ -314,22 +353,22 @@ class ManageController extends Controller
         $id = $request->input('id');
 
         // Update the user record using DB facade
-        $affected = DB::table('job_title')
+        $affected = DB::table('currencies')
         ->where('id', $id)
         ->update([
-            'name' => $request->input('name'),
+            'symbol' => $request->input('symbol'),
             'status' => $request->input('status')
         ]);
 
         if ($affected) {
             $response = [
                 'status' => true,
-                'notification' => 'Job Title updated successfully!',
+                'notification' => 'Currencie updated successfully!',
             ];
         } else {
             $response = [
                 'status' => false,
-                'notification' => 'Nothing to update in Job Title.',
+                'notification' => 'Nothing to update in Currencie.',
             ];
         }
 
@@ -339,7 +378,7 @@ class ManageController extends Controller
     // Delete an existing Job Title status
     public function delete_job_title($id)
     {
-        $job_title = DB::table('job_title')->where('id', $id);
+        $job_title = DB::table('currencies')->where('id', $id);
         if (!$job_title) {
             $response = [
                 'status' => false,
@@ -351,24 +390,26 @@ class ManageController extends Controller
 
         $response = [
             'status' => true,
-            'notification' => 'Job Title Deleted successfully!',
+            'notification' => 'Currencie Deleted successfully!',
         ];
 
         return response()->json($response);
     }
 
 
+
+    
     // References From
     public function index_references_from()
     {
-        $references_from = DB::table('references_from')->get();
-        return view('backend.pages.references_from.index', compact('references_from'));
+        $employ_types = DB::table('employ_types')->get();
+        return view('backend.pages.employment_type.index', compact('employ_types'));
     }
 
     // Show the form for adding a new References From
     public function add_references_from()
     {
-        return view('backend.pages.references_from.add');
+        return view('backend.pages.employment_type.add');
     }
     public function create_references_from(Request $request) {
 
@@ -385,14 +426,14 @@ class ManageController extends Controller
                 ], 200);
             } 
     
-            $references_from = DB::table('references_from')->insert([
+            $references_from = DB::table('employ_types')->insert([
                 'name' => $request->input('name'),
                 'status' => $request->input('status')
             ]);
         if($references_from){
             $response = [
                 'status' => true,
-                'notification' => 'References From added successfully!',
+                'notification' => 'Employment Type added successfully!',
             ];
         }
         else{
@@ -407,8 +448,8 @@ class ManageController extends Controller
     // Show the form for editing an existing experience status
     public function edit_references_from($id)
     {
-        $references_from = DB::table('references_from')->where('id', $id)->first();
-        return view('backend.pages.references_from.edit', compact('references_from'));
+        $employ_types = DB::table('employ_types')->where('id', $id)->first();
+        return view('backend.pages.employment_type.edit', compact('employ_types'));
     }
 
     // Update an existing experience status
@@ -431,7 +472,7 @@ class ManageController extends Controller
         $id = $request->input('id');
 
         // Update the user record using DB facade
-        $affected = DB::table('references_from')
+        $affected = DB::table('employ_types')
         ->where('id', $id)
         ->update([
             'name' => $request->input('name'),
@@ -441,12 +482,12 @@ class ManageController extends Controller
         if ($affected) {
             $response = [
                 'status' => true,
-                'notification' => 'References From updated successfully!',
+                'notification' => 'Employment Type updated successfully!',
             ];
         } else {
             $response = [
                 'status' => false,
-                'notification' => 'Nothing to update in References From.',
+                'notification' => 'Nothing to update in Employment Type.',
             ];
         }
 
@@ -456,7 +497,7 @@ class ManageController extends Controller
     // Delete an existing References From status
     public function delete_references_from($id)
     {
-        $references_from = DB::table('references_from')->where('id', $id);
+        $references_from = DB::table('employ_types')->where('id', $id);
         if (!$references_from) {
             $response = [
                 'status' => false,
@@ -468,15 +509,18 @@ class ManageController extends Controller
 
         $response = [
             'status' => true,
-            'notification' => 'References From Deleted successfully!',
+            'notification' => 'Employment Type Deleted successfully!',
         ];
 
         return response()->json($response);
     }
+
+
+
     // Skills
     public function index_skills()
     {
-        $skills = DB::table('skills')->get();
+        $skills = DB::table('skills')->paginate(10);
         return view('backend.pages.skills.index', compact('skills'));
     }
 

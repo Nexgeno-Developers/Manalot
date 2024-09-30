@@ -4,7 +4,7 @@
 @section('page.content')
 
 
-<style>
+{{-- <style>
     .dropdown {
         position: relative;
         display: inline-block;
@@ -113,6 +113,123 @@
 
 
 
+</style> --}}
+
+
+
+
+<style>
+    /* styles.css */
+    #dropdown-container {
+        margin: 20px;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-toggle {
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        z-index: 1000;
+        width: 300px;
+        max-height: 300px;
+        overflow-y: auto;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .title {
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .option {
+        margin-top: 10px;
+    }
+
+    .child-options {
+        margin-left: 20px;
+    }
+
+    #selected-values {
+        margin-top: 20px;
+        font-size: 16px;
+        color: #333;
+    }
+
+    /* #selected-values-ids {
+        margin-top: 10px;
+        font-size: 16px;
+        color: #333;
+    } */
+
+    #dropdown-container-new {
+        margin: 20px;
+    }
+
+    .dropdown-new {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-toggle-new {
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .dropdown-menu-new {
+        display: none;
+        position: absolute;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        width: 300px;
+        max-height: 300px;
+        overflow-y: auto;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .title-new {
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .option-new {
+        margin-top: 10px;
+    }
+
+    .child-options-new {
+        margin-left: 20px;
+    }
+
+    #selected-values-new {
+        margin-top: 20px;
+        font-size: 16px;
+        color: #333;
+    }
+
 </style>
 
 <div class="login_logo">
@@ -144,7 +261,7 @@
 
 @section('component.scripts')
 
-    <script>
+    {{-- <script>
 
         const labelText = [];
         const industrialList = document.getElementById('list-industry');
@@ -392,6 +509,181 @@
         }
 
         checkCustomOption();
+    </script> --}}
+
+
+
+    <script>
+
+        const industrialList = document.getElementById('list-industry');
+        
+        function processIndustries(input) {
+
+            // Clear the container
+            industrialList.innerHTML = '';
+
+            // Check if the input is empty or blank
+            if (!input.trim()) {
+                industrialList.classList.add('d-none');
+                return;
+            }
+
+            // Split and trim the input
+            const industries = input.split(',').map(industry => industry.trim());
+
+            // Create and append div elements
+            industries.forEach(industry => {
+                const div = document.createElement('li');
+                div.textContent = industry;
+                industrialList.appendChild(div);
+            });
+
+            // Remove d-none class
+            industrialList.classList.remove('d-none');
+        }
+
+
+        $(document).ready(function () {
+            // Toggle dropdown visibility
+            $('.dropdown-toggle').click(function () {
+                $('.dropdown-menu').toggle();
+            });
+
+            // Function to check/uncheck main option based on child options
+            function updateMainCheckbox(mainCheckbox) {
+                var anyChildChecked = false;
+
+                // Check if any child checkboxes are checked
+                $(mainCheckbox).siblings('.child-options').find('input[type="checkbox"]').each(function () {
+                    if ($(this).prop('checked')) {
+                        anyChildChecked = true;
+                    }
+                });
+
+                // Update the main checkbox based on child checkboxes
+                $(mainCheckbox).prop('checked', anyChildChecked);
+            }
+
+            // Function to update selected values
+            function updateSelectedValues() {
+                var selectedLabels = [];
+                var selectedIds = [];
+                $('#dropdown-container').find('input[type="checkbox"]:checked').each(function () {
+                    selectedLabels.push($(this).next('label').text());
+                    selectedIds.push($(this).data('id'));
+                });
+                // $('#selected-values').text('Selected values: ' + selectedLabels.join(', '));
+                $('#selected-values-ids').val(selectedIds.join(', '));
+
+                processIndustries(selectedLabels.join(', '));
+
+                if (selectedLabels.length <= 0) {
+                    industrialList.classList.add('d-none');
+                }
+            }
+
+            // Event listener for child checkboxes
+            $('#dropdown-container').on('change', '.child-options input[type="checkbox"]', function () {
+                var mainCheckbox = $(this).closest('.option').find('input[type="checkbox"]').first();
+                updateMainCheckbox(mainCheckbox);
+                updateSelectedValues();
+            });
+
+            // Event listener for main checkboxes
+            $('#dropdown-container').on('change', '.option > input[type="checkbox"]', function () {
+                var isChecked = $(this).prop('checked');
+                $(this).siblings('.child-options').find('input[type="checkbox"]').prop('checked', isChecked);
+                updateSelectedValues();
+            });
+
+            // Close dropdown when clicking outside
+            $(document).click(function(event) {
+                if (!$(event.target).closest('.dropdown').length) {
+                    $('.dropdown-menu').hide();
+                }
+            });
+
+            updateSelectedValues();
+        });
+
+    </script>
+
+
+    <script>
+        const preferredIndustryList = document.getElementById('list-preferred-industry');
+
+        function processPreferredIndustries(input) {
+            preferredIndustryList.innerHTML = '';
+
+            if (!input.trim()) {
+                preferredIndustryList.classList.add('d-none-new');
+                return;
+            }
+
+            const industries = input.split(',').map(industry => industry.trim());
+
+            industries.forEach(industry => {
+                const li = document.createElement('li');
+                li.textContent = industry;
+                preferredIndustryList.appendChild(li);
+            });
+
+            preferredIndustryList.classList.remove('d-none-new');
+        }
+
+        $(document).ready(function () {
+            $('.dropdown-toggle-new').click(function () {
+                $('.dropdown-menu-new').toggle();
+            });
+
+            function updateMainCheckbox(mainCheckbox) {
+                var anyChildChecked = false;
+
+                $(mainCheckbox).siblings('.child-options-new').find('input[type="checkbox"]').each(function () {
+                    if ($(this).prop('checked')) {
+                        anyChildChecked = true;
+                    }
+                });
+
+                $(mainCheckbox).prop('checked', anyChildChecked);
+            }
+
+            function updateSelectedValues() {
+                var selectedLabels = [];
+                var selectedIds = [];
+                $('#dropdown-container-new').find('input[type="checkbox"]:checked').each(function () {
+                    selectedLabels.push($(this).next('label').text());
+                    selectedIds.push($(this).data('id'));
+                });
+                $('#selected-values-ids-new').val(selectedIds.join(', '));
+
+                processPreferredIndustries(selectedLabels.join(', '));
+
+                if (selectedLabels.length <= 0) {
+                    preferredIndustryList.classList.add('d-none-new');
+                }
+            }
+
+            $('#dropdown-container-new').on('change', '.child-options-new input[type="checkbox"]', function () {
+                var mainCheckbox = $(this).closest('.option-new').find('input[type="checkbox"]').first();
+                updateMainCheckbox(mainCheckbox);
+                updateSelectedValues();
+            });
+
+            $('#dropdown-container-new').on('change', '.option-new > input[type="checkbox"]', function () {
+                var isChecked = $(this).prop('checked');
+                $(this).siblings('.child-options-new').find('input[type="checkbox"]').prop('checked', isChecked);
+                updateSelectedValues();
+            });
+
+            $(document).click(function(event) {
+                if (!$(event.target).closest('.dropdown-new').length) {
+                    $('.dropdown-menu-new').hide();
+                }
+            });
+
+            updateSelectedValues();
+        });
     </script>
 
 
@@ -404,9 +696,9 @@
 
     function skill_dropdown(){
         $('#skills-data').select2({
-            placeholder: 'Select skills',
+            placeholder: 'Select Key Relevant Skills',
             minimumInputLength: 2,
-            tags: true,
+            // tags: true,
             ajax: {
                 url: '{{ url(route('get.skills')) }}',
                 dataType: 'json',
@@ -597,10 +889,26 @@
         initSelect4('#industry');
         initSelect4('#pref_industry');
 
-        check_option();
-        checkCustomOption();
-
+        // check_option();
+        // checkCustomOption();
     }
+
+
+
+
+    $(document).ready(function() {
+        // Set up an event listener for changes on the .select2 element
+        $('.select2').on('change', function() {
+            // Check if the .select2 element has a value
+            if ($(this).val()) {
+                // Hide the nearest #pref_emp_type-error element
+                $(this).closest('.form-group').find('.invalid-feedback').addClass('d-none');
+            } else {
+                // Optionally, show the error element if no value is selected
+                $(this).closest('.form-group').find('.invalid-feedback').removeClass('d-none');
+            }
+        });
+    });
 
 
     // $(document).ready(function() {
@@ -630,8 +938,9 @@
         xhr.open('GET', url, true);
         xhr.send();
 
-
-        location.reload();
+        setTimeout(function () {
+            location.reload();
+        }, 60);
     }
 
     /*--------------------- user info ------------------*/
@@ -648,10 +957,17 @@
             
             form.find("input[type=text], input[type=email], input[type=password], textarea").val("");
             form.find("select").prop("selectedIndex", 0); */
-            setTimeout(function () {
-                // location.reload();
-                $('#email_otp_model').modal('show');
-            }, 100);
+
+            @if(Session::has('google_email') && Session::get('google_login') == 1)
+                setTimeout(function () {
+                    location.reload();
+                }, 100);
+            @else
+                setTimeout(function () {
+                    // location.reload();
+                    $('#email_otp_model').modal('show');
+                }, 100);
+            @endif
 
             // Show resend OTP button after 30 seconds
             setTimeout(function() {
@@ -962,6 +1278,13 @@
             clearTimeout(typingTimer);
             var postalCode = $(this).val();
 
+            if (postalCode.length === 0) {
+                $('#country_name').val('');
+                $('#city').val(''); 
+                $('#state').val('');
+            }
+
+
             if (postalCode.length > 0) {
                 typingTimer = setTimeout(function () {
                     $.ajax({
@@ -977,7 +1300,7 @@
                                 $('#country_name').val(data.postalCodes[0].countryCode).focus();
                                 $('#city').val(data.postalCodes[0].adminName2).focus();
                                 $('#state').val(data.postalCodes[0].adminName1).focus();
-                                $('#address').focus();
+                                $('#pincode').focus();
 
                                 // $('#placeName').val(data.postalCodes[0].placeName);
 

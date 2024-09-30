@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('page.name', 'Experience')
+@section('page.name', 'Notice Period')
 
 @section('page.content')
 <div class="card">
@@ -12,8 +12,8 @@
             <div class="col-sm-7">
                 <div class="text-sm-end">
                     <a href="javascript:void(0);" class="btn btn-danger mb-2 main_button"
-                        onclick="smallModal('{{ url(route('manage.add_experience_status')) }}', 'Add Experience')"><i
-                            class="mdi mdi-plus-circle"></i> Add Experience</a>
+                        onclick="smallModal('{{ url(route('manage.add_experience_status')) }}', 'Add Notice Period')"><i
+                            class="mdi mdi-plus-circle"></i> Add Notice Period</a>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
                 </thead>
                 <tbody>
                     @php $i = 1; @endphp  
-                    @foreach ($experience_statuses as $status)
+                    @foreach ($notice_period as $status)
                     <tr>
                         <td>{{$i++}}</td>
                         <td>{{ $status->name }}</td>
@@ -42,7 +42,7 @@
                         </td>
                         <td>
                             <a href="javascript:void(0);" class="btn btn-info text-white action-icon"
-                                onclick="smallModal('{{ url(route('manage.edit_experience_status',['id' => $status->id])) }}', 'Edit user')">
+                                onclick="smallModal('{{ url(route('manage.edit_experience_status',['id' => $status->id])) }}', 'Edit Notice Period')">
                                 <i class="mdi mdi-square-edit-outline" title="Edit"></i>
                             </a>
                             {{-- <a href="javascript:void(0);" class="btn btn-danger text-white action-icon"

@@ -60,13 +60,22 @@
                     <span> Manage Users </span>
                 </a>
             </li>
-            <li class="side-nav-item">
+
+            {{------------------Manage Post----------------}}
+
+            {{-- <li class="side-nav-item">
                 <a href="{{ route('post.index_post') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                     <i class="ri-edit-line"></i>                             
                     <span>Manage Post </span>
                 </a>
-            </li>
-            <li class="side-nav-item">
+            </li> --}}
+
+            {{------------------Manage Post----------------}}
+
+
+            {{------------------ Reports----------------}}
+
+            {{-- <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="{{ url('#sidebarEmail') }}" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
                     <i class="ri-article-line"></i>
                     <span> Reports </span>
@@ -79,7 +88,10 @@
                         </li>
                     </ul>
                 </div>
-            </li> 
+            </li>  --}}
+
+            {{------------------ Reports----------------}}
+
 
             {{-- <li class="side-nav-item">
                 <a href="{{ route('contact.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
@@ -174,16 +186,16 @@
                 <div class="collapse" id="sidebarEmail2">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{ route('manage.index_experience_status') }}">Experience</a>
+                            <a href="{{ route('manage.index_experience_status') }}">Notice Period</a>
                         </li>
                         <li>
                             <a href="{{ route('manage.index_industry') }}">Industry</a>
                         </li>
                         <li>
-                            <a href="{{ route('manage.index_job_title') }}">Job Title</a>
+                            <a href="{{ route('manage.index_job_title') }}">Currencies</a>
                         </li>
                         <li>
-                            <a href="{{ route('manage.index_references_from') }}">References</a>
+                            <a href="{{ route('manage.index_references_from') }}">Employment Type</a>
                         </li>
                         <li>
                             <a href="{{ route('manage.index_skills') }}">Skills</a>

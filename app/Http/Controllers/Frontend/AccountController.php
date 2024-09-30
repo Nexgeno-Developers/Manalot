@@ -6,20 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-
-use App\Models\User;
-use Illuminate\Support\Facades\Mail;
-
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Common\AadharController;
 
-use App\Http\Controllers\Common\EsignAadharController;
-use Dompdf\Dompdf;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rule;
 
 use Auth;
 
@@ -411,14 +402,14 @@ class AccountController extends Controller
             'password' => 'required',
             'confirm_password' => 'required|same:password',
             //'experience_Status' => 'required',
-            'phone_number' => 'required|regex:/^[\d\s\-\+]+$/|min:10',
+            'phone_number' => 'required|regex:/^[\d\s\-\+]+$/|min:5',
             'resume_cv' => 'required|mimes:pdf,doc,docx|max:5120',
         ], [
-            'name.required' => 'The Name field is required.',
-            'name.string' => 'The Name must be a string.',
-            'name.regex' => 'The Name format is invalid. Only letters, numbers, dots, underscores are allowed, and spacing is not allowed.',
-            'name.min' => 'The Name must be at least 1 character.',
-            'name.max' => 'The Name may not be greater than 50 characters.',
+            'name.required' => 'The Username field is required.',
+            'name.string' => 'The Username must be a string.',
+            'name.regex' => 'The Username format is invalid. Only letters, numbers, dots, underscores are allowed, and spacing is not allowed.',
+            'name.min' => 'The Username must be at least 1 character.',
+            'name.max' => 'The Username may not be greater than 50 characters.',
             
             'email.required' => 'The Email field is required.',
             'email.email' => 'The Email must be a valid email address.',
@@ -430,7 +421,7 @@ class AccountController extends Controller
         
             'phone_number.required' => 'The Phone Number field is required.',
             'phone_number.regex' => 'The Phone Number format is invalid.',
-            'phone_number.min' => 'The Phone Number must be at least 10 characters.',
+            'phone_number.min' => 'The Phone Number must be at least 5 characters.',
             
             'resume_cv.required' => 'The Resume file is required.',
             'resume_cv.mimes' => 'The Resume must be a PDF, DOC, or DOCX file.',
@@ -467,28 +458,25 @@ class AccountController extends Controller
         $users_email_temp = DB::table('users')->where('email', $request->input('email'))->get()->first();
 
         if($request->has('resume_cv')){
-            $path = $request->file('resume_cv')->store('user_data/resume_cv', 'public');
+               
+            $users_email_temp_email = str_replace(['@', '.'], '_', $request->input('email'));
+            $newFileName = 'resume_' . $users_email_temp_email . '_' . now()->format('YmdHis') . '.' . $request->file('resume_cv')->getClientOriginalExtension();
+            $path = $request->file('resume_cv')->storeAs('user_data/resume_cv', $newFileName, 'public');
+            
+            // $result = file_upload_od($newFileName, $path);
+            // if($result != 'error'){
+            //     $path = $result;
+            // }
+
+            // $path = $request->file('resume_cv')->store('user_data/resume_cv', 'public');
+
         } else {
             $path = null;
         }
 
 
 
-
         if($users_email_temp){
-
-            // DB::table('users')->where('id',$users_email_temp->id)->update([
-            //     'username' => $request->input('name'),
-            //     'email' => strtolower($request->input('email')),
-            //     'password' => bcrypt($request->input('password')),
-            //     'approval' => '0',
-            //     'status' => '0',
-            //     'completed_status' => '0',
-            //     'step' => 1,
-            //     'role_id'  => '2',
-            //     'created_at' => now(),
-            //     'updated_at' => now(),
-            // ]);
 
             $resume_path = DB::table('userdetails')->where('user_id', $users_email_temp->id)->value('resume_cv');
 
@@ -498,48 +486,103 @@ class AccountController extends Controller
                 }
             } 
 
-            // DB::table('userdetails')->where('user_id',$users_email_temp->id)->update([
-            //     'phone_number' => $request->input('phone_number'),
-            //     //'experience_Status' => $request->input('experience_Status'),
-            //     'resume_cv' => $path,
-            //     'created_at' => now(),
-            //     'updated_at' => now(),
-            // ]);
 
-            // Session::put('temp_user_id', $users_email_temp->id);
+            if(Session::has('google_email') && Session::get('google_login') == 1){
+
+                DB::table('users')->where('id',$users_email_temp->id)->update([
+                    'username' => $request->input('name'),
+                    'email' => strtolower($request->input('email')),
+                    'password' => bcrypt($request->input('password')),
+                    'approval' => '0',
+                    'status' => '0',
+                    'completed_status' => '0',
+                    'step' => 1,
+                    'role_id'  => '2',
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+
+                $result = file_upload_od($newFileName, $path);
+                if($result != 'error on uploding'){
+                    if (Storage::disk('public')->exists($path)) {
+                        // Storage::disk('public')->delete($path);
+                    }
+                    $path = $result;
+                }
+
+                DB::table('userdetails')->where('user_id',$users_email_temp->id)->update([
+                    'phone_number' => $request->input('phone_number'),
+                    'resume_cv' => $path,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+
+                Session::put('temp_user_id', $users_email_temp->id);
+
+                Session::put('step', 2);
+
+                
+                $rsp_msg['response'] = 'success';
+                $rsp_msg['message'] = "User Detail Added successfully. Please Proceed";
+
+                // session()->flash('success', 'User Detail Added successfully. Please Proceed');
+
+                return $rsp_msg;
+
+            }
+
 
         } else {
 
-            // $userId = DB::table('users')->insertGetId([
-            //     'username' => $request->input('name'),
-            //     'email' => strtolower($request->input('email')),
-            //     'password' => bcrypt($request->input('password')),
-            //     'approval' => '0',
-            //     'role_id'  => '2',
-            //     'completed_status' => '0',
-            //     'status' => '0',
-            //     'step' => 1,
-            //     'created_at' => now(),
-            //     'updated_at' => now(),
-            // ]);
+            if(Session::has('google_email') && Session::get('google_login') == 1){
 
-            // DB::table('userdetails')->insert([
-            //     'user_id' => $userId,
-            //     'phone_number' => $request->input('phone_number'),
-            //     //'experience_Status' => $request->input('experience_Status'),
-            //     'skill' => '[]',
-            //     'references' => '[]',
-            //     'resume_cv' => $path,
-            //     'created_at' => now(),
-            //     'updated_at' => now(),
-            // ]);
+                $userId = DB::table('users')->insertGetId([
+                    'username' => $request->input('name'),
+                    'email' => strtolower($request->input('email')),
+                    'password' => bcrypt($request->input('password')),
+                    'approval' => '0',
+                    'role_id'  => '2',
+                    'completed_status' => '0',
+                    'status' => '0',
+                    'step' => 1,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
 
-            // Session::put('temp_user_id', $userId);
+                $result = file_upload_od($newFileName, $path);
+                if($result != 'error on uploding'){
+                    if (Storage::disk('public')->exists($path)) {
+                        // Storage::disk('public')->delete($path);
+                    }
+                    $path = $result;
+                }
+
+                DB::table('userdetails')->insert([
+                    'user_id' => $userId,
+                    'phone_number' => $request->input('phone_number'),
+                    //'experience_Status' => $request->input('experience_Status'),
+                    'skill' => '[]',
+                    'references' => '[]',
+                    'resume_cv' => $path,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+
+                Session::put('temp_user_id', $userId);
+
+                Session::put('step', 2);
+
+                $rsp_msg['response'] = 'success';
+                $rsp_msg['message'] = "User Detail Added successfully. Please Proceed";
+
+                // session()->flash('success', 'User Detail Added successfully. Please Proceed');
+
+                return $rsp_msg;
+
+            }
         }
 
         // Session::put('password', $request->input('password'));
-
-
         // Session::put('step', 2);
 
 
@@ -549,6 +592,7 @@ class AccountController extends Controller
             'password' => bcrypt($request->input('password')),
             'phone_number' => $request->input('phone_number'),
             'resume_cv' => $path,
+            'newFileName' => $newFileName,
         ];
 
 
@@ -572,7 +616,7 @@ class AccountController extends Controller
         Session::put('user_info', $user_info);
 
         $rsp_msg['response'] = 'success';
-        $rsp_msg['message']  = "User Detail Added successfully. Please verify Your Email ID";
+        $rsp_msg['message'] = "Please Enter your Verification Code Sent To " . $user_info['email'];
 
         // session()->flash('success', 'User Detail Added successfully. Please Proceed');
 
@@ -624,10 +668,20 @@ class AccountController extends Controller
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
+
+                $result = file_upload_od($user_info['newFileName'], $user_info['resume_cv']);
+                if($result != 'error on uploding'){
+                    if (Storage::disk('public')->exists($user_info['resume_cv'])) {
+                        // Storage::disk('public')->delete($user_info['resume_cv']);
+                    }
+                    $path = $result;
+                } else{
+                    $path = $user_info['resume_cv'];
+                }
     
                 DB::table('userdetails')->where('user_id',$users_email_temp->id)->update([
                     'phone_number' => $user_info['phone_number'],
-                    'resume_cv' => $user_info['resume_cv'],
+                    'resume_cv' => $path,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
@@ -648,6 +702,16 @@ class AccountController extends Controller
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
+
+                $result = file_upload_od($user_info['newFileName'], $user_info['resume_cv']);
+                if($result != 'error on uploding'){
+                    if (Storage::disk('public')->exists($user_info['resume_cv'])) {
+                        // Storage::disk('public')->delete($user_info['resume_cv']);
+                    }
+                    $path = $result;
+                } else{
+                    $path = $user_info['resume_cv'];
+                }
     
                 DB::table('userdetails')->insert([
                     'user_id' => $userId,
@@ -655,7 +719,7 @@ class AccountController extends Controller
                     'skill' => '[]',
                     'edu_data' => '[]',
                     'references' => '[]',
-                    'resume_cv' => $user_info['resume_cv'],
+                    'resume_cv' => $path,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
@@ -667,7 +731,7 @@ class AccountController extends Controller
             session()->forget('user_info');
 
             $rsp_msg['response'] = 'success';
-            $rsp_msg['message']  = "Email ID has been Verified";
+            $rsp_msg['message']  = "Email Verified Successfully";
 
         } else {
             $rsp_msg['response'] = 'error';
@@ -718,7 +782,7 @@ class AccountController extends Controller
             //'email' => 'required|email',
             //'phone_number' => 'required|regex:/^[\d\s-]+$/|min:10',
             //'address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&-]+$/i', 'min:3', 'max:250'],
-            'address' => ['required','min:1', 'max:250'],
+            // 'address' => ['required','min:1', 'max:250'],
             'city' => 'required',
             'state' => 'required',
             'pincode' => 'required',
@@ -784,7 +848,7 @@ class AccountController extends Controller
             // 'wrk_exp__title' => ['required', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:2', 'max:100'],
             'wrk_exp__title' => 'required|regex:/^[A-Za-z0-9\s,.\/\'&]+$/i|min:2|max:100',
             // 'wrk_exp__title' => ['required', 'min:1', 'max:100'],
-            'industry' => 'required',
+            'industry.*' => 'required',
             // 'job_title' => 'required',
             'wrk_exp_years' => 'required',
             // 'wrk_exp_responsibilities' => ['required', 'string','regex:/^[A-Za-z0-9\s,.\/\'&\-\(\)\[\]_?+]+$/i', 'min:2'],
@@ -804,7 +868,7 @@ class AccountController extends Controller
             'wrk_exp__title.min' => 'The Professional Title must be at least 1 character.',
             'wrk_exp__title.max' => 'The Professional Title may not be greater than 100 characters.',
             
-            'industry.required' => 'The Industry field is required.',
+            'industry.*.required' => 'The Industry field is required.',
             'Employed.required' => 'The Employed Status is required.',
             
             'wrk_exp_years.required' => 'The Years of Experience field is required.',
@@ -827,16 +891,16 @@ class AccountController extends Controller
 
         $skill = $request->input('skill');
 
-        foreach($skill as $row){
-            $skill_data = DB::table('skills')->where('name', $row)->get()->first();
+        // foreach($skill as $row){
+        //     $skill_data = DB::table('skills')->where('name', $row)->get()->first();
 
-            if(!$skill_data){
-                 DB::table('skills')->insert([
-                    'name' => $row,
-                    'status' => 1,
-                ]);
-            } 
-        }
+        //     if(!$skill_data){
+        //          DB::table('skills')->insert([
+        //             'name' => $row,
+        //             'status' => 1,
+        //         ]);
+        //     } 
+        // }
 
         $industry = $request->input('industry');
 
@@ -864,7 +928,26 @@ class AccountController extends Controller
 
         // Handle file upload for experience letter
         if ($request->hasFile('experience_letter') && $request->file('experience_letter')->isValid()) {
-            $path = $request->file('experience_letter')->store('user_data/experience_letters', 'public');
+
+            $users_email_temp = DB::table('users')->where('id', Session::get('temp_user_id'))->value('email');
+
+            $users_email_temp = str_replace(['@', '.'], '_', $users_email_temp);
+
+            $newFileName = 'experience_letter_' . $users_email_temp . '_' . now()->format('YmdHis') . '.' . $request->file('experience_letter')->getClientOriginalExtension();
+            $path = $request->file('experience_letter')->storeAs('user_data/experience_letters', $newFileName, 'public');
+
+            
+
+            // $path = $request->file('experience_letter')->store('user_data/experience_letters', 'public');
+
+            $result = file_upload_od($newFileName, $path);
+            if($result != 'error on uploding'){
+                if (Storage::disk('public')->exists($path)) {
+                    // Storage::disk('public')->delete($path);
+                }
+                $path = $result;
+            }
+
         } else {
             // Check if existing path should be retained or set to null
             $path = $userDetail ? $userDetail->experience_letter : null;
@@ -873,10 +956,8 @@ class AccountController extends Controller
         DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
             'wrk_exp_company_name' => $request->input('wrk_exp_company_name'),
             'wrk_exp_years' => $request->input('wrk_exp_years'),
-            // 'job_title' => $request->input('job_title'),
             'industry' => json_encode($industry_elements),
             'wrk_exp__title' => $request->input('wrk_exp__title'),
-            // 'resume_cv' => $path,
             'skill' => json_encode($skill),
             'wrk_exp_responsibilities' => $request->input('wrk_exp_responsibilities'),
             
@@ -925,10 +1006,10 @@ class AccountController extends Controller
             
             'certificate_obtn_date.required' => 'The Certificate Obtain Date is required.',
         
-            'edu_degree.*.required' => 'The Education Degree field is required.',
-            'edu_clg_name.*.required' => 'The College Name field is required.',
+            'edu_degree.*.required' => 'The Degree field is required.',
+            'edu_clg_name.*.required' => 'The School/University Name field is required.',
             'edu_graduation_year.*.required' => 'The Graduation Year field is required.',
-            'edu_field.*.required' => 'The Field of Education field is required.',
+            'edu_field.*.required' => 'The Major/Field of Study field is required.',
         ]);
 
         if ($validator->fails()) {
@@ -1006,7 +1087,7 @@ class AccountController extends Controller
             // 'pref_salary' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:1', 'max:50'],
             'pref_title' => ['required', 'min:1', 'max:50'],
             'pref_emp_type' => ['required', 'min:1', 'max:50'],
-            'pref_industry' => 'required',
+            'pref_industry.*' => 'required',
             'pref_location' => ['required', 'min:1', 'max:50'],
             'pref_salary' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:1', 'max:100'],
             'current_salary' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:1', 'max:100'],
@@ -1017,7 +1098,7 @@ class AccountController extends Controller
                     foreach ($value as $name) {
                         // Allow numbers and the plus sign (+)
                         if (!preg_match('/^[A-Za-z+\s]+$/', $name)) {
-                            $fail("The $attribute must contain only Alphabetical values only.");
+                            $fail("The Reference Name are Rquired and must contain only Alphabetical values only.");
                         }
                     }
                 }
@@ -1028,8 +1109,14 @@ class AccountController extends Controller
                     foreach ($value as $phone) {
                         // Allow numbers, plus sign (+), and spaces
                         if (!preg_match('/^[0-9+\s]+$/', $phone)) {
-                            $fail("The $attribute must contain only numeric values, spaces, and the plus sign (+).");
+                            $fail("The Reference Phone are Rquired must contain only numeric values, spaces, and the plus sign (+).");
                         }
+
+                        $digitCount = preg_match_all('/\d/', $phone);
+                        if ($digitCount < 5) {
+                            $fail("The Reference Phone are Rquired.");
+                        }
+
                     }
                 }
             ],
@@ -1049,7 +1136,7 @@ class AccountController extends Controller
 
             'notice_period_duration.required' => 'The Notice Period Duration is required.',
         
-            'pref_industry.required' => 'The Preferred Industry field is required.',
+            'pref_industry.*.required' => 'The Preferred Industry field is required.',
         
             'pref_location.required' => 'The Preferred Location is required.',
             'pref_location.min' => 'The Preferred Location must be at least 1 character.',

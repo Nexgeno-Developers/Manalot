@@ -17,6 +17,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="table-responsive">
             <table id="basic-datatable5" class="table dt-responsive nowrap w-100">
                 <thead>
@@ -58,6 +59,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div>
+                {{ $skills->links('pagination::newbootstrap-6') }}
+            </div>
         </div>
     </div>
 </div>
@@ -66,7 +70,10 @@
 @section("page.scripts")
 <script>
 $(document).ready(function() {
-    var table = $('#basic-datatable5').DataTable();
+    var table = $('#basic-datatable5').DataTable({
+        paging: false,
+        info: false
+    });
 });
 </script>
 

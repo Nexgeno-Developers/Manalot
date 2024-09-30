@@ -17,7 +17,7 @@
         ->get(['email'])
         ->first();
         
-    $experience_status = DB::table('experience_status')->where('status', 1)->get();
+    // $experience_status = DB::table('experience_status')->where('status', 1)->get();
 
     $employ_types = DB::table('employ_types')->where('status', 1)->get();
 
@@ -27,13 +27,14 @@
     // $job_title = DB::table('job_title')->where('status', '1')->get();
     
     $industry = DB::table('industry')->where('status', '1')->get();
-    $groupedIndustries = $industry->groupBy('parent_id');
+    // $groupedIndustries = $industry->groupBy('parent_id');
+    $groupedIndustries = $industry->where('main', 1);
 
     $skills = DB::table('skills')->where('status', '1')->get();
 
     $currencies = DB::table('currencies')->get(['id','symbol']);
 
-    $references_from = DB::table('references_from')->where('status', '1')->get();
+    // $references_from = DB::table('references_from')->where('status', '1')->get();
 
     $fullname = isset($user_detail->fullname) ? $user_detail->fullname : null;
     $gender = isset($user_detail->gender) ? $user_detail->gender : null;
@@ -116,7 +117,8 @@
                         <label for="email" class="form-label">Email *</label>
                         <img src="/assets/images/email.png" alt="" class="input_icon" />
                         <input type="email" class="form-control is-invalid input_text" id="email" name="email"
-                            placeholder="Enter Your email" required />
+                            placeholder="Enter Your email" required @if (Session::has('google_email') && Session::get('google_login') == 1) 
+                            value="{{ Session::get('google_email') }}" readonly @endif />
                     </div>
                 </div>
 
@@ -124,14 +126,14 @@
                     <div class="position-relative form-group">
                         <label for="Phone" class="form-label">Phone *</label>
                         <input type="text" class="form-control is-invalid input_text" id="Mobile"
-                            name="phone_number" placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10"
+                            name="phone_number" placeholder="Enter your Phone Number" title="This Field is required" pattern="[0-9]+" minlength="5"
                             maxlength="16" required />
                     </div>
                 </div>
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="formFile" class="form-label">Upload Resume * <span class="leble_size">(doc, docx, pdf -  up to 5MB)</span></label>
+                        <label for="formFile" class="form-label mb-2">Upload Resume * <span class="leble_size">(doc, docx, pdf -  up to 5MB)</span></label>
                         <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
                         <input class="form-control is-invalid" type="file" id="resume_cv" name="resume_cv"
                             accept=".pdf" required />
@@ -163,7 +165,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 mb-3">
+                <div class="col-md-6 mb-md-3 mb-1">
                 <div class="form-check checkbox_error ps-0 terms_cdn">
                     <input class="form-check-input custom-checkbox" type="checkbox" value="1" name="term_check"
                         id="flexCheckDefault" required />
@@ -190,8 +192,8 @@
                     <p>Documents required: <span class="span_start">*</span></p>
                     <ul>
                         <li>Current Resume</li>
-                        <li>Experience Letter</li>
-                        <li>Profile Photo</li>
+                        <li>Last Experience | Relieving letter</li>
+                        <li>Recent Photo</li>
                     </ul>
                  </div>
              </div>
@@ -281,7 +283,7 @@
                         <label for="first_name" class="form-label">Full Name *</label>
                         <input type="text" class="form-control is-invalid input_text" name="fullname"
                             id="fullname" placeholder="Enter First Name" pattern="[A-Za-z]+" minlength="1"
-                            maxlength="255" value="{{ $fullname }}" required />
+                            maxlength="255" value="{{ isset($fullname) ? $fullname : (Session::has('google_name') ? Session::get('google_name') : '') }}" required />
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
@@ -298,7 +300,7 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="formFile" class="form-label">Profile Photo <span class="leble_size">(png, jpg)</span></label>
+                        <label for="formFile" class="form-label mb-2" id="profile_photo">Recent Photo <span class="leble_size">(png, jpg)</span></label>
                         @if (!empty($profile_photo) && $profile_photo != null)
                             <!-- {{--<a class="pdf_view" target="_blank"
                                 href="{{ asset('storage/' . $profile_photo) }}">
@@ -313,7 +315,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="Date" class="form-label">Date of Birth *</label>
+                        <label for="Date" class="form-label">Date of Birth (dd/mm/yyyy) *</label>
                         <!-- <img src="/assets/images/calender_icon.png" alt="" class="input_icon"> -->
                         <input type="date" class="form-control is-invalid input_text register_date_field" id="Date"
                             name="dob" placeholder="Date" value="{{ $dob }}" max="{{ date('Y-m-d') }}"
@@ -399,8 +401,7 @@
                             minlength="5" maxlength="250" name="address" placeholder="Enter your Address"
                             value="{{ $address }}" required /> --}}
 
-                        <textarea class="form-control is-invalid" rows="3" cols="45" name="address" id="address" pattern="[0-9A-Za-z]+"
-                            placeholder="Address">{{ $address }}</textarea>
+                        <textarea class="form-control is-invalid" rows="3" cols="45" name="address" id="address" pattern="[0-9A-Za-z]+" placeholder="Address">{{ $address }}</textarea>
 
                     </div>
                 </div>
@@ -439,7 +440,7 @@
  <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="job_title" class="form-label">Professional Title *</label>
+                        <label for="job_title" class="form-label">Current Designation / Title *</label>
                         <input type="text" class="form-control is-invalid input_text" id="job_title"
                             name="wrk_exp__title" placeholder="Enter your Job Title" pattern="[A-Za-z]+"
                             minlength="2" maxlength="100" value="{{ $wrk_exp__title }}" required />
@@ -458,7 +459,7 @@
 
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="State" class="form-label">Years of Experience *</label>
+                        <label for="State" class="form-label">Total Years of Experience *</label>
                         <select class="select2 form-select form-control is-invalid input_select old-select2"
                             aria-label="Default select example" id="wrk_exp_years" name="wrk_exp_years" required>
                             <option value="">Select Experience</option>
@@ -473,22 +474,24 @@
 
                  <div class="col-md-6 mb-4">
                     <div class="position-relative">
-                        <label for="experience_letter" class="form-label">Upload Experience Letter <span class="leble_size">(docx, pdf -  up to 5MB)</span></label>
+                        <label for="experience_letter" class="form-label">Upload Last Experience | Relieving letter <span class="leble_size">(docx, pdf -  up to 5MB)</span></label>
                         <img src="/assets/images/pdf_icon.png" alt="" class="input_icon" />
                         <input class="form-control" type="file" id="formFile" name="experience_letter"
                             accept=".pdf,.doc,.docx,application/msword,image/*,.webp" />
                         {{-- <img src="images/file.png" alt="" class="input_icon" /> --}}
                     </div>
-                    @if ($experience_letter)
+                    {{--
+                        @if ($experience_letter)
                         <div class="mt-2">
-                            <a href="{{ asset('storage/' . $experience_letter) }}" class="btn btn-success add-row" target="_blank">View Experience Letter</a>
+                            <a href="{{ asset('storage/' . $experience_letter) }}" class="btn btn-success add-row" target="_blank">View Last Experience | Relieving letter</a>
                         </div>
                     @endif
+                    --}}
                 </div>  
 
 
                 <div class="col-md-8 mb-4">
-                    <label for="industry" class="form-label">Industry *</label>
+                    {{-- <label for="industry" class="form-label">Industries Served *</label>
                     <div id="list-industry" class="d-none">
 
                     </div>
@@ -525,10 +528,10 @@
                             @endforeach
 
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- 
                     <div class="position-relative form-group">
-                        <label for="industry" class="form-label">Industry *</label>
+                        <label for="industry" class="form-label">Industries Served *</label>
                         <select class="select2 form-select form-control is-invalid input_select" multiple="multiple"
                         aria-label="Default select example" id="industry" name="industry[]" required>
                             <option value="">Select Industry</option>
@@ -541,11 +544,66 @@
                         </select>
                     </div>
                     --}}
+
+
+                    <label for="industry" class="form-label">Industries Served *</label>
+                    <div id="list-industry" class="d-none">
+    
+                    </div>
+                    
+                    <div id="dropdown-container">
+                        {{-- <div id="selected-values">Selected values will be shown here.</div> --}}
+                        <input type="hidden" id="selected-values-ids" name="industry[]" value="">
+
+
+                        <div class="dropdown industry_option_dropdown">
+                            <a class="dropdown-toggle industry_option">Select Industries Served </a>
+                            <div class="dropdown-menu industry-check-box industry_option_dropdown_box">
+                                @foreach ($groupedIndustries as $mainIndustry)
+                                    <div class="title" style="background: #d5d5d563; padding: 10px; font-weight: 600">
+                                        {{ $mainIndustry->name }}
+                                    </div>
+
+                                    @php
+                                        $sub_Catg = $industry->where('main_partent_id', $mainIndustry->id);
+                                    @endphp
+
+                                    @if (count($sub_Catg) != 0)
+                                        @foreach ($sub_Catg as $subIndustry)
+                                            <div class="option custom-languages pt-1">
+
+                                                <input type="checkbox" id="{{ $subIndustry->id }}" 
+                                                data-id="{{ $subIndustry->id }}" @if (in_array($subIndustry->id, json_decode($industry_check, true))) checked @endif>
+                                                <label for="{{ $subIndustry->id }}">{{ $subIndustry->name }}</label>
+
+                                                @php
+                                                    $child_Catg = $industry->where('sub_parent_id', $subIndustry->id);
+                                                @endphp
+
+                                                @if (count($child_Catg) != 0)
+                                                    <div class="child-options">
+                                                        @foreach ($child_Catg as $childIndustry)
+                                                        <div class="field_option pt-1">
+                                                            <input type="checkbox" id="{{ $childIndustry->id }}" data-id="{{ $childIndustry->id }}" @if (in_array($childIndustry->id, json_decode($industry_check, true))) checked @endif>
+                                                            <label for="{{ $childIndustry->id }}">{{ $childIndustry->name }}</label>
+                                                        </div>
+                                                        @endforeach
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
 
 
                 <div class="col-md-4 mb-4 text-end">
-                    <div class="option currently_work d-flex gap-3" style="float: right;">
+                    <div class="option currently_work d-flex flex-lg-row flex-md-column gap-3" style="float: right;">
                         <div>
                         <input class="custom-radio" type="radio" id="employed1" name="Employed" value="yes"
                             @if ($employed == 'yes') checked @endif required>
@@ -561,11 +619,11 @@
 
                 <div class="col-md-12 mb-2">
                     <div class="position-relative form-group">
-                        <label for="skills" class="form-label">Skills *</label>
+                        <label for="skills" class="form-label">Key Relevant Skills *</label>
                         <select name="skill[]" multiple="multiple"
                             class="select2 form-select form-control is-invalid input_select"
                             aria-label="Default select example" id="skills-data" required>
-                            <option value="">Select Skills</option>
+                            <option value="">Select Key Relevant Skills</option>
                             @foreach ($skills as $row)
                                 <option value="{{ $row->name }}"
                                     @if (in_array($row->name, json_decode($skill_check, true))) selected @endif>
@@ -783,7 +841,7 @@
 
                         <div class="col-md-6 mb-4">
                             <div class="position-relative form-group">
-                                <label for="Date Obtained*" class="form-label">Date Obtained</label>
+                                <label for="Date Obtained*" class="form-label">Date Obtained (dd/mm/yyyy)</label>
 
                                 <input type="date" class="form-control is-invalid input_text certificate_obtn_date register_date_field" max="{{ date('Y-m-d') }}"
                                     name="certificate_obtn_date[]" placeholder="Date"
@@ -876,9 +934,9 @@
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="position-relative form-group">
-                        <label for="Preferred Title/Role*" class="form-label">Preferred Title/Role *</label>
-                        <input type="text" class="form-control is-invalid input_text" id="Preferred Title/Role*"
-                            name="pref_title" placeholder="Enter Your Preferred Title" pattern="[0-9A-Za-z]+"
+                        <label for="Preferred Title/Role*" class="form-label">Preferred Designation / Title / Role *</label>
+                        <input type="text" class="form-control is-invalid input_text" id="Preferred Designation / Title / Role*"
+                            name="pref_title" placeholder="Enter Your Preferred Des / Title / Role" pattern="[0-9A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $pref_title }}" required />
                     </div>
                 </div>
@@ -982,7 +1040,7 @@
 
                 {{-- <div class="col-md-12 mb-4">
                     <div class="position-relative form-group">
-                        <label for="Preferred Industry*" class="form-label">Preferred Industry *</label>
+                        <label for="Preferred Industry*" class="form-label">Preferred Industries Served *</label>
                         {{-- <input type="text" class="form-control is-invalid input_text" id="Preferred Industry*"
                             name="pref_industry" placeholder="Enter Your Preferred Industry" pattern="[A-Za-z]+"
                             minlength="1" maxlength="50" value="{{ $pref_industry }}" required /> --}}
@@ -1001,7 +1059,11 @@
                     </div>
                 </div> --}}
 
-                <label for="Preferred Industry*" class="form-label">Preferred Industry *</label>
+
+                {{-------------------------- Preferred Industry -------------}}
+
+
+                {{-- <label for="Preferred Industry*" class="form-label">Preferred Industries Served *</label>
 
                 <div id="list-Preferred-industry" class="industry_cls d-none">
 
@@ -1039,6 +1101,55 @@
                         @endforeach
                 
                     </div>
+                </div> --}}
+
+
+                <label for="preferred-industry" class="form-label-new form-label">Preferred Industries Served *</label>
+                <div id="list-preferred-industry" class=" industry_cls d-none-new">
+                </div>
+                
+                <div id="dropdown-container-new">
+                    <input type="hidden" id="selected-values-ids-new" name="pref_industry[]" value="">
+                
+                    <div class="dropdown-new industry_option_dropdown">
+                        <a class="dropdown-toggle-new dropdown-toggle industry_option">Select Preferred Industries Served</a>
+                        <div class="dropdown-menu-new industry-check-box industry_option_dropdown_box">
+                            @foreach ($groupedIndustries as $mainIndustry)
+                                <div class="title-new" style="background: #d5d5d563; padding: 10px; font-weight: 600">
+                                    {{ $mainIndustry->name }}
+                                </div>
+                
+                                @php
+                                    $sub_Catg = $industry->where('main_partent_id', $mainIndustry->id);
+                                @endphp
+                
+                                @if (count($sub_Catg) != 0)
+                                    @foreach ($sub_Catg as $subIndustry)
+                                        <div class="option-new custom-languages pt-1">
+                                            <input type="checkbox" id="sub-industry-{{ $subIndustry->id }}" 
+                                            data-id="{{ $subIndustry->id }}" @if (in_array($subIndustry->id, json_decode($pref_industry_check, true))) checked @endif>
+                                            <label for="sub-industry-{{ $subIndustry->id }}">{{ $subIndustry->name }}</label>
+                
+                                            @php
+                                                $child_Catg = $industry->where('sub_parent_id', $subIndustry->id);
+                                            @endphp
+                
+                                            @if (count($child_Catg) != 0)
+                                                <div class="child-options-new">
+                                                    @foreach ($child_Catg as $childIndustry)
+                                                    <div class="field_option pt-1">
+                                                        <input type="checkbox" id="child-industry-{{ $childIndustry->id }}" data-id="{{ $childIndustry->id }}" @if (in_array($childIndustry->id, json_decode($pref_industry_check, true))) checked @endif>
+                                                        <label for="child-industry-{{ $childIndustry->id }}">{{ $childIndustry->name }}</label>
+                                                    </div>
+                                                    @endforeach
+                                                </div>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
                 
 
@@ -1064,7 +1175,7 @@
                                     <label for="Phone{{ $index + 1 }}" class="form-label">Phone *</label>
                                     <input type="text" class="form-control is-invalid input_text reference_phone"
                                         name="reference_phone[]" id="Phone{{ $index + 1 }}"
-                                        placeholder="Enter your Phone Number" pattern="[0-9]+" minlength="10"
+                                        placeholder="Enter your Phone Number" title="This Field is required" pattern="[0-9]+" minlength="5"
                                         maxlength="16" value="{{ $reference['reference_phone'] }}" required />
                                 </div>
                             </div>
@@ -1198,7 +1309,7 @@
 {{-- @if (!Session::has('step') || Session::get('step') == 6) --}}
 
     <div id="social_media_div" class="register_width d-none">
-        <div class="heading mb-4">
+        <div class="heading mb-4 col-12">
             <h2>Social Media Links</h2>
         </div>
         <form id="social-media-info" action="{{ url(route('account.create', ['param' => 'social-media-info'])) }}"
@@ -1211,7 +1322,7 @@
                         <img src="/assets/images/linkedin_icon.svg" alt="" class="input_icon linkedin_icon">
                         <input type="text" class="form-control is-invalid input_text" id="Linkdin"
                             name="linkdin" placeholder="Enter Your Linkedin URL" value="{{ $linkdin }}"
-                            name="linkdin" />
+                            name="linkdin" pattern="https://www.linkedin.com/[a-zA-Z0-9_.]+"/>
                         <!-- {{-- <img src="images/linkedin.png" alt="" class="input_icon" /> --}} -->
                     </div>
                 </div>
@@ -1221,7 +1332,7 @@
                         <img src="/assets/images/twitter_icon.svg" alt="" class="input_icon twitter_icon">
                         <input type="text" class="form-control is-invalid input_text" id="Twitter"
                             name="twitter" placeholder="Enter Your X URL" value="{{ $twitter }}"
-                            name="twitter" />
+                            name="twitter" pattern="https://twitter.com/[a-zA-Z0-9_]+"/>
                         <!-- {{-- <img src="images/x.png" alt="" class="input_icon" /> --}} -->
                     </div>
                 </div>
@@ -1231,7 +1342,7 @@
                         <img src="/assets/images/instagram_icon.svg" alt="" class="input_icon insta_icon">
                         <input type="text" class="form-control is-invalid input_text" id="Instagram"
                             placeholder="Enter Your Instagram URL" value="{{ $instagram }}"
-                            name="instagram">
+                            name="instagram" pattern="https://www.instagram.com/[a-zA-Z0-9_.]+">
                         {{-- <img src="images/instagram.png" alt="" class="input_icon" /> --}}
                     </div>
                 </div>
@@ -1241,11 +1352,11 @@
                         <img src="/assets/images/facebook_icon.svg" alt="" class="input_icon facebook_icon">
                         <input type="text" class="form-control is-invalid input_text" id="Facebook"
                             placeholder="Enter Your Facebook URL" value="{{ $facebook }}"
-                            name="facebook" />
+                            name="facebook" pattern="https://www.facebook.com/[a-zA-Z0-9.]+"/>
                         {{-- <img src="images/facebook.png" alt="" class="input_icon" /> --}}
                     </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-lg-12 col-12">
                     <div class="position-relative form-group">
                         <label for="others" class="form-label">Others</label>
                         <input type="text" class="form-control is-invalid input_text" id="others"
@@ -1254,7 +1365,7 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex align-items-center gap-4 justify-content-end">
+            <div class="d-flex align-items-center gap-4 justify-content-lg-end justify-content-center">
                 <div class="blue_btn">
                     <a class="text-decoration-none text-white" onclick="back_to_privious(this);">Back</a>
                 </div>
@@ -1299,7 +1410,7 @@
     <div id="thankyou-page" class="register_width d-none">
        
         <img class="prroceed_icons" src="/assets/images/thankyou_icon.svg" alt="file check" />
-         <div class="heading mb-2 mt-5">
+         <div class="heading mb-2 lg-mt-5 mt-3">
             <h2 class="fonts36"><b>Thank You</b></h2>
         </div>
 
@@ -1310,7 +1421,7 @@
 </span></p>
       
 
-                 <div class="d-flex align-items-center gap-5 justify-content-end mgright20 mt51">
+                 <div class="d-flex align-items-center gap-5 justify-content-end mgright20 mt70">
                 <div class="blue_btn">
                     <a href="/login" class="text-decoration-none text-white padd22">Continue to Login</a>
                 </div>

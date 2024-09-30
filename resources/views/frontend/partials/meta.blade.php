@@ -24,6 +24,7 @@ $url = url()->current();
 <meta name="title" content="@php echo htmlspecialchars_decode($title) @endphp">
 <meta name="description" content="@php echo htmlspecialchars_decode($description) @endphp">
 
+<link rel="shortcut icon" href="/assets/images/favicon.png">
 <meta property="og:url" content="{{ $url }}">
 <meta property="og:type" content="{{ $page_type }}">
 <meta property="og:site_name" content="{{ url('') }}">
@@ -32,8 +33,6 @@ $url = url()->current();
 <meta property="og:title" content="@php echo htmlspecialchars_decode($title) @endphp">
 <meta property="og:description" content="@php echo htmlspecialchars_decode($description) @endphp">
 
-<meta property="article:publisher" content="https://www.facebook.com/ahlawatassociates/" />
-<meta property="article:modified_time" content="{{ $publish_time }}" />
 
 
 
