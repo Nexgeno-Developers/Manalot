@@ -1854,6 +1854,10 @@ div#social_media_div {
         background-color: transparent !important;
     }
 
+    .select2-container { 
+        width: 100% !important;
+    }
+
     .form-control {
         padding-left: 0px !important;
     }
@@ -2395,6 +2399,72 @@ div#social_media_div {
     }
 }
 
+@media(min-width:992px) and (max-width:1154px) {    
+
+    
+    .pddleft50 {
+        padding-left: 20px !important;  
+        padding-right: 20px !important;
+    }
+
+    .register_width {
+        width: 100% !important;
+    }
+
+    #cirtificate_one { 
+        overflow: hidden;
+        padding-right: 25px;
+    }
+
+    .select2-container { 
+        width: 100%;
+    }
+
+    .register_width .col-md-6.mb-4:nth-child(even) {
+        padding-left: 15px;
+    }
+    
+    .register_width .col-md-6.mb-4:nth-child(odd) {
+        padding-right: 15px;
+    }
+
+    .expt_button { 
+        font-size: 45px; 
+    }
+
+    .last_chance {
+        padding-left: 120px;
+        margin-top: -26px;
+        font-size: 30px; 
+    }
+
+    .font-size18 {
+        font-size: 20px;
+        line-height: 32px;
+    }
+
+    .font24 {
+        font-size: 20px;
+    }
+
+    .font26 {
+        font-size: 22px;
+    }
+
+    
+    input#profile_photo {
+        font-size: 14px !important;
+        line-height: 1.3;
+    }
+
+    .education-row .col-md-6:nth-child(even) {
+        padding-left: 15px !important; 
+    }
+    
+    .education-row .col-md-6:nth-child(odd) { 
+        padding-right: 15px !important;
+    }
+}
 
 @media(min-width:768px) and (max-width:991px) {
 
@@ -2450,6 +2520,7 @@ div#social_media_div {
         display: block;
         width: 100%;
         margin-bottom: 15px;
+        text-align: center;
     }
 
     p.divider {
@@ -2520,7 +2591,7 @@ div#social_media_div {
 
 
     .register_width {
-        width: 100%;
+        width: 100% !important;
     }
 
     .register_width .col-md-6.mb-4:nth-child(even) {
@@ -2528,7 +2599,7 @@ div#social_media_div {
     }
 
     .register_width .col-md-6.mb-4:nth-child(odd) {
-        padding-right: 10px;
+        padding-right: 10px !important;
     }
 
     .auth_form {
@@ -2548,8 +2619,26 @@ div#social_media_div {
         font-size: 14px !important;
     }
 
+    .input_icon { 
+        bottom: 8px !important;
+    }
+
+    input#profile_photo {
+        font-size: 14px !important;
+        line-height: 1.3;
+    }
+
+    .register_width p { 
+        font-size: 16px;
+    }
+
+    .thankyou_page_login_btn a, .thankyou_page_view_btn a { 
+        top: 0px !important;
+    }
+
     .select2-container .select2-selection--single .select2-selection__rendered {
         padding-right: 0px !important;
+        font-size: 14px !important;
     }
 
     .currently_work {

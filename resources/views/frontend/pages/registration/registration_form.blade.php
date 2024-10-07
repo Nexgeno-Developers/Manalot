@@ -1316,7 +1316,7 @@
             method="post" enctype="multipart/form-data" class="d-flex gap-4 flex-column">
             @csrf
             <div class="row">
-                <div class="col-md-6 mb-4">
+                <div class="col-lg-6 col-12 mb-4">
                     <div class="position-relative form-group">
                         <label for="Linkdin" class="form-label">Linkdin</label>
                         <img src="/assets/images/linkedin_icon.svg" alt="" class="input_icon linkedin_icon">
@@ -1326,7 +1326,7 @@
                         <!-- {{-- <img src="images/linkedin.png" alt="" class="input_icon" /> --}} -->
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
+                <div class="col-lg-6 col-12 mb-4">
                     <div class="position-relative form-group">
                         <label for="Twitter" class="form-label">X (Twitter)</label>
                         <img src="/assets/images/twitter_icon.svg" alt="" class="input_icon twitter_icon">
@@ -1336,7 +1336,7 @@
                         <!-- {{-- <img src="images/x.png" alt="" class="input_icon" /> --}} -->
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
+                <div class="col-lg-6 col-12 mb-4">
                     <div class="position-relative form-group">
                         <label for="Instagram" class="form-label">Instagram</label>
                         <img src="/assets/images/instagram_icon.svg" alt="" class="input_icon insta_icon">
@@ -1346,7 +1346,7 @@
                         {{-- <img src="images/instagram.png" alt="" class="input_icon" /> --}}
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
+                <div class="col-lg-6 col-12 mb-4">
                     <div class="position-relative form-group">
                         <label for="Facebook" class="form-label">Facebook</label>
                         <img src="/assets/images/facebook_icon.svg" alt="" class="input_icon facebook_icon">
