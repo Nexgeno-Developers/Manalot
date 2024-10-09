@@ -2548,6 +2548,10 @@ div#social_media_div {
         display: block;
     }
 
+    .select2-container { 
+        width: 100% !important;
+    }
+
     .width45 {
         width: 100% !important;
     }
