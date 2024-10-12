@@ -121,7 +121,7 @@ body::-webkit-scrollbar-track {
 
 .input_icon {
     position: absolute;
-    right: 0;
+    right: 6px;
     margin-top: 39px;
     width: 18px;
     background: #fff;
