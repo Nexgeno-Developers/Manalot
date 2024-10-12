@@ -31,6 +31,20 @@
         }
 
     }
+
+    @media screen and (min-width: 768px) {
+
+        
+        .login_logo img {
+            position: absolute !important;
+        }
+
+        img.mobile_none {
+            position: relative;
+            top: -35px;
+        }
+
+    }
 </style>
 
 <div class="login_logo">
