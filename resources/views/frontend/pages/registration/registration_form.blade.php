@@ -253,6 +253,52 @@
 
     {{--- //------------------------------  email verify modal -----------------------// ----}}
 
+
+    {{--- //------------------------------ Phone verify modal -----------------------// ----}}
+
+    <div class="modal fade" id="phone_otp_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel_phone"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content py-3">
+                <div class="modal-header">
+                    <div class="heading">
+                        <h5 class="modal-title" id="exampleModalLabel_phone">Verify Phone Number</h5>
+                    </div>
+                    <div class="purple_btn_close">
+                        <button type="button" onclick="close_Phone_modal();" class="close p-1 px-3" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="font-size: 24px;">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <form id="phone-verify-otp" action="{{ url(route('account.create', ['param' => 'phone-verify'])) }}"
+                    method="post">
+                    @csrf
+
+                    <div class="modal-body">
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label form-label">Verification Code:</label>
+                                <input type="number" class="form-control" id="recipient-name" name="otp" pattern="[0-9]+" minlength="6"
+                                maxlength="6" placeholder="Please Enter Code" required>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="blue_btn">
+                            <button type="button" onclick="close_Phone_modal();" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                        <div class="purple_btn">
+                            <button type="submit" class="btn btn-primary">Verify</button>
+                        </div>
+                        <div class="resend_otp">
+                            <a class="ms-4" class="btn btn-primary" id="resendOTPButton_Phone" style="display: none; cursor: pointer;">Resend OTP</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{--- //------------------------------  email verify modal -----------------------// ----}}
+
 {{-- @endif --}}
 
 <!--------------------------------------------- user info --------------------------------->

@@ -997,8 +997,15 @@
             //     location.reload();
             // }, 100);
             $('#email_otp_model').modal('toggle');
-            location.reload();
+            $('#phone_otp_model').modal('show');
+            // location.reload();
             // next_page_preview(2);
+
+            // Show resend OTP button after 30 seconds
+            setTimeout(function() {
+                var resendButton_phone = document.getElementById('resendOTPButton_Phone');
+                resendButton_phone.style.display = 'block';
+            }, 30000); // 30 seconds
             
         };
 
@@ -1035,6 +1042,66 @@
         });
 
     /*--------------------- Resend-otp------------------*/  
+
+
+
+    /*--------------------- phone verify otp ------------------*/
+
+        initValidate('#phone-verify-otp');
+
+        $('#phone-verify-otp').on('submit', function(e){
+            var form = $(this);
+            ajax_form_submit(e, form, responseHandler_phone_verify_otp);
+        });
+
+        var responseHandler_phone_verify_otp = function (response) {
+            var form = $('#phone-verify-otp'); 
+            
+            form.find("input[type=text], input[type=email], input[type=password], textarea").val("");
+            form.find("select").prop("selectedIndex", 0); 
+            // setTimeout(function () {
+            //     location.reload();
+            // }, 100);
+            $('#phone_otp_model').modal('toggle');
+            location.reload();
+            // next_page_preview(2);
+            
+        };
+
+        function close_Phone_modal() {
+            $('#phone_otp_model').modal('toggle');
+        };
+    /*--------------------- phone verify otp ------------------*/ 
+
+    /*--------------------- phone Resend-otp------------------*/    
+
+        $(document).ready(function(){
+
+
+
+            $('#resendOTPButton_Phone').click(function(e){
+                e.preventDefault();
+
+                var csrfToken = '{{ csrf_token() }}';
+
+                $.ajax({
+                    url: "{{ route('account.create', ['param' =>'resend-otp-phone']) }}",
+                    type: "Post",
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    success: function(response) {
+                        toastr.success(response.response_message.message, response.response_message.response);
+                    },
+                    error: function(xhr, status, error) {
+                        toastr.error(response.response_message.message, response.response_message.response);
+                    }
+                });
+            });
+        });
+
+    /*--------------------- phone Resend-otp------------------*/  
+
 
     /*--------------------- personal info ------------------*/
 
