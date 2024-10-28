@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Storage;
         }
     }
 
-    //sensSMS function for OTP
     if (!function_exists('get_settings')) {
         function get_settings($type)
         {
@@ -46,33 +45,6 @@ use Illuminate\Support\Facades\Storage;
             return null; // or any default value or error handling you prefer
         }
     }
-
-    // if (!function_exists('get_contactpage')) {
-    //     function get_contactpage($type)
-    //     {
-    //         $cacheKey = "contact_page_setting_{$type}";
-        
-    //         // Check if the value is already in the cache
-    //         if (Cache::has($cacheKey)) {
-    //             return Cache::get($cacheKey);
-    //         }
-        
-    //         // If not in the cache, retrieve the value from the database
-    //         $ContactSetting = ContactSetting::where('type', $type)->first();
-        
-    //         if ($ContactSetting) {
-    //             $value = $ContactSetting->value;
-        
-    //             // Store the value in the cache with a specific lifetime (e.g., 60 minutes)
-    //             Cache::put($cacheKey, $value, now()->addMinutes(60));
-        
-    //             return $value;
-    //         }
-        
-    //         // Handle the case where no record is found
-    //         return null; // or any default value or error handling you prefer
-    //     }
-    // }
 
     if(!function_exists('sendEmail')){
         function sendEmail($to, $subject, $body, $attachments = [])
@@ -242,6 +214,37 @@ use Illuminate\Support\Facades\Storage;
 
             // Return the web URL of the uploaded file or other response data
             return $weburl;
+        }
+    }
+
+    if(!function_exists('send_sms_through_2factor')){
+        function send_sms_through_2factor($data){
+
+            $api_key   = env("SMS_2FACTOR_API_KEY");
+            $sender    = env("SMS_2FACTOR_CREDENTIAL");
+            
+            $url = 'https://2factor.in/API/V1/'.$api_key.'/SMS/'.$data['phone'].'/'.$data['otp'].'/'.$data['template'].'?var1='.$data['student_name'];
+ 
+
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => $url,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "GET",
+                CURLOPT_POSTFIELDS => "",
+                CURLOPT_HTTPHEADER => array(
+                "content-type: application/x-www-form-urlencoded"
+                ),
+            ));
+            $response = curl_exec($curl);
+
+            $err = curl_error($curl);
+            curl_close($curl);	    
+                
         }
     }
 
