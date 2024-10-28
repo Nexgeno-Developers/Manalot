@@ -50,7 +50,7 @@
 <div class="login_logo">
     <a class="d-md-block d-none" href="/"><img src="/assets/images/manalot_header_logo.svg" /></a>
     <a class="position-absolute d-md-none d-block" href="/"><img src="/assets/images/manalot_header_logo.svg" /></a>
-    <img class="mobile_login_image d-md-none d-block" src="/assets/images/unemployed_47.png">
+    <img class="mobile_login_image d-md-none d-block" src="/assets/images/login_img.png">
 </div>
 
 <section class="auth_form no_padding">

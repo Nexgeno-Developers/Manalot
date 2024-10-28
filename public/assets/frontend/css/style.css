@@ -2330,6 +2330,14 @@ div#social_media_div {
         width: 100%;
     }
 
+    #phone_otp_model .modal-body {
+        padding: 0px 16px;
+    }
+    
+    #phone_otp_model .modal-footer, #phone_otp_model .modal-header {
+        border: none;
+    }
+
     .currently_work {
         text-align: right;
         padding-top: 0px;
