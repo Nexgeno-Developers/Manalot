@@ -2732,7 +2732,7 @@ div#social_media_div {
 }
 
 .register_main_button {
-    padding-left: 0px !important;
+    padding-left: 0px;
 }
 
 .document_required p {
