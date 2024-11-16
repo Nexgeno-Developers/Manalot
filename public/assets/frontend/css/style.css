@@ -2183,6 +2183,10 @@ div#social_media_div {
         padding-left: 0px !important;
     }
 
+    .register_main_button {
+        padding-left: 0px !important;
+    }
+
     .work_authorization .col-md-6:nth-child(even) {
         padding-left: 10px !important;
         padding-right: 32px;
@@ -2720,8 +2724,12 @@ div#social_media_div {
 }
 
 .document_required {
-    padding-left: 20px;
+    padding-left: 0px;
     margin-top: -10px;
+}
+
+.register_main_button {
+    padding-left: 20px;
 }
 
 .document_required p {
@@ -2742,10 +2750,15 @@ div#social_media_div {
     color: #686868;
     font-weight: 300;
     list-style: none;
+    font-size: 14px;
 }
 
 .document_required ul {
     padding-left: 0;
+}
+
+.register_main_button {
+    padding-left: 20px;
 }
 
 .preview_name {

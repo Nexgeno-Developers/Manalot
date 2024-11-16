@@ -7698,8 +7698,16 @@ fieldset:disabled .btn {
     order: 5 !important
 }
 
-.order-last {
+.order-6 {
     order: 6 !important
+}
+
+.order-7 {
+    order: 7 !important
+}
+
+.order-8 {
+    order: 8 !important
 }
 
 .m-0 {
@@ -9296,8 +9304,16 @@ fieldset:disabled .btn {
         order: 5 !important
     }
 
-    .order-md-last {
+    .order-md-6 {
         order: 6 !important
+    }
+
+    .order-md-7 {
+        order: 7 !important
+    }
+
+    .order-md-8 {
+        order: 8 !important
     }
 
     .m-md-0 {
