@@ -2414,7 +2414,7 @@ div#social_media_div {
 @media screen and (min-width:992px) and (max-width:1154px) {    
 
     .register_main_button {
-        padding-left: 5px;
+        padding-left: 5px !important;
     }
     
     .pddleft50 {
@@ -2732,7 +2732,7 @@ div#social_media_div {
 }
 
 .register_main_button {
-    padding-left: 0px;
+    padding-left: 0px !important;
 }
 
 .document_required p {
