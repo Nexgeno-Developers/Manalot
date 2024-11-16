@@ -165,38 +165,40 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 mb-md-3 mb-1">
-                <div class="form-check checkbox_error ps-0 terms_cdn">
-                    <input class="form-check-input custom-checkbox" type="checkbox" value="1" name="term_check"
-                        id="flexCheckDefault" required />
-                    <label class="form-check-label terms_font " for="flexCheckDefault">
-                        I agree to the
-                        <a href="#" class="purple"> <b>Terms & Condition</b></a>
-                    </label>
+                <div class="col-md-6 mb-3 order-md-7 order-8">
+                    <div class="document_required">
+                        <p>Documents required: <span class="span_start">*</span></p>
+                        <ul>
+                            <li>Current Resume</li>
+                            <li>Last Experience | Relieving letter</li>
+                            <li>Recent Photo</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="purple_btn mt-4">
-                    <button type="submit" class="text-decoration-none text-white">Register as
-                        Jobseeker</button>
-                        
+
+                <div class="col-md-6 mb-md-3 mb-1 order-md-8 order-7">
+                    <div class="register_main_button">
+                        <div class="form-check checkbox_error ps-0 terms_cdn">
+                            <input class="form-check-input custom-checkbox" type="checkbox" value="1" name="term_check"
+                                id="flexCheckDefault" required />
+                            <label class="form-check-label terms_font " for="flexCheckDefault">
+                                I agree to the
+                                <a href="#" class="purple"> <b>Terms & Condition</b></a>
+                            </label>
+                        </div>
+                        <div class="purple_btn mt-4">
+                            <button type="submit" class="text-decoration-none text-white">Register as
+                                Jobseeker</button>
+                                
+                        </div>
+                        <p class="mt-4">
+                            Already have an account?
+                            <a href="{{ url(route('login')) }}" class="text-decoration-none purple">Login</a>
+                        </p>
+                    </div>
                 </div>
-                <p class="mt-4">
-            Already have an account?
-            <a href="{{ url(route('login')) }}" class="text-decoration-none purple">Login</a>
-        </p>
-                
-            </div>
 
 
-             <div class="col-md-6 mb-3">
-                 <div class="document_required">
-                    <p>Documents required: <span class="span_start">*</span></p>
-                    <ul>
-                        <li>Current Resume</li>
-                        <li>Last Experience | Relieving letter</li>
-                        <li>Recent Photo</li>
-                    </ul>
-                 </div>
-             </div>
             </div>
 
             
